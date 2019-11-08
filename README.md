@@ -1,6 +1,5 @@
 # E10
 ### Proyecto de Sistemas y Tecnologías Web
-# E10
 
 ---
 
