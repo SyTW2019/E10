@@ -99,10 +99,7 @@
             </b-form-group>
 
             <b-form-group label="Seleccione una titulación:">
-              <b-form-select
-                v-model="form2.selected2"
-                :options="options"
-              ></b-form-select>
+              <b-form-select v-model="form2.selected2" :options="options"></b-form-select>
               <div class="mt-3" v-if="form2.selected2">
                 Seleccionado:
                 <strong>{{ form2.selected2 }}</strong>
