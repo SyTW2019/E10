@@ -2,7 +2,7 @@
   <div class="auth">
     <b-container>
       <b-row>
-        <b-col sm="5" class="formularios">
+        <b-col sm="5" class="formularios1">
           <!-- Formulario de inicio se sesion -->
           <h3>Inicio de sesión</h3>
           <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -39,7 +39,7 @@
             <pre class="m-0">{{ form }}</pre>
           </b-card>
         </b-col>
-        <b-col sm="5" offset-sm="2" class="formularios">
+        <b-col sm="5" class="formularios2">
           <!-- Formulario de registro -->
           <h3>Registro</h3>
           <b-form @submit="onSubmit2" @reset="onReset2" v-if="show">
@@ -200,7 +200,7 @@ h1 {
   font-weight: normal;
 }
 
-.formularios {
+.formularios1 {
   border: 3px solid #5c068b;
   border-radius: 8px 8px 8px 8px;
   -moz-border-radius: 8px 8px 8px 8px;
@@ -210,5 +210,23 @@ h1 {
 
   padding-bottom: 15px;
   padding-top: 15px;
+
+  margin-left: 60px;
+  margin-right: 35px;
+}
+
+.formularios2 {
+  border: 3px solid #5c068b;
+  border-radius: 8px 8px 8px 8px;
+  -moz-border-radius: 8px 8px 8px 8px;
+  -webkit-border-radius: 8px 8px 8px 8px;
+
+  background-color: rgb(92, 6, 139, 0.1);
+
+  padding-bottom: 15px;
+  padding-top: 15px;
+
+  margin-left: 35px;
+  margin-right: 60px;
 }
 </style>
