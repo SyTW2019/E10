@@ -1,7 +1,6 @@
 /* eslint-disable */
 <template>
   <div id="app">
-    <img src="./assets/logo.png" />
     <div id="nav">
       <router-link to="/">Helloworld</router-link>|
       <router-link to="/authentication">Auth</router-link>|
