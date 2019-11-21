@@ -7,8 +7,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: () => import('@/components/HelloWorld.vue')
+      name: 'Home',
+      component: () => import('@/components/Home.vue')
     },
     {
       path: '/authentication',

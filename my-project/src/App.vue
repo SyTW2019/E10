@@ -1,9 +1,16 @@
 <template>
   <div id="app">
-    <b-navbar class="container" id="barrita" sticky=true toggleable="lg" type="dark">
-      <b-navbar-brand>
-        <img src="my-project\src\assets\logo_ull_peq.jpg" class="d-inline-block align-top">
-        <router-link to="/">EMPEP</router-link>
+    <b-navbar class="container" id="barra_nav" sticky="true" toggleable="lg" type="dark">
+      <b-navbar-brand id="logo">
+        <router-link to="/">
+          <b-img
+            :src="require('./assets/logo.png')"
+            width="150%"
+            rounded
+            class="d-inline-block align-top"
+            alt="Responsive image"
+          ></b-img>
+        </router-link>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -14,7 +21,6 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-
           <b-nav-item-dropdown text="Lang" right>
             <b-dropdown-item href="#">EN</b-dropdown-item>
             <b-dropdown-item href="#">ES</b-dropdown-item>
@@ -22,9 +28,7 @@
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
-            <template v-slot:button-content>
-              Usuario
-            </template>
+            <template v-slot:button-content>Usuario</template>
             <b-dropdown-item>
               <router-link to="/authentication">Auth</router-link>
             </b-dropdown-item>
@@ -55,7 +59,16 @@ export default {
   margin-bottom: 10px;
 }
 
-#barrita {
+#logo {
+  border: 3px solid #5c068b;
+  border-radius: 8px 8px 8px 8px;
+  -moz-border-radius: 8px 8px 8px 8px;
+  -webkit-border-radius: 8px 8px 8px 8px;
+
+  background-color: white;
+}
+
+#barra_nav {
   background-color: rgb(92, 6, 139);
 }
 </style>

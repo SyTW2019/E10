@@ -1,7 +1,7 @@
 <template>
   <div class="auth">
     <b-container>
-      <b-row>
+      <b-row class="justify-content-around">
         <b-col sm="5" class="formularios1">
           <!-- Formulario de inicio se sesion -->
           <h3>Inicio de sesión</h3>
@@ -207,9 +207,6 @@ h1 {
 
   padding-bottom: 15px;
   padding-top: 15px;
-
-  margin-left: 60px;
-  margin-right: 35px;
 }
 
 .formularios2 {
@@ -222,8 +219,5 @@ h1 {
 
   padding-bottom: 15px;
   padding-top: 15px;
-
-  margin-left: 35px;
-  margin-right: 60px;
 }
 </style>
