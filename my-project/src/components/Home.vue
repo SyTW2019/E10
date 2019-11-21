@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img v-bind:src="logoLink" alt="Logo app" />
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -26,12 +25,7 @@
 <script>
 /* eslint-disable */
 export default {
-  name: "Home",
-  data() {
-    return {
-      logoLink: "@assetslogo.png"
-    };
-  }
+  name: "Home"
 };
 </script>
 
