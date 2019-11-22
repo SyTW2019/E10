@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar class="container" id="barra_nav" sticky="true" toggleable="lg" type="dark">
+    <b-navbar class="container" id="barra_nav" sticky toggleable="lg" type="dark">
       <b-navbar-brand id="logo">
         <router-link to="/">
           <b-img
@@ -30,7 +30,7 @@
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>Usuario</template>
             <b-dropdown-item>
-              <router-link to="/authentication">Auth</router-link>
+              <router-link to="/iniciosesion">Auth</router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
