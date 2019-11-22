@@ -4,7 +4,7 @@
       <b-navbar-brand id="logo">
         <router-link to="/">
           <b-img
-            :src="require('./assets/logo.png')"
+            :src="require('./_assets/logo.png')"
             width="150%"
             rounded
             class="d-inline-block align-top"
@@ -16,7 +16,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Link</b-nav-item>
+          <b-nav-item href="#" disabled>Link</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -30,7 +30,7 @@
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>Usuario</template>
             <b-dropdown-item>
-              <router-link to="/iniciosesion">Auth</router-link>
+              <router-link to="/iniciosesion">Sign in</router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>

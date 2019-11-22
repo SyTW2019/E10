@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: () => import('@/components/Home.vue')
+      component: () => import('@/components/Home/Home.vue')
     },
     {
       path: '/registro',
