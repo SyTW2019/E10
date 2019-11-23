@@ -107,4 +107,21 @@ Usamos MongoDB como sistema para nuestra base de datos.
 
 ---
 
-## Continuación
+## Configuración
+### Scripts iniciales
+
+Depues de haber clonado/descargado el repositorio:
+
+#### Instalación
+```consola
+npm install
+```
+Para instalar las dependencias necesarias para el funcionamiento de la aplicación.
+
+#### Instalación
+```consola
+npm run dev
+```
+Para lanzar la aplicación.  
+
+# Continuación
