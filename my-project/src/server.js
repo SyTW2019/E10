@@ -22,9 +22,6 @@ app.use(express.static(__dirname + '/static'));
 
 // Server is listening
 app.listen(app.get('port'), () => {
-<<<<<<< HEAD
     console.log()
-=======
->>>>>>> 90b8c3d9cb70af4b32a14cb9fa428bb0f66b74dc
     console.log('Server on port', app.get('port'));
 });
