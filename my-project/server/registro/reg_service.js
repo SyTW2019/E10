@@ -1,7 +1,7 @@
-const config = require('config.json');
+// const config = require('config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const db = require('../_helper/db');
+const db = require('../_helpers/db');
 const User = db.User;
 
 module.exports = {
@@ -13,6 +13,17 @@ module.exports = {
     delete: _delete
 };
 
+async function authenticate({ username, password }) {
+    const user = await User.findOne({ username });
+    if (user && bcrypt.compareSync(password, user.hash)) {
+        const { hash, ...userWithouHash } = user.toObject();
+        const token = jwt.sign({ sub: user.id }, config.secret);
+        return {
+            ...userWithouHash,
+            token
+        }
+    }
+}
 
 async function getAll() {
     return await User.find().select('-hash');

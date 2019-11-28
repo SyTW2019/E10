@@ -1,8 +1,13 @@
-const config = require('config.json')
+// const config = require('config.json')
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGODB_URI || config.connectionString, { useCreateIndex: true, useNewUrlParser: true });
-mongoose.Promise = global.Promise;
+// var fs = require('fs');
+// var jason = fs.readFileSync('../config.j');
+// const jsonBien = JSON.parse(jason);
+
+mongoose.connect('mongodb://localhost/mevn-database', { useNewUrlParser: true })
+    .then(db => console.log('DB is connected'))
+    .catch(err => console.error(err));
 
 module.exports = {
     User: require('../registro/reg_model')
