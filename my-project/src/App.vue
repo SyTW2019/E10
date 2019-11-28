@@ -40,23 +40,31 @@
       <br />
       <router-view />
     </div>
-  </div>
 </template>
 
 <script>
 /* eslint-disable */
 export default {
-  name: "App"
+    name: "App"
 };
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  text-align: center;
-  margin-top: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    text-align: center;
+    margin-top: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#logo {
+    border: 3px solid #5c068b;
+    border-radius: 8px 8px 8px 8px;
+    -moz-border-radius: 8px 8px 8px 8px;
+    -webkit-border-radius: 8px 8px 8px 8px;
+
+    background-color: white;
 }
 
 #logo {

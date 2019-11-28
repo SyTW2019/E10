@@ -15,10 +15,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
-app.use('/registro', require('./router/registro'));
+app.use('/registro', require('../_router/registro'));
 
 // Static files
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/_static'));
 
 // Server is listening
 app.listen(app.get('port'), () => {
