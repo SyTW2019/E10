@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const Schema = mongoose.Schema;
 
 const reg = new Schema({
-    email: String,
+    email: { type: String, unique: true, required: true },
     password: String,
     username: String,
     grado: String
 });
 
-module.exports = mongoose.model('reg', reg);
+Schema.set('toJSON', { virtuals: true });
+
+module.exports = mongoose.model('Registro', reg);
