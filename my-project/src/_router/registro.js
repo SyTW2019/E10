@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const reg = require('../components/Registro/reg_model.js');
+const reg = require('../server/registro/reg_model.js/index.js.js');
 
 router.get('/', async (req, res) => {
     const regs = await reg.find();
