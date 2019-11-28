@@ -5,7 +5,7 @@
         <b-col sm="8" class="formularios1">
           <!-- Formulario de registro -->
           <h3>Inicio de sesión</h3>
-          <b-form @submit="onSubmit2" @reset="onReset2" v-if="show">
+          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
             <b-form-group
               id="input-group-registro-1"
               label="Nombre de usuario:"
@@ -13,73 +13,37 @@
             >
               <b-form-input
                 id="input-nombre-reg"
-                v-model="form2.name2"
+                v-model="form.username"
                 required
-                placeholder="Introduce tu nombre aquí"
+                placeholder="Introduce tu nombre o email aquí"
               ></b-form-input>
             </b-form-group>
 
             <b-form-group
               id="input-group-registro-2"
-              label="Correo electrónico:"
-              label-for="input-registro-mail"
-              description="Preferiblemente usar el correo institucional (aluXXXXX@ull.edu.es)."
-            >
-              <b-form-input
-                id="input-registro-mail"
-                v-model="form2.email2"
-                type="email"
-                required
-                placeholder="Introduce tu e-mail"
-              ></b-form-input>
-            </b-form-group>
-
-            <b-form-group
-              id="input-group-registro-3"
               label="Contraseña:"
               label-for="input-registro-pw"
             >
               <b-form-input
                 id="input-registro-pw"
-                v-model="form2.password2"
+                v-model="form.password"
                 type="password"
                 required
                 placeholder="Introduce tu contraseña"
-                aria-describedby="password-help-block"
               ></b-form-input>
-              <b-form-text id="password-help-block">
-                Your password must be 8-20 characters long, contain letters and numbers, and must not
-                contain spaces, special characters, or emoji.
-              </b-form-text>
-              <br />
-              <b-form-input
-                id="input-registro-pw"
-                v-model="form2.password2_repeat"
-                type="password"
-                required
-                placeholder="Repite tu contraseña"
-              ></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Seleccione una titulación:">
-              <b-form-select v-model="form2.selected2" :options="options"></b-form-select>
-              <div class="mt-3" v-if="form2.selected2">
-                Seleccionado:
-                <strong>{{ form2.selected2 }}</strong>
-              </div>
             </b-form-group>
 
             <b-form-group id="input-group-registro-3">
-              <b-form-checkbox-group v-model="form2.checked2" id="checkboxes-registro-3">
-                <b-form-checkbox value="accept_terms">He leído y acepto lo términos y condiciones.</b-form-checkbox>
+              <b-form-checkbox-group v-model="form.checked" id="checkboxes-registro-3">
+                <b-form-checkbox value="remind_me">Recordarme</b-form-checkbox>
               </b-form-checkbox-group>
             </b-form-group>
 
             <b-button type="submit" variant="primary">Submit</b-button>
             <b-button type="reset" variant="danger">Reset</b-button>
           </b-form>
-          <b-card class="mt-3" header="Resultado formulario de registro">
-            <pre class="m-0">{{ form2 }}</pre>
+          <b-card class="mt-3" header="Resultado formulario de inicio de sesión">
+            <pre class="m-0">{{ form }}</pre>
           </b-card>
         </b-col>
       </b-row>
@@ -95,36 +59,25 @@ export default {
   name: "InicioSesion",
   data() {
     return {
-      form2: {
-        email2: "",
-        password2: "",
-        password2_repeat: "",
-        name2: "",
-        selected2: null,
-        checked2: null
+      form: {
+        username: "",
+        password: "",
+        checked: null
       },
-      options: [
-        { value: null, text: "Por favor, escoja una opción" },
-        { value: "This is First option", text: "This is First option" },
-        { value: "Selected Option", text: "Selected Option" }
-      ],
       show: true
     };
   },
   methods: {
-    onSubmit2(evt) {
+    onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form2));
+      alert(JSON.stringify(this.form));
     },
-    onReset2(evt) {
+    onReset(evt) {
       evt.preventDefault();
       // Reset our form values
-      this.form2.email2 = "";
-      this.form2.password2 = "";
-      this.form2.password2_repeat = "";
-      this.form2.name2 = "";
-      this.form2.selected2 = null;
-      this.form2.checked2 = null;
+      this.form.username = "";
+      this.form.password = "";
+      this.form.checked = null;
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
