@@ -1,7 +1,7 @@
 const config = require('config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const db = require('../../_helper/db');
+const db = require('../_helper/db');
 const User = db.User;
 
 module.exports = {
@@ -22,7 +22,7 @@ async function getById(id) {
     return await User.findById(id).select('-hash');
 }
 
-async function craete(userParam) {
+async function create(userParam) {
     // validate
     if (await User.findOne({ username: userParam.username })) {
         throw 'Username "' + userParam.usernam + '" is already taken';
@@ -53,6 +53,12 @@ async function update(id, userParam) {
         userParam.has = bcrypt.hashSync(userParam.password, 10);
     }
 
-    // copy userParam 
+    // copy userParam properties to user
+    Object.assign(user, userParam);
 
+    await user.save();
+}
+
+async function _delete(id) {
+    await User.findByIdAndRemove(id);
 }

@@ -5,5 +5,5 @@ mongoose.connect(process.env.MONGODB_URI || config.connectionString, { useCreate
 mongoose.Promise = global.Promise;
 
 module.exports = {
-    User: require('../components/Registro/reg_model')
+    User: require('../registro/reg_model')
 };

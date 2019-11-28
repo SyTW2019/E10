@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
-app.use('/registro', require('../_router/registro'));
+app.use('/registro', require('../src/_router/registro'));
 
 // Static files
 app.use(express.static(__dirname + '/_static'));
