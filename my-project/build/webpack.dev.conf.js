@@ -44,45 +44,29 @@ const devWebpackConfig = merge(baseWebpackConfig, {
             poll: config.dev.poll,
         }
     },
-    hot: true,
-    contentBase: false, // since we use CopyWebpackPlugin.
-    compress: true,
-    host: HOST || config.dev.host,
-    port: PORT || config.dev.port,
-    open: config.dev.autoOpenBrowser,
-    overlay: config.dev.errorOverlay
-        ? { warnings: false, errors: true }
-        : false,
-    publicPath: config.dev.assetsPublicPath,
-    proxy: config.dev.proxyTable,
-    quiet: true, // necessary for FriendlyErrorsPlugin
-    watchOptions: {
-        poll: config.dev.poll,
-    }
-},
     plugins: [
-    new webpack.DefinePlugin({
-        'process.env': require('../config/dev.env')
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
-    new webpack.NoEmitOnErrorsPlugin(),
-    // https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: 'index.html',
-        inject: true
-    }),
-    // copy custom static assets
-    new CopyWebpackPlugin([
-        {
-            from: path.resolve(__dirname, '../src/_static'),
-            to: config.dev.assetsSubDirectory,
-            ignore: ['.*']
-        }
-    ])
-]
-});
+        new webpack.DefinePlugin({
+            'process.env': require('../config/dev.env')
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
+        new webpack.NoEmitOnErrorsPlugin(),
+        // https://github.com/ampedandwired/html-webpack-plugin
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'index.html',
+            inject: true
+        }),
+        // copy custom static assets
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, '../src/_static'),
+                to: config.dev.assetsSubDirectory,
+                ignore: ['.*']
+            }
+        ])
+    ]
+})
 
 module.exports = new Promise((resolve, reject) => {
     portfinder.basePort = process.env.PORT || config.dev.port
