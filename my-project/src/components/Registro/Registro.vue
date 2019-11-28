@@ -1,11 +1,11 @@
 <template>
   <div class="auth">
     <b-container>
-      <b-row class="justify-content-around">        
+      <b-row class="justify-content-around">
         <b-col sm="8" class="formularios2">
           <!-- Formulario de registro -->
           <h3>Registro</h3>
-          <b-form @submit="onSubmit2" @reset="onReset2" v-if="show">
+          <b-form @submit.prevent="handleSubmit" @reset="onReset2" v-if="show">
             <b-form-group
               id="input-group-registro-1"
               label="Nombre de usuario:"
@@ -13,10 +13,17 @@
             >
               <b-form-input
                 id="input-nombre-reg"
-                v-model="form2.name2"
-                required
+                v-model="user.name2"
                 placeholder="Introduce tu nombre aquí"
+                type="text"
+                v-validate="'required'"
+                class="form-control"
+                :class="{ 'is-invalid': submitted && errors.has('name2') }"
               ></b-form-input>
+              <div
+                v-if="submitted && errors.has('name2')"
+                class="invalid-feedback"
+              >{{ errors.first('name2') }}</div>
             </b-form-group>
 
             <b-form-group
@@ -27,11 +34,17 @@
             >
               <b-form-input
                 id="input-registro-mail"
-                v-model="form2.email2"
+                v-model="user.email2"
                 type="email"
-                required
+                v-validate="'required'"
                 placeholder="Introduce tu e-mail"
+                class="form-control"
+                :class="{ 'is-invalid': submitted && errors.has('email2') }"
               ></b-form-input>
+              <div
+                v-if="submitted && errors.has('email2')"
+                class="invalid-feedback"
+              >{{ errors.first('email2') }}</div>
             </b-form-group>
 
             <b-form-group
@@ -41,11 +54,12 @@
             >
               <b-form-input
                 id="input-registro-pw"
-                v-model="form2.password2"
+                v-model="user.password2"
                 type="password"
-                required
                 placeholder="Introduce tu contraseña"
                 aria-describedby="password-help-block"
+                v-validate="{ required: true, min: 6 }"
+                class="form-control"
               ></b-form-input>
               <b-form-text id="password-help-block">
                 Your password must be 8-20 characters long, contain letters and numbers, and must not
@@ -54,32 +68,35 @@
               <br />
               <b-form-input
                 id="input-registro-pw"
-                v-model="form2.password2_repeat"
+                v-model="user.password2_repeat"
                 type="password"
-                required
+                v-validate="{ required: true, min: 6 }"
                 placeholder="Repite tu contraseña"
               ></b-form-input>
             </b-form-group>
 
             <b-form-group label="Seleccione una titulación:">
-              <b-form-select v-model="form2.selected2" :options="options"></b-form-select>
-              <div class="mt-3" v-if="form2.selected2">
+              <b-form-select v-model="user.selected2" v-validate="'required'" :options="options" class="form-control"></b-form-select>
+              <div class="mt-3" v-if="user.selected2">
                 Seleccionado:
-                <strong>{{ form2.selected2 }}</strong>
+                <strong>{{ user.selected2 }}</strong>
               </div>
             </b-form-group>
 
             <b-form-group id="input-group-registro-3">
-              <b-form-checkbox-group v-model="form2.checked2" id="checkboxes-registro-3">
-                <b-form-checkbox value="accept_terms">He leído y acepto lo términos y condiciones.</b-form-checkbox>
+              <b-form-checkbox-group v-model="user.checked2" id="checkboxes-registro-3">
+                <b-form-checkbox value="accept_terms" class="form-control">He leído y acepto lo términos y condiciones.</b-form-checkbox>
               </b-form-checkbox-group>
             </b-form-group>
 
-            <b-button type="submit" variant="primary">Submit</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button>
+            <b-form-group>
+              <b-button type="submit" variant="primary" class="btn btn-primary" :disabled="status.registering">Submit</b-button>
+              <b-button type="reset" variant="danger">Reset</b-button>
+              <router-link to="/" class="btn btn-link">Cancel</router-link>
+            </b-form-group>
           </b-form>
           <b-card class="mt-3" header="Resultado formulario de registro">
-            <pre class="m-0">{{ form2 }}</pre>
+            <pre class="m-0">{{ user }}</pre>
           </b-card>
         </b-col>
       </b-row>
@@ -89,12 +106,12 @@
 </template>
 
 <script>
-/* eslint-disable */
+import { mapState, mapActions } from "vuex";
 export default {
   name: "Registro",
   data() {
     return {
-      form2: {
+      user: {
         email2: "",
         password2: "",
         password2_repeat: "",
@@ -102,28 +119,37 @@ export default {
         selected2: null,
         checked2: null
       },
+      submitted: false,
       options: [
         { value: null, text: "Por favor, escoja una opción" },
-        { value: "This is First option", text: "This is First option" },
-        { value: "Selected Option", text: "Selected Option" }
+        { value: "ULL", text: "Universidad de La Laguna" },
+        { value: "ULPGC", text: "Universidad de Las Palmas de Gran Canaria" }
       ],
       show: true
     };
   },
+  computed: {
+    ...mapState("account", ["status"])
+  },
   methods: {
-    onSubmit2(evt) {
-      evt.preventDefault();
-      alert(JSON.stringify(this.form2));
+    ...mapActions("account", ["register"]),
+    handleSubmit(e) {
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+          this.register(this.user);
+        }
+      });
     },
     onReset2(evt) {
       evt.preventDefault();
       // Reset our form values
-      this.form2.email2 = "";
-      this.form2.password2 = "";
-      this.form2.password2_repeat = "";
-      this.form2.name2 = "";
-      this.form2.selected2 = null;
-      this.form2.checked2 = null;
+      this.user.email2 = "";
+      this.user.password2 = "";
+      this.user.password2_repeat = "";
+      this.user.name2 = "";
+      this.user.selected2 = null;
+      this.user.checked2 = null;
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
