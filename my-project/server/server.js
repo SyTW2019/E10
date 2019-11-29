@@ -19,6 +19,7 @@ app.use(jwt());
 
 // api routes
 app.use('/registro', require('./registro/reg_controller'));
+app.use('/', require('./registro/reg_controller'));
 
 // global error handler
 app.use(errorHandler);

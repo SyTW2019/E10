@@ -12,8 +12,9 @@
                             label-for="input-nombre-reg"
                         >
                             <b-form-input
+                                name="name"
                                 id="input-nombre-reg"
-                                v-model="user.name2"
+                                v-model="user.name"
                                 placeholder="Introduce tu nombre aquí"
                                 type="text"
                                 v-validate="'required'"
@@ -33,8 +34,9 @@
                             description="Preferiblemente usar el correo institucional (aluXXXXX@ull.edu.es)."
                         >
                             <b-form-input
+                                name="email"
                                 id="input-registro-mail"
-                                v-model="user.email2"
+                                v-model="user.email"
                                 type="email"
                                 v-validate="'required'"
                                 placeholder="Introduce tu e-mail"
@@ -53,8 +55,9 @@
                             label-for="input-registro-pw"
                         >
                             <b-form-input
+                                name="pass"
                                 id="input-registro-pw"
-                                v-model="user.password2"
+                                v-model="user.password"
                                 type="password"
                                 placeholder="Introduce tu contraseña"
                                 aria-describedby="password-help-block"
@@ -67,6 +70,7 @@
                             </b-form-text>
                             <br />
                             <b-form-input
+                                name="pass2"
                                 id="input-registro-pw"
                                 v-model="user.password2_repeat"
                                 type="password"
@@ -77,7 +81,8 @@
 
                         <b-form-group label="Seleccione una titulación:">
                             <b-form-select
-                                v-model="user.selected2"
+                                name="select"
+                                v-model="user.grado"
                                 v-validate="'required'"
                                 :options="options"
                                 class="form-control"
@@ -154,12 +159,15 @@ export default {
         ...mapActions("account", ["register"]),
         handleSubmit(e) {
             this.submitted = true;
-            this.$validator.validate().then(valid => {
-                if (valid) {
-                    this.register(this.user);
-                }
-            });
+            this.register(this.user);
+            // this.$validator.validate().then(valid => {
+            //     if (valid) {
+            //         console.log("SERGIO SE VE LA LUZ");
+            //         this.register(this.user);
+            //     }
+            // });
         },
+
         onReset2(evt) {
             evt.preventDefault();
             // Reset our form values
@@ -177,7 +185,7 @@ export default {
         },
         ///////////////////
         registro() {
-            fetch("localhost:3000/registro", {
+            fetch("http://localhost:3000/registro", {
                 method: "POST",
                 body: JSON.stringify(this.user),
                 headers: { "Content-Type": "application/json" }

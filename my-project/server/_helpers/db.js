@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 // var jason = fs.readFileSync('../config.j');
 // const jsonBien = JSON.parse(jason);
 
-mongoose.connect('mongodb://localhost/mevn-database', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/base-sergio', { useNewUrlParser: true })
     .then(db => console.log('DB is connected'))
     .catch(err => console.error(err));
 

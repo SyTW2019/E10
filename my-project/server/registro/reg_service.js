@@ -33,6 +33,8 @@ async function getById(id) {
     return await User.findById(id).select('-hash');
 }
 
+
+// AQUI ESTA EL ERROR
 async function create(userParam) {
     // validate
     if (await User.findOne({ username: userParam.username })) {
@@ -48,6 +50,7 @@ async function create(userParam) {
 
     // save user
     await user.save();
+    console.log("HOLA");
 }
 
 async function update(id, userParam) {

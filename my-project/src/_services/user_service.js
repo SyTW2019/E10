@@ -2,7 +2,7 @@
 // logging and out of the example application. The service methods are exported via the userService object at 
 // the top of the file, and the implementation of each method is located in the functions below.
 
-//import config from './config';
+// import config from '../config';
 import { authHeader } from '../_helpers';
 
 export const userService = {
@@ -47,7 +47,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${config.apiUrl}/registro`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
