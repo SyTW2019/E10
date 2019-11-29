@@ -14,9 +14,9 @@ function jwt() {
     return expressJwt({ secret, isRevoked }).unless({
         path: [
             // public routes that don't require authentication
-            '../../src/components/Home',
-            '../../src/components/Registro',
-            '../../src/components/InicioSesion'
+            '/registro',
+            '/',
+            '/iniciosesion'
         ]
     });
 };
