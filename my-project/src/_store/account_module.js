@@ -35,6 +35,7 @@ const actions = {
     },
     register({ dispatch, commit }, user) {
         commit('registerRequest', user);
+        console.log("ACCOUNT MODULE");
 
         userService.register(user)
             .then(

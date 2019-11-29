@@ -1,9 +1,4 @@
-// const config = require('config.json')
 const mongoose = require('mongoose')
-
-// var fs = require('fs');
-// var jason = fs.readFileSync('../config.j');
-// const jsonBien = JSON.parse(jason);
 
 mongoose.connect('mongodb://localhost/base-sergio', { useNewUrlParser: true })
     .then(db => console.log('DB is connected'))
@@ -12,3 +7,9 @@ mongoose.connect('mongodb://localhost/base-sergio', { useNewUrlParser: true })
 module.exports = {
     User: require('../registro/reg_model')
 };
+
+
+// const config = require('config.json')
+// var fs = require('fs');
+// var jason = fs.readFileSync('../config.j');
+// const jsonBien = JSON.parse(jason);

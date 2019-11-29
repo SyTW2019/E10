@@ -46,7 +46,7 @@ function register(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
-
+    console.log("USER MODULE");
     return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
 }
 

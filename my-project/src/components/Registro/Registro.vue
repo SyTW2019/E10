@@ -19,12 +19,12 @@
                                 type="text"
                                 v-validate="'required'"
                                 class="form-control"
-                                :class="{ 'is-invalid': submitted && errors.has('name2') }"
+                                :class="{ 'is-invalid': submitted && errors.has('name') }"
                             ></b-form-input>
                             <div
-                                v-if="submitted && errors.has('name2')"
+                                v-if="submitted && errors.has('name')"
                                 class="invalid-feedback"
-                            >{{ errors.first('name2') }}</div>
+                            >{{ errors.first('name') }}</div>
                         </b-form-group>
 
                         <b-form-group
@@ -41,12 +41,12 @@
                                 v-validate="'required'"
                                 placeholder="Introduce tu e-mail"
                                 class="form-control"
-                                :class="{ 'is-invalid': submitted && errors.has('email2') }"
+                                :class="{ 'is-invalid': submitted && errors.has('email') }"
                             ></b-form-input>
                             <div
-                                v-if="submitted && errors.has('email2')"
+                                v-if="submitted && errors.has('email')"
                                 class="invalid-feedback"
-                            >{{ errors.first('email2') }}</div>
+                            >{{ errors.first('email') }}</div>
                         </b-form-group>
 
                         <b-form-group
@@ -72,7 +72,7 @@
                             <b-form-input
                                 name="pass2"
                                 id="input-registro-pw"
-                                v-model="user.password2_repeat"
+                                v-model="user.password_repeat"
                                 type="password"
                                 v-validate="{ required: true, min: 6 }"
                                 placeholder="Repite tu contraseña"
@@ -81,15 +81,15 @@
 
                         <b-form-group label="Seleccione una titulación:">
                             <b-form-select
-                                name="select"
+                                name="grado"
                                 v-model="user.grado"
                                 v-validate="'required'"
                                 :options="options"
                                 class="form-control"
                             ></b-form-select>
-                            <div class="mt-3" v-if="user.selected2">
+                            <div class="mt-3" v-if="user.grado">
                                 Seleccionado:
-                                <strong>{{ user.selected2 }}</strong>
+                                <strong>{{ user.grado }}</strong>
                             </div>
                         </b-form-group>
 
@@ -129,15 +129,15 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-    name: "Registro",
+    name: "Usuario",
     data() {
         return {
             user: {
-                email2: "",
-                password2: "",
-                password2_repeat: "",
-                name2: "",
-                selected2: null,
+                name: "",
+                email: "",
+                password: "",
+                grado: null,
+                password_repeat: "",
                 checked2: null
             },
             submitted: false,
@@ -171,25 +171,17 @@ export default {
         onReset2(evt) {
             evt.preventDefault();
             // Reset our form values
-            this.user.email2 = "";
-            this.user.password2 = "";
-            this.user.password2_repeat = "";
-            this.user.name2 = "";
-            this.user.selected2 = null;
+            this.user.name = "";
+            this.user.email = "";
+            this.user.password = "";
+            this.user.grado = null;
+            this.user.password_repeat = "";
             this.user.checked2 = null;
             // Trick to reset/clear native browser form validation state
             this.show = false;
             this.$nextTick(() => {
                 this.show = true;
             });
-        },
-        ///////////////////
-        registro() {
-            fetch("http://localhost:3000/registro", {
-                method: "POST",
-                body: JSON.stringify(this.user),
-                headers: { "Content-Type": "application/json" }
-            }).then(res => console.log(res));
         }
     }
 };
