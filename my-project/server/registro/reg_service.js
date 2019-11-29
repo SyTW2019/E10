@@ -1,7 +1,7 @@
-const config = require('config.json');
+// const config = require('config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const db = require('../../_helper/db');
+const db = require('../_helpers/db');
 const User = db.User;
 
 module.exports = {
@@ -13,6 +13,17 @@ module.exports = {
     delete: _delete
 };
 
+async function authenticate({ username, password }) {
+    const user = await User.findOne({ username });
+    if (user && bcrypt.compareSync(password, user.hash)) {
+        const { hash, ...userWithouHash } = user.toObject();
+        const token = jwt.sign({ sub: user.id }, config.secret);
+        return {
+            ...userWithouHash,
+            token
+        }
+    }
+}
 
 async function getAll() {
     return await User.find().select('-hash');
@@ -22,7 +33,7 @@ async function getById(id) {
     return await User.findById(id).select('-hash');
 }
 
-async function craete(userParam) {
+async function create(userParam) {
     // validate
     if (await User.findOne({ username: userParam.username })) {
         throw 'Username "' + userParam.usernam + '" is already taken';
@@ -53,6 +64,12 @@ async function update(id, userParam) {
         userParam.has = bcrypt.hashSync(userParam.password, 10);
     }
 
-    // copy userParam 
+    // copy userParam properties to user
+    Object.assign(user, userParam);
 
+    await user.save();
+}
+
+async function _delete(id) {
+    await User.findByIdAndRemove(id);
 }

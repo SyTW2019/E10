@@ -1,27 +1,26 @@
-const morgan = require("morgan");
-const express = require("express");
-const mongoose = require("mongoose");
-
+// require('rootpath')();
+const express = require('express');
 const app = express();
-mongoose.connect('mongodb://localhost/mevn-database')
-    .then(db => console.log('DB is connected'))
-    .catch(err => console.error(err));
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const jwt = require('./_helpers/jwt');
+const errorHandler = require('./_helpers/error-handler');
 
-// Settings
-app.set('port', process.env.PORT || 3000);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
-// Middlewares
-app.use(morgan('dev'));
-app.use(express.json());
+// use JWT auth to secure the api
+app.use(jwt());
 
-// Routes
-app.use('/registro', require('../_router/registro'));
+// api routes
+app.use('/registro', require('./registro/reg_controller'));
 
-// Static files
-app.use(express.static(__dirname + '/_static'));
+// global error handler
+app.use(errorHandler);
 
-// Server is listening
-app.listen(app.get('port'), () => {
-    console.log()
-    console.log('Server on port', app.get('port'));
+// start server
+const port = process.env.PORT || 80;
+const server = app.listen(port, function () {
+    console.log('Server listening on port ' + port);
 });
