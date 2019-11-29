@@ -14,6 +14,7 @@
               <b-form-input
                 id="input-nombre-reg"
                 v-model="user.name2"
+                name="name2"
                 placeholder="Introduce tu nombre aquí"
                 type="text"
                 v-validate="'required'"
@@ -36,6 +37,7 @@
                 id="input-registro-mail"
                 v-model="user.email2"
                 type="email"
+                name="email2"
                 v-validate="'required'"
                 placeholder="Introduce tu e-mail"
                 class="form-control"
@@ -56,6 +58,7 @@
                 id="input-registro-pw"
                 v-model="user.password2"
                 type="password"
+                name:="password"
                 placeholder="Introduce tu contraseña"
                 aria-describedby="password-help-block"
                 v-validate="{ required: true, min: 6 }"
