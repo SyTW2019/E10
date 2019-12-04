@@ -1,16 +1,10 @@
 const expressJwt = require('express-jwt');
-// const config = require('config.json')
 const userService = require('../registro/reg_service');
-
-// var fs = require('fs');
-// var jason = fs.readFileSync('config.json');
-// const jsonBien = JSON.parse(jason);
-
 
 module.exports = jwt;
 
 function jwt() {
-    const secret = "Estamos mal pero poco a poco se ve la luz y vamos a mejor. ANIMO SEÑORES";
+    const secret = "Cadena privada que debe ser segura";
     return expressJwt({ secret, isRevoked }).unless({
         path: [
             // public routes that don't require authentication
@@ -31,3 +25,10 @@ async function isRevoked(req, payload, done) {
 
     done();
 };
+
+
+
+// const config = require('config.json')
+// var fs = require('fs');
+// var jason = fs.readFileSync('config.json');
+// const jsonBien = JSON.parse(jason);
