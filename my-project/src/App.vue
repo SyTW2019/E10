@@ -16,7 +16,9 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#" disabled>Link</b-nav-item>
+          <b-nav-item>
+            <router-link to="/calendario">Calendario</router-link>
+          </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->

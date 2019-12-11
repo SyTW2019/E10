@@ -21,7 +21,7 @@ const actions = {
             .then(
                 user => {
                     commit('loginSuccess', user);
-                    router.push('/');
+                    router.push('/calendario');
                 },
                 error => {
                     commit('loginFailure', error);

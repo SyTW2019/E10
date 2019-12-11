@@ -23,13 +23,18 @@ export const router = new Router({
       name: 'iniciosesion',
       component: () => import('@/components/InicioSesion/InicioSesion.vue')
     },
+    {
+      path: '/calendario',
+      name: 'calendario',
+      component: () => import('@/components/Calendario/Calendario.vue')
+    },
     { path: '*', redirect: '/' }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/iniciosesion', '/registro', '/'];
+  const publicPages = ['/calendario', '/iniciosesion', '/registro', '/'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 
