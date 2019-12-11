@@ -36,23 +36,21 @@ async function getById(id) {
 
 // AQUI ESTA EL ERROR
 async function create(userParam) {
-    console.log("USER SERVICE 1");
     // validate
     if (await User.findOne({ name: userParam.name })) {
         console.log('Username "' + userParam.name + '" is already taken');
     }
-    console.log(User);
+
     const user = new User(userParam);
-    console.log(user);
+    console.log("JSON de usuario" + user);
 
     // hash password
     if (userParam.password) {
         user.hash = bcrypt.hashSync(userParam.password, 10);
     }
-    console.log('ANTES DE SAVE');
+
     // save user
     await user.save();
-    console.log("HOLA");
 }
 
 async function update(id, userParam) {

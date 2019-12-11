@@ -8,6 +8,6 @@ const reg = new Schema({
     grado: { type: String }
 });
 
-// reg.set('toJSON', { virtuals: true });
+reg.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('Registro', reg);
