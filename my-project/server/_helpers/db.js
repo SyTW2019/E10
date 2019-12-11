@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/usuarios', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/usuario', { useNewUrlParser: true })
     .then(db => console.log('DB is connected'))
     .catch(err => console.error(err));
 
 module.exports = {
-    User: require('../registro/reg_model')
+    User: require('../usuario/user_model')
 };
 
 

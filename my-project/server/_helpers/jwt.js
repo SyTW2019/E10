@@ -1,5 +1,5 @@
 const expressJwt = require('express-jwt');
-const userService = require('../registro/reg_service');
+const userService = require('../usuario/user_service');
 
 module.exports = jwt;
 
