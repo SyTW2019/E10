@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const reg = new Schema({
     email: { type: String, unique: true, required: true },
-    password: { type: String, unique: true, required: true },
-    name: { type: String, unique: true, required: true },
-    grado: { type: String, unique: true, required: true }
+    password: { type: String, required: true },
+    name: { type: String, required: true },
+    grado: { type: String, required: true }
 });
 
 reg.set('toJSON', { virtuals: true });

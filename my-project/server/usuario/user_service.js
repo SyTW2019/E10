@@ -1,4 +1,4 @@
-// const config = require('config.json');
+// const config = require('../config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../_helpers/db');
@@ -14,15 +14,33 @@ module.exports = {
 };
 
 async function authenticate({ username, password }) {
-    const user = await User.findOne({ username });
-    if (user && bcrypt.compareSync(password, user.hash)) {
-        const { hash, ...userWithouHash } = user.toObject();
-        const token = jwt.sign({ sub: user.id }, config.secret);
-        return {
-            ...userWithouHash,
-            token
-        }
+    const user = await User.findOne({ name: `${username}` });
+    console.log(user);
+    if (user && user.password == password) {
+
+        return user.name;
     }
+    // if (user) {
+    //     console.log("HOLA");
+    //          const { hash, ...userWithoutHash } = user.toObject();
+    //          console.log(`${config.secret}`);
+    //          const token = jwt.sign({ sub: user._id }, config.secret);
+    //     return {
+    //         ...userWithoutHash,
+    //         // token
+    //     }
+    // }
+
+    // ASI DEBERIA SER
+    // const user = await User.findOne({ name: `${username}` });
+    // if (user && bcrypt.compareSync(password, user.hash)) {
+    //     const { hash, ...userWithouHash } = user.toObject();
+    //     const token = jwt.sign({ sub: user.id }, config.secret);
+    //     return {
+    //         ...userWithouHash,
+    //         token
+    //     }
+    // }
 }
 
 async function getAll() {
@@ -41,13 +59,13 @@ async function create(userParam) {
         console.log('Username "' + userParam.name + '" is already taken');
     }
 
+    // hash password
+    // if (userParam.password) {
+    //     user.hash = bcrypt.hashSync(userParam.password, 10);
+    // }
+
     const user = new User(userParam);
     console.log("JSON de usuario" + user);
-
-    // hash password
-    if (userParam.password) {
-        user.hash = bcrypt.hashSync(userParam.password, 10);
-    }
 
     // save user
     await user.save();

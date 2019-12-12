@@ -22,7 +22,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    return fetch(`http://localhost:3000/iniciosesion`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -47,7 +47,7 @@ function register(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
-    console.log("USER MODULE");
+
     return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
 }
 

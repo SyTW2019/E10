@@ -1,10 +1,11 @@
 const expressJwt = require('express-jwt');
 const userService = require('../usuario/user_service');
+const config = require('../config.json');
 
 module.exports = jwt;
 
 function jwt() {
-    const secret = "Cadena privada que debe ser segura";
+    const secret = config.secret;
     return expressJwt({ secret, isRevoked }).unless({
         path: [
             // public routes that don't require authentication
@@ -25,10 +26,3 @@ async function isRevoked(req, payload, done) {
 
     done();
 };
-
-
-
-// const config = require('config.json')
-// var fs = require('fs');
-// var jason = fs.readFileSync('config.json');
-// const jsonBien = JSON.parse(jason);

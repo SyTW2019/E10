@@ -20,6 +20,7 @@ app.use(jwt());
 // api routes
 app.use('/registro', require('./usuario/user_controller'));
 app.use('/', require('./usuario/user_controller'));
+app.use('/iniciosesion', require('./usuario/user_controller'));
 
 // global error handler
 app.use(errorHandler);

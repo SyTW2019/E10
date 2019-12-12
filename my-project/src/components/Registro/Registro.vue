@@ -160,6 +160,9 @@ export default {
         handleSubmit(e) {
             this.submitted = true;
             this.register(this.user);
+
+            // AQUI LA FUNCION QUE DEBERIA SER
+            // this.submitted = true;
             // this.$validator.validate().then(valid => {
             //     if (valid) {
             //         console.log("SERGIO SE VE LA LUZ");
