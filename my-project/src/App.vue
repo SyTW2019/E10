@@ -34,7 +34,10 @@
                             <v-show>{{ account.user.userWithoutHash.name }}</v-show>
                         </template>
                         <b-dropdown-item>
-                            <router-link to="/iniciosesion">Sign in</router-link>
+                            <router-link to="/calendario">Calendario</router-link>
+                        </b-dropdown-item>
+                        <b-dropdown-item v-on:click="fuera()">
+                            <router-link to="/iniciosesion">Logout</router-link>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-nav-item-dropdown right v-else>
@@ -69,7 +72,11 @@ export default {
     methods: {
         ...mapActions({
             clearAlert: "alert/clear"
-        })
+        }),
+
+        fuera() {
+            this.logout();
+        }
     },
     watch: {
         $route(to, from) {
