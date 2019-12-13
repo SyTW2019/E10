@@ -11,8 +11,7 @@ function jwt() {
             // public routes that don't require authentication
             '/registro',
             '/',
-            '/iniciosesion',
-            '/calendario'
+            '/iniciosesion'
         ]
     });
 };
