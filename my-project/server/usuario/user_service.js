@@ -14,29 +14,11 @@ module.exports = {
 };
 
 async function authenticate({ username, password }) {
-
-    // const user = await User.findOne({ name: `${username}` });
-
-    // // if (user && user.password == password) {
-    // if (user && bcrypt.compareSync(password, user.hash)) {
-    //     const { hash, ...userWithoutHash } = user.toObject();
-    //     const token = jwt.sign({ sub: user._id }, config.secret);
-    //     console.log(token);
-    //     console.log(...userWithoutHash);
-    //     return {
-    //         ...userWithoutHash,
-    //         token
-    //     };
-    // }
-
-    // ASI DEBERIA SER
     const user = await User.findOne({ name: `${username}` });
     if (user && bcrypt.compareSync(password, user.hash)) {
         const userWithoutHash = user.toObject();
         delete userWithoutHash.hash;
         const token = jwt.sign({ sub: user._id }, config.secret);
-        console.log(token)
-        console.log(userWithoutHash);
         return {
             userWithoutHash,
             token
