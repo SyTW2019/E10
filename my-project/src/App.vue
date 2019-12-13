@@ -28,9 +28,18 @@
             <b-dropdown-item href="#">ES</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown right v-if="users.loggedIn">
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>Usuario</template>
+            <b-dropdown-item>
+              <router-link to="/iniciosesion">Sign in</router-link>
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item-dropdown right v-else>
+            <!-- Using 'button-content' slot -->
+            <template v-slot:button-content>
+              <v-show>{{users.user.name}}</v-show>
+            </template>
             <b-dropdown-item>
               <router-link to="/iniciosesion">Sign in</router-link>
             </b-dropdown-item>
@@ -52,7 +61,8 @@ export default {
   name: "App",
   computed: {
     ...mapState({
-      alert: state => state.alert
+      alert: state => state.alert,
+      users: state => state.users.all
     })
   },
   methods: {
