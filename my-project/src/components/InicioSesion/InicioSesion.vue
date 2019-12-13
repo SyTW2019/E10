@@ -90,8 +90,6 @@ export default {
         handleSubmit(e) {
             const username = this.user.username;
             const password = this.user.password;
-            console.log(username);
-            console.log(password);
             this.login({ username, password });
 
             // AQUI LA FUNCION COMO DEBERIA SER

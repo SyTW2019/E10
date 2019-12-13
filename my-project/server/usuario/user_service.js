@@ -15,37 +15,15 @@ module.exports = {
 
 async function authenticate({ username, password }) {
     const user = await User.findOne({ name: `${username}` });
-    console.log(user);
-
-    if (user && user.password == password) {
+    if (user && bcrypt.compareSync(password, user.hash)) {
+        const userWithoutHash = user.toObject();
+        delete userWithoutHash.hash;
         const token = jwt.sign({ sub: user._id }, config.secret);
         return {
-            username,
+            userWithoutHash,
             token
-        };
+        }
     }
-
-    // if (user) {
-    //     console.log("HOLA");
-    //          const { hash, ...userWithoutHash } = user.toObject();
-    //          console.log(`${config.secret}`);
-    //          const token = jwt.sign({ sub: user._id }, config.secret);
-    //     return {
-    //         ...userWithoutHash,
-    //         // token
-    //     }
-    // }
-
-    // ASI DEBERIA SER
-    // const user = await User.findOne({ name: `${username}` });
-    // if (user && bcrypt.compareSync(password, user.hash)) {
-    //     const { hash, ...userWithouHash } = user.toObject();
-    //     const token = jwt.sign({ sub: user.id }, config.secret);
-    //     return {
-    //         ...userWithouHash,
-    //         token
-    //     }
-    // }
 }
 
 async function getAll() {
@@ -64,10 +42,11 @@ async function create(userParam) {
         console.log('Username "' + userParam.name + '" is already taken');
     }
 
+    console.log(userParam.password);
     // hash password
-    // if (userParam.password) {
-    //     user.hash = bcrypt.hashSync(userParam.password, 10);
-    // }
+    if (userParam.password) {
+        userParam.hash = bcrypt.hashSync(userParam.password, 10);
+    }
 
     const user = new User(userParam);
     console.log("JSON de usuario" + user);

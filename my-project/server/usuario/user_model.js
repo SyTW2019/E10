@@ -5,7 +5,8 @@ const reg = new Schema({
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     name: { type: String, required: true },
-    grado: { type: String, required: true }
+    grado: { type: String, required: true },
+    hash: { type: String, required: true }
 });
 
 reg.set('toJSON', { virtuals: true });
