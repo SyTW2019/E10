@@ -5,5 +5,12 @@ branches:
   - master
   - development_pablo
 
+node_js:
+  - "stable"
+before_script:
+  - npm install
+script:
+  - npm run build
+
   notifications:
     slack: sytw:pYr6S31RtNxYRcci3xL4cxp8
