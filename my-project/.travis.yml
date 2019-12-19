@@ -4,3 +4,6 @@ branches:
   only:
   - master
   - development_pablo
+
+  notifications:
+    slack: sytw:pYr6S31RtNxYRcci3xL4cxp8
