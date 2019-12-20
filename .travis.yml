@@ -10,10 +10,7 @@ node_js:
 
 before_script:
   - npm install
-
 script:
-  - npm start
-  - npm run server
   - npm test
 
 notifications:
