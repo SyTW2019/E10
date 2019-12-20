@@ -1,4 +1,4 @@
-language: javascript
+language: node.js
 
 branches:
   only:
@@ -10,7 +10,8 @@ node_js:
 before_script:
   - npm install
 script:
-  - npm run build
+  - npm start
+  - npm run server
 
   notifications:
     slack: sytw:pYr6S31RtNxYRcci3xL4cxp8
