@@ -1,4 +1,4 @@
-language: node.js
+language: javascript
 
 branches:
   only:
@@ -7,8 +7,10 @@ branches:
 
 node_js:
   - "stable"
+
 before_script:
   - npm install
+
 script:
   - npm start
   - npm run server
