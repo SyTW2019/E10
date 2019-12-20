@@ -1,12 +1,9 @@
-import { mount } from '@vue/test-utils'
-import Registro from './components/Registro/Registro.vue'
+// import { mount } from '@vue/test-utils'
+// import registro from './components/Registro/Registro.vue'
 
 describe('Registro.vue', () => {
-  test('renders props.msg when passed', () => {
-    const msg = "no entiendo nada de lo que hago";
-    const wrapper = mount(Registro, {
-      propsData: { msg }
+    test('renders props.msg when passed', () => {
+        const hola = "haha"
+        expect(hola).toMatch("haha");
     });
-    expect(wrapper.text()).toMatch(msg);
-  });
 });
