@@ -10,9 +10,9 @@ node_js:
 before_script:
   - npm install
 script:
-  - grunt test
   - npm start
   - npm run server
+  - npm test
 
 notifications:
   slack: sytw:pYr6S31RtNxYRcci3xL4cxp8
