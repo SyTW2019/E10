@@ -1,7 +1,7 @@
 // src/main.js
 
 import Vue from "vue";
-import App from "../components/App";
+import App from "../App";
 
 new Vue({
 	el: "#app",
