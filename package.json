@@ -4,7 +4,7 @@
 	"description": "This project have all the code for the SYTW final project (TEAM E10)",
 	"main": "/src/js/main.js",
 	"scripts": {
-		"dev": "parcel src/index.html",
+		"dev": "parcel index.html",
 		"watch": "parcel watch src/index.html",
 		"production": "parcel build src/index.html",
 		"clean": "rm -rf dist"
