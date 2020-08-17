@@ -1,0 +1,22 @@
+1. install node
+ - $ sudo apt update
+ - $ sudo apt install nodejs
+2. install npm
+ - $ sudo apt install npm
+* Comprobar versiones: nodejs -v, npm -v
+3. install parcel
+ - $ npm install -g parcel-bundler
+ - sudo chown -R [owner]: /usr/local/lib o ejecutar como root la instalación del parcel-bundler
+4. mkdir vue-parcel && cd vue-parcel && npm init-y
+5. npm install --save vue
+6. npm install --save-dev parcel-bundler
+7. create src/index.html
+8. create src/js/main.js
+9. create src/components/App.vue
+10. En package.json:
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "watch": "parcel watch src/index.html",
+    "production": "parcel build src/index.html",
+    "clean": "rm -rf dist"
+  }
