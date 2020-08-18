@@ -4,9 +4,9 @@
 	"description": "This project have all the code for the SYTW final project (TEAM E10)",
 	"main": "/src/js/main.js",
 	"scripts": {
-		"dev": "parcel index.html",
-		"watch": "parcel watch src/index.html",
-		"production": "parcel build src/index.html",
+		"dev": "parcel index.html -p 8081",
+		"watch": "parcel watch index.html",
+		"production": "parcel build index.html",
 		"clean": "rm -rf dist"
 	},
 	"keywords": [],
@@ -14,11 +14,22 @@
 	"license": "ISC",
 	"dependencies": {
 		"vue": "^2.6.11",
-		"vue-hot-reload-api": "^2.3.4"
+		"vue-hot-reload-api": "^2.3.4",
+		"bootstrap": "^4.3.1",
+		"bootstrap-vue": "^2.1.0",
+		"vue-router": "^3.0.1",
+		"vuex": "^3.1.1",
+		"vee-validate": "^2.2.8",
+		"mdbvue": "^6.2.0"
 	},
 	"devDependencies": {
 		"@vue/component-compiler-utils": "^3.2.0",
+		"babel-preset-env": "^1.7.0",
+		"node-notifier": "^5.1.2",
 		"parcel-bundler": "^1.12.4",
+		"parcel-plugin-vue": "^1.5.0",
+		"vue-loader": "^13.3.0",
+		"vue-style-loader": "^3.0.1",
 		"vue-template-compiler": "^2.6.11"
 	}
 }
