@@ -3,7 +3,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import BootstrapVue from "bootstrap-vue";
-import VeeValidate from "vee-validate";
+import * as VeeValidate from "vee-validate";
 import { router } from "./helpers/router";
 import { store } from "./store";
 
@@ -16,4 +16,5 @@ new Vue({
 	store,
 	components: { App },
 	template: "<App/>",
+	render: (h) => h(App),
 });
