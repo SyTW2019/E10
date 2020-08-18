@@ -1,7 +1,0 @@
-store:
-
-services:
-
-helpers:
-
-components:
