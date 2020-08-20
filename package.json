@@ -1,28 +1,30 @@
 {
-	"name": "sytw-final-e10-vue",
-	"description": "This project have all the code for the SYTW final project (TEAM E10)",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build",
-		"clean": "rm -Rf dist"
-	},
-	"dependencies": {
-		"bootstrap-vue": "^2.16.0",
-		"mdbvue": "^6.7.1",
-		"vee-validate": "^3.3.9",
-		"vue": "^2.6.11",
-		"vue-router": "^3.4.3",
-		"vuex": "^3.5.1"
-	},
-	"devDependencies": {
-		"@vue/cli-service": "~4.5.0",
-		"vue-template-compiler": "^2.6.11"
-	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not dead"
-	]
+  "name": "sytw-final-e10-vue",
+  "description": "This project have all the code for the SYTW final project (TEAM E10)",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "clean": "rm -Rf dist",
+    "formatter": "prettier --write ."
+  },
+  "dependencies": {
+    "bootstrap-vue": "^2.16.0",
+    "mdbvue": "^6.7.1",
+    "prettier": "^2.0.5",
+    "vee-validate": "^3.3.9",
+    "vue": "^2.6.11",
+    "vue-router": "^3.4.3",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "~4.5.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

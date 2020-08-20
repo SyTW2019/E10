@@ -34,7 +34,7 @@
     <b-row class="justify-content-around">
       <b-col>
         <b-button class="boton" size="lg">Inicia sesión</b-button>
-        <b-button class="boton" size="lg">Regístrate</b-button>        
+        <b-button class="boton" size="lg">Regístrate</b-button>
       </b-col>
     </b-row>
 
@@ -43,8 +43,7 @@
         <b-card title="Objetivo" sub-title="-.-">
           <b-card-text>
             Some quick example text to build on the
-            <em>card title</em> and make up the bulk of the card's
-            content.
+            <em>card title</em> and make up the bulk of the card's content.
           </b-card-text>
 
           <b-card-text>A second paragraph of text in the card.</b-card-text>
@@ -57,8 +56,7 @@
         <b-card title="Sobre nosotros" sub-title="Grupo 10 de SyTW">
           <b-card-text>
             Some quick example text to build on the
-            <em>card title</em> and make up the bulk of the card's
-            content.
+            <em>card title</em> and make up the bulk of the card's content.
           </b-card-text>
 
           <b-card-text>A second paragraph of text in the card.</b-card-text>
@@ -77,7 +75,7 @@ export default {
   data() {
     return {
       slide: 0,
-      sliding: null
+      sliding: null,
     };
   },
   methods: {
@@ -86,8 +84,8 @@ export default {
     },
     onSlideEnd(slide) {
       this.sliding = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -123,7 +121,7 @@ h2 {
 
   margin: 1%;
   padding: 1%;
-  
+
   text-shadow: 1px 1px 1px black;
   width: 600px;
 }
