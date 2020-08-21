@@ -11,10 +11,10 @@ Vue.use(BootstrapVue);
 Vue.use(VeeValidate);
 
 new Vue({
-	el: "#app",
-	router,
-	store,
-	components: { App },
-	template: "<App/>",
-	render: (h) => h(App),
+  el: "#app",
+  router,
+  store,
+  components: { App },
+  template: "<App/>",
+  render: (h) => h(App),
 });

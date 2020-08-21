@@ -3,11 +3,9 @@
     <b-row class="justify-content-around">
       <h2>Perfil de Usuario</h2>
     </b-row>
-    <br>
+    <br />
     <b-row class="justify-content-around">
-      <b-col sm="8" class="perfil">
-        
-      </b-col>
+      <b-col sm="8" class="perfil"> </b-col>
     </b-row>
   </b-container>
 </template>
@@ -15,7 +13,7 @@
 <script>
 /* eslint-disable */
 export default {
-  name: "Perfil"  
+  name: "Perfil",
 };
 </script>
 

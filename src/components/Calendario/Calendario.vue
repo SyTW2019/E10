@@ -3,20 +3,26 @@
     <b-row class="justify-content-around">
       <h2>Calendario</h2>
     </b-row>
-    <br>
+    <br />
     <b-row class="justify-content-around">
       <b-col sm="8" class="calendario">
         <h3>Crea tu propio calendario</h3>
         <b-form @submit.prevent="handleSubmit" @reset="onReset" v-if="show">
           <b-form-group>
-            <b-form-select v-model="grado.selected_grado" :options="grado.options_grado"></b-form-select>
+            <b-form-select
+              v-model="grado.selected_grado"
+              :options="grado.options_grado"
+            ></b-form-select>
             <div class="mt-3" v-if="grado.selected_grado">
               Grado:
               <strong>{{ grado.selected_grado }}</strong>
             </div>
           </b-form-group>
           <b-form-group>
-            <b-form-select v-model="curso.selected_curso" :options="curso.options_curso"></b-form-select>
+            <b-form-select
+              v-model="curso.selected_curso"
+              :options="curso.options_curso"
+            ></b-form-select>
             <div class="mt-3" v-if="curso.selected_curso">
               Curso:
               <strong>{{ curso.selected_curso }}</strong>
@@ -35,7 +41,9 @@
             </div>
           </b-form-group>
           <b-form-group>
-            <b-button type="submit" variant="primary" class="btn btn-primary">Crear calendario</b-button>
+            <b-button type="submit" variant="primary" class="btn btn-primary"
+              >Crear calendario</b-button
+            >
             <b-button type="reset" variant="danger">Reset</b-button>
             <router-link to="/" class="btn btn-link">Cancel</router-link>
           </b-form-group>
@@ -47,7 +55,7 @@
         </b-card>
       </b-col>
     </b-row>
-    <br>
+    <br />
     <b-row class="calendario justify-content-around">
       <h3>Resultado</h3>
     </b-row>
@@ -65,8 +73,8 @@ export default {
         options_grado: [
           { value: null, text: "Escoja un grado" },
           { value: "GII", text: "Grado en Ingeniería Informática" },
-          { value: "GM", text: "Grado en Magisterio" }
-        ]
+          { value: "GM", text: "Grado en Magisterio" },
+        ],
       },
       curso: {
         selected_curso: null,
@@ -75,8 +83,8 @@ export default {
           { value: "1", text: "1" },
           { value: "2", text: "2" },
           { value: "3", text: "3" },
-          { value: "4", text: "4" }
-        ]
+          { value: "4", text: "4" },
+        ],
       },
       asignaturas: {
         selected_asignaturas: ["b"], // Array reference
@@ -87,10 +95,10 @@ export default {
           { value: "d", text: "D" },
           { value: "e", text: "E" },
           { value: "f", text: "F" },
-          { value: "g", text: "G" }
-        ]
+          { value: "g", text: "G" },
+        ],
       },
-      show: true
+      show: true,
     };
   },
   methods: {
@@ -108,8 +116,8 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
