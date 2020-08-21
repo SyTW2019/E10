@@ -1,5 +1,7 @@
 ### Fichero para conceptos teoricos de la implementacion
 
+## SRC-FRONT
+
 ### ASSETS
 
 En la carpeta assets disponemos archivos de imagenes, videos y otros archivos (por ejemplo si tenemos una serie de archivos pdf que se descargar de nuestra aplicación) que se copiarán tal cual en la aplicación definitiva.
@@ -42,7 +44,7 @@ Contiene las rutas de nuestro proyecto y aquí hacemos el enlace de una ruta con
 
 ### SERVICES
 
-- Como buenas prácticas de desarrollo lo ideal es reutilizar servicios, en nuestro caso las peticiones AJAX a nuestras API lo vamos a guardar aquí para evitar hacer directamente un petición AJAX desde nuestro componente.
+- The services layer handles all http communication with backend apis for the application, each service encapsulates the api calls for a content type (e.g. users) and exposes methods for performing various operations (e.g. CRUD operations). Services can also have methods that don't wrap http calls, for example the userService.logout() method just removes an item from local storage
 
 > `src/services/index.js`:
 
@@ -75,3 +77,53 @@ In this module each alert action just commits a single mutation so it would be p
 > `src/store/users_module.js`:
 
 The vuex users module is in charge of the users section of the centralised state store. It contains actions for fetching all users from the api and deleting a user, and contains mutations for each of the lower level state changes involved in each action.
+
+## SERVER
+
+### Helpers
+
+> `server/helpers/db.js`:
+
+The MongoDB wrapper connects to MongoDB using Mongoose and exports an object containing all of the database model objects in the application (currently only User). It provides an easy way to access any part of the database from a single point.
+
+> `server/helpers/error-handler.js`:
+
+The global error handler is used catch all errors and remove the need for redundant error handler code throughout the application. It's configured as middleware in the main server.js file.
+
+> `server/helpers/jwt.js`:
+
+The node JWT middleware checks that the JWT token received in the http request from the client is valid before allowing access to the API, if the token is invalid a "401 Unauthorized" response is sent to the client.
+
+JWT authentication is used on all routes except for the authenticate and register routes which are public.
+
+### User
+
+The users folder contains all code that is specific to the users feature of the api.
+
+> `server/users/user-controller.js`:
+
+The users controller defines all user routes for the api, the route definitions are grouped together at the top of the file and the implementations are below.
+
+Express is the web server used by the api, it's one of the most popular web application frameworks for NodeJS.
+
+> `server/users/user-model.js`:
+
+The user model uses Mongoose to define the schema for the users collection saved in MongoDB. The exported Mongoose model object gives full access to perform CRUD (create, read, update, delete) operations on users in MongoDB, see the user service below for examples.
+
+`schema.set('toJSON', { ... })`; configures which user properties are included when converting MongoDB records to JSON objects which are returned in API responses.
+
+> `server/users/user-service.js`:
+
+The user service contains the core business logic for user authentication and management in the node api, it encapsulates all interaction with the mongoose user model and exposes a simple set of methods which are used by the users controller below.
+
+The top of the file contains the service method definitions so it's easy to see all methods at a glance, the rest of the file contains the method implementations.
+
+### `config.json`
+
+The app config file contains configuration data for the api.
+
+IMPORTANT: The "secret" property is used by the api to sign and verify JWT tokens for authentication, update it with your own random string to ensure nobody else can generate a JWT to gain unauthorised access to your application.
+
+### `server.js`
+
+The server.js file is the entry point into the api, it configures application middleware, binds controllers to routes and starts the Express web server for the api.
