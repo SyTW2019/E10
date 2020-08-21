@@ -44,7 +44,7 @@ Contiene las rutas de nuestro proyecto y aquí hacemos el enlace de una ruta con
 
 ### SERVICES
 
-- The services layer handles all http communication with backend apis for the application, each service encapsulates the api calls for a content type (e.g. users) and exposes methods for performing various operations (e.g. CRUD operations). Services can also have methods that don't wrap http calls, for example the userService.logout() method just removes an item from local storage
+-   The services layer handles all http communication with backend apis for the application, each service encapsulates the api calls for a content type (e.g. users) and exposes methods for performing various operations (e.g. CRUD operations). Services can also have methods that don't wrap http calls, for example the userService.logout() method just removes an item from local storage
 
 > `src/services/index.js`:
 
@@ -56,7 +56,7 @@ The user service encapsulates all backend api calls for performing CRUD operatio
 
 ### STORE
 
-- Esto es la configuración de Vuex y donde le decimos que queremos guardar para que sea compartido.
+-   Esto es la configuración de Vuex y donde le decimos que queremos guardar para que sea compartido.
 
 > `src/store/index.js`:
 

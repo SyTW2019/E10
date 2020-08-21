@@ -1,0 +1,4 @@
+{
+    "connectionString": "mongodb://localhost",
+    "secret": "SECRETO DEL CULO"
+}
