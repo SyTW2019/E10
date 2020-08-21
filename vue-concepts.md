@@ -42,7 +42,7 @@ Contiene las rutas de nuestro proyecto y aquí hacemos el enlace de una ruta con
 
 ### SERVICES
 
-- Como buenas prácticas de desarrollo lo ideal es reutilizar servicios, en nuestro caso las peticiones AJAX a nuestras API lo vamos a guardar aquí para evitar hacer directamente un petición AJAX desde nuestro componente.
+-   Como buenas prácticas de desarrollo lo ideal es reutilizar servicios, en nuestro caso las peticiones AJAX a nuestras API lo vamos a guardar aquí para evitar hacer directamente un petición AJAX desde nuestro componente.
 
 > `src/services/index.js`:
 
@@ -54,7 +54,7 @@ The user service encapsulates all backend api calls for performing CRUD operatio
 
 ### STORE
 
-- Esto es la configuración de Vuex y donde le decimos que queremos guardar para que sea compartido.
+-   Esto es la configuración de Vuex y donde le decimos que queremos guardar para que sea compartido.
 
 > `src/store/index.js`:
 
