@@ -1,5 +1,5 @@
-const config = require("config.json");
-const jwt = require("jasonwebtoken");
+const config = require("../config.json");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../helpers/db");
 const User = db.User;
