@@ -23,9 +23,6 @@
                                 v-validate="'required'"
                                 placeholder="Introduce tu nombre o email aquí"
                                 class="form-control"
-                                :class="{
-                                    'is-invalid': errors.has('username'),
-                                }"
                             ></b-form-input>
                         </b-form-group>
 

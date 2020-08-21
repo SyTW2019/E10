@@ -8,7 +8,7 @@
         "build": "vue-cli-service build",
         "clean": "rm -Rf dist",
         "formatter": "prettier --tab-width 4 --write .",
-        "server": "clear && nodemon server/server.js"
+        "server": "clear && nodemon --no-deprecation server/server.js"
     },
     "dependencies": {
         "bootstrap-vue": "^2.16.0",
@@ -29,7 +29,6 @@
     },
     "devDependencies": {
         "@vue/cli-service": "~4.5.0",
-        "mongodb": "^3.6.0",
         "nodemon": "^2.0.4",
         "vue-template-compiler": "^2.6.11"
     },

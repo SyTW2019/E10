@@ -35,7 +35,7 @@ async function getById(id) {
 }
 
 //AQUI ESTA EL ERROR
-async function create(userParam) {
+async function create(userParam) { 
     //Validación
     if (await User.findOne({ name: userParam.name })) {
         console.log(
