@@ -7,39 +7,55 @@ import Router from "vue-router";
 Vue.use(Router);
 
 export const router = new Router({
-    routes: [
-        {
-            path: "/",
-            name: "Home",
-            component: () => import("@/components/Home/Home.vue"),
-        },
-        {
-            path: "/registro",
-            name: "registro",
-            component: () => import("@/components/Registro/Registro.vue"),
-        },
-        {
-            path: "/iniciosesion",
-            name: "iniciosesion",
-            component: () =>
-                import("@/components/InicioSesion/InicioSesion.vue"),
-        },
-        {
-            path: "/calendario",
-            name: "calendario",
-            component: () => import("@/components/Calendario/Calendario.vue"),
-        },
-        {
-            path: "/perfil",
-            name: "perfil",
-            component: () => import("@/components/Perfil/Perfil.vue"),
-        },
-        { path: "*", redirect: "/" },
-    ],
+	routes: [
+		{
+			path: "/",
+			name: "home",
+			component: () => import("@/components/Home/Home.vue"),
+		},
+		{
+			path: "/registro",
+			name: "registro",
+			component: () => import("@/components/Registro/Registro.vue"),
+		},
+		{
+			path: "/iniciosesion",
+			name: "iniciosesion",
+			component: () =>
+				import("@/components/InicioSesion/InicioSesion.vue"),
+		},
+		{
+			path: "/calendario",
+			name: "calendario",
+			component: () => import("@/components/Calendario/Calendario.vue"),
+		},
+		{
+			path: "/perfil",
+			name: "perfil",
+			component: () => import("@/components/Perfil/Perfil.vue"),
+		},
+		{
+			path: "/aboutus",
+			name: "aboutus",
+			component: () => import("@/components/AboutUs/AboutUs.vue"),
+		},
+		{
+			path: "/contacto",
+			name: "contacto",
+			component: () => import("@/components/Contacto/Contacto.vue"),
+		},
+		{
+			path: "/ayuda",
+			name: "ayuda",
+			component: () => import("@/components/Ayuda/Ayuda.vue"),
+		},
+		{ path: "*", redirect: "/" },
+	],
 });
 
 //AQUI ESTAN LAS RUTAS PUBLICAS OJO CUIDADO HAY QUE QUITARLAS
 router.beforeEach((to, from, next) => {
+<<<<<<< HEAD
     // redirect to login page if not logged in and trying to access a restricted page
     const publicPages = [
         "/perfil",
@@ -50,6 +66,21 @@ router.beforeEach((to, from, next) => {
     ];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem("user");
+=======
+	// redirect to login page if not logged in and trying to access a restricted page
+	const publicPages = [
+		"/perfil",
+		"/calendario",
+		"/iniciosesion",
+		"/registro",
+		"/aboutus",
+		"/contacto",
+		"/ayuda",
+		"/",
+	];
+	const authRequired = !publicPages.includes(to.path);
+	const loggedIn = localStorage.getItem("user");
+>>>>>>> 8fbefe28966d31aadb1c025546d1dfe8840415db
 
     if (authRequired && !loggedIn) {
         return next("/iniciosesion");

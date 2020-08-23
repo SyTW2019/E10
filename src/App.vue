@@ -36,87 +36,103 @@
                             >
                         </b-nav-item-dropdown>
 
-                        <b-nav-item-dropdown
-                            right
-                            v-if="account.status.loggedIn"
-                        >
-                            <!-- Using 'button-content' slot -->
-                            <template v-slot:button-content>
-                                <v-show>{{
-                                    account.user.userWithoutHash.name
-                                }}</v-show>
-                            </template>
-                            <b-dropdown-item to="/calendario"
-                                >Calendario</b-dropdown-item
-                            >
-                            <b-dropdown-item to="/perfil"
-                                >Perfil de usuario</b-dropdown-item
-                            >
-                            <b-dropdown-item
-                                v-on:click="fuera()"
-                                to="/iniciosesion"
-                                >Logout</b-dropdown-item
-                            >
-                        </b-nav-item-dropdown>
-                        <b-nav-item-dropdown right v-else>
-                            <!-- Using 'button-content' slot -->
-                            <template v-slot:button-content>Cuenta</template>
-                            <b-dropdown-item to="/iniciosesion"
-                                >Iniciar sesión</b-dropdown-item
-                            >
-                        </b-nav-item-dropdown>
-                    </b-navbar-nav>
-                </b-collapse>
-            </b-navbar>
-            <div>
-                <br />
-                <router-view />
-            </div>
-            <!-- Footer -->
-            <mdb-footer color="indigo" class="font-small pt-0" id="futer">
-                <mdb-container>
-                    <mdb-row
-                        class="pt-5 mb-3 text-center d-flex justify-content-center"
-                    >
-                        <mdb-col md="2" class="b-3">
-                            <h6 class="title font-weight-bold">
-                                <a href="#!">Sobre nosotros </a>
-                            </h6>
-                        </mdb-col>
-                        <mdb-col md="2" class="b-3">
-                            <h6 class="title font-weight-bold">
-                                <a href="#!">Ayuda</a>
-                            </h6>
-                        </mdb-col>
-                        <mdb-col md="2" class="b-3">
-                            <h6 class="title font-weight-bold">
-                                <a href="#!">Contacto</a>
-                            </h6>
-                        </mdb-col>
-                    </mdb-row>
-                    <hr class="rgba-white-light" style="margin: 1%;" />
-                    <mdb-row
-                        class="text-center justify-content-center mb-md-0 mb-4"
-                    >
-                        <mdb-col md="8" class="mt-5">
-                            <p style="lineheight: '1.7rem';">
-                                Proyecto de la asignatura Sistemas y Tecnologías
-                                Web. Cursos 2019/2020. <br />
-                                <strong>Grado de Ingeniería Informática</strong
-                                >.
-                            </p>
-                        </mdb-col>
-                    </mdb-row>
-                </mdb-container>
-                <div class="footer-copyright text-center py-3">
-                    <mdb-container fluid>
-                        &copy; 2020 Copyright:
-                        <a href="#">Estamos mal pero estaremos peor</a>
-                    </mdb-container>
-                </div>
-            </mdb-footer>
-        </div>
-    </div>
+						<b-nav-item-dropdown
+							right
+							v-if="account.status.loggedIn"
+						>
+							<!-- Using 'button-content' slot -->
+							<template v-slot:button-content>
+								<v-show>{{
+									account.user.userWithoutHash.name
+								}}</v-show>
+							</template>
+							<b-dropdown-item to="/calendario"
+								>Calendario</b-dropdown-item
+							>
+							<b-dropdown-item to="/perfil"
+								>Perfil de usuario</b-dropdown-item
+							>
+							<b-dropdown-item
+								v-on:click="fuera()"
+								to="/iniciosesion"
+								>Logout</b-dropdown-item
+							>
+						</b-nav-item-dropdown>
+						<b-nav-item-dropdown right v-else>
+							<!-- Using 'button-content' slot -->
+							<template v-slot:button-content>Cuenta</template>
+							<b-dropdown-item to="/iniciosesion"
+								>Iniciar sesión</b-dropdown-item
+							>
+						</b-nav-item-dropdown>
+					</b-navbar-nav>
+				</b-collapse>
+			</b-navbar>
+			<div>
+				<br />
+				<router-view />
+			</div>
+			<!-- Footer -->
+			<mdb-footer color="indigo" class="font-small pt-0" id="futer">
+				<mdb-container>
+					<mdb-row
+						class="pt-5 mb-3 text-center d-flex justify-content-center"
+					>
+						<mdb-col md="2" class="b-3">
+							<h6 class="title font-weight-bold">
+								<a>
+									<router-link to="/aboutus">
+										Sobre nosotros
+									</router-link>
+								</a>
+							</h6>
+						</mdb-col>
+						<mdb-col md="2" class="b-3">
+							<h6 class="title font-weight-bold">
+								<a>
+									<router-link to="/aboutus">
+										Ayuda
+									</router-link>
+								</a>
+							</h6>
+						</mdb-col>
+						<mdb-col md="2" class="b-3">
+							<h6 class="title font-weight-bold">
+								<a>
+									<router-link to="/contacto">
+										Contacto
+									</router-link>
+								</a>
+							</h6>
+						</mdb-col>
+					</mdb-row>
+					<hr class="rgba-white-light" style="margin: 1%;" />
+					<mdb-row
+						class="text-center justify-content-center mb-md-0 mb-4"
+					>
+						<mdb-col md="8" class="mt-5">
+							<p style="lineheight: '1.7rem';">
+								Proyecto de la asignatura Sistemas y Tecnologías
+								Web. Cursos 2019/2020. <br />
+								<strong>Grado de Ingeniería Informática</strong
+								>.
+							</p>
+						</mdb-col>
+					</mdb-row>
+				</mdb-container>
+				<div class="footer-copyright text-center py-3">
+					<mdb-container fluid>
+						&copy; 2020 Copyright:
+						<a>
+							<router-link to="/">
+								Estamos mal pero estaremos peor
+							</router-link>
+						</a>
+					</mdb-container>
+				</div>
+			</mdb-footer>
+		</div>
+	</div>
 </template>
 
 <script>
