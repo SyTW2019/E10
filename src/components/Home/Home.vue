@@ -1,80 +1,112 @@
 <template>
 	<div class="container">
-		<h2>Inicio</h2>
-		<b-row class="justify-content-around">
-			<b-carousel
-				class="carrosel"
-				id="carousel-1"
-				v-model="slide"
-				:interval="4000"
-				controls
-				indicators
-				@sliding-start="onSlideStart"
-				@sliding-end="onSlideEnd"
-			>
-				<!-- Text slides with image -->
-				<b-carousel-slide
-					caption="EMPEP"
-					text="Prueba a organizar tu calendario de exámenes y entregas para aprovechar tú tiempo al máximo"
-					img-src="https://www.ui1.es/sites/default/files/blog/images/como-estudiar.jpg"
-				></b-carousel-slide>
-
-				<b-carousel-slide
-					text="Con nuestros algoritmos podrás encontrar la mejor manera de colocar tús exámenes en función de su dificultad"
-					img-src="https://www.elidealgallego.com/media/idealgallego/images/2019/01/01/2019010117344661029.jpg"
-				></b-carousel-slide>
-
-				<b-carousel-slide
-					text="Nuestro objetivo es ayudar, porque todos estamos igual de jodidos"
-					img-src="https://image.freepik.com/foto-gratis/vista-superior-escritorio-trabajo-cuaderno-abierto-blanco_1163-2581.jpg"
-				></b-carousel-slide>
-			</b-carousel>
-		</b-row>
-
-		<b-row align-h="center">
-			<b-col md="2">
-				<b-button class="boton" size="lg" to="/iniciosesion"
-					>Inicia sesión</b-button
-				>
-			</b-col>
-			<b-col md="2">
-				<b-button class="boton" size="lg" to="/registro"
-					>Regístrate</b-button
-				>
-			</b-col>
-		</b-row>
-
-		<b-row class="justify-content-around">
-			<b-col sm="5" class="cartas">
-				<b-card title="Objetivo" sub-title="-.-">
-					<b-card-text>
-						Some quick example text to build on the
-						<em>card title</em> and make up the bulk of the card's
-						content.
-					</b-card-text>
-
-					<b-card-text
-						>A second paragraph of text in the card.</b-card-text
+		<b-row>
+			<b-col md="8">
+				<b-row class="justify-content-around">
+					<b-row>
+						<b-co>
+							<h2>Inicio</h2>
+						</b-co>
+					</b-row>
+					<b-carousel
+						class="carrosel"
+						id="carousel-1"
+						v-model="slide"
+						:interval="4000"
+						controls
+						indicators
+						@sliding-start="onSlideStart"
+						@sliding-end="onSlideEnd"
 					>
+						Text slides with image
+						<b-carousel-slide
+							caption="EMPEP"
+							text="Prueba a organizar tu calendario de exámenes y entregas para aprovechar tú tiempo al máximo"
+							img-src="https://www.ui1.es/sites/default/files/blog/images/como-estudiar.jpg"
+						></b-carousel-slide>
 
-					<b-link href="#" class="card-link">Another link</b-link>
-				</b-card>
+						<b-carousel-slide
+							text="Con nuestros algoritmos podrás encontrar la mejor manera de colocar tús exámenes en función de su dificultad"
+							img-src="https://www.elidealgallego.com/media/idealgallego/images/2019/01/01/2019010117344661029.jpg"
+						></b-carousel-slide>
+
+						<b-carousel-slide
+							text="Nuestro objetivo es ayudar, porque todos estamos igual de jodidos"
+							img-src="https://image.freepik.com/foto-gratis/vista-superior-escritorio-trabajo-cuaderno-abierto-blanco_1163-2581.jpg"
+						></b-carousel-slide>
+					</b-carousel>
+				</b-row>
+				<b-row align-h="center">
+					<b-col md="5" class="cartas">
+						<b-card title="Objetivo" sub-title="-.-">
+							<b-card-text>
+								Some quick example text to build on the
+								<em>card title</em> and make up the bulk of the
+								card's content.
+							</b-card-text>
+
+							<b-card-text>
+								A second paragraph of text in the card.
+							</b-card-text>
+
+							<b-link href="#" class="card-link"
+								>Another link</b-link
+							>
+						</b-card>
+					</b-col>
+
+					<b-col md="5" class="cartas">
+						<b-card
+							title="Sobre nosotros"
+							sub-title="Grupo 10 de SyTW"
+						>
+							<b-card-text>
+								Some quick example text to build on the
+								<em>card title</em> and make up the bulk of the
+								card's content.
+							</b-card-text>
+
+							<b-card-text
+								>A second paragraph of text in the
+								card.</b-card-text
+							>
+
+							<a href="#" class="card-link">Card link</a>
+						</b-card>
+					</b-col>
+				</b-row>
 			</b-col>
-
-			<b-col sm="5" class="cartas">
-				<b-card title="Sobre nosotros" sub-title="Grupo 10 de SyTW">
-					<b-card-text>
-						Some quick example text to build on the
-						<em>card title</em> and make up the bulk of the card's
-						content.
-					</b-card-text>
-
-					<b-card-text
-						>A second paragraph of text in the card.</b-card-text
-					>
-
-					<a href="#" class="card-link">Card link</a>
-				</b-card>
+			<b-col md="4" class="fondo">
+				<b-col class="botones">
+					<b-row cols="1">
+						<b-col>
+							<p>
+								<strong>¿Te interesa? Únete a nosotros</strong>
+							</p>
+						</b-col>
+						<b-col>
+							<b-button class="boton" size="lg" to="/registro">
+								Únete a nosotros
+							</b-button>
+						</b-col>
+					</b-row>
+					<br />
+					<br />
+					<b-row cols="1">
+						<b-col>
+							<p><strong>Ya tienes cuenta</strong></p>
+						</b-col>
+						<b-col>
+							<b-button
+								class="boton"
+								size="lg"
+								to="/iniciosesion"
+							>
+								Iniciar sesión
+							</b-button>
+						</b-col>
+					</b-row>
+				</b-col>
 			</b-col>
 		</b-row>
 	</div>
@@ -119,8 +151,36 @@ h2 {
 	padding-top: 15px;
 }
 
+.fondo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: url(~@/assets/fondo.png);
+	background-repeat: no-repeat;
+	background-size: 1000px;
+	z-index: 1;
+}
+
+.botones {
+	z-index: 2;
+}
+
 .boton {
 	background-color: rgb(92, 6, 139, 0.8);
+	margin-top: 0%;
+	margin: 5%;
+	z-index: 1;
+	filter: alpha(opacity=85);
+	-moz-opacity: 100;
+	opacity: 100;
+}
+
+.boton:hover {
+	opacity: 0.85;
+}
+
+.title {
+	float: left;
 }
 
 .carrosel {
@@ -135,6 +195,6 @@ h2 {
 	padding: 1%;
 
 	text-shadow: 1px 1px 1px black;
-	width: 600px;
+	width: 93%;
 }
 </style>

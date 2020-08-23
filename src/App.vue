@@ -80,43 +80,30 @@
 					>
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">About us</a>
+								<a href="#!">Sobre nosotros </a>
 							</h6>
 						</mdb-col>
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">Products</a>
+								<a href="#!">Ayuda</a>
 							</h6>
 						</mdb-col>
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">Awards</a>
-							</h6>
-						</mdb-col>
-						<mdb-col md="2" class="b-3">
-							<h6 class="title font-weight-bold">
-								<a href="#!">Help</a>
-							</h6>
-						</mdb-col>
-						<mdb-col md="2" class="b-3">
-							<h6 class="title font-weight-bold">
-								<a href="#!">Contact</a>
+								<a href="#!">Contacto</a>
 							</h6>
 						</mdb-col>
 					</mdb-row>
 					<hr class="rgba-white-light" style="margin: 1%;" />
 					<mdb-row
-						class="d-flex text-center justify-content-center mb-md-0 mb-4"
+						class="text-center justify-content-center mb-md-0 mb-4"
 					>
-						<mdb-col md="8" sm="12" class="mt-5">
+						<mdb-col md="8" class="mt-5">
 							<p style="lineheight: '1.7rem';">
-								Sed ut perspiciatis unde omnis iste natus error
-								sit voluptatem accusantium doloremque
-								laudantium, totam rem aperiam, eaque ipsa quae
-								ab illo inventore veritatis et quasi architecto
-								beatae vitae dicta sunt explicabo. Nemo enim
-								ipsam voluptatem quia voluptas sit aspernatur
-								aut odit aut fugit, sed quia consequuntur.
+								Proyecto de la asignatura Sistemas y Tecnologías
+								Web. Cursos 2019/2020. <br />
+								<strong>Grado de Ingeniería Informática</strong
+								>.
 							</p>
 						</mdb-col>
 					</mdb-row>
