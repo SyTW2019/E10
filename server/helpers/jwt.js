@@ -7,11 +7,11 @@ module.exports = jwt;
 function jwt() {
     const secret = config.secret;
     return expressJwt({ secret, algorithms: ["HS256"], isRevoked }).unless({
-        path: [
+        path: [ 
             //Rutas publicas a las que se puede acceder sin necesidad de un jwt
-            "/registro",
-            "/",
-            "/iniciosesion",
+            '/',
+            '/iniciosesion',
+            '/registro'
         ],
     });
 }
