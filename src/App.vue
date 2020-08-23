@@ -80,17 +80,29 @@
 					>
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">Sobre nosotros </a>
+								<a>
+									<router-link to="/aboutus">
+										Sobre nosotros
+									</router-link>
+								</a>
 							</h6>
 						</mdb-col>
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">Ayuda</a>
+								<a>
+									<router-link to="/aboutus">
+										Ayuda
+									</router-link>
+								</a>
 							</h6>
 						</mdb-col>
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">Contacto</a>
+								<a>
+									<router-link to="/contacto">
+										Contacto
+									</router-link>
+								</a>
 							</h6>
 						</mdb-col>
 					</mdb-row>
@@ -111,7 +123,11 @@
 				<div class="footer-copyright text-center py-3">
 					<mdb-container fluid>
 						&copy; 2020 Copyright:
-						<a href="#">Estamos mal pero estaremos peor</a>
+						<a>
+							<router-link to="/">
+								Estamos mal pero estaremos peor
+							</router-link>
+						</a>
 					</mdb-container>
 				</div>
 			</mdb-footer>

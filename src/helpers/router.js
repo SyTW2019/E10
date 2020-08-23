@@ -10,7 +10,7 @@ export const router = new Router({
 	routes: [
 		{
 			path: "/",
-			name: "Home",
+			name: "home",
 			component: () => import("@/components/Home/Home.vue"),
 		},
 		{
@@ -34,6 +34,21 @@ export const router = new Router({
 			name: "perfil",
 			component: () => import("@/components/Perfil/Perfil.vue"),
 		},
+		{
+			path: "/aboutus",
+			name: "aboutus",
+			component: () => import("@/components/AboutUs/AboutUs.vue"),
+		},
+		{
+			path: "/contacto",
+			name: "contacto",
+			component: () => import("@/components/Contacto/Contacto.vue"),
+		},
+		{
+			path: "/ayuda",
+			name: "ayuda",
+			component: () => import("@/components/Ayuda/Ayuda.vue"),
+		},
 		{ path: "*", redirect: "/" },
 	],
 });
@@ -46,6 +61,9 @@ router.beforeEach((to, from, next) => {
 		"/calendario",
 		"/iniciosesion",
 		"/registro",
+		"/aboutus",
+		"/contacto",
+		"/ayuda",
 		"/",
 	];
 	const authRequired = !publicPages.includes(to.path);
