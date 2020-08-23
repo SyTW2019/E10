@@ -7,6 +7,7 @@ import { authHeader } from "../helpers";
 
 export const userService = {
     login,
+    contact,
     logout,
     register,
     getAll,
@@ -34,6 +35,15 @@ function login(username, password) {
 
             return user;
         });
+}
+
+function contact(mail, name, issue, msg) {
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mail, name, issue, msg }),
+    };
+    console.log(requestOptions);
 }
 
 function logout() {
