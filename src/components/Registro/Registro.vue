@@ -17,15 +17,9 @@
 								v-model="user.name"
 								placeholder="Introduce tu nombre aquí"
 								type="text"
-								v-validate="'required'"
+								required
 								class="form-control"
-								:class="{
-									'is-invalid': submitted && errors.has('name'),
-								}"
 							></b-form-input>
-							<div v-if="submitted && errors.has('name')" class="invalid-feedback">
-								{{ errors.first("name") }}
-							</div>
 						</b-form-group>
 
 						<b-form-group
@@ -39,16 +33,10 @@
 								id="input-registro-mail"
 								v-model="user.email"
 								type="email"
-								v-validate="'required'"
+								required
 								placeholder="Introduce tu e-mail"
 								class="form-control"
-								:class="{
-									'is-invalid': submitted && errors.has('email'),
-								}"
 							></b-form-input>
-							<div v-if="submitted && errors.has('email')" class="invalid-feedback">
-								{{ errors.first("email") }}
-							</div>
 						</b-form-group>
 
 						<b-form-group
@@ -62,27 +50,23 @@
 								v-model="user.password"
 								type="password"
 								placeholder="Introduce tu contraseña"
+								required
+								pattern="[A-Za-z0-9 ]{8,20}"
 								aria-describedby="password-help-block"
-								v-validate="{
-									required: true,
-									min: 6,
-								}"
+								min-length="6"
 								class="form-control"
 							></b-form-input>
 							<b-form-text id="password-help-block">
-								Your password must be 8-20 characters long, contain letters and
-								numbers, and must not contain spaces, special characters, or emoji.
+								Tu contraseña puede contener los címbolos deal abecedario, números y
+								espacios, y ha de ser de longitud entre [8-20] y no puede contener
+								símbolos especiales como puntuación, acentuación o emojis.
 							</b-form-text>
 							<br />
 							<b-form-input
 								name="pass2"
-								id="input-registro-pw"
 								v-model="user.password_repeat"
+								required
 								type="password"
-								v-validate="{
-									required: true,
-									min: 6,
-								}"
 								placeholder="Repite tu contraseña"
 							></b-form-input>
 						</b-form-group>
@@ -91,7 +75,7 @@
 							<b-form-select
 								name="grado"
 								v-model="user.grado"
-								v-validate="'required'"
+								required
 								:options="options"
 								class="form-control"
 							></b-form-select>
@@ -140,7 +124,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
 	name: "Registro",
 	data() {
@@ -177,19 +161,16 @@ export default {
 	methods: {
 		...mapActions("account", ["register"]),
 		handleSubmit(e) {
-			this.submitted = true;
-			this.register(this.user);
-
-			// AQUI LA FUNCION QUE DEBERIA SER
-			// this.submitted = true;
-			// this.$validator.validate().then(valid => {
-			//     if (valid) {
-			//         console.log("SERGIO SE VE LA LUZ");
-			//         this.register(this.user);
-			//     }
-			// });
+			if (this.user.password != this.user.password_repeat) {
+				this.submitted = false;
+				alert("Las contraseñas introducidas deben coincidir");
+				this.user.password = "";
+				this.user.password_repeat = "";
+			} else {
+				this.submitted = true;
+				this.register(this.user);
+			}
 		},
-
 		onReset2(evt) {
 			evt.preventDefault();
 			// Reset our form values
@@ -204,6 +185,12 @@ export default {
 			this.$nextTick(() => {
 				this.show = true;
 			});
+		},
+		areEqual() {
+			if (this.user.password != this.user.password_repeat) {
+				this.submitted = false;
+				alert("Las contraseñas introducidas deben coincidir");
+			}
 		},
 	},
 };
