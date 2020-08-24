@@ -8,7 +8,7 @@
 					<b-form @submit.prevent="handleSubmit" @reset="onReset" v-if="show">
 						<b-form-group
 							id="input-group-login-1"
-							label="Nombre de usuario:"
+							label="Usuario:"
 							label-for="input-nombre-log"
 						>
 							<b-form-input
@@ -16,15 +16,10 @@
 								id="input-nombre-log"
 								v-model="user.username"
 								required
-								v-validate="'required'"
-								placeholder="Introduce tu nombre o email aquí"
+								placeholder="Introduce tu email aquí"
 								class="form-control"
 							></b-form-input>
 						</b-form-group>
-
-						<!-- ERROR SUBMITTED -->
-						<!-- :class="{ 'is-invalid': submitted && errors.has('username') }" -->
-
 						<b-form-group
 							id="input-group-login-2"
 							label="Contraseña:"
@@ -97,13 +92,6 @@ export default {
 			const username = this.user.username;
 			const password = this.user.password;
 			this.login({username, password});
-
-			// AQUI LA FUNCION COMO DEBERIA SER
-			// this.submitted = true;
-			// const { username, password } = this;
-			// if (username && password) {
-			//     this.login({ username, password });∫
-			// }
 		},
 		onReset(evt) {
 			evt.preventDefault();
@@ -123,10 +111,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-	font-weight: normal;
-}
-
 .formularios1 {
 	border: 3px solid #5c068b;
 	border-radius: 8px 8px 8px 8px;
