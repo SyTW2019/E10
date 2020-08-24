@@ -54,7 +54,7 @@ export const router = new Router({
 			name: "foro",
 			component: () => import("@/components/Foro/Foro.vue"),
 		},
-		{ path: "*", redirect: "/" },
+		{path: "*", redirect: "/"},
 	],
 });
 

@@ -43,19 +43,18 @@ function login(username, password) {
 }
 
 function contact(JSONmsg) {
-	// const requestOptions = {
-	// 	method: "POST",
-	// 	headers: {
-	// 		"Content-Type": "application/json",
-	// 	},
-	// 	body: JSON.stringify({
-	// 		mail,
-	// 		name,
-	// 		issue,
-	// 		msg,
-	// 	}),
-	// };
-	console.log("hola");
+	const requestOptions = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			mail,
+			name,
+			issue,
+			msg,
+		}),
+	};
 }
 
 function logout() {

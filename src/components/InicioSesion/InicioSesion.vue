@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
 	name: "InicioSesion",
 	data() {
@@ -91,7 +91,7 @@ export default {
 		handleSubmit(e) {
 			const username = this.user.username;
 			const password = this.user.password;
-			this.login({ username, password });
+			this.login({username, password});
 		},
 		onReset(evt) {
 			evt.preventDefault();

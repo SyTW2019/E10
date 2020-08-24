@@ -16,6 +16,7 @@
 								id="input-nombre-reg"
 								v-model="user.name"
 								placeholder="Introduce tu nombre aquí"
+								pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$"
 								type="text"
 								required
 								class="form-control"
@@ -51,7 +52,7 @@
 								type="password"
 								placeholder="Introduce tu contraseña"
 								required
-								pattern="[A-Za-z0-9 ]{8,20}"
+								pattern="[A-Za-z0-9?¿!¡.]{8,20}"
 								aria-describedby="password-help-block"
 								min-length="6"
 								class="form-control"

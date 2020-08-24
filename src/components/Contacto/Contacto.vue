@@ -6,6 +6,7 @@
 				<!-- Formulario de registro -->
 				<h3>Formulario de contacto</h3>
 				<b-form @submit.prevent="handleSubmit" @reset.prevent="onReset" v-if="show">
+					<!-- <b-form action="mailto:auxiliarDarthVader@gmail.com" method="post" @reset.prevent="onReset" v-if="show"> -->
 					<b-form-group
 						id="input-group-1"
 						label="Correo electrónico:"
@@ -97,7 +98,6 @@ export default {
 		...mapActions("account", ["contact"]),
 		handleSubmit(evt) {
 			this.submitted = true;
-			//alert(JSON.stringify(this.form));
 
 			if (this.submitted) {
 				const JSONmsg = {

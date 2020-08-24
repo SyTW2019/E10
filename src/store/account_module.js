@@ -53,10 +53,6 @@ const actions = {
 		);
 	},
 	contact({ dispatch, commit }, JSONmsg) {
-		// userService.contact(JSONmsg).then(() => {
-		// 	router.push("/contacto");
-		// 	alert("Su mensaje se ha enviado correctamente al equipo de soporte de EMPEP");
-		// });
 		userService.contact(JSONmsg);
 		router.push("/");
 		alert("Su mensaje se ha enviado correctamente al equipo de soporte de EMPEP");
