@@ -46,7 +46,7 @@
 						<b-nav-item-dropdown right v-if="account.status.loggedIn">
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>
-								<v-show>{{ account.user.userWithoutHash.name }}</v-show>
+								{{ account.user.userWithoutHash.name }}
 							</template>
 							<b-dropdown-item to="/calendario">Calendario</b-dropdown-item>
 							<b-dropdown-item to="/perfil">Perfil de usuario</b-dropdown-item>
@@ -127,8 +127,8 @@
 </template>
 
 <script>
-import {mapState, mapActions} from "vuex";
-import {mdbFooter, mdbContainer, mdbRow, mdbCol} from "mdbvue";
+import { mapState, mapActions } from "vuex";
+import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
 
 export default {
 	name: "App",
@@ -143,6 +143,7 @@ export default {
 		...mapActions({
 			clearAlert: "alert/clear",
 		}),
+		...mapActions("account", ["logout"]),
 		fuera() {
 			this.logout();
 		},
