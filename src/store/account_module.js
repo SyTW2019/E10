@@ -5,15 +5,15 @@
 // The initial logged in state of the user is set by checking if the user is saved in local storage, which keeps
 // the user logged in if the browser is refreshed and between browser sessions.
 
-import { userService } from "../services/user_service";
-import { router } from "../helpers/router";
+import {userService} from "../services/user_service";
+import {router} from "../helpers/router";
 
 const user = JSON.parse(localStorage.getItem("user"));
-const state = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
+const state = user ? {status: {loggedIn: true}, user} : {status: {}, user: null};
 
 const actions = {
-	login({ dispatch, commit }, { username, password }) {
-		commit("loginRequest", { username });
+	login({dispatch, commit}, {username, password}) {
+		commit("loginRequest", {username});
 
 		userService.login(username, password).then(
 			(user) => {
@@ -22,15 +22,15 @@ const actions = {
 			},
 			(error) => {
 				commit("loginFailure", error);
-				dispatch("alert/error", error, { root: true });
+				dispatch("alert/error", error, {root: true});
 			}
 		);
 	},
-	logout({ commit }) {
+	logout({commit}) {
 		userService.logout();
 		commit("logout");
 	},
-	register({ dispatch, commit }, user) {
+	register({dispatch, commit}, user) {
 		commit("registerRequest", user);
 
 		userService.register(user).then(
@@ -52,7 +52,7 @@ const actions = {
 			}
 		);
 	},
-	contact({ dispatch, commit }, JSONmsg) {
+	contact({dispatch, commit}, JSONmsg) {
 		userService.contact(JSONmsg);
 		//alert("Su mensaje se ha enviado correctamente al equipo de soporte de EMPEP");
 		router.push("/");
@@ -61,11 +61,11 @@ const actions = {
 
 const mutations = {
 	loginRequest(state, user) {
-		state.status = { loggingIn: true };
+		state.status = {loggingIn: true};
 		state.user = user;
 	},
 	loginSuccess(state, user) {
-		state.status = { loggedIn: true };
+		state.status = {loggedIn: true};
 		state.user = user;
 	},
 	loginFailure(state) {
@@ -77,7 +77,7 @@ const mutations = {
 		state.user = null;
 	},
 	registerRequest(state, user) {
-		state.status = { registering: true };
+		state.status = {registering: true};
 	},
 	registerSuccess(state, user) {
 		state.status = {};

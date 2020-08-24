@@ -118,8 +118,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
+import {mapState, mapActions} from "vuex";
+import {mdbFooter, mdbContainer, mdbRow, mdbCol} from "mdbvue";
 
 export default {
 	name: "App",

@@ -37,6 +37,8 @@ async function contact({mail, name, issue, msg}) {
 			console.log(error);
 		} else {
 			console.log("Email enviado: " + info.response);
+			const resp = true;
+			return resp;
 		}
 	});
 }

@@ -60,15 +60,6 @@
 						></b-form-textarea>
 					</b-form-group>
 
-					<b-modal ref="my-modal" hide-footer title="Información">
-						<div class="d-block text-center">
-							<h4>
-								Su mensaje se ha enviado correctamente. Intentaremos responder con
-								la mayor brevedad posible
-							</h4>
-						</div>
-					</b-modal>
-
 					<b-button type="submit" variant="primary">
 						Enviar
 					</b-button>
@@ -88,7 +79,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
 	name: "Contacto",
 	data() {
@@ -106,7 +97,6 @@ export default {
 	methods: {
 		...mapActions("account", ["contact"]),
 		handleSubmit(evt) {
-			this.$refs["my-modal"].show();
 			this.submitted = true;
 			if (this.submitted) {
 				const JSONmsg = {
