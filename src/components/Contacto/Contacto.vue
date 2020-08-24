@@ -105,7 +105,7 @@ export default {
 					issue: this.form.asunto,
 					msg: this.form.mensaje,
 				};
-
+				
 				this.contact(JSONmsg);
 			}
 		},

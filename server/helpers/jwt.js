@@ -16,6 +16,7 @@ function jwt() {
 			"/registro",
 			"/",
 			"/iniciosesion",
+			"/contacto"
 		],
 	});
 }

@@ -48,13 +48,10 @@ function contact(JSONmsg) {
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({
-			mail,
-			name,
-			issue,
-			msg,
-		}),
+		body: JSON.stringify(JSONmsg),
 	};
+	console.log(requestOptions.body);
+	return fetch(`http://localhost:3000/contacto`, requestOptions).then(handleResponse);
 }
 
 function logout() {

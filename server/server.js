@@ -18,6 +18,7 @@ app.use(jwt());
 app.use("/registro", require("./users/user-controller"));
 app.use("/", require("./users/user-controller"));
 app.use("/inciosesion", require("./users/user-controller"));
+app.use("/contacto", require("./users/user-controller"));
 
 app.use(errorHandler);
 

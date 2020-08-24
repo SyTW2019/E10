@@ -42,9 +42,9 @@
 						>
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>
-								<v-show>{{
+								{{
 									account.user.userWithoutHash.name
-								}}</v-show>
+								}}
 							</template>
 							<b-dropdown-item to="/calendario"
 								>Calendario</b-dropdown-item
@@ -151,7 +151,9 @@ export default {
     methods: {
         ...mapActions({
             clearAlert: "alert/clear",
-        }),
+		}),
+		
+		...mapActions('account', ['logout']),
         fuera() {
             this.logout();
         },
