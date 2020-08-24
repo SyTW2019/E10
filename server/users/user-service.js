@@ -3,15 +3,44 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../helpers/db");
 const User = db.User;
+const nodemailer = require("nodemailer");
 
 module.exports = {
 	authenticate,
+	contact,
 	getAll,
 	getById,
 	create,
 	update,
 	delete: _delete,
 };
+
+async function contact({mail, name, issue, msg}) {
+	console.log(mail + name + issue + msg);
+	const transporter = nodemailer.createTransport({
+		service: "gmail",
+		auth: {
+			user: "empep.business@gmail.com",
+			pass: "proyectazo"
+		}
+	});
+
+	const mailOptions = {
+		from: "empep.business@gmail.com",
+		to: "empep.business@gmail.com",
+		subject: issue,
+		text: `Nombre: ${name}\nMail: ${mail}\nMensaje: ${msg}`,
+	}
+
+	transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log("Email enviado: " + info.response)
+		}
+	});
+}
 
 async function authenticate({username, password}) {
 	const user = await User.findOne({

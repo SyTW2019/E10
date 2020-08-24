@@ -4,6 +4,7 @@ const userService = require("./user-service");
 
 router.post("/iniciosesion", authenticate);
 router.post("/registro", register);
+router.post("/contacto", contact);
 router.get("/", getAll);
 router.get("/current", getCurrent);
 router.get("/:id", getById);
@@ -11,6 +12,14 @@ router.put("/:id", update);
 router.delete("/:id");
 
 module.exports = router;
+
+function contact(req, res, next){
+	console.log(req)
+	userService
+		.contact(req.body)
+		.then(() => res.json({}))
+		.catch((err) => next(err));
+}
 
 function authenticate(req, res, next) {
 	userService

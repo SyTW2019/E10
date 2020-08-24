@@ -98,7 +98,6 @@ export default {
 		...mapActions("account", ["contact"]),
 		handleSubmit(evt) {
 			this.submitted = true;
-
 			if (this.submitted) {
 				const JSONmsg = {
 					mail: this.form.email,
@@ -106,7 +105,7 @@ export default {
 					issue: this.form.asunto,
 					msg: this.form.mensaje,
 				};
-
+				
 				this.contact(JSONmsg);
 			}
 		},

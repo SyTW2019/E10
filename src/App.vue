@@ -17,23 +17,12 @@
 
 				<b-collapse id="nav-collapse" is-nav>
 					<b-navbar-nav v-if="account.status.loggedIn">
-						<b-nav-item to="/foro">Foro</b-nav-item>
 						<b-nav-item to="/calendario">Calendario</b-nav-item>
 						<b-nav-item to="/perfil">Perfil</b-nav-item>
-						<b-nav-item-dropdown text="Otros">
-							<b-dropdown-item to="/aboutus">Sobre nosotros</b-dropdown-item>
-							<b-dropdown-item to="/ayuda">Ayuda</b-dropdown-item>
-							<b-dropdown-item to="/contacto">Contacto</b-dropdown-item>
-						</b-nav-item-dropdown>
 					</b-navbar-nav>
 					<b-navbar-nav v-else>
-						<b-nav-item disabled to="/foro">Foro</b-nav-item>
 						<b-nav-item disabled to="/calendario">Calendario</b-nav-item>
-						<b-nav-item-dropdown text="Otros">
-							<b-dropdown-item to="/aboutus">Sobre nosotros</b-dropdown-item>
-							<b-dropdown-item to="/ayuda">Ayuda</b-dropdown-item>
-							<b-dropdown-item to="/contacto">Contacto</b-dropdown-item>
-						</b-nav-item-dropdown>
+						<b-nav-item disabled to="/perfil">Perfil</b-nav-item>
 					</b-navbar-nav>
 
 					<!-- Right aligned nav items -->
@@ -57,7 +46,6 @@
 						<b-nav-item-dropdown right v-else>
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>Cuenta</template>
-							<b-dropdown-item to="/registro">Registro</b-dropdown-item>
 							<b-dropdown-item to="/iniciosesion">Iniciar sesión</b-dropdown-item>
 						</b-nav-item-dropdown>
 					</b-navbar-nav>
@@ -83,7 +71,7 @@
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
 								<a>
-									<router-link to="/ayuda">
+									<router-link to="/aboutus">
 										Ayuda
 									</router-link>
 								</a>
@@ -104,8 +92,7 @@
 						<mdb-col md="8" class="mt-5">
 							<p style="lineheight: '1.7rem';">
 								Proyecto de la asignatura Sistemas y Tecnologías Web. Cursos
-								2019/2020.
-								<br />
+								2019/2020. <br />
 								<strong>Grado de Ingeniería Informática</strong>.
 							</p>
 						</mdb-col>
@@ -143,6 +130,7 @@ export default {
 		...mapActions({
 			clearAlert: "alert/clear",
 		}),
+
 		...mapActions("account", ["logout"]),
 		fuera() {
 			this.logout();
@@ -177,8 +165,7 @@ export default {
 	background-color: white;
 }
 #barra_nav {
-	background-color: rgba(92, 6, 139, 0.8);
-	font-size: large;
+	background-color: rgb(92, 6, 139);
 }
 #futer {
 	background-color: rgb(92, 6, 139, 0.2);
