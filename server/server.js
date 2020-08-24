@@ -6,7 +6,7 @@ const jwt = require("./helpers/jwt");
 const errorHandler = require("./helpers/error-handler");
 const morgan = require("morgan");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -23,5 +23,5 @@ app.use(errorHandler);
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, function () {
-    console.log("Server listening on port " + port);
+	console.log("Server listening on port " + port);
 });

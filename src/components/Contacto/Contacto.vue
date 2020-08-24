@@ -27,11 +27,7 @@
 						></b-form-input>
 					</b-form-group>
 
-					<b-form-group
-						id="input-group-2"
-						label="Nombre:"
-						label-for="input-2"
-					>
+					<b-form-group id="input-group-2" label="Nombre:" label-for="input-2">
 						<b-form-input
 							id="input-2"
 							v-model="form.nombre"
@@ -56,11 +52,7 @@
 						></b-form-input>
 					</b-form-group>
 
-					<b-form-group
-						id="input-group-4"
-						label="Mensaje:"
-						label-for="input-4"
-					>
+					<b-form-group id="input-group-4" label="Mensaje:" label-for="input-4">
 						<b-form-textarea
 							id="input-4"
 							v-model="form.mensaje"
@@ -75,7 +67,9 @@
 					<b-button type="submit" variant="primary">
 						Enviar
 					</b-button>
-					<b-button type="reset" variant="danger"> Limpiar </b-button>
+					<b-button type="reset" variant="danger">
+						Limpiar
+					</b-button>
 					<router-link to="/" class="btn btn-link">
 						Cancelar
 					</router-link>
@@ -89,7 +83,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
 	name: "Contacto",
 	data() {

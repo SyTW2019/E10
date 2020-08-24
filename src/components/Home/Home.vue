@@ -40,11 +40,10 @@
 					<b-col md="5" class="cartas">
 						<b-card title="Objetivo 🎯">
 							<b-card-text>
-								Facilitar la organización del calendario de
-								exámenes para los alumnos de todos los grados,
-								puesto que creemos que la universidad no
-								proporciona un servicio similar y probablemente
-								sería algo muy favorable.
+								Facilitar la organización del calendario de exámenes para
+								los alumnos de todos los grados, puesto que creemos que la
+								universidad no proporciona un servicio similar y
+								probablemente sería algo muy favorable.
 							</b-card-text>
 						</b-card>
 					</b-col>
@@ -55,9 +54,9 @@
 							sub-title="Equipo 10 de SyTW 👦🏻 👦🏽 🧑‍ "
 						>
 							<b-card-text>
-								Como alumnos ya veteranos en el grado hemos
-								pensado en intentar ayudar a nuestros compañeros
-								con una herramienta de gestión de exámenes.
+								Como alumnos ya veteranos en el grado hemos pensado en
+								intentar ayudar a nuestros compañeros con una herramienta
+								de gestión de exámenes.
 							</b-card-text>
 
 							<router-link to="/aboutus" class="card-link">
@@ -90,11 +89,7 @@
 							</p>
 						</b-col>
 						<b-col>
-							<b-button
-								class="boton"
-								size="lg"
-								to="/iniciosesion"
-							>
+							<b-button class="boton" size="lg" to="/iniciosesion">
 								Iniciar sesión
 							</b-button>
 						</b-col>
