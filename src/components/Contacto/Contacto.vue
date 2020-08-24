@@ -5,13 +5,7 @@
 			<b-col sm="8" class="formulario">
 				<!-- Formulario de registro -->
 				<h3>Formulario de contacto</h3>
-				<b-form
-					@submit="handleSubmit"
-					@reset="onReset"
-					v-if="show"
-					action="https://formspree.io/mvownypj"
-					method="POST"
-				>
+				<b-form @submit="handleSubmit" @reset="onReset" v-if="show">
 					<b-form-group
 						id="input-group-1"
 						label="Correo electrónico:"
@@ -84,7 +78,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
 	name: "Contacto",
 	data() {
@@ -100,6 +94,7 @@ export default {
 		};
 	},
 	methods: {
+		...mapActions("account", ["contact"]),
 		handleSubmit(evt) {
 			this.submitted = true;
 			//alert(JSON.stringify(this.form));
@@ -107,8 +102,10 @@ export default {
 			if (this.submitted) {
 				const _mail = this.form.email;
 				const _name = this.form.nombre;
-				const _issue = this.form.aunto;
+				const _issue = this.form.asunto;
 				const _msg = this.form.mensaje;
+
+				this.contact(_mail, _name, _issue, _msg);
 			}
 		},
 		onReset(evt) {
