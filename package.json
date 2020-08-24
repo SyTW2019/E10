@@ -1,40 +1,40 @@
 {
-    "name": "sytw-final-e10-vue",
-    "description": "This project have all the code for the SYTW final project (TEAM E10)",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build",
-        "clean": "rm -Rf dist",
-        "formatter": "prettier --tab-width 4 --write .",
-        "server": "clear && nodemon --no-deprecation server/server.js"
-    },
-    "dependencies": {
-        "bootstrap-vue": "^2.16.0",
-        "mdbvue": "^6.7.1",
-        "mongoose": "^5.10.0",
-        "nodemon": "^2.0.4",
-        "prettier": "^2.0.5",
-        "vee-validate": "^3.3.9",
-        "vue": "^2.6.11",
-        "vue-router": "^3.4.3",
-        "vuex": "^3.5.1",
-        "cors": "^2.8.5",
-        "express-jwt": "^6.0.0",
-        "body-parser": "^1.19.0",
-        "jsonwebtoken": "^8.5.1",
-        "morgan": "^1.10.0",
-        "bcryptjs": "^2.4.3"
-    },
-    "devDependencies": {
-        "@vue/cli-service": "~4.5.0",
-        "nodemon": "^2.0.4",
-        "vue-template-compiler": "^2.6.11"
-    },
-    "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not dead"
-    ]
+	"name": "sytw-final-e10-vue",
+	"description": "This project have all the code for the SYTW final project (TEAM E10)",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"clean": "rm -Rf dist",
+		"formatter": "prettier --use-tabs true --no-bracket-spacing true --jsx-bracket-same-line --tab-width 4 --print-width 100 --write .",
+		"server": "clear && nodemon --no-deprecation server/server.js"
+	},
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"bootstrap-vue": "^2.16.0",
+		"cors": "^2.8.5",
+		"express-jwt": "^6.0.0",
+		"jsonwebtoken": "^8.5.1",
+		"mdbvue": "^6.7.1",
+		"mongoose": "^5.10.0",
+		"morgan": "^1.10.0",
+		"nodemon": "^2.0.4",
+		"prettier": "^2.0.5",
+		"vee-validate": "^3.3.9",
+		"vue": "^2.6.11",
+		"vue-router": "^3.4.3",
+		"vuex": "^3.5.1"
+	},
+	"devDependencies": {
+		"@vue/cli-service": "~4.5.0",
+		"nodemon": "^2.0.4",
+		"vue-template-compiler": "^2.6.11"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	]
 }

@@ -15,6 +15,7 @@
                 </b-navbar-brand>
                 <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
+<<<<<<< HEAD
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav v-if="account.status.loggedIn">
                         <b-nav-item to="/calendario">Calendario</b-nav-item>
@@ -35,35 +36,52 @@
                                 >EN</b-dropdown-item
                             >
                         </b-nav-item-dropdown>
+=======
+				<b-collapse id="nav-collapse" is-nav>
+					<b-navbar-nav v-if="account.status.loggedIn">
+						<b-nav-item to="/foro">Foro</b-nav-item>
+						<b-nav-item to="/calendario">Calendario</b-nav-item>
+						<b-nav-item to="/perfil">Perfil</b-nav-item>
+						<b-nav-item-dropdown text="Otros">
+							<b-dropdown-item to="/aboutus">Sobre nosotros</b-dropdown-item>
+							<b-dropdown-item to="/ayuda">Ayuda</b-dropdown-item>
+							<b-dropdown-item to="/contacto">Contacto</b-dropdown-item>
+						</b-nav-item-dropdown>
+					</b-navbar-nav>
+					<b-navbar-nav v-else>
+						<b-nav-item disabled to="/foro">Foro</b-nav-item>
+						<b-nav-item disabled to="/calendario">Calendario</b-nav-item>
+						<b-nav-item-dropdown text="Otros">
+							<b-dropdown-item to="/aboutus">Sobre nosotros</b-dropdown-item>
+							<b-dropdown-item to="/ayuda">Ayuda</b-dropdown-item>
+							<b-dropdown-item to="/contacto">Contacto</b-dropdown-item>
+						</b-nav-item-dropdown>
+					</b-navbar-nav>
 
-						<b-nav-item-dropdown
-							right
-							v-if="account.status.loggedIn"
-						>
+					<!-- Right aligned nav items -->
+					<b-navbar-nav class="ml-auto">
+						<b-nav-item-dropdown text="Lang" right>
+							<b-dropdown-item href="#">ES</b-dropdown-item>
+							<b-dropdown-item disabled href="#">EN</b-dropdown-item>
+						</b-nav-item-dropdown>
+>>>>>>> 151171c2f8cce93028bfb3d5d9ddb3ae9a21b0d5
+
+						<b-nav-item-dropdown right v-if="account.status.loggedIn">
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>
-								<v-show>{{
-									account.user.userWithoutHash.name
-								}}</v-show>
+								<v-show>{{ account.user.userWithoutHash.name }}</v-show>
 							</template>
-							<b-dropdown-item to="/calendario"
-								>Calendario</b-dropdown-item
-							>
-							<b-dropdown-item to="/perfil"
-								>Perfil de usuario</b-dropdown-item
-							>
-							<b-dropdown-item
-								v-on:click="fuera()"
-								to="/iniciosesion"
+							<b-dropdown-item to="/calendario">Calendario</b-dropdown-item>
+							<b-dropdown-item to="/perfil">Perfil de usuario</b-dropdown-item>
+							<b-dropdown-item v-on:click="fuera()" to="/iniciosesion"
 								>Logout</b-dropdown-item
 							>
 						</b-nav-item-dropdown>
 						<b-nav-item-dropdown right v-else>
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>Cuenta</template>
-							<b-dropdown-item to="/iniciosesion"
-								>Iniciar sesión</b-dropdown-item
-							>
+							<b-dropdown-item to="/registro">Registro</b-dropdown-item>
+							<b-dropdown-item to="/iniciosesion">Iniciar sesión</b-dropdown-item>
 						</b-nav-item-dropdown>
 					</b-navbar-nav>
 				</b-collapse>
@@ -75,9 +93,7 @@
 			<!-- Footer -->
 			<mdb-footer color="indigo" class="font-small pt-0" id="futer">
 				<mdb-container>
-					<mdb-row
-						class="pt-5 mb-3 text-center d-flex justify-content-center"
-					>
+					<mdb-row class="pt-5 mb-3 text-center d-flex justify-content-center">
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
 								<a>
@@ -90,7 +106,7 @@
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
 								<a>
-									<router-link to="/aboutus">
+									<router-link to="/ayuda">
 										Ayuda
 									</router-link>
 								</a>
@@ -107,15 +123,13 @@
 						</mdb-col>
 					</mdb-row>
 					<hr class="rgba-white-light" style="margin: 1%;" />
-					<mdb-row
-						class="text-center justify-content-center mb-md-0 mb-4"
-					>
+					<mdb-row class="text-center justify-content-center mb-md-0 mb-4">
 						<mdb-col md="8" class="mt-5">
 							<p style="lineheight: '1.7rem';">
-								Proyecto de la asignatura Sistemas y Tecnologías
-								Web. Cursos 2019/2020. <br />
-								<strong>Grado de Ingeniería Informática</strong
-								>.
+								Proyecto de la asignatura Sistemas y Tecnologías Web. Cursos
+								2019/2020.
+								<br />
+								<strong>Grado de Ingeniería Informática</strong>.
 							</p>
 						</mdb-col>
 					</mdb-row>
@@ -136,8 +150,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
+import {mapState, mapActions} from "vuex";
+import {mdbFooter, mdbContainer, mdbRow, mdbCol} from "mdbvue";
 
 export default {
     name: "App",
@@ -185,7 +199,12 @@ export default {
     background-color: white;
 }
 #barra_nav {
+<<<<<<< HEAD
     background-color: rgb(92, 6, 139);
+=======
+	background-color: rgba(92, 6, 139, 0.8);
+	font-size: large;
+>>>>>>> 151171c2f8cce93028bfb3d5d9ddb3ae9a21b0d5
 }
 #futer {
     background-color: rgb(92, 6, 139, 0.2);

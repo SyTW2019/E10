@@ -1,12 +1,12 @@
 <template>
 	<b-container>
-		<h2>Sobre nosotros</h2>
+		<h2>Foro</h2>
 	</b-container>
 </template>
 
 <script>
 export default {
-	name: "AboutUs",
+	name: "Foro",
 };
 </script>
 

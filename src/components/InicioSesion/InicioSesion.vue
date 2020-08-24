@@ -5,11 +5,7 @@
 				<b-col sm="8" class="formularios1">
 					<!-- Formulario de registro -->
 					<h3>Inicio de sesión</h3>
-					<b-form
-						@submit.prevent="handleSubmit"
-						@reset="onReset"
-						v-if="show"
-					>
+					<b-form @submit.prevent="handleSubmit" @reset="onReset" v-if="show">
 						<b-form-group
 							id="input-group-login-1"
 							label="Nombre de usuario:"
@@ -49,21 +45,21 @@
 								v-model="user.rememberme"
 								id="checkboxes-login-3"
 							>
-								<b-form-checkbox value="remind_me"
-									>Recordarme</b-form-checkbox
-								>
+								<b-form-checkbox value="remind_me">Recordarme</b-form-checkbox>
 							</b-form-checkbox-group>
 						</b-form-group>
 
-						<b-button type="submit" variant="primary"
-							>Submit</b-button
-						>
-						<b-button type="reset" variant="danger">Reset</b-button>
+						<b-button type="submit" variant="primary">
+							Enviar
+						</b-button>
+						<b-button type="reset" variant="danger">
+							Limpiar
+						</b-button>
+						<router-link to="/" class="btn btn-link">
+							Cancelar
+						</router-link>
 					</b-form>
-					<b-card
-						class="mt-3"
-						header="Resultado formulario de inicio de sesión"
-					>
+					<b-card class="mt-3" header="Resultado formulario de inicio de sesión">
 						<pre class="m-0">{{ user }}</pre>
 					</b-card>
 				</b-col>
@@ -75,7 +71,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
 	name: "InicioSesion",
 	data() {
@@ -100,7 +96,7 @@ export default {
 		handleSubmit(e) {
 			const username = this.user.username;
 			const password = this.user.password;
-			this.login({ username, password });
+			this.login({username, password});
 
 			// AQUI LA FUNCION COMO DEBERIA SER
 			// this.submitted = true;

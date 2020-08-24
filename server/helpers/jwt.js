@@ -5,23 +5,27 @@ const userService = require("../users/user-service");
 module.exports = jwt;
 
 function jwt() {
-    const secret = config.secret;
-    return expressJwt({ secret, algorithms: ["HS256"], isRevoked }).unless({
-        path: [ 
-            //Rutas publicas a las que se puede acceder sin necesidad de un jwt
-            '/',
-            '/iniciosesion',
-            '/registro'
-        ],
-    });
+	const secret = config.secret;
+	return expressJwt({
+		secret,
+		algorithms: ["HS256"],
+		isRevoked,
+	}).unless({
+		path: [
+			//Rutas publicas a las que se puede acceder sin necesidad de un jwt
+			"/registro",
+			"/",
+			"/iniciosesion",
+		],
+	});
 }
 
 async function isRevoked(req, payload, done) {
-    const user = await userService.getById(payload.sub);
+	const user = await userService.getById(payload.sub);
 
-    if (!user) {
-        return done(null, true);
-    }
+	if (!user) {
+		return done(null, true);
+	}
 
-    done();
+	done();
 }

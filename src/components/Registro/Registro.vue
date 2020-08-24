@@ -5,11 +5,7 @@
 				<b-col sm="8" class="formularios2">
 					<!-- Formulario de registro -->
 					<h3>Registro</h3>
-					<b-form
-						@submit.prevent="handleSubmit"
-						@reset="onReset2"
-						v-if="show"
-					>
+					<b-form @submit.prevent="handleSubmit" @reset="onReset2" v-if="show">
 						<b-form-group
 							id="input-group-registro-1"
 							label="Nombre de usuario:"
@@ -24,14 +20,10 @@
 								v-validate="'required'"
 								class="form-control"
 								:class="{
-									'is-invalid':
-										submitted && errors.has('name'),
+									'is-invalid': submitted && errors.has('name'),
 								}"
 							></b-form-input>
-							<div
-								v-if="submitted && errors.has('name')"
-								class="invalid-feedback"
-							>
+							<div v-if="submitted && errors.has('name')" class="invalid-feedback">
 								{{ errors.first("name") }}
 							</div>
 						</b-form-group>
@@ -51,14 +43,10 @@
 								placeholder="Introduce tu e-mail"
 								class="form-control"
 								:class="{
-									'is-invalid':
-										submitted && errors.has('email'),
+									'is-invalid': submitted && errors.has('email'),
 								}"
 							></b-form-input>
-							<div
-								v-if="submitted && errors.has('email')"
-								class="invalid-feedback"
-							>
+							<div v-if="submitted && errors.has('email')" class="invalid-feedback">
 								{{ errors.first("email") }}
 							</div>
 						</b-form-group>
@@ -75,13 +63,15 @@
 								type="password"
 								placeholder="Introduce tu contraseña"
 								aria-describedby="password-help-block"
-								v-validate="{ required: true, min: 6 }"
+								v-validate="{
+									required: true,
+									min: 6,
+								}"
 								class="form-control"
 							></b-form-input>
 							<b-form-text id="password-help-block">
-								Your password must be 8-20 characters long,
-								contain letters and numbers, and must not
-								contain spaces, special characters, or emoji.
+								Your password must be 8-20 characters long, contain letters and
+								numbers, and must not contain spaces, special characters, or emoji.
 							</b-form-text>
 							<br />
 							<b-form-input
@@ -89,7 +79,10 @@
 								id="input-registro-pw"
 								v-model="user.password_repeat"
 								type="password"
-								v-validate="{ required: true, min: 6 }"
+								v-validate="{
+									required: true,
+									min: 6,
+								}"
 								placeholder="Repite tu contraseña"
 							></b-form-input>
 						</b-form-group>
@@ -113,11 +106,8 @@
 								v-model="user.checked2"
 								id="checkboxes-registro-3"
 							>
-								<b-form-checkbox
-									value="accept_terms"
-									class="form-control"
-									>He leído y acepto lo términos y
-									condiciones.</b-form-checkbox
+								<b-form-checkbox value="accept_terms" class="form-control"
+									>He leído y acepto lo términos y condiciones.</b-form-checkbox
 								>
 							</b-form-checkbox-group>
 						</b-form-group>
@@ -128,20 +118,18 @@
 								variant="primary"
 								class="btn btn-primary"
 								:disabled="status.registering"
-								>Submit</b-button
 							>
-							<b-button type="reset" variant="danger"
-								>Reset</b-button
-							>
-							<router-link to="/" class="btn btn-link"
-								>Cancel</router-link
-							>
+								Enviar
+							</b-button>
+							<b-button type="reset" variant="danger">
+								Limpiar
+							</b-button>
+							<router-link to="/" class="btn btn-link">
+								Cancelar
+							</router-link>
 						</b-form-group>
 					</b-form>
-					<b-card
-						class="mt-3"
-						header="Resultado formulario de registro"
-					>
+					<b-card class="mt-3" header="Resultado formulario de registro">
 						<pre class="m-0">{{ user }}</pre>
 					</b-card>
 				</b-col>
@@ -152,7 +140,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
 	name: "Registro",
 	data() {
@@ -167,8 +155,14 @@ export default {
 			},
 			submitted: false,
 			options: [
-				{ value: null, text: "Por favor, escoja una opción" },
-				{ value: "ULL", text: "Universidad de La Laguna" },
+				{
+					value: null,
+					text: "Por favor, escoja una opción",
+				},
+				{
+					value: "ULL",
+					text: "Universidad de La Laguna",
+				},
 				{
 					value: "ULPGC",
 					text: "Universidad de Las Palmas de Gran Canaria",
@@ -217,10 +211,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-	font-weight: normal;
-}
-
 .formularios2 {
 	border: 3px solid #5c068b;
 	border-radius: 8px 8px 8px 8px;

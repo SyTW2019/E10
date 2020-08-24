@@ -26,6 +26,12 @@
 						></b-carousel-slide>
 
 						<b-carousel-slide
+							caption="Foro"
+							text="Comparte tu opinión y comentarios con otros alumnos de la universidad"
+							img-src="https://www.elespectador.com/resizer/c1MgRMM6lcRxl2iSwWxZF7BYRlI=/657x0/arc-anglerfish-arc2-prod-elespectador.s3.amazonaws.com/public/PHN7UOG2BRCG5JO7BV2NJOYADM.jpg"
+						></b-carousel-slide>
+
+						<b-carousel-slide
 							text="Con nuestros algoritmos podrás encontrar la mejor manera de colocar tús exámenes en función de su dificultad"
 							img-src="https://www.elidealgallego.com/media/idealgallego/images/2019/01/01/2019010117344661029.jpg"
 						></b-carousel-slide>
@@ -40,24 +46,20 @@
 					<b-col md="5" class="cartas">
 						<b-card title="Objetivo 🎯">
 							<b-card-text>
-								Facilitar la organización del calendario de
-								exámenes para los alumnos de todos los grados,
-								puesto que creemos que la universidad no
-								proporciona un servicio similar y probablemente
-								sería algo muy favorable.
+								Facilitar la organización del calendario de exámenes para los
+								alumnos de todos los grados, puesto que creemos que la universidad
+								no proporciona un servicio similar y probablemente sería algo muy
+								favorable.
 							</b-card-text>
 						</b-card>
 					</b-col>
 
 					<b-col md="5" class="cartas">
-						<b-card
-							title="Sobre nosotros"
-							sub-title="Equipo 10 de SyTW 👦🏻 👦🏽 🧑‍ "
-						>
+						<b-card title="Sobre nosotros" sub-title="Equipo 10 de SyTW 👦🏻 👦🏽 🧑‍ ">
 							<b-card-text>
-								Como alumnos ya veteranos en el grado hemos
-								pensado en intentar ayudar a nuestros compañeros
-								con una herramienta de gestión de exámenes.
+								Como alumnos ya veteranos en el grado hemos pensado en intentar
+								ayudar a nuestros compañeros con una herramienta de gestión de
+								exámenes.
 							</b-card-text>
 
 							<router-link to="/aboutus" class="card-link">
@@ -71,7 +73,7 @@
 				<b-col class="botones">
 					<b-row cols="1">
 						<b-col>
-							<p>
+							<p class="caption">
 								<strong>¿Te interesa? Únete a nosotros</strong>
 							</p>
 						</b-col>
@@ -85,14 +87,12 @@
 					<br />
 					<b-row cols="1">
 						<b-col>
-							<p><strong>Ya tienes cuenta</strong></p>
+							<p class="caption">
+								<strong>¿Ya tienes cuenta?</strong>
+							</p>
 						</b-col>
 						<b-col>
-							<b-button
-								class="boton"
-								size="lg"
-								to="/iniciosesion"
-							>
+							<b-button class="boton" size="lg" to="/iniciosesion">
 								Iniciar sesión
 							</b-button>
 						</b-col>
@@ -187,5 +187,12 @@ h2 {
 	font-size: 23px;
 	text-shadow: 3px 3px 3px black;
 	width: 93%;
+}
+
+.caption {
+	border: 3px solid darkgrey;
+	background-color: rgba(255, 255, 255, 0.75);
+
+	padding: 5px;
 }
 </style>
