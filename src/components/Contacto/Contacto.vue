@@ -5,7 +5,7 @@
 			<b-col sm="8" class="formulario">
 				<!-- Formulario de registro -->
 				<h3>Formulario de contacto</h3>
-				<b-form @submit="handleSubmit" @reset="onReset" v-if="show">
+				<b-form @submit.prevent="handleSubmit" @reset.prevent="onReset" v-if="show">
 					<b-form-group
 						id="input-group-1"
 						label="Correo electrónico:"
@@ -100,12 +100,14 @@ export default {
 			//alert(JSON.stringify(this.form));
 
 			if (this.submitted) {
-				const _mail = this.form.email;
-				const _name = this.form.nombre;
-				const _issue = this.form.asunto;
-				const _msg = this.form.mensaje;
+				const JSONmsg = {
+					mail: this.form.email,
+					name: this.form.nombre,
+					issue: this.form.asunto,
+					msg: this.form.mensaje,
+				};
 
-				this.contact(_mail, _name, _issue, _msg);
+				this.contact(JSONmsg);
 			}
 		},
 		onReset(evt) {

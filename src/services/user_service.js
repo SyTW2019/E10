@@ -3,7 +3,7 @@
 // the top of the file, and the implementation of each method is located in the functions below.
 
 // import config from '../config';
-import {authHeader} from "../helpers";
+import { authHeader } from "../helpers";
 
 export const userService = {
 	login,
@@ -42,20 +42,20 @@ function login(username, password) {
 		});
 }
 
-function contact(mail, name, issue, msg) {
-	const requestOptions = {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			mail,
-			name,
-			issue,
-			msg,
-		}),
-	};
-	console.log(requestOptions);
+function contact(JSONmsg) {
+	// const requestOptions = {
+	// 	method: "POST",
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 	},
+	// 	body: JSON.stringify({
+	// 		mail,
+	// 		name,
+	// 		issue,
+	// 		msg,
+	// 	}),
+	// };
+	console.log("hola");
 }
 
 function logout() {
