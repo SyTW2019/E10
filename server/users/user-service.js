@@ -21,8 +21,8 @@ async function contact({mail, name, issue, msg}) {
 		service: "gmail",
 		auth: {
 			user: "empep.business@gmail.com",
-			pass: "proyectazo"
-		}
+			pass: "proyectazo",
+		},
 	});
 
 	const mailOptions = {
@@ -30,14 +30,13 @@ async function contact({mail, name, issue, msg}) {
 		to: "empep.business@gmail.com",
 		subject: issue,
 		text: `Nombre: ${name}\nMail: ${mail}\nMensaje: ${msg}`,
-	}
+	};
 
-	transporter.sendMail(mailOptions, function(error, info){
+	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {
 			console.log(error);
-		}
-		else {
-			console.log("Email enviado: " + info.response)
+		} else {
+			console.log("Email enviado: " + info.response);
 		}
 	});
 }

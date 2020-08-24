@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
 	name: "Contacto",
 	data() {
@@ -105,7 +105,7 @@ export default {
 					issue: this.form.asunto,
 					msg: this.form.mensaje,
 				};
-				
+
 				this.contact(JSONmsg);
 			}
 		},

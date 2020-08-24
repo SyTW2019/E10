@@ -13,8 +13,8 @@ router.delete("/:id");
 
 module.exports = router;
 
-function contact(req, res, next){
-	console.log(req)
+function contact(req, res, next) {
+	console.log(req);
 	userService
 		.contact(req.body)
 		.then(() => res.json({}))
