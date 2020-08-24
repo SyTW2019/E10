@@ -1,5 +1,6 @@
 <template>
 	<b-container>
+		<h2>Contacto</h2>
 		<b-row class="justify-content-around">
 			<b-col sm="8" class="formulario">
 				<!-- Formulario de registro -->
@@ -100,7 +101,6 @@ export default {
 	},
 	methods: {
 		handleSubmit(evt) {
-			//evt.preventDefault();
 			this.submitted = true;
 			//alert(JSON.stringify(this.form));
 

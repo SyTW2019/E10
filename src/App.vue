@@ -17,14 +17,23 @@
 
 				<b-collapse id="nav-collapse" is-nav>
 					<b-navbar-nav v-if="account.status.loggedIn">
-						<b-nav-item to="/calendario">Foro</b-nav-item>
+						<b-nav-item to="/foro">Foro</b-nav-item>
 						<b-nav-item to="/calendario">Calendario</b-nav-item>
 						<b-nav-item to="/perfil">Perfil</b-nav-item>
+						<b-nav-item-dropdown text="Otros">
+							<b-dropdown-item to="/aboutus">Sobre nosotros</b-dropdown-item>
+							<b-dropdown-item to="/ayuda">Ayuda</b-dropdown-item>
+							<b-dropdown-item to="/contacto">Contacto</b-dropdown-item>
+						</b-nav-item-dropdown>
 					</b-navbar-nav>
 					<b-navbar-nav v-else>
-						<b-nav-item disabled to="/calendario">Foro</b-nav-item>
+						<b-nav-item disabled to="/foro">Foro</b-nav-item>
 						<b-nav-item disabled to="/calendario">Calendario</b-nav-item>
-						<b-nav-item disabled to="/perfil">Perfil</b-nav-item>
+						<b-nav-item-dropdown text="Otros">
+							<b-dropdown-item to="/aboutus">Sobre nosotros</b-dropdown-item>
+							<b-dropdown-item to="/ayuda">Ayuda</b-dropdown-item>
+							<b-dropdown-item to="/contacto">Contacto</b-dropdown-item>
+						</b-nav-item-dropdown>
 					</b-navbar-nav>
 
 					<!-- Right aligned nav items -->
@@ -40,9 +49,7 @@
 								<v-show>{{ account.user.userWithoutHash.name }}</v-show>
 							</template>
 							<b-dropdown-item to="/calendario">Calendario</b-dropdown-item>
-							<b-dropdown-item to="/perfil"
-								>Perfil de usuario</b-dropdown-item
-							>
+							<b-dropdown-item to="/perfil">Perfil de usuario</b-dropdown-item>
 							<b-dropdown-item v-on:click="fuera()" to="/iniciosesion"
 								>Logout</b-dropdown-item
 							>
@@ -50,9 +57,8 @@
 						<b-nav-item-dropdown right v-else>
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>Cuenta</template>
-							<b-dropdown-item to="/iniciosesion"
-								>Iniciar sesión</b-dropdown-item
-							>
+							<b-dropdown-item to="/registro">Registro</b-dropdown-item>
+							<b-dropdown-item to="/iniciosesion">Iniciar sesión</b-dropdown-item>
 						</b-nav-item-dropdown>
 					</b-navbar-nav>
 				</b-collapse>
@@ -77,7 +83,7 @@
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
 								<a>
-									<router-link to="/aboutus">
+									<router-link to="/ayuda">
 										Ayuda
 									</router-link>
 								</a>
@@ -97,8 +103,8 @@
 					<mdb-row class="text-center justify-content-center mb-md-0 mb-4">
 						<mdb-col md="8" class="mt-5">
 							<p style="lineheight: '1.7rem';">
-								Proyecto de la asignatura Sistemas y Tecnologías Web.
-								Cursos 2019/2020.
+								Proyecto de la asignatura Sistemas y Tecnologías Web. Cursos
+								2019/2020.
 								<br />
 								<strong>Grado de Ingeniería Informática</strong>.
 							</p>
@@ -170,7 +176,8 @@ export default {
 	background-color: white;
 }
 #barra_nav {
-	background-color: rgb(92, 6, 139);
+	background-color: rgba(92, 6, 139, 0.8);
+	font-size: large;
 }
 #futer {
 	background-color: rgb(92, 6, 139, 0.2);

@@ -45,9 +45,7 @@
 								v-model="user.rememberme"
 								id="checkboxes-login-3"
 							>
-								<b-form-checkbox value="remind_me"
-									>Recordarme</b-form-checkbox
-								>
+								<b-form-checkbox value="remind_me">Recordarme</b-form-checkbox>
 							</b-form-checkbox-group>
 						</b-form-group>
 
@@ -61,10 +59,7 @@
 							Cancelar
 						</router-link>
 					</b-form>
-					<b-card
-						class="mt-3"
-						header="Resultado formulario de inicio de sesión"
-					>
+					<b-card class="mt-3" header="Resultado formulario de inicio de sesión">
 						<pre class="m-0">{{ user }}</pre>
 					</b-card>
 				</b-col>

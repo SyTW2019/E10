@@ -48,6 +48,11 @@ export const router = new Router({
 			name: "ayuda",
 			component: () => import("@/components/Ayuda/Ayuda.vue"),
 		},
+		{
+			path: "/foro",
+			name: "foro",
+			component: () => import("@/components/Foro/Foro.vue"),
+		},
 		{path: "*", redirect: "/"},
 	],
 });
@@ -63,6 +68,7 @@ router.beforeEach((to, from, next) => {
 		"/aboutus",
 		"/contacto",
 		"/ayuda",
+		"/foro",
 		"/",
 	];
 	const authRequired = !publicPages.includes(to.path);

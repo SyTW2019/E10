@@ -1,5 +1,7 @@
 <template>
-	<div class="container"></div>
+	<b-container>
+		<h2>Ayuda</h2>
+	</b-container>
 </template>
 
 <script>

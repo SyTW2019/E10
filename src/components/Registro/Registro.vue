@@ -23,10 +23,7 @@
 									'is-invalid': submitted && errors.has('name'),
 								}"
 							></b-form-input>
-							<div
-								v-if="submitted && errors.has('name')"
-								class="invalid-feedback"
-							>
+							<div v-if="submitted && errors.has('name')" class="invalid-feedback">
 								{{ errors.first("name") }}
 							</div>
 						</b-form-group>
@@ -49,10 +46,7 @@
 									'is-invalid': submitted && errors.has('email'),
 								}"
 							></b-form-input>
-							<div
-								v-if="submitted && errors.has('email')"
-								class="invalid-feedback"
-							>
+							<div v-if="submitted && errors.has('email')" class="invalid-feedback">
 								{{ errors.first("email") }}
 							</div>
 						</b-form-group>
@@ -76,9 +70,8 @@
 								class="form-control"
 							></b-form-input>
 							<b-form-text id="password-help-block">
-								Your password must be 8-20 characters long, contain
-								letters and numbers, and must not contain spaces, special
-								characters, or emoji.
+								Your password must be 8-20 characters long, contain letters and
+								numbers, and must not contain spaces, special characters, or emoji.
 							</b-form-text>
 							<br />
 							<b-form-input
@@ -114,8 +107,7 @@
 								id="checkboxes-registro-3"
 							>
 								<b-form-checkbox value="accept_terms" class="form-control"
-									>He leído y acepto lo términos y
-									condiciones.</b-form-checkbox
+									>He leído y acepto lo términos y condiciones.</b-form-checkbox
 								>
 							</b-form-checkbox-group>
 						</b-form-group>
