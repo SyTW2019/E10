@@ -86,13 +86,10 @@
 						</b-form-group>
 
 						<b-form-group id="input-group-registro-3">
-							<b-form-checkbox-group
-								v-model="user.checked2"
-								id="checkboxes-registro-3"
-							>
-								<b-form-checkbox value="accept_terms" class="form-control"
-									>He leído y acepto lo términos y condiciones.</b-form-checkbox
-								>
+							<b-form-checkbox-group v-model="user.terms" id="checkboxes-registro-3">
+								<b-form-checkbox value="true">
+									He leído y acepto lo términos y condiciones.
+								</b-form-checkbox>
 							</b-form-checkbox-group>
 						</b-form-group>
 
@@ -135,7 +132,7 @@ export default {
 				password: "",
 				grado: null,
 				password_repeat: "",
-				checked2: null,
+				terms: null,
 			},
 			submitted: false,
 			options: [
@@ -179,7 +176,7 @@ export default {
 			this.user.password = "";
 			this.user.grado = null;
 			this.user.password_repeat = "";
-			this.user.checked2 = null;
+			this.user.terms = null;
 			// Trick to reset/clear native browser form validation state
 			this.show = false;
 			this.$nextTick(() => {
@@ -208,5 +205,9 @@ export default {
 
 	padding-bottom: 15px;
 	padding-top: 15px;
+}
+
+.check {
+	padding-left: 5px;
 }
 </style>
