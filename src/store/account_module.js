@@ -54,7 +54,6 @@ const actions = {
 	},
 	contact({ dispatch, commit }, JSONmsg) {
 		userService.contact(JSONmsg);
-		//alert("Su mensaje se ha enviado correctamente al equipo de soporte de EMPEP");
 		router.push("/");
 	},
 };
