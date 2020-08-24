@@ -184,13 +184,8 @@ h2 {
     margin: 1%;
     padding: 1%;
 
-<<<<<<< HEAD
-    text-shadow: 1px 1px 1px black;
-    width: 93%;
-=======
 	font-size: 23px;
 	text-shadow: 3px 3px 3px black;
 	width: 93%;
->>>>>>> 8fbefe28966d31aadb1c025546d1dfe8840415db
 }
 </style>

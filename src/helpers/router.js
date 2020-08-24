@@ -55,18 +55,6 @@ export const router = new Router({
 
 //AQUI ESTAN LAS RUTAS PUBLICAS OJO CUIDADO HAY QUE QUITARLAS
 router.beforeEach((to, from, next) => {
-<<<<<<< HEAD
-    // redirect to login page if not logged in and trying to access a restricted page
-    const publicPages = [
-        "/perfil",
-        "/calendario",
-        "/iniciosesion",
-        "/registro",
-        "/",
-    ];
-    const authRequired = !publicPages.includes(to.path);
-    const loggedIn = localStorage.getItem("user");
-=======
 	// redirect to login page if not logged in and trying to access a restricted page
 	const publicPages = [
 		"/perfil",
@@ -80,7 +68,6 @@ router.beforeEach((to, from, next) => {
 	];
 	const authRequired = !publicPages.includes(to.path);
 	const loggedIn = localStorage.getItem("user");
->>>>>>> 8fbefe28966d31aadb1c025546d1dfe8840415db
 
     if (authRequired && !loggedIn) {
         return next("/iniciosesion");
