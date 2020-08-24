@@ -50,7 +50,6 @@ function contact(JSONmsg) {
 		},
 		body: JSON.stringify(JSONmsg),
 	};
-	console.log(requestOptions.body);
 	return fetch(`http://localhost:3000/contacto`, requestOptions).then(handleResponse);
 }
 

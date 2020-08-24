@@ -13,7 +13,6 @@
 						></b-img>
 					</router-link>
 				</b-navbar-brand>
-				<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
 				<b-collapse id="nav-collapse" is-nav>
 					<b-navbar-nav v-if="account.status.loggedIn">
@@ -27,6 +26,11 @@
 
 					<!-- Right aligned nav items -->
 					<b-navbar-nav class="ml-auto">
+						<b-nav-item-dropdown text="Otros" is-nav>
+							<b-dropdown-item to="/aboutus">Sobre nosotros</b-dropdown-item>
+							<b-dropdown-item to="/ayuda">Ayuda</b-dropdown-item>
+							<b-dropdown-item to="/contacto">Contacto</b-dropdown-item>
+						</b-nav-item-dropdown>
 						<b-nav-item-dropdown text="Lang" right>
 							<b-dropdown-item href="#">ES</b-dropdown-item>
 							<b-dropdown-item disabled href="#">EN</b-dropdown-item>
@@ -114,8 +118,8 @@
 </template>
 
 <script>
-import {mapState, mapActions} from "vuex";
-import {mdbFooter, mdbContainer, mdbRow, mdbCol} from "mdbvue";
+import { mapState, mapActions } from "vuex";
+import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
 
 export default {
 	name: "App",
