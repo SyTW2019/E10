@@ -43,6 +43,7 @@ function login(username, password) {
 }
 
 function contact(mail, name, issue, msg) {
+	alert("HOLA");
 	const requestOptions = {
 		method: "POST",
 		headers: {

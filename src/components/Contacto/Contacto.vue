@@ -98,13 +98,13 @@ export default {
 		handleSubmit(evt) {
 			this.submitted = true;
 			//alert(JSON.stringify(this.form));
-
 			if (this.submitted) {
 				const _mail = this.form.email;
 				const _name = this.form.nombre;
 				const _issue = this.form.asunto;
 				const _msg = this.form.mensaje;
 
+			alert("eys");
 				this.contact(_mail, _name, _issue, _msg);
 			}
 		},
