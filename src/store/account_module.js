@@ -56,10 +56,6 @@ const actions = {
 		userService.contact(JSONmsg);
 		router.push("/");
 	},
-	// Parte para realizar las consultas
-	getGradosCursos({ dispatch, commit }, param) {
-		console.log(" get grado y curso account_module");
-	},
 };
 
 const mutations = {
