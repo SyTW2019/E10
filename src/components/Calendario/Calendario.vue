@@ -4,10 +4,10 @@
 			<h2>Calendario</h2>
 		</b-row>
 		<!-- Formulario de obtencion de grado + curso -->
-		<b-row class="justify-content-around">
+		<b-row class="justify-content-around" :methods="funcGradosCursos()" v-if="show1">
 			<b-col md="10" class="calendario">
 				<h3>Selección de grado y curso</h3>
-				<b-form @submit.prevent="handleSubmit1" @reset.prevent="onReset1" v-if="show">
+				<b-form @submit.prevent="handleSubmit1" @reset.prevent="onReset1">
 					<b-form-group label="Grado">
 						<b-form-select
 							v-model="grado.selected_grado"
@@ -22,7 +22,7 @@
 							</b-list-group>
 						</div>
 					</b-form-group>
-					<b-form-group label="Curso" class="select_width justify-content-around">
+					<b-form-group label="Curso" class="justify-content-around">
 						<b-form-select
 							v-model="curso.selected_curso"
 							:options="curso.options_curso"
@@ -39,7 +39,7 @@
 							<b-list-group class="justify-content-center" horizontal>
 								<b-list-group-item
 									class="vista_curso"
-									v-for="item in curso.selected_curso"
+									v-for="(item, i) in curso.selected_curso"
 								>
 									{{ item }}
 								</b-list-group-item>
@@ -63,11 +63,11 @@
 		</b-row>
 		<br />
 		<!-- Formulario de obtencion de las asignaturas -->
-		<b-row class="justify-content-around" v-if="submitted_form_grado">
+		<b-row class="justify-content-around" v-if="submitted_form_grado && show2">
 			<b-col md="10" class="calendario">
 				<h3>Selección de asignaturas</h3>
-				<b-form @submit.prevent="handleSubmit2" @reset.prevent="onReset2" v-if="show">
-					<b-form-group label="Asignaturas" class="select_width justify-content-around">
+				<b-form @submit.prevent="handleSubmit2" @reset.prevent="onReset2">
+					<b-form-group label="Asignaturas" class="justify-content-around">
 						<b-form-select
 							v-model="asignaturas.selected_asignaturas"
 							:options="asignaturas.options_asignaturas"
@@ -107,10 +107,10 @@
 		</b-row>
 		<br />
 		<!-- Formulario de obtencion de los exámenes -->
-		<b-row class="justify-content-around" v-if="submitted_form_asignaturas">
+		<b-row class="justify-content-around" v-if="submitted_form_asignaturas && show3">
 			<b-col md="10" class="calendario">
 				<h3>Selección de exámenes</h3>
-				<b-form @submit.prevent="handleSubmit3" @reset.prevent="onReset3" v-if="show">
+				<b-form @submit.prevent="handleSubmit3" @reset.prevent="onReset3">
 					<b-form-group label="Examenes">
 						<b-form-select
 							v-model="examenes.selected_examenes"
@@ -156,6 +156,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
 	name: "Calendario",
 	data() {
@@ -230,10 +231,9 @@ export default {
 					},
 				],
 			},
-			show: true,
-			selected1: false,
-			selected2: false,
-			selected3: false,
+			show1: true,
+			show2: false,
+			show3: false,
 			submitted_form_grado: false,
 			submitted_form_asignaturas: false,
 			submitted_form_examenes: false,
@@ -242,18 +242,10 @@ export default {
 	methods: {
 		handleSubmit1(evt) {
 			this.submitted_form_grado = true;
-			this.selected1 = true;
-			this.obtener_asignaturas();
-
-			// const resultFormGrado = {
-			// 	grado: this.grado.selected_grado,
-			// 	curso: this.curso.selected_curso,
-			// };
-			// console.log(resultFormGrado);
+			this.funcAsignaturas();
 		},
 		onReset1(evt) {
 			// Reset our form values
-			this.selected1 = false;
 			this.submitted_form_grado = false;
 			this.submitted_form_asignaturas = false;
 			this.submitted_form_examenes = false;
@@ -267,11 +259,7 @@ export default {
 		},
 		handleSubmit2(evt) {
 			this.submitted_form_asignaturas = true;
-
-			// const resultFormAsignaturas = {
-			// 	asignaturas: this.asignaturas.selected_asignaturas;
-			// };
-			// console.log(resultFormAsignaturas);
+			this.funcExamenes();
 		},
 		onReset2(evt) {
 			// Reset our form values
@@ -286,11 +274,6 @@ export default {
 		},
 		handleSubmit3(evt) {
 			this.submitted_form_examenes = true;
-
-			// const resultFormExamenes = {
-			// 	asignaturas: this.examenes.selected_examenes;
-			// };
-			// console.log(resultFormExamenes);
 		},
 		onReset3(evt) {
 			// Reset our form values
@@ -302,8 +285,34 @@ export default {
 				this.show = true;
 			});
 		},
-		obtener_asignaturas() {
-			console.log("grado y curso listos");
+		// Aqui es la parte donde se van a realizar las consultas a backend
+		...mapActions("calendar", ["getGradosCursos", "getAsignaturas", "getExamenes"]),
+		funcGradosCursos() {
+			this.getGradosCursos();
+
+			if (condition) {
+				this.show1 = true;
+			} else {
+				this.show1 = false;
+			}
+		},
+		funcAsignaturas() {
+			this.getAsignaturas();
+
+			if (condition) {
+				this.show2 = true;
+			} else {
+				this.show2 = false;
+			}
+		},
+		funcExamenes() {
+			this.getExamenes();
+
+			if (condition) {
+				this.show3 = true;
+			} else {
+				this.show3 = false;
+			}
 		},
 	},
 };
@@ -311,11 +320,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.select_width {
-	width: 700px;
-	display: inline-block;
-}
-
 .calendario {
 	border: 3px solid #5c068b;
 	border-radius: 8px 8px 8px 8px;

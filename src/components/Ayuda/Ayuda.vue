@@ -1,23 +1,49 @@
 <template>
 	<b-container>
 		<h2>Ayuda</h2>
-		<b-row class="borde">
+		<b-container class="borde">
 			<h5><strong>Cómo usar el foro</strong></h5>
-		</b-row>
+		</b-container>
 		<br />
-		<b-row class="borde">
+		<b-container class="borde">
 			<h5><strong>Cómo usar el calendario</strong></h5>
-			<b-row cols="2">
-				<b-col sm="6" class="image">
-					<img :src="imagenes.ayuda1" alt="Imagen ayuda 1" />
+			<b-row cols="2" class="justify-content-center">
+				<b-col md="6" class="image">
+					<img
+						src="'../../assets/img_ayuda/ayuda1flechas.png'"
+						width="50px"
+						alt="ayuda 1"
+					/>
 				</b-col>
-				<b-col sm="6" class="text"> </b-col>
-				<b-col sm="6"></b-col>
-				<b-col sm="6"></b-col>
-				<b-col sm="6"></b-col>
-				<b-col sm="6"></b-col>
+				<b-col md="5" class="text">
+					En primer lugar se tiene que seleccionar el grado y el curso, de los
+					disponibles, para posteriormente pasar a seleccionar las asignaturas. Luego
+					simplemente se ha de presionar en <strong>obtener asignaturas</strong>, en su
+					defecto si queremos corregir los campos, se ha de presionar en
+					<strong>limpiar</strong>.
+				</b-col>
+				<b-col md="6" class="image">
+					<img
+						src="'../../assets/img_ayuda/ayuda1flechas.png'"
+						width="50px"
+						alt="ayuda 1"
+					/>
+				</b-col>
+				<b-col md="5" class="text">
+					blabla.
+				</b-col>
+				<b-col md="6" class="image">
+					<img
+						src="'../../assets/img_ayuda/ayuda1flechas.png'"
+						width="50px"
+						alt="ayuda 1"
+					/>
+				</b-col>
+				<b-col md="5" class="text">
+					blabla.
+				</b-col>
 			</b-row>
-		</b-row>
+		</b-container>
 	</b-container>
 </template>
 
@@ -27,9 +53,9 @@ export default {
 	data() {
 		return {
 			imagenes: {
-				ayuda1: "src/assets/img_ayuda/ayuda1flechas.png",
-				ayuda2: "src/assets/img_ayuda/ayuda2flechas.png",
-				ayuda3: "src/assets/img_ayuda/ayuda3flechas.png",
+				ayuda1: "img_ayuda/ayuda1flechas.png",
+				ayuda2: "img_ayuda/ayuda2flechas.png",
+				ayuda3: "img_ayuda/ayuda3flechas.png",
 			},
 		};
 	},
@@ -48,9 +74,23 @@ h5 {
 	-moz-border-radius: 8px 8px 8px 8px;
 	-webkit-border-radius: 8px 8px 8px 8px;
 
-	background-color: rgb(92, 6, 139, 0.1);
+	background-color: rgba(92, 6, 139, 0.1);
 
 	padding-bottom: 15px;
 	padding-top: 15px;
+}
+
+.image {
+	border: 5px solid rgba(92, 6, 139, 0.2);
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 2px;
+}
+
+.text {
+	border: 5px solid rgba(92, 6, 139, 0.2);
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
 }
 </style>
