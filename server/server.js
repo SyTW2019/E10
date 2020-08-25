@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const jwt = require("./helpers/jwt");
 const errorHandler = require("./helpers/error-handler");
 const morgan = require("morgan");
+const userControl = require("./users/user-controller");
+const gradoControl = require("./grades/grades-controller");
 const env = require("node-env-file");
 env("./.env");
 
@@ -15,14 +17,15 @@ app.use(cors());
 // mostrar por consola las peticiones
 app.use(morgan("dev"));
 
+
 app.use(jwt());
 
-app.use("/registro", require("./users/user-controller"));
-app.use("/", require("./users/user-controller"));
-app.use("/inciosesion", require("./users/user-controller"));
-app.use("/contacto", require("./users/user-controller"));
+app.use("/registro", userControl);
+app.use("/", userControl);
+app.use("/inciosesion", userControl);
+app.use("/contacto", userControl);
 
-app.use("/grados", require("./grades/grades-controller"));
+app.use("/grado", gradoControl);
 
 app.use(errorHandler);
 

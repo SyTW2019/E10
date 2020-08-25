@@ -1,3 +1,5 @@
+import { authHeader } from "../helpers";
+
 export const calendarService = {
 	getGradosCursos,
 	getAsignaturas,
@@ -7,9 +9,7 @@ export const calendarService = {
 async function getGradosCursos() {
 	const requestOptions = {
 		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
+		headers: authHeader(),
 	};
 	return await fetch(`http://localhost:3000/grados`, requestOptions)
 		.then(() => {

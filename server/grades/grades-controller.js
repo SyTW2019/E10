@@ -1,17 +1,19 @@
 const express = require("express");
-const router = express.Router();
+const routerGrado = express.Router();
 const gradeService = require("./grades-service");
-const db = require("../helpers/db");
 
-router.get("/grados", getGrados);
+routerGrado.post("/grado", hola);
 
-module.exports = router;
+module.exports = routerGrado;
 
-function getGrados(req, res, next) {
-	
+function getGrado(req, res, next) {
+
 	gradeService
 		.getAll()
 		.then(() => res.json())
-		.then(() => response)
 		.catch((err) => next(err));
+}
+
+function hola(){
+	console.log("HOLA");
 }

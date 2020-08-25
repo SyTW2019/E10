@@ -17,7 +17,7 @@ function jwt() {
 			"/",
 			"/iniciosesion",
 			"/contacto",
-			"/grados",
+			"/grado",
 		],
 	});
 }
