@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const reg = new Schema({
+const userSchema = new Schema({
 	email: {
 		type: String,
 		unique: true,
@@ -13,7 +13,7 @@ const reg = new Schema({
 	hash: {type: String, required: true},
 });
 
-reg.set("toJson", {
+userSchema.set("toJson", {
 	virtuals: true,
 	versionKey: false,
 	transform: function (doc, ret) {
@@ -22,4 +22,4 @@ reg.set("toJson", {
 	},
 });
 
-module.exports = mongoose.model("Registro", reg);
+module.exports = mongoose.model("userschema", userSchema);

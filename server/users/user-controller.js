@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const userService = require("./user-service");
-const config = require("../config.json");
 
 router.post("/iniciosesion", authenticate);
 router.post("/registro", register);

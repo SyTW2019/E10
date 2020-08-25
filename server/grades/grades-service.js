@@ -1,14 +1,11 @@
-const config = require("../config.json");
-const db = require("../helpers/db")
-const Grade = require("./grades-model");
-    
+const db = require("../helpers/db");
+const Grado = db.Grado;
+
 module.exports = {
-    getAll,
-}
+	getAll,
+};
 
 async function getAll() {
-	db.cambiarCol("grados");
-    console.log("ESTAMOS AQUI");
-
-    return await Grade.find();
+	console.log("ESTAMOS AQUI");
+	return await Grado.find();
 }

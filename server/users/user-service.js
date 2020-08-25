@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const db = require("../helpers/db");
-const User = require("./user-model");
+const User = db.User;
 
 module.exports = {
 	authenticate,
@@ -16,7 +16,6 @@ module.exports = {
 };
 
 async function contact({mail, name, issue, msg}) {
-	db.cambiarCol("user");
 	const transporter = nodemailer.createTransport({
 		service: "gmail",
 		auth: {
@@ -44,7 +43,6 @@ async function contact({mail, name, issue, msg}) {
 }
 
 async function authenticate({username, password}) {
-	db.cambiarCol("user");
 	const user = await User.findOne({
 		name: `${username}`,
 	});
@@ -60,24 +58,18 @@ async function authenticate({username, password}) {
 }
 
 async function getAll() {
-	db.cambiarCol("user");
 	return await User.find().select("-hash");
 }
 
 async function getById(id) {
-	db.cambiarCol("user");
 	return await User.findById(id).select("-hash");
 }
 
 //AQUI ESTA EL ERROR
 async function create(userParam) {
-	db.cambiarCol("user");
+
 	//Validación
-	if (
-		await User.findOne({
-			name: userParam.name,
-		})
-	) {
+	if (await User.findOne({name: userParam.name})) {
 		console.log('El nombre de usuario "' + userParam.name + '" está cogido');
 	}
 
@@ -90,7 +82,6 @@ async function create(userParam) {
 }
 
 async function update(id, userParam) {
-	db.cambiarCol("user");
 	const user = await User.findById(id);
 
 	// Validación
@@ -114,6 +105,5 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-	db.cambiarCol("user");
 	await User.findByIdAndRemove(id);
 }

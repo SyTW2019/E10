@@ -156,7 +156,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState, mapActions} from "vuex";
 export default {
 	name: "Calendario",
 	data() {
@@ -181,22 +181,22 @@ export default {
 			curso: {
 				selected_curso: [],
 				options_curso: [
-					{ value: "1", text: "1" },
-					{ value: "2", text: "2" },
-					{ value: "3", text: "3" },
-					{ value: "4", text: "4" },
+					{value: "1", text: "1"},
+					{value: "2", text: "2"},
+					{value: "3", text: "3"},
+					{value: "4", text: "4"},
 				],
 			},
 			asignaturas: {
 				selected_asignaturas: [], // Array reference
 				options_asignaturas: [
-					{ value: "A", text: "A" },
-					{ value: "B", text: "B" },
-					{ value: "C", text: "C" },
-					{ value: "D", text: "D" },
-					{ value: "E", text: "E" },
-					{ value: "G", text: "G" },
-					{ value: "F", text: "F" },
+					{value: "A", text: "A"},
+					{value: "B", text: "B"},
+					{value: "C", text: "C"},
+					{value: "D", text: "D"},
+					{value: "E", text: "E"},
+					{value: "G", text: "G"},
+					{value: "F", text: "F"},
 				],
 			},
 			examenes: {
@@ -290,29 +290,29 @@ export default {
 		funcGradosCursos() {
 			this.getGradosCursos();
 
-			if (condition) {
-				this.show1 = true;
-			} else {
-				this.show1 = false;
-			}
+			// if (condition) {
+			// 	this.show1 = true;
+			// } else {
+			// 	this.show1 = false;
+			// }
 		},
 		funcAsignaturas() {
 			this.getAsignaturas();
 
-			if (condition) {
-				this.show2 = true;
-			} else {
-				this.show2 = false;
-			}
+			// if (condition) {
+			// 	this.show2 = true;
+			// } else {
+			// 	this.show2 = false;
+			// }
 		},
 		funcExamenes() {
 			this.getExamenes();
 
-			if (condition) {
-				this.show3 = true;
-			} else {
-				this.show3 = false;
-			}
+			// if (condition) {
+			// 	this.show3 = true;
+			// } else {
+			// 	this.show3 = false;
+			// }
 		},
 	},
 };
