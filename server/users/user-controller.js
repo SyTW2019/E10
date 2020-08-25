@@ -1,17 +1,17 @@
 const express = require("express");
-const routerUser = express.Router();
+const router = express.Router();
 const userService = require("./user-service");
 
-routerUser.post("/iniciosesion", authenticate);
-routerUser.post("/registro", register);
-routerUser.post("/contacto", contact);      
-routerUser.get("/", getAll);
-routerUser.get("/current", getCurrent);
-routerUser.get("/:id", getById);
-routerUser.put("/:id", update);
-routerUser.delete("/:id");
+router.post("/iniciosesion", authenticate);
+router.post("/registro", register);
+router.post("/contacto", contact);      
+router.get("/", getAll);
+router.get("/current", getCurrent);
+router.get("/:id", getById);
+router.put("/:id", update);
+router.delete("/:id");
 
-module.exports = routerUser;
+module.exports = router;
 
 function contact(req, res, next) {
 	userService

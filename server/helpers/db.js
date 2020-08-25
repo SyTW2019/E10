@@ -11,5 +11,4 @@ mongoose
 module.exports = {
 	mongoose,
 	User: require("../users/user-model"),
-	Grado: require("../grades/grades-model"),
 };

@@ -11,7 +11,7 @@ async function getGradosCursos() {
 		method: "GET",
 		headers: authHeader(),
 	};
-	return await fetch(`http://localhost:3000/grados`, requestOptions)
+	return await fetch(`http://localhost:3000/grado`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Grado y cursos cogidos");

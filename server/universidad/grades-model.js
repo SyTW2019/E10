@@ -13,4 +13,4 @@ gradoSchema.set("toJson", {
 	versionKey: false,
 });
 
-module.exports = mongoose.model("gradoSchema", gradoSchema);
+module.exports = mongoose.model("gradoschema", gradoSchema);

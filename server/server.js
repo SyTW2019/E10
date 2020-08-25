@@ -6,7 +6,6 @@ const jwt = require("./helpers/jwt");
 const errorHandler = require("./helpers/error-handler");
 const morgan = require("morgan");
 const userControl = require("./users/user-controller");
-const gradoControl = require("./grades/grades-controller");
 const env = require("node-env-file");
 env("./.env");
 
@@ -17,7 +16,6 @@ app.use(cors());
 // mostrar por consola las peticiones
 app.use(morgan("dev"));
 
-
 app.use(jwt());
 
 app.use("/registro", userControl);
@@ -25,11 +23,8 @@ app.use("/", userControl);
 app.use("/inciosesion", userControl);
 app.use("/contacto", userControl);
 
-app.use("/grado", gradoControl);
-
 app.use(errorHandler);
 
-const port = process.env.PORT;
-const server = app.listen(port, function () {
-	console.log("Server listening on port " + port);
+app.listen(process.env.PORT, function () {
+	console.log("Server listening on port " + process.env.PORT);
 });
