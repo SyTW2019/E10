@@ -22,7 +22,7 @@
 							</b-list-group>
 						</div>
 					</b-form-group>
-					<b-form-group label="Curso">
+					<b-form-group label="Curso" class="select_width justify-content-around">
 						<b-form-select
 							v-model="curso.selected_curso"
 							:options="curso.options_curso"
@@ -67,7 +67,7 @@
 			<b-col md="10" class="calendario">
 				<h3>Selección de asignaturas</h3>
 				<b-form @submit.prevent="handleSubmit2" @reset.prevent="onReset2" v-if="show">
-					<b-form-group label="Asignaturas">
+					<b-form-group label="Asignaturas" class="select_width justify-content-around">
 						<b-form-select
 							v-model="asignaturas.selected_asignaturas"
 							:options="asignaturas.options_asignaturas"
@@ -78,15 +78,17 @@
 						<b-form-text id="select-help-block">
 							Para seleccionar múltiples opciones presione "Ctrl + Click" en la opción
 							a elegir.
-						</b-form-text>						
-                        <div class="mt-3" v-if="asignaturas.selected_asignaturas.length > 0">
-                            <strong>Seleccionado:</strong>
-                            <b-list-group class="vista_exam">
-                                <b-list-group-item class="zero" v-for="item in asignaturas.selected_asignaturas">
-                                    {{ item }}
-                                </b-list-group-item>
-                            </b-list-group>
-                        </div>
+						</b-form-text>
+						<div class="mt-3" v-if="asignaturas.selected_asignaturas.length > 0">
+							<strong>Seleccionado:</strong>
+							<b-list-group class="vista_exam">
+								<b-list-group-item
+									class="zero"
+									v-for="item in asignaturas.selected_asignaturas"
+								>
+									{{ item }}
+								</b-list-group-item>
+							</b-list-group>
 						</div>
 					</b-form-group>
 					<b-form-group>
@@ -229,6 +231,9 @@ export default {
 				],
 			},
 			show: true,
+			selected1: false,
+			selected2: false,
+			selected3: false,
 			submitted_form_grado: false,
 			submitted_form_asignaturas: false,
 			submitted_form_examenes: false,
@@ -237,6 +242,7 @@ export default {
 	methods: {
 		handleSubmit1(evt) {
 			this.submitted_form_grado = true;
+			this.selected1 = true;
 			this.obtener_asignaturas();
 
 			// const resultFormGrado = {
@@ -247,9 +253,10 @@ export default {
 		},
 		onReset1(evt) {
 			// Reset our form values
+			this.selected1 = false;
 			this.submitted_form_grado = false;
-            this.submitted_form_asignaturas = false;
-            this.submitted_form_examenes = false;
+			this.submitted_form_asignaturas = false;
+			this.submitted_form_examenes = false;
 			this.grado.selected_grado = null;
 			this.curso.selected_curso = [];
 			// Trick to reset/clear native browser form validation state
@@ -267,9 +274,9 @@ export default {
 			// console.log(resultFormAsignaturas);
 		},
 		onReset2(evt) {
-            // Reset our form values
-            this.submitted_form_asignaturas = false;
-            this.submitted_form_examenes = false;
+			// Reset our form values
+			this.submitted_form_asignaturas = false;
+			this.submitted_form_examenes = false;
 			this.asignaturas.selected_asignaturas = [];
 			// Trick to reset/clear native browser form validation state
 			this.show = false;
@@ -287,7 +294,7 @@ export default {
 		},
 		onReset3(evt) {
 			// Reset our form values
-            this.submitted_form_examenes = false;
+			this.submitted_form_examenes = false;
 			this.examenes.selected_examenes = [];
 			// Trick to reset/clear native browser form validation state
 			this.show = false;
@@ -304,8 +311,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h2 {
-	font-weight: normal;
+.select_width {
+	width: 700px;
+	display: inline-block;
 }
 
 .calendario {
@@ -331,6 +339,6 @@ h2 {
 }
 
 .zero {
-    padding: 0px;
+	padding: 0px;
 }
 </style>
