@@ -3,7 +3,7 @@
 // the top of the file, and the implementation of each method is located in the functions below.
 
 // import config from '../config';
-import {authHeader} from "../helpers";
+import { authHeader } from "../helpers";
 
 export const userService = {
 	login,
