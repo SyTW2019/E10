@@ -9,9 +9,7 @@ import { userService } from "../services/user_service";
 import { router } from "../helpers/router";
 
 const user = JSON.parse(localStorage.getItem("user"));
-const state = user
-	? { status: { loggedIn: true }, user }
-	: { status: {}, user: null };
+const state = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
 
 const actions = {
 	login({ dispatch, commit }, { username, password }) {
@@ -25,7 +23,7 @@ const actions = {
 			(error) => {
 				commit("loginFailure", error);
 				dispatch("alert/error", error, { root: true });
-			},
+			}
 		);
 	},
 	logout({ commit }) {
@@ -41,14 +39,22 @@ const actions = {
 				router.push("/iniciosesion");
 				setTimeout(() => {
 					// display success message after route change completes
-					dispatch("alert/success", "Registration successful", { root: true });
+					dispatch("alert/success", "Registration successful", {
+						root: true,
+					});
 				});
 			},
 			(error) => {
 				commit("registerFailure", error);
-				dispatch("alert/error", error, { root: true });
-			},
+				dispatch("alert/error", error, {
+					root: true,
+				});
+			}
 		);
+	},
+	contact({ dispatch, commit }, JSONmsg) {
+		userService.contact(JSONmsg);
+		router.push("/");
 	},
 };
 

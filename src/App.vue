@@ -13,16 +13,24 @@
 						></b-img>
 					</router-link>
 				</b-navbar-brand>
-				<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
 				<b-collapse id="nav-collapse" is-nav>
-					<b-navbar-nav>
+					<b-navbar-nav v-if="account.status.loggedIn">
 						<b-nav-item to="/calendario">Calendario</b-nav-item>
 						<b-nav-item to="/perfil">Perfil</b-nav-item>
+					</b-navbar-nav>
+					<b-navbar-nav v-else>
+						<b-nav-item disabled to="/calendario">Calendario</b-nav-item>
+						<b-nav-item disabled to="/perfil">Perfil</b-nav-item>
 					</b-navbar-nav>
 
 					<!-- Right aligned nav items -->
 					<b-navbar-nav class="ml-auto">
+						<b-nav-item-dropdown text="Otros" is-nav>
+							<b-dropdown-item to="/aboutus">Sobre nosotros</b-dropdown-item>
+							<b-dropdown-item to="/ayuda">Ayuda</b-dropdown-item>
+							<b-dropdown-item to="/contacto">Contacto</b-dropdown-item>
+						</b-nav-item-dropdown>
 						<b-nav-item-dropdown text="Lang" right>
 							<b-dropdown-item href="#">ES</b-dropdown-item>
 							<b-dropdown-item disabled href="#">EN</b-dropdown-item>
@@ -31,7 +39,7 @@
 						<b-nav-item-dropdown right v-if="account.status.loggedIn">
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>
-								<v-show>{{ account.user.userWithoutHash.name }}</v-show>
+								{{ account.user.userWithoutHash.name }}
 							</template>
 							<b-dropdown-item to="/calendario">Calendario</b-dropdown-item>
 							<b-dropdown-item to="/perfil">Perfil de usuario</b-dropdown-item>
@@ -57,39 +65,39 @@
 					<mdb-row class="pt-5 mb-3 text-center d-flex justify-content-center">
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">About us</a>
+								<a>
+									<router-link to="/aboutus">
+										Sobre nosotros
+									</router-link>
+								</a>
 							</h6>
 						</mdb-col>
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">Products</a>
+								<a>
+									<router-link to="/aboutus">
+										Ayuda
+									</router-link>
+								</a>
 							</h6>
 						</mdb-col>
 						<mdb-col md="2" class="b-3">
 							<h6 class="title font-weight-bold">
-								<a href="#!">Awards</a>
-							</h6>
-						</mdb-col>
-						<mdb-col md="2" class="b-3">
-							<h6 class="title font-weight-bold">
-								<a href="#!">Help</a>
-							</h6>
-						</mdb-col>
-						<mdb-col md="2" class="b-3">
-							<h6 class="title font-weight-bold">
-								<a href="#!">Contact</a>
+								<a>
+									<router-link to="/contacto">
+										Contacto
+									</router-link>
+								</a>
 							</h6>
 						</mdb-col>
 					</mdb-row>
 					<hr class="rgba-white-light" style="margin: 1%;" />
-					<mdb-row class="d-flex text-center justify-content-center mb-md-0 mb-4">
-						<mdb-col md="8" sm="12" class="mt-5">
+					<mdb-row class="text-center justify-content-center mb-md-0 mb-4">
+						<mdb-col md="8" class="mt-5">
 							<p style="lineheight: '1.7rem';">
-								Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-								accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-								ab illo inventore veritatis et quasi architecto beatae vitae dicta
-								sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-								aspernatur aut odit aut fugit, sed quia consequuntur.
+								Proyecto de la asignatura Sistemas y Tecnologías Web. Cursos
+								2019/2020. <br />
+								<strong>Grado de Ingeniería Informática</strong>.
 							</p>
 						</mdb-col>
 					</mdb-row>
@@ -97,7 +105,11 @@
 				<div class="footer-copyright text-center py-3">
 					<mdb-container fluid>
 						&copy; 2020 Copyright:
-						<a href="#">Estamos mal pero estaremos peor</a>
+						<a>
+							<router-link to="/">
+								Estamos mal pero estaremos peor
+							</router-link>
+						</a>
 					</mdb-container>
 				</div>
 			</mdb-footer>
@@ -106,8 +118,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
+import {mapState, mapActions} from "vuex";
+import {mdbFooter, mdbContainer, mdbRow, mdbCol} from "mdbvue";
 
 export default {
 	name: "App",
@@ -122,6 +134,8 @@ export default {
 		...mapActions({
 			clearAlert: "alert/clear",
 		}),
+
+		...mapActions("account", ["logout"]),
 		fuera() {
 			this.logout();
 		},

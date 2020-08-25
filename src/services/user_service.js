@@ -7,6 +7,7 @@ import { authHeader } from "../helpers";
 
 export const userService = {
 	login,
+	contact,
 	logout,
 	register,
 	getAll,
@@ -18,8 +19,13 @@ export const userService = {
 function login(username, password) {
 	const requestOptions = {
 		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ username, password }),
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			username,
+			password,
+		}),
 	};
 
 	return fetch(`http://localhost:3000/iniciosesion`, requestOptions)
@@ -36,6 +42,19 @@ function login(username, password) {
 		});
 }
 
+function contact(JSONmsg) {
+	const requestOptions = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(JSONmsg),
+	};
+	return fetch(`http://localhost:3000/contacto`, requestOptions)
+		.then(handleResponse)
+		.then(alert("El mensaje ha sido enviado con exito"));
+}
+
 function logout() {
 	// remove user from local storage to log user out
 	localStorage.removeItem("user");
@@ -44,13 +63,13 @@ function logout() {
 function register(user) {
 	const requestOptions = {
 		method: "POST",
-		headers: { "Content-Type": "application/json" },
+		headers: {
+			"Content-Type": "application/json",
+		},
 		body: JSON.stringify(user),
 	};
 
-	return fetch(`http://localhost:3000/registro`, requestOptions).then(
-		handleResponse,
-	);
+	return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
@@ -74,13 +93,14 @@ function getById(id) {
 function update(user) {
 	const requestOptions = {
 		method: "PUT",
-		headers: { ...authHeader(), "Content-Type": "application/json" },
+		headers: {
+			...authHeader(),
+			"Content-Type": "application/json",
+		},
 		body: JSON.stringify(user),
 	};
 
-	return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(
-		handleResponse,
-	);
+	return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
