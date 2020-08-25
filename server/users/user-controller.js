@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userService = require("./user-service");
+const config = require("../config.json");
 
 router.post("/iniciosesion", authenticate);
 router.post("/registro", register);
@@ -14,7 +15,6 @@ router.delete("/:id");
 module.exports = router;
 
 function contact(req, res, next) {
-	console.log(req);
 	userService
 		.contact(req.body)
 		.then(() => res.json({}))
