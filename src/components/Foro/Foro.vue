@@ -47,7 +47,7 @@
 											</b-list-group-item>
 											<b-list-group-item
 												class="vista_curso"
-												v-for="(item, i) in curso.selected_curso"
+												v-for="item in curso.selected_curso"
 											>
 												{{ item }}
 											</b-list-group-item>

@@ -159,7 +159,8 @@ export default {
 
 <style scoped>
 #app {
-	font-family: "Avenir", Helvetica, Arial, sans-serif;
+	font-family: "Montserrat";
+	font-weight: 500;
 	text-align: center;
 	background-color: rgb(92, 6, 139, 0.08);
 }

@@ -58,7 +58,7 @@
 								class="form-control"
 							></b-form-input>
 							<b-form-text id="password-help-block">
-								Tu contraseña puede contener los címbolos deal abecedario, números y
+								Tu contraseña puede contener los símbolos del abecedario, números y
 								espacios, y ha de ser de longitud entre [8-20] y no puede contener
 								símbolos especiales como puntuación, acentuación o emojis.
 							</b-form-text>
