@@ -170,8 +170,8 @@
 							<br />
 						</b-col>
 					</b-row>
-					<b-row align-h="start">
-						<b-col md="auto" offset-md="9">
+					<b-row align-h="end">
+						<b-col md="auto">
 							<b-button variant="primary" @click.prevent="publicarMensaje()">
 								Publicar
 							</b-button>
@@ -188,170 +188,170 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from "vuex";
-	export default {
-		name: "Foro",
-		data() {
-			return {
-				texto: "",
-				perPage: 10,
-				currentPage: 1,
-				mensajes: [
+import {mapState, mapActions} from "vuex";
+export default {
+	name: "Foro",
+	data() {
+		return {
+			texto: "",
+			perPage: 10,
+			currentPage: 1,
+			mensajes: [
+				{
+					nick_name: "Fred",
+					mail: "fred@fred.fred",
+					msg: "jajaj",
+				},
+				{
+					nick_name: "goku",
+					mail: "fred@fred.fred",
+					msg:
+						"hola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentando",
+				},
+				{
+					nick_name: "vegeta",
+					mail: "fred@fred.fred",
+					msg: "hola muy buenas a todos aqui willyrex comentando",
+				},
+				{
+					nick_name: "krilin",
+					mail: "fred@fred.fredsuperfred",
+					msg: "hola muy buenas a todos aqui willyrex comentando",
+				},
+			],
+			fields: [
+				{key: "nick_name", label: "Nombre", tdClass: "nickcol"},
+				{key: "mail", label: "Correo", tdClass: "mailcol"},
+				{key: "msg", label: "Mensaje", tdClass: "msgcol"},
+			],
+			grado: {
+				selected_grado: null,
+				options_grado: [
 					{
-						nick_name: "Fred",
-						mail: "fred@fred.fred",
-						msg: "jajaj",
+						value: null,
+						text: "Escoja un grado",
 					},
 					{
-						nick_name: "goku",
-						mail: "fred@fred.fred",
-						msg:
-							"hola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentando",
+						value: "GII",
+						text: "Grado en Ingeniería Informática",
 					},
 					{
-						nick_name: "vegeta",
-						mail: "fred@fred.fred",
-						msg: "hola muy buenas a todos aqui willyrex comentando",
-					},
-					{
-						nick_name: "krilin",
-						mail: "fred@fred.fredsuperfred",
-						msg: "hola muy buenas a todos aqui willyrex comentando",
+						value: "GM",
+						text: "Grado en Magisterio",
 					},
 				],
-				fields: [
-					{ key: "nick_name", label: "Nombre", tdClass: "nickcol" },
-					{ key: "mail", label: "Correo", tdClass: "mailcol" },
-					{ key: "msg", label: "Mensaje", tdClass: "msgcol" },
+			},
+			curso: {
+				selected_curso: [],
+				options_curso: [
+					{value: "1", text: "1"},
+					{value: "2", text: "2"},
 				],
-				grado: {
-					selected_grado: null,
-					options_grado: [
-						{
-							value: null,
-							text: "Escoja un grado",
-						},
-						{
-							value: "GII",
-							text: "Grado en Ingeniería Informática",
-						},
-						{
-							value: "GM",
-							text: "Grado en Magisterio",
-						},
-					],
-				},
-				curso: {
-					selected_curso: [],
-					options_curso: [
-						{ value: "1", text: "1" },
-						{ value: "2", text: "2" },
-					],
-				},
-				asignaturas: {
-					selected_asignaturas: null, // Array reference
-					options_asignaturas: [
-						{ value: null, text: "Seleccione una asignatura" },
-						{ value: "A", text: "A" },
-						{ value: "B", text: "B" },
-					],
-				},
-				show1: true,
-				show2: false,
-				show3: false,
-			};
+			},
+			asignaturas: {
+				selected_asignaturas: null, // Array reference
+				options_asignaturas: [
+					{value: null, text: "Seleccione una asignatura"},
+					{value: "A", text: "A"},
+					{value: "B", text: "B"},
+				],
+			},
+			show1: true,
+			show2: false,
+			show3: false,
+		};
+	},
+	computed: {
+		rows() {
+			return this.mensajes.length;
 		},
-		computed: {
-			rows() {
-				return this.mensajes.length;
-			},
+	},
+	methods: {
+		handleSubmit1(evt) {
+			this.funcAsignaturas();
+			this.show2 = true;
 		},
-		methods: {
-			handleSubmit1(evt) {
-				this.funcAsignaturas();
-				this.show2 = true;
-			},
-			onReset1(evt) {
-				// Reset our form values
-				this.grado.selected_grado = null;
-				this.curso.selected_curso = [];
-				// Trick to reset/clear native browser form validation state
-				this.show1 = false;
-				this.show2 = false;
-				this.$nextTick(() => {
-					this.show1 = true;
-				});
-			},
-			handleSubmit2(evt) {
-				this.funcForos();
-				this.show3 = true;
-				this.show1 = false;
-				this.show2 = false;
-			},
-			onReset2(evt) {
-				// Reset our form values
-				this.asignaturas.selected_asignaturas = null;
-				// Trick to reset/clear native browser form validation state
-				this.show2 = false;
-				this.onReset1();
-			},
-			onReset3(evt) {
-				// Reset our form values
-				this.texto = "";
-				// Trick to reset/clear native browser form validation state
-				this.show3 = false;
-				this.onReset2();
-			},
-			//publicar el mensaje
-			publicarMensaje() {
-				if (this.texto.length > 0) {
-					console.log(this.texto);
-				}
+		onReset1(evt) {
+			// Reset our form values
+			this.grado.selected_grado = null;
+			this.curso.selected_curso = [];
+			// Trick to reset/clear native browser form validation state
+			this.show1 = false;
+			this.show2 = false;
+			this.$nextTick(() => {
+				this.show1 = true;
+			});
+		},
+		handleSubmit2(evt) {
+			this.funcForos();
+			this.show3 = true;
+			this.show1 = false;
+			this.show2 = false;
+		},
+		onReset2(evt) {
+			// Reset our form values
+			this.asignaturas.selected_asignaturas = null;
+			// Trick to reset/clear native browser form validation state
+			this.show2 = false;
+			this.onReset1();
+		},
+		onReset3(evt) {
+			// Reset our form values
+			this.texto = "";
+			// Trick to reset/clear native browser form validation state
+			this.show3 = false;
+			this.onReset2();
+		},
+		//publicar el mensaje
+		publicarMensaje() {
+			if (this.texto.length > 0) {
+				console.log(this.texto);
+			}
 
-				//publicar mensaje
+			//publicar mensaje
 
-				this.texto = "";
-			},
-			//parte de manejo de consultas
-			funcGradosCursos() {},
-			funcAsignaturas() {},
-			funcForos() {},
+			this.texto = "";
 		},
-	};
+		//parte de manejo de consultas
+		funcGradosCursos() {},
+		funcAsignaturas() {},
+		funcForos() {},
+	},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-	.borde {
-		border: 3px solid #5c068b;
-		border-radius: 8px 8px 8px 8px;
-		-moz-border-radius: 8px 8px 8px 8px;
-		-webkit-border-radius: 8px 8px 8px 8px;
+.borde {
+	border: 3px solid #5c068b;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
 
-		background-color: rgb(92, 6, 139, 0.1);
+	background-color: rgb(92, 6, 139, 0.1);
 
-		padding-bottom: 15px;
-		padding-top: 15px;
-	}
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
 
-	.table {
-		border: 3px solid #5c068b;
-		border-radius: 8px 8px 8px 8px;
-		-moz-border-radius: 8px 8px 8px 8px;
-		-webkit-border-radius: 8px 8px 8px 8px;
+.table {
+	border: 3px solid #5c068b;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
 
-		background-color: white;
+	background-color: white;
 
-		padding-bottom: 15px;
-		padding-top: 15px;
-	}
-	.nickcol {
-		width: 100px;
-	}
-	.mailcol {
-		width: 100px;
-	}
-	.msgcol {
-		max-width: 500px;
-	}
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+.nickcol {
+	width: 100px;
+}
+.mailcol {
+	width: 100px;
+}
+.msgcol {
+	max-width: 500px;
+}
 </style>

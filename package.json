@@ -4,10 +4,10 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"serve": "vue-cli-service serve",
+		"front": "vue-cli-service serve",
 		"build": "vue-cli-service build",
 		"clean": "rm -Rf dist",
-		"formatter": "prettier --use-tabs true --no-bracket-spacing true --jsx-bracket-same-line --tab-width 4 --print-width 100 --write .",
+		"formatter": "prettier --use-tabs true --no-bracket-spacing --jsx-bracket-same-line --tab-width 4 --print-width 100 --write .",
 		"server": "clear && nodemon --no-deprecation server/server.js"
 	},
 	"dependencies": {
