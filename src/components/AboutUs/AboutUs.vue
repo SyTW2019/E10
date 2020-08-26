@@ -1,8 +1,69 @@
 <template>
 	<b-container>
 		<h2>Sobre nosotros</h2>
-		<b-row class="borde justify-content-around" cols="2">
-			<h4>Como empresa</h4>
+		<b-row class="borde justify-content-around" cols="3">
+			<b-col md="12"><h5>Como empresa</h5></b-col>
+			<b-col md="12">
+				<b-list-group class="lista" horizontal>
+					<b-list-group-item class="list-item">Innovación</b-list-group-item>
+					<b-list-group-item class="list-item">Diversificación</b-list-group-item>
+					<b-list-group-item class="list-item">Eficiencia</b-list-group-item>
+					<b-list-group-item class="list-item">Compromiso</b-list-group-item>
+					<b-list-group-item class="list-item">Felicidad</b-list-group-item>
+				</b-list-group>
+			</b-col>
+			<b-col md="12"
+				><br />
+				<hr class="line"
+			/></b-col>
+			<b-col>
+				<b-card no-body class="mb-1 textos">
+					<b-card-header header-tag="header" class="p-1" role="tab">
+						<b-button block v-b-toggle.accordion-1 variant="info" class="boton2">
+							Misión
+						</b-button>
+					</b-card-header>
+					<b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
+						<b-card-body>
+							<b-card-text>
+								I start opened because <code>visible</code> is <code>true</code>
+							</b-card-text>
+						</b-card-body>
+					</b-collapse>
+				</b-card>
+			</b-col>
+			<b-col>
+				<b-card no-body class="mb-1 textos">
+					<b-card-header header-tag="header" class="p-1" role="tab">
+						<b-button block v-b-toggle.accordion-2 variant="info" class="boton2">
+							Historia
+						</b-button>
+					</b-card-header>
+					<b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+						<b-card-body>
+							<b-card-text>
+								I start opened because <code>visible</code> is <code>true</code>
+							</b-card-text>
+						</b-card-body>
+					</b-collapse>
+				</b-card>
+			</b-col>
+			<b-col>
+				<b-card no-body class="mb-1 textos">
+					<b-card-header header-tag="header" class="p-1" role="tab">
+						<b-button block v-b-toggle.accordion-3 variant="info" class="boton2">
+							Otros Proyectos
+						</b-button>
+					</b-card-header>
+					<b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+						<b-card-body>
+							<b-card-text>
+								I start opened because <code>visible</code> is <code>true</code>
+							</b-card-text>
+						</b-card-body>
+					</b-collapse>
+				</b-card>
+			</b-col>
 		</b-row>
 		<br />
 		<b-row class="borde justify-content-around" cols="1">
@@ -119,7 +180,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	.caja {
-		border: 3px solid #5c068b;
+		border: 3px solid rgb(92, 6, 139);
 		border-radius: 8px 8px 8px 8px;
 		-moz-border-radius: 8px 8px 8px 8px;
 		-webkit-border-radius: 8px 8px 8px 8px;
@@ -134,6 +195,21 @@
 		align-items: start;
 	}
 
+	.lista {
+		width: 100%;
+		justify-content: space-around;
+	}
+
+	.list-item {
+		background-color: rgba(255, 255, 255, 0);
+		border: none;
+		font-size: 170%;
+		-webkit-box-shadow: 8px 11px 12px 7px rgba(92, 6, 139, 0.64);
+		box-shadow: 8px 11px 15px 7px rgba(92, 6, 139, 0.4);
+		border: 1px solid #5c068b;
+		outline-offset: 3px;
+	}
+
 	.borde {
 		border: 3px solid #5c068b;
 		border-radius: 8px 8px 8px 8px;
@@ -144,6 +220,12 @@
 
 		padding-bottom: 15px;
 		padding-top: 15px;
+	}
+
+	.textos {
+		width: 100%;
+		background-color: rgba(0, 0, 0, 0);
+		border: none;
 	}
 
 	.line {
@@ -188,6 +270,19 @@
 	}
 
 	.boton_volver:hover {
+		opacity: 0.85;
+	}
+
+	.boton2 {
+		background-color: rgb(92, 6, 139, 0.5);
+		margin-top: 10px;
+		z-index: 1;
+		filter: alpha(opacity=85);
+		-moz-opacity: 100;
+		opacity: 100;
+	}
+
+	.boton2:hover {
 		opacity: 0.85;
 	}
 </style>
