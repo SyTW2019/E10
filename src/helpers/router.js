@@ -54,7 +54,12 @@ export const router = new Router({
 			name: "foro",
 			component: () => import("@/components/Foro/Foro.vue"),
 		},
-		{path: "*", redirect: "/"},
+		{
+			path: "/admin",
+			name: "admin",
+			component: () => import("@/components/Administrador/Administrador.vue"),
+		},
+		{ path: "*", redirect: "/" },
 	],
 });
 
@@ -70,6 +75,7 @@ router.beforeEach((to, from, next) => {
 		"/contacto",
 		"/ayuda",
 		"/foro",
+		"/admin",
 		"/",
 	];
 	const authRequired = !publicPages.includes(to.path);
