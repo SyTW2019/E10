@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const userService = require("./user-service");
+const userService = require("../services/user-service");
 
 router.post("/iniciosesion", authenticate);
 router.post("/registro", register);
-router.post("/contacto", contact);      
+router.post("/contacto", contact); 
+router.get("/grado", getGrado);     
 router.get("/", getAll);
 router.get("/current", getCurrent);
 router.get("/:id", getById);
@@ -12,6 +13,10 @@ router.put("/:id", update);
 router.delete("/:id");
 
 module.exports = router;
+
+function getGrado(req, res, next) {
+	console.log("HOLA");
+}
 
 function contact(req, res, next) {
 	userService

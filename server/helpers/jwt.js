@@ -1,11 +1,13 @@
 const expressJwt = require("express-jwt");
 const config = require("../config.json");
-const userService = require("../users/user-service");
+const userService = require("../services/user-service");
+const env = require("node-env-file");
+env("./.env");
 
 module.exports = jwt;
 
 function jwt() {
-	const secret = config.secret;
+	const secret = process.env.SECRET;
 	return expressJwt({
 		secret,
 		algorithms: ["HS256"],

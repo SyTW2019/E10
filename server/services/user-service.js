@@ -49,7 +49,7 @@ async function authenticate({username, password}) {
 	if (user && bcrypt.compareSync(password, user.hash)) {
 		const userWithoutHash = user.toObject();
 		delete userWithoutHash.hash;
-		const token = jwt.sign({sub: user._id}, config.secret);
+		const token = jwt.sign({sub: user._id}, process.env.SECRET);
 		return {
 			userWithoutHash,
 			token,

@@ -24,9 +24,7 @@ async function getGradosCursos() {
 async function getAsignaturas() {
 	const requestOptions = {
 		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
+		headers: authHeader(),
 	};
 	return await fetch(`http://localhost:3000/asignaturas`, requestOptions)
 		.then(() => {
@@ -41,9 +39,7 @@ async function getAsignaturas() {
 async function getExamenes() {
 	const requestOptions = {
 		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
+		headers: authHeader(),
 	};
 	return await fetch(`http://localhost:3000/examenes`, requestOptions)
 		.then(() => {
