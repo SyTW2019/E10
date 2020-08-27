@@ -9,6 +9,6 @@ mongoose
 	.catch((err) => console.error(err));
 
 module.exports = {
-	mongoose,
 	User: require("../models/user-model"),
+	Grado: require("../models/grades-model")
 };

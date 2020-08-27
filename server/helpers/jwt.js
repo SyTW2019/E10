@@ -1,5 +1,4 @@
 const expressJwt = require("express-jwt");
-const config = require("../config.json");
 const userService = require("../services/user-service");
 const env = require("node-env-file");
 env("./.env");

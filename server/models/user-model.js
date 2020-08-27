@@ -9,7 +9,7 @@ const userSchema = new Schema({
 	},
 	password: {type: String, required: true},
 	name: {type: String, required: true},
-	grado: {type: String, required: true},
+	// grado: {type: String, required: true},
 	hash: {type: String, required: true},
 });
 

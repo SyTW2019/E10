@@ -32,7 +32,7 @@ app.use("/registro", controller);
 app.use("/", controller);
 app.use("/inciosesion", controller);
 app.use("/contacto", controller);
-app.use("/grado", controller);
+app.use("/grado", function(){console.log("HOLA")});
 
 app.listen(process.env.PORT, function () {
 	console.log("Server listening on port " + process.env.PORT);

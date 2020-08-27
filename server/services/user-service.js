@@ -1,4 +1,3 @@
-const config = require("../config.json");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
@@ -58,6 +57,7 @@ async function authenticate({username, password}) {
 }
 
 async function getAll() {
+	console.log("HOLA");
 	return await User.find().select("-hash");
 }
 
