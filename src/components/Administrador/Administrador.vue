@@ -260,17 +260,29 @@
 			<b-card no-body class="fondo">
 				<b-card-header header-tag="header" class="fondo" role="tab">
 					<b-button block v-b-toggle.accordion-3 class="boton2">
-						¿?
+						FORO
 					</b-button>
 				</b-card-header>
 				<b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
 					<b-card-body>
 						<b-container class="borde">
-							eys
-						</b-container>
-						<br />
-						<b-container class="borde">
-							eys
+							<b-form @submit.prevent="delMsg" @reset.prevent="onReset(9)">
+								<b-form-group label="Borrar mensaje del foro:">
+									<b-form-input
+										name="id"
+										v-model="foro.msg"
+										placeholder="ID"
+										class="form-control"
+									></b-form-input>
+								</b-form-group>
+
+								<b-button type="submit" variant="primary">
+									Eliminar
+								</b-button>
+								<b-button type="reset" variant="danger">
+									Limpiar
+								</b-button>
+							</b-form>
 						</b-container>
 					</b-card-body>
 				</b-collapse>
@@ -343,6 +355,9 @@
 						nombre: "",
 						fecha: "",
 					},
+				},
+				foro: {
+					msg: null,
 				},
 			};
 		},
@@ -426,6 +441,10 @@
 					"eliminar a " + this.exams.oldExam.nombre + " de " + this.exams.oldExam.fecha,
 				);
 			},
+			delMsg(evt) {
+				evt.preventDefault();
+				console.log("eliminar el mensaje " + this.foro.msg);
+			},
 			onReset(num_form) {
 				switch (num_form) {
 					case 1:
@@ -463,6 +482,9 @@
 					case 8:
 						this.exams.oldExam.nombre = "";
 						this.exams.oldExam.fecha = "";
+						break;
+					case 9:
+						this.foro.msg = null;
 						break;
 
 					default:
