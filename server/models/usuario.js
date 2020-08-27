@@ -6,6 +6,7 @@ const userSchema = new Schema({
 	password: {type: String, required: true},
 	name: {type: String, required: true, unique: true},
 	hash: {type: String, required: true},
+	// admin: {type: Boolean, required: true},
 });
 
 userSchema.set("toJson", {

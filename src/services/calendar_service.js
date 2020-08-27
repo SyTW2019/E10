@@ -13,7 +13,7 @@ async function getGradosCursos() {
 	};
 	return await fetch(`http://localhost:3000/grado`, requestOptions)
 		.then(() => {
-			handleResponse();
+			handleResponse;
 			console.log("Grado y cursos cogidos");
 		})
 		.catch((err) => {

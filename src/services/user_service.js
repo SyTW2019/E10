@@ -28,9 +28,12 @@ function login(username, password) {
 		}),
 	};
 
-	return fetch(`http://localhost:3000/iniciosesion`, requestOptions)
+	console.log(requestOptions);
+
+	return fetch(`http://localhost:3000/api/iniciosesion`, requestOptions)
 		.then(handleResponse)
 		.then((user) => {
+			console.log;
 			// login successful if there's a jwt token in the response
 			if (user.token) {
 				// store user details and jwt token in local storage to keep
@@ -50,7 +53,7 @@ function contact(JSONmsg) {
 		},
 		body: JSON.stringify(JSONmsg),
 	};
-	return fetch(`http://localhost:3000/contacto`, requestOptions)
+	return fetch(`http://localhost:3000/api/contacto`, requestOptions)
 		.then(handleResponse)
 		.then(alert("El mensaje ha sido enviado con exito"));
 }
@@ -69,7 +72,9 @@ function register(user) {
 		body: JSON.stringify(user),
 	};
 
-	return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
+	console.log(user);
+
+	return fetch(`http://localhost:3000/api/registro`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
