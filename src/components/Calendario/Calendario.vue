@@ -147,7 +147,7 @@
 			</b-col>
 		</b-row>
 		<br />
-		<b-row class="justify-content-around" v-if="submitted_form_examenes">
+		<b-row class="justify-content-around" v-if="submitted_form_examenes && show4">
 			<b-col md="10" class="calendario">
 				<h3>Resultado</h3>
 			</b-col>
@@ -234,6 +234,7 @@ export default {
 			show1: true,
 			show2: false,
 			show3: false,
+			show4: false,
 			submitted_form_grado: false,
 			submitted_form_asignaturas: false,
 			submitted_form_examenes: false,
@@ -344,5 +345,9 @@ export default {
 
 .zero {
 	padding: 0px;
+}
+
+#password-help-block {
+	color: black;
 }
 </style>
