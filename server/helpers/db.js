@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
-const config = require("../config.json");
+const env = require("node-env-file");
+env("./.env");
 
+mongoose.Promise = global.Promise;
 mongoose
-	.connect(config.connectionString, {useNewUrlParser: true})
-	.then((db) => console.log("DB conectada en " + config.connectionString))
+	.connect(process.env.DB_CONNECTION, {useNewUrlParser: true})
+	.then(() => console.log("DB conectada en " + process.env.DB_CONNECTION))
 	.catch((err) => console.error(err));
 
 module.exports = {
-	User: require("../users/user-model"),
+	User: require("../models/user-model"),
+	Grado: require("../models/grades-model")
 };

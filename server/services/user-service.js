@@ -1,9 +1,8 @@
-const config = require("../config.json");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
 const db = require("../helpers/db");
 const User = db.User;
-const nodemailer = require("nodemailer");
 
 module.exports = {
 	authenticate,
@@ -16,7 +15,6 @@ module.exports = {
 };
 
 async function contact({mail, name, issue, msg}) {
-	console.log(mail + name + issue + msg);
 	const transporter = nodemailer.createTransport({
 		service: "gmail",
 		auth: {
@@ -50,7 +48,7 @@ async function authenticate({username, password}) {
 	if (user && bcrypt.compareSync(password, user.hash)) {
 		const userWithoutHash = user.toObject();
 		delete userWithoutHash.hash;
-		const token = jwt.sign({sub: user._id}, config.secret);
+		const token = jwt.sign({sub: user._id}, process.env.SECRET);
 		return {
 			userWithoutHash,
 			token,
@@ -59,6 +57,7 @@ async function authenticate({username, password}) {
 }
 
 async function getAll() {
+	console.log("HOLA");
 	return await User.find().select("-hash");
 }
 
@@ -68,12 +67,9 @@ async function getById(id) {
 
 //AQUI ESTA EL ERROR
 async function create(userParam) {
+
 	//Validación
-	if (
-		await User.findOne({
-			name: userParam.name,
-		})
-	) {
+	if (await User.findOne({name: userParam.name})) {
 		console.log('El nombre de usuario "' + userParam.name + '" está cogido');
 	}
 
