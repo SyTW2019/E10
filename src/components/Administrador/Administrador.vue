@@ -12,32 +12,28 @@
 				<b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
 					<b-card-body>
 						<b-container class="borde">
-							<b-form @submit.prevent="addUser" @reset="onReset1">
-								<b-form-group id="input-group-1" label="Añadir usuario:">
+							<b-form @submit.prevent="addUser" @reset.prevent="onReset(1)">
+								<b-form-group label="Añadir usuario:">
 									<b-form-input
 										name="name"
-										id="input-nombre"
 										v-model="users.newUser.name"
 										placeholder="Username"
 										class="form-control"
 									></b-form-input>
 									<b-form-input
 										name="mail"
-										id="input-mail"
 										v-model="users.newUser.mail"
 										placeholder="Mail"
 										class="form-control"
 									></b-form-input>
 									<b-form-input
 										name="password"
-										id="input-pass"
 										v-model="users.newUser.password"
 										placeholder="Contraseña"
 										class="form-control"
 									></b-form-input>
 									<b-form-input
 										name="grade"
-										id="input-grade"
 										v-model="users.newUser.grado"
 										placeholder="Grado"
 										class="form-control"
@@ -54,11 +50,10 @@
 						</b-container>
 						<br />
 						<b-container class="borde">
-							<b-form @submit.prevent="delUser" @reset="onReset2">
-								<b-form-group id="input-group-2" label="Eliminar usuario:">
+							<b-form @submit.prevent="delUser" @reset.prevent="onReset(2)">
+								<b-form-group label="Eliminar usuario:">
 									<b-form-input
 										name="mail"
-										id="input-mail-del"
 										v-model="users.oldUser.mail"
 										placeholder="Mail"
 										class="form-control"
@@ -86,25 +81,22 @@
 					<b-card-body>
 						<b-container>
 							<b-container class="borde">
-								<b-form @submit.prevent="addGrado" @reset="onReset3">
+								<b-form @submit.prevent="addGrado" @reset.prevent="onReset(3)">
 									<b-form-group label="Añadir grado:">
 										<b-form-input
 											name="grado"
-											id="input-grado"
 											v-model="grados.newGrado.grado"
 											placeholder="Grado"
 											class="form-control"
 										></b-form-input>
 										<b-form-input
 											name="nombre"
-											id="input-nombre"
 											v-model="grados.newGrado.nombre"
 											placeholder="Nombre"
 											class="form-control"
 										></b-form-input>
 										<b-form-select
 											name="curso"
-											id="input-curso"
 											v-model="grados.newGrado.curso.selected"
 											:options="grados.newGrado.curso.options"
 											class="form-control"
@@ -119,6 +111,166 @@
 									</b-button>
 								</b-form>
 							</b-container>
+							<br />
+							<b-container class="borde">
+								<b-form @submit.prevent="delGrado" @reset.prevent="onReset(4)">
+									<b-form-group label="Eliminar grado:">
+										<b-form-input
+											name="nombre"
+											v-model="grados.oldGrado.nombre"
+											placeholder="Nombre"
+											class="form-control"
+										></b-form-input>
+									</b-form-group>
+
+									<b-button type="submit" variant="primary">
+										Eliminar
+									</b-button>
+									<b-button type="reset" variant="danger">
+										Limpiar
+									</b-button>
+								</b-form>
+							</b-container>
+							<br />
+							<b-container class="borde">
+								<b-form @submit.prevent="addAsign" @reset.prevent="onReset(5)">
+									<b-form-group label="Añadir asignatura:">
+										<b-form-input
+											name="nombre"
+											v-model="asigns.newAsign.nombre"
+											placeholder="Nombre"
+											class="form-control"
+										></b-form-input>
+										<b-form-input
+											name="grado"
+											v-model="asigns.newAsign.grado"
+											placeholder="Grado"
+											class="form-control"
+										></b-form-input>
+										<b-form-input
+											name="curso"
+											v-model="asigns.newAsign.curso"
+											placeholder="Curso"
+											class="form-control"
+										></b-form-input>
+									</b-form-group>
+
+									<b-button type="submit" variant="primary">
+										Añadir
+									</b-button>
+									<b-button type="reset" variant="danger">
+										Limpiar
+									</b-button>
+								</b-form>
+							</b-container>
+							<br />
+							<b-container class="borde">
+								<b-form @submit.prevent="delAsign" @reset.prevent="onReset(6)">
+									<b-form-group label="Eliminar asignatura:">
+										<b-form-input
+											name="nombre"
+											v-model="asigns.oldAsign.nombre"
+											placeholder="Nombre"
+											class="form-control"
+										></b-form-input>
+									</b-form-group>
+
+									<b-button type="submit" variant="primary">
+										Eliminar
+									</b-button>
+									<b-button type="reset" variant="danger">
+										Limpiar
+									</b-button>
+								</b-form>
+							</b-container>
+							<br />
+							<b-container class="borde">
+								<b-form @submit.prevent="addExam" @reset.prevent="onReset(7)">
+									<b-form-group label="Añadir examen:">
+										<b-form-input
+											name="nombre"
+											v-model="exams.newExam.nombre"
+											placeholder="Nombre"
+											class="form-control"
+										></b-form-input>
+										<b-form-input
+											name="asignatura"
+											v-model="exams.newExam.asign"
+											placeholder="Asignatura"
+											class="form-control"
+										></b-form-input>
+										<b-form-input
+											name="fecha"
+											v-model="exams.newExam.fecha"
+											placeholder="Fecha"
+											class="form-control"
+										></b-form-input>
+										<b-form-input
+											name="hora"
+											v-model="exams.newExam.hora"
+											placeholder="Hora"
+											class="form-control"
+										></b-form-input>
+										<b-form-input
+											name="convocatoria"
+											v-model="exams.newExam.convocatoria"
+											placeholder="Convocatoria"
+											class="form-control"
+										></b-form-input>
+									</b-form-group>
+
+									<b-button type="submit" variant="primary">
+										Añadir
+									</b-button>
+									<b-button type="reset" variant="danger">
+										Limpiar
+									</b-button>
+								</b-form>
+							</b-container>
+							<br />
+							<b-container class="borde">
+								<b-form @submit.prevent="delExam" @reset.prevent="onReset(8)">
+									<b-form-group label="Eliminar examen:">
+										<b-form-input
+											name="nombre"
+											v-model="exams.oldExam.nombre"
+											placeholder="Nombre"
+											class="form-control"
+										></b-form-input>
+										<b-form-input
+											name="fecha"
+											v-model="exams.oldExam.fecha"
+											placeholder="Fecha"
+											class="form-control"
+										></b-form-input>
+									</b-form-group>
+
+									<b-button type="submit" variant="primary">
+										Eliminar
+									</b-button>
+									<b-button type="reset" variant="danger">
+										Limpiar
+									</b-button>
+								</b-form>
+							</b-container>
+						</b-container>
+					</b-card-body>
+				</b-collapse>
+			</b-card>
+			<b-card no-body class="fondo">
+				<b-card-header header-tag="header" class="fondo" role="tab">
+					<b-button block v-b-toggle.accordion-3 class="boton2">
+						¿?
+					</b-button>
+				</b-card-header>
+				<b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+					<b-card-body>
+						<b-container class="borde">
+							eys
+						</b-container>
+						<br />
+						<b-container class="borde">
+							eys
 						</b-container>
 					</b-card-body>
 				</b-collapse>
@@ -134,7 +286,6 @@
 	import { router } from "../../helpers/router";
 	export default {
 		name: "Administrador",
-
 		data() {
 			return {
 				nombreAdmin: "PeterLanguila",
@@ -166,6 +317,32 @@
 							],
 						},
 					},
+					oldGrado: {
+						nombre: "",
+					},
+				},
+				asigns: {
+					newAsign: {
+						nombre: "",
+						grado: "",
+						curso: "",
+					},
+					oldAsign: {
+						nombre: "",
+					},
+				},
+				exams: {
+					newExam: {
+						nombre: "",
+						asign: "",
+						fecha: "",
+						hora: "",
+						convocatoria: "",
+					},
+					oldExam: {
+						nombre: "",
+						fecha: "",
+					},
 				},
 			};
 		},
@@ -196,7 +373,7 @@
 			},
 			delUser(evt) {
 				evt.preventDefault();
-				console.log("eliminar a " + this.oldUser.mail);
+				console.log("eliminar a " + this.users.oldUser.mail);
 			},
 			addGrado(evt) {
 				evt.preventDefault();
@@ -209,24 +386,88 @@
 						this.grados.newGrado.curso.selected,
 				);
 			},
-			onReset1(evt) {
+			delGrado(evt) {
 				evt.preventDefault();
-				// Reset our form values
-				this.users.newUser.name = "";
-				this.users.newUser.password = "";
-				this.users.newUser.mail = "";
-				this.users.newUser.grado = "";
+				console.log("eliminar a " + this.grados.oldGrado.nombre);
 			},
-			onReset2(evt) {
+			addAsign(evt) {
 				evt.preventDefault();
-				// Reset our form values
-				this.users.oldUser.mail = "";
+				console.log(
+					"añadir " +
+						this.asigns.newAsign.nombre +
+						" grado " +
+						this.asigns.newAsign.grado +
+						" curso " +
+						this.asigns.newAsign.curso,
+				);
 			},
-			onReset3(evt) {
+			delAsign(evt) {
 				evt.preventDefault();
-				// Reset our form values
-				this.grados.newGrado.grado = "";
-				this.grados.newGrado.curso.selected = null;
+				console.log("eliminar a " + this.asigns.oldAsign.nombre);
+			},
+			addExam(evt) {
+				evt.preventDefault();
+				console.log(
+					"añadir " +
+						this.exams.newExam.nombre +
+						" asign " +
+						this.exams.newExam.asign +
+						" fecha " +
+						this.exams.newExam.fecha +
+						" hora " +
+						this.exams.newExam.hora +
+						" convocatoria " +
+						this.exams.newExam.convocatoria,
+				);
+			},
+			delExam(evt) {
+				evt.preventDefault();
+				console.log(
+					"eliminar a " + this.exams.oldExam.nombre + " de " + this.exams.oldExam.fecha,
+				);
+			},
+			onReset(num_form) {
+				switch (num_form) {
+					case 1:
+						this.users.newUser.name = "";
+						this.users.newUser.password = "";
+						this.users.newUser.mail = "";
+						this.users.newUser.grado = "";
+						break;
+					case 2:
+						this.users.oldUser.mail = "";
+						break;
+					case 3:
+						this.grados.newGrado.grado = "";
+						this.grados.newGrado.nombre = "";
+						this.grados.newGrado.curso.selected = null;
+						break;
+					case 4:
+						this.grados.oldGrado.nombre = "";
+						break;
+					case 5:
+						this.asigns.newAsign.grado = "";
+						this.asigns.newAsign.nombre = "";
+						this.asigns.newAsign.curso = "";
+						break;
+					case 6:
+						this.asigns.oldAsign.nombre = "";
+						break;
+					case 7:
+						this.exams.newExam.nombre = "";
+						this.exams.newExam.asign = "";
+						this.exams.newExam.fecha = "";
+						this.exams.newExam.hora = "";
+						this.exams.newExam.convocatoria = "";
+						break;
+					case 8:
+						this.exams.oldExam.nombre = "";
+						this.exams.oldExam.fecha = "";
+						break;
+
+					default:
+						break;
+				}
 			},
 		},
 		beforeMount() {

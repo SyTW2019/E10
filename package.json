@@ -4,7 +4,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"front": "vue-cli-service serve",
+		"front": "vue-cli-service serve --port 8080",
 		"build": "vue-cli-service build",
 		"clean": "rm -Rf dist",
 		"formatter": "prettier --use-tabs true --no-bracket-spacing --jsx-bracket-same-line --tab-width 4 --print-width 100 --write .",
@@ -24,7 +24,8 @@
 		"prettier": "^2.0.5",
 		"vue": "^2.6.11",
 		"vue-router": "^3.4.3",
-		"vuex": "^3.5.1"
+		"vuex": "^3.5.1",
+		"node-env-file": "^0.1.8"
 	},
 	"devDependencies": {
 		"@vue/cli-service": "~4.5.0",
