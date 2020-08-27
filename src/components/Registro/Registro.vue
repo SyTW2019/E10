@@ -126,106 +126,106 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from "vuex";
-	export default {
-		name: "Registro",
-		data() {
-			return {
-				user: {
-					name: "",
-					email: "",
-					password: "",
-					grado: null,
-					password_repeat: "",
-					terms: null,
+import {mapState, mapActions} from "vuex";
+export default {
+	name: "Registro",
+	data() {
+		return {
+			user: {
+				name: "",
+				email: "",
+				password: "",
+				grado: null,
+				password_repeat: "",
+				terms: null,
+			},
+			submitted: false,
+			options: [
+				{
+					value: null,
+					text: "Por favor, escoja una opción",
 				},
-				submitted: false,
-				options: [
-					{
-						value: null,
-						text: "Por favor, escoja una opción",
-					},
-					{
-						value: "ULL",
-						text: "Universidad de La Laguna",
-					},
-					{
-						value: "ULPGC",
-						text: "Universidad de Las Palmas de Gran Canaria",
-					},
-				],
-				show: true,
-			};
-		},
-		computed: {
-			...mapState("account", ["status"]),
-		},
-		methods: {
-			...mapActions("account", ["register"]),
-			handleSubmit(e) {
-				if (this.user.password != this.user.password_repeat) {
-					this.submitted = false;
-					alert("Las contraseñas introducidas deben coincidir");
-					this.user.password = "";
-					this.user.password_repeat = "";
-				} else {
-					this.submitted = true;
-					this.register(this.user);
-				}
-			},
-			onReset2(evt) {
-				evt.preventDefault();
-				// Reset our form values
-				this.user.name = "";
-				this.user.email = "";
+				{
+					value: "ULL",
+					text: "Universidad de La Laguna",
+				},
+				{
+					value: "ULPGC",
+					text: "Universidad de Las Palmas de Gran Canaria",
+				},
+			],
+			show: true,
+		};
+	},
+	computed: {
+		...mapState("account", ["status"]),
+	},
+	methods: {
+		...mapActions("account", ["register"]),
+		handleSubmit(e) {
+			if (this.user.password != this.user.password_repeat) {
+				this.submitted = false;
+				alert("Las contraseñas introducidas deben coincidir");
 				this.user.password = "";
-				this.user.grado = null;
 				this.user.password_repeat = "";
-				this.user.terms = null;
-				// Trick to reset/clear native browser form validation state
-				this.show = false;
-				this.$nextTick(() => {
-					this.show = true;
-				});
-			},
-			areEqual() {
-				if (this.user.password != this.user.password_repeat) {
-					this.submitted = false;
-					alert("Las contraseñas introducidas deben coincidir");
-				}
-			},
+			} else {
+				this.submitted = true;
+				this.register(this.user);
+			}
 		},
-	};
+		onReset2(evt) {
+			evt.preventDefault();
+			// Reset our form values
+			this.user.name = "";
+			this.user.email = "";
+			this.user.password = "";
+			this.user.grado = null;
+			this.user.password_repeat = "";
+			this.user.terms = null;
+			// Trick to reset/clear native browser form validation state
+			this.show = false;
+			this.$nextTick(() => {
+				this.show = true;
+			});
+		},
+		areEqual() {
+			if (this.user.password != this.user.password_repeat) {
+				this.submitted = false;
+				alert("Las contraseñas introducidas deben coincidir");
+			}
+		},
+	},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	.formularios2 {
-		border: 3px solid #5c068b;
-		border-radius: 8px 8px 8px 8px;
-		-moz-border-radius: 8px 8px 8px 8px;
-		-webkit-border-radius: 8px 8px 8px 8px;
+.formularios2 {
+	border: 3px solid #5c068b;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
 
-		background-color: rgb(92, 6, 139, 0.1);
+	background-color: rgb(92, 6, 139, 0.1);
 
-		padding-bottom: 15px;
-		padding-top: 15px;
-	}
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
 
-	.check {
-		padding-left: 5px;
-	}
+.check {
+	padding-left: 5px;
+}
 
-	.boton {
-		background-color: rgb(92, 6, 139, 0.8);
-		margin: 10px;
-		z-index: 1;
-		filter: alpha(opacity=85);
-		-moz-opacity: 100;
-		opacity: 100;
-	}
+.boton {
+	background-color: rgb(92, 6, 139, 0.8);
+	margin: 10px;
+	z-index: 1;
+	filter: alpha(opacity=85);
+	-moz-opacity: 100;
+	opacity: 100;
+}
 
-	.boton:hover {
-		opacity: 0.85;
-	}
+.boton:hover {
+	opacity: 0.85;
+}
 </style>
