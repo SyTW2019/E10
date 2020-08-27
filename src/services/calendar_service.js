@@ -1,3 +1,5 @@
+import { authHeader } from "../helpers";
+
 export const calendarService = {
 	getGradosCursos,
 	getAsignaturas,
@@ -7,9 +9,7 @@ export const calendarService = {
 function getGradosCursos(params) {
 	const requestOptions = {
 		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
+		headers: authHeader(),
 	};
 	return fetch(`http://localhost:3000/grados`, requestOptions)
 		.then(() => {
@@ -24,9 +24,7 @@ function getGradosCursos(params) {
 function getAsignaturas(params) {
 	const requestOptions = {
 		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
+		headers: authHeader(),
 	};
 	return fetch(`http://localhost:3000/asignaturas`, requestOptions)
 		.then(() => {
@@ -40,9 +38,7 @@ function getAsignaturas(params) {
 function getExamenes(params) {
 	const requestOptions = {
 		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
+		headers: authHeader(),
 	};
 	return fetch(`http://localhost:3000/examenes`, requestOptions)
 		.then(() => {
