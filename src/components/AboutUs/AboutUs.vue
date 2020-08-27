@@ -26,7 +26,15 @@
 					<b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
 							<b-card-text>
-								I start opened because <code>visible</code> is <code>true</code>
+								<p class="txt">
+									El objetivo de nuestra empresa es proporcionar soluciones al
+									conjunto de alumnos de estudios obligatorios y postobligatorios
+									puesto que pensamos que con el avance de las tecnologías y la
+									globalización, muchos aspectos de la educación, enseñanza y
+									estudio pueden mejorarse para tener un desempeño más productivo,
+									dando lugar a personas mejor formadas y con ganas de ampliar sus
+									conocimientos constantemente.
+								</p>
 							</b-card-text>
 						</b-card-body>
 					</b-collapse>
@@ -42,7 +50,20 @@
 					<b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
 							<b-card-text>
-								I start opened because <code>visible</code> is <code>true</code>
+								<p class="txt">
+									Nuestra empresa surje a finales del año 2019, cuando los
+									profesores de una asignatura del grado que cursábamos nos
+									obligaron a realizar un proyecto de realización de una
+									aplicación web partiendo de una idea libre, por lo que se nos
+									ocurrió que, construyendo lo que fuera, debía ser algo para
+									favorecernos en ese mismo momento como estudiantes.
+								</p>
+								<p class="txt">
+									Luego de que la propia universidad nos comprará nuestra idea por
+									unos cuantos miles de euros, hemos seguido desarrolando otros
+									proyectos con la misma idea de que nuestros clientes son los
+									estudiantes.
+								</p>
 							</b-card-text>
 						</b-card-body>
 					</b-collapse>
@@ -58,7 +79,43 @@
 					<b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
 							<b-card-text>
-								I start opened because <code>visible</code> is <code>true</code>
+								<p>
+									Puede que te suenen otros de nuestro proyectos como:
+								</p>
+								<div class="iconos">
+									<a href="https://slack.com/intl/es-es/" target="_blank">
+										<img
+											src="../../assets/icons/slack.png"
+											alt="github"
+											class="boton"
+											width="50%"
+										/>
+									</a>
+									<a href="https://www.domestika.org/es" target="_blank">
+										<img
+											src="../../assets/icons/domestika.png"
+											alt="github"
+											class="boton"
+											width="50%"
+										/>
+									</a>
+									<a href="https://discord.com/" target="_blank">
+										<img
+											src="../../assets/icons/discord.png"
+											alt="github"
+											class="boton"
+											width="40%"
+										/>
+									</a>
+									<a href="https://evernote.com/intl/es" target="_blank">
+										<img
+											src="../../assets/icons/evernote.png"
+											alt="github"
+											class="boton"
+											width="40%"
+										/>
+									</a>
+								</div>
 							</b-card-text>
 						</b-card-body>
 					</b-collapse>
@@ -226,6 +283,10 @@
 		width: 100%;
 		background-color: rgba(0, 0, 0, 0);
 		border: none;
+	}
+
+	.iconos {
+		flex-direction: column;
 	}
 
 	.line {
