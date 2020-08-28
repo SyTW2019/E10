@@ -45,13 +45,17 @@
 							</template>
 							<b-dropdown-item to="/calendario">Calendario</b-dropdown-item>
 							<b-dropdown-item to="/perfil">Perfil de usuario</b-dropdown-item>
-							<b-dropdown-item v-on:click="fuera()" to="/iniciosesion"
-								>Logout</b-dropdown-item
-							>
+							<b-dropdown-item to="/admin" v-show="isAdmin()">
+								Panel de administrador
+							</b-dropdown-item>
+							<b-dropdown-item :click="fuera()" to="/iniciosesion">
+								Logout
+							</b-dropdown-item>
 						</b-nav-item-dropdown>
 						<b-nav-item-dropdown right v-else>
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>Cuenta</template>
+							<b-dropdown-item to="/registro">Registrarse</b-dropdown-item>
 							<b-dropdown-item to="/iniciosesion">Iniciar sesión</b-dropdown-item>
 						</b-nav-item-dropdown>
 					</b-navbar-nav>
@@ -140,6 +144,17 @@ export default {
 		...mapActions("account", ["logout"]),
 		fuera() {
 			this.logout();
+<<<<<<< HEAD
+=======
+		},
+		isAdmin() {
+			const is = true;
+			if (is) {
+				return true;
+			} else {
+				return false;
+			}
+>>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 		},
 	},
 	watch: {

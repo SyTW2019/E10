@@ -2,7 +2,6 @@
 // logging and out of the example application. The service methods are exported via the userService object at
 // the top of the file, and the implementation of each method is located in the functions below.
 
-// import config from '../config';
 import {authHeader} from "../helpers";
 
 export const userService = {
@@ -16,7 +15,7 @@ export const userService = {
 	delete: _delete,
 };
 
-function login(username, password) {
+async function login(username, password) {
 	const requestOptions = {
 		method: "POST",
 		headers: {
@@ -63,7 +62,7 @@ function logout() {
 	localStorage.removeItem("user");
 }
 
-function register(user) {
+async function register(user) {
 	const requestOptions = {
 		method: "POST",
 		headers: {
@@ -72,12 +71,22 @@ function register(user) {
 		body: JSON.stringify(user),
 	};
 
+<<<<<<< HEAD
 	console.log(user);
 
 	return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
+=======
+	return fetch(`http://localhost:3000/registro`, requestOptions).then((res) => {
+		if (res.status(200)) {
+			handleResponse;
+		} else {
+			alert("Error desde back: " + res.message());
+		}
+	});
+>>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 }
 
-function getAll() {
+async function getAll() {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
@@ -86,7 +95,7 @@ function getAll() {
 	return fetch(`http://localhost:3000/`, requestOptions).then(handleResponse);
 }
 
-function getById(id) {
+async function getById(id) {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
@@ -95,7 +104,7 @@ function getById(id) {
 	return fetch(`http://localhost:3000/${id}`, requestOptions).then(handleResponse);
 }
 
-function update(user) {
+async function update(user) {
 	const requestOptions = {
 		method: "PUT",
 		headers: {
@@ -109,7 +118,7 @@ function update(user) {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+async function _delete(id) {
 	const requestOptions = {
 		method: "DELETE",
 		headers: authHeader(),

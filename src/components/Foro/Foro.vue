@@ -198,28 +198,33 @@ export default {
 			currentPage: 1,
 			mensajes: [
 				{
+					id: "1",
 					nick_name: "Fred",
 					mail: "fred@fred.fred",
 					msg: "jajaj",
 				},
 				{
+					id: "1",
 					nick_name: "goku",
 					mail: "fred@fred.fred",
 					msg:
 						"hola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentandohola muy buenas a todos aqui willyrex comentando",
 				},
 				{
+					id: "1",
 					nick_name: "vegeta",
 					mail: "fred@fred.fred",
 					msg: "hola muy buenas a todos aqui willyrex comentando",
 				},
 				{
+					id: "1",
 					nick_name: "krilin",
 					mail: "fred@fred.fredsuperfred",
 					msg: "hola muy buenas a todos aqui willyrex comentando",
 				},
 			],
 			fields: [
+				{key: "id", label: "#ID", tdClass: "idcol"},
 				{key: "nick_name", label: "Nombre", tdClass: "nickcol"},
 				{key: "mail", label: "Correo", tdClass: "mailcol"},
 				{key: "msg", label: "Mensaje", tdClass: "msgcol"},
@@ -344,6 +349,9 @@ export default {
 
 	padding-bottom: 15px;
 	padding-top: 15px;
+}
+
+.idcol {
 }
 .nickcol {
 	width: 100px;

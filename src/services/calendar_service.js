@@ -6,7 +6,11 @@ export const calendarService = {
 	getExamenes,
 };
 
+<<<<<<< HEAD
 async function getGradosCursos() {
+=======
+async function getGradosCursos(params) {
+>>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
@@ -21,7 +25,11 @@ async function getGradosCursos() {
 		});
 }
 
+<<<<<<< HEAD
 async function getAsignaturas() {
+=======
+async function getAsignaturas(params) {
+>>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
@@ -35,8 +43,12 @@ async function getAsignaturas() {
 			console.error(err);
 		});
 }
+<<<<<<< HEAD
 
 async function getExamenes() {
+=======
+async function getExamenes(params) {
+>>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),

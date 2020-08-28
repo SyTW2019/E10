@@ -1,5 +1,9 @@
 const expressJwt = require("express-jwt");
+<<<<<<< HEAD:server/_helpers/jwt.js
 const userService = require("../users/user-service");
+=======
+const userService = require("../services/user-service");
+>>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d:server/helpers/jwt.js
 const env = require("node-env-file");
 env("./.env");
 

@@ -1,7 +1,11 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+<<<<<<< HEAD:server/users/user-service.js
 const db = require("../_helpers/db");
+=======
+const db = require("../helpers/db");
+>>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d:server/services/user-service.js
 const User = db.User;
 
 module.exports = {
@@ -57,6 +61,7 @@ async function authenticate({username, password}) {
 }
 
 async function getAll() {
+	console.log("HOLA");
 	return await User.find().select("-hash");
 }
 
@@ -66,7 +71,11 @@ async function getById(id) {
 
 //AQUI ESTA EL ERROR
 async function create(userParam) {
+<<<<<<< HEAD:server/users/user-service.js
 	//Validación -> username, email, password
+=======
+	//Validación
+>>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d:server/services/user-service.js
 	if (await User.findOne({name: userParam.name})) {
 		console.log('El nombre de usuario "' + userParam.name + '" está cogido');
 		throw "ADrian hola";
