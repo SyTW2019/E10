@@ -27,9 +27,12 @@ async function login(username, password) {
 		}),
 	};
 
+	console.log(requestOptions);
+
 	return fetch(`http://localhost:3000/iniciosesion`, requestOptions)
 		.then(handleResponse)
 		.then((user) => {
+			console.log(user);
 			// login successful if there's a jwt token in the response
 			if (user.token) {
 				// store user details and jwt token in local storage to keep
@@ -83,7 +86,7 @@ async function getAll() {
 		headers: authHeader(),
 	};
 
-	return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/`, requestOptions).then(handleResponse);
 }
 
 async function getById(id) {
@@ -92,7 +95,7 @@ async function getById(id) {
 		headers: authHeader(),
 	};
 
-	return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/${id}`, requestOptions).then(handleResponse);
 }
 
 async function update(user) {
@@ -105,7 +108,7 @@ async function update(user) {
 		body: JSON.stringify(user),
 	};
 
-	return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/${user.id}`, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -115,7 +118,7 @@ async function _delete(id) {
 		headers: authHeader(),
 	};
 
-	return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/users/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

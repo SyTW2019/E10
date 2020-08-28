@@ -6,14 +6,14 @@ export const calendarService = {
 	getExamenes,
 };
 
-async function getGradosCursos(params) {
+async function getGradosCursos() {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
 	};
-	return fetch(`http://localhost:3000/grados`, requestOptions)
+	return await fetch(`http://localhost:3000/grados/getGrados`, requestOptions)
 		.then(() => {
-			handleResponse();
+			handleResponse;
 			console.log("Grado y cursos cogidos");
 		})
 		.catch((err) => {
@@ -21,12 +21,12 @@ async function getGradosCursos(params) {
 		});
 }
 
-async function getAsignaturas(params) {
+async function getAsignaturas() {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
 	};
-	return fetch(`http://localhost:3000/asignaturas`, requestOptions)
+	return await fetch(`http://localhost:3000/asignaturas`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Asignaturas cogidas");
@@ -35,12 +35,13 @@ async function getAsignaturas(params) {
 			console.error(err);
 		});
 }
-async function getExamenes(params) {
+
+async function getExamenes() {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
 	};
-	return fetch(`http://localhost:3000/examenes`, requestOptions)
+	return await fetch(`http://localhost:3000/examenes`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Examenes cogidos");

@@ -57,12 +57,12 @@
 								<b-form-group>
 									<b-button
 										type="submit"
-										variant="primary"
+										constiant="primary"
 										class="btn btn-primary"
 									>
 										Obtener Asignaturas
 									</b-button>
-									<b-button type="reset" variant="danger">Limpiar</b-button>
+									<b-button type="reset" constiant="danger">Limpiar</b-button>
 									<router-link to="/" class="btn btn-link">Cancelar</router-link>
 								</b-form-group>
 							</b-form>
@@ -97,12 +97,12 @@
 								<b-form-group>
 									<b-button
 										type="submit"
-										variant="primary"
+										constiant="primary"
 										class="btn btn-primary"
 									>
 										Obtener foro
 									</b-button>
-									<b-button type="reset" variant="danger">Limpiar</b-button>
+									<b-button type="reset" constiant="danger">Limpiar</b-button>
 									<router-link to="/" class="btn btn-link">Cancelar</router-link>
 								</b-form-group>
 							</b-form>
@@ -172,10 +172,10 @@
 					</b-row>
 					<b-row align-h="end">
 						<b-col md="auto">
-							<b-button variant="primary" @click.prevent="publicarMensaje()">
+							<b-button constiant="primary" @click.prevent="publicarMensaje()">
 								Publicar
 							</b-button>
-							<b-button variant="danger" @click.prevent="onReset3()">
+							<b-button constiant="danger" @click.prevent="onReset3()">
 								Limpiar
 							</b-button>
 							<router-link to="/" class="btn btn-link">Cancelar</router-link>

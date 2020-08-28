@@ -47,10 +47,10 @@
 						</div>
 					</b-form-group>
 					<b-form-group>
-						<b-button type="submit" variant="primary" class="btn btn-primary">
+						<b-button type="submit" constiant="primary" class="btn btn-primary">
 							Obtener Asignaturas
 						</b-button>
-						<b-button type="reset" variant="danger">Limpiar</b-button>
+						<b-button type="reset" constiant="danger">Limpiar</b-button>
 						<router-link to="/" class="btn btn-link">Cancelar</router-link>
 					</b-form-group>
 				</b-form>
@@ -92,10 +92,10 @@
 						</div>
 					</b-form-group>
 					<b-form-group>
-						<b-button type="submit" variant="primary" class="btn btn-primary"
+						<b-button type="submit" constiant="primary" class="btn btn-primary"
 							>Obtener exámenes</b-button
 						>
-						<b-button type="reset" variant="danger">Limpiar</b-button>
+						<b-button type="reset" constiant="danger">Limpiar</b-button>
 						<router-link to="/" class="btn btn-link">Cancelar</router-link>
 					</b-form-group>
 				</b-form>
@@ -133,10 +133,10 @@
 						</div>
 					</b-form-group>
 					<b-form-group>
-						<b-button type="submit" variant="primary" class="btn btn-primary">
+						<b-button type="submit" constiant="primary" class="btn btn-primary">
 							Obtener calendario
 						</b-button>
-						<b-button type="reset" variant="danger">Limpiar</b-button>
+						<b-button type="reset" constiant="danger">Limpiar</b-button>
 						<router-link to="/" class="btn btn-link">Cancelar</router-link>
 					</b-form-group>
 				</b-form>

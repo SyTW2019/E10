@@ -6,20 +6,21 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 // Helpers
-const jwt = require("./helpers/jwt");
-const errorHandler = require("./helpers/error-handler");
+const jwt = require("./_helpers/jwt");
+const errorHandler = require("./_helpers/error-handler");
 
 // Controllers
-const controller = require("./controllers/controller");
+const userController = require("./users/user-control");
+const gradeController = require("./grades/grades-control");
 
 // .env
 const env = require("node-env-file");
 env("./.env");
 
-// Configurando variable express
+// App
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({origin: true}));
 
 app.use(morgan("dev"));
 
@@ -28,14 +29,14 @@ app.use(jwt());
 app.use(errorHandler);
 
 // Router
-app.use("/registro", controller);
-app.use("/", controller);
-app.use("/inciosesion", controller);
-app.use("/contacto", controller);
-app.use("/grado", function () {
-	console.log("HOLA");
-});
+app.use("/registro", userController);
+app.use("/", userController);
+app.use("/iniciosesion", userController);
+app.use("/contacto", userController);
 
+app.use("/grados", gradeController);
+
+// Inicio del servidor
 app.listen(process.env.PORT, function () {
 	console.log("Server listening on port " + process.env.PORT);
 });

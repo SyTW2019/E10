@@ -45,6 +45,9 @@
 							</template>
 							<b-dropdown-item to="/calendario">Calendario</b-dropdown-item>
 							<b-dropdown-item to="/perfil">Perfil de usuario</b-dropdown-item>
+							<!-- <b-dropdown-item to="/admin" v-show="isAdmin()">
+								Panel de administrador
+							</b-dropdown-item> -->
 							<b-dropdown-item :click="fuera()" to="/iniciosesion">
 								Logout
 							</b-dropdown-item>
