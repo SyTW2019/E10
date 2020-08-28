@@ -95,12 +95,12 @@
 											placeholder="Nombre"
 											class="form-control"
 										></b-form-input>
-										<b-form-select
+										<!-- <b-form-select
 											name="curso"
 											v-model="grados.newGrado.curso.selected"
 											:options="grados.newGrado.curso.options"
 											class="form-control"
-										></b-form-select>
+										></b-form-select> -->
 									</b-form-group>
 
 									<b-button type="submit" variant="primary">
@@ -318,18 +318,18 @@
 					newGrado: {
 						nombre: "",
 						grado: "",
-						curso: {
-							selected: null,
-							options: [
-								{ value: null, text: "Numero de Cursos" },
-								{ value: "1", text: "1" },
-								{ value: "2", text: "2" },
-								{ value: "3", text: "3" },
-								{ value: "4", text: "4" },
-								{ value: "5", text: "5" },
-								{ value: "6", text: "6" },
-							],
-						},
+						// curso: {
+						// 	selected: null,
+						// 	options: [
+						// 		{ value: null, text: "Numero de Cursos" },
+						// 		{ value: "1", text: "1" },
+						// 		{ value: "2", text: "2" },
+						// 		{ value: "3", text: "3" },
+						// 		{ value: "4", text: "4" },
+						// 		{ value: "5", text: "5" },
+						// 		{ value: "6", text: "6" },
+							// ],
+						// },
 					},
 					oldGrado: {
 						nombre: "",
@@ -404,7 +404,8 @@
 			},
 			addGrado(evt) {
 				evt.preventDefault();
-				console.log(this.grados.newGrado);
+				const param = this.grados.newGrado;
+				console.log(param);
 
 				this.addGrados(this.grados.newGrado);
 			},
