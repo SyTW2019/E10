@@ -86,7 +86,7 @@
 										<b-form-input
 											name="grado"
 											v-model="grados.newGrado.grado"
-											placeholder="Grado"
+											placeholder="ID de Grado"
 											class="form-control"
 										></b-form-input>
 										<b-form-input
@@ -295,235 +295,256 @@
 </template>
 
 <script>
-import {router} from "../../helpers/router";
-import {mapState, mapActions} from "vuex";
-export default {
-	name: "Administrador",
-	data() {
-		return {
-			nombreAdmin: "PeterLanguila",
-			is_admin: false,
-			users: {
-				newUser: {
-					name: "",
-					mail: "",
-					password: "",
-					grado: "",
-				},
-				oldUser: {
-					mail: "",
-				},
-			},
-			grados: {
-				newGrado: {
-					nombre: "",
-					grado: "",
-					curso: {
-						selected: null,
-						options: [
-							{value: null, text: "Curso"},
-							{value: "1", text: "1"},
-							{value: "2", text: "2"},
-							{value: "3", text: "3"},
-							{value: "4", text: "4"},
-							{value: "5", text: "5"},
-						],
+	import { router } from "../../helpers/router";
+	import { mapState, mapActions } from "vuex";
+	export default {
+		name: "Administrador",
+		data() {
+			return {
+				nombreAdmin: "PeterLanguila",
+				is_admin: false,
+				users: {
+					newUser: {
+						name: "",
+						mail: "",
+						password: "",
+						grado: "",
+					},
+					oldUser: {
+						mail: "",
 					},
 				},
-				oldGrado: {
-					nombre: "",
+				grados: {
+					newGrado: {
+						nombre: "",
+						grado: "",
+						curso: {
+							selected: null,
+							options: [
+								{ value: null, text: "Numero de Cursos" },
+								{ value: "1", text: "1" },
+								{ value: "2", text: "2" },
+								{ value: "3", text: "3" },
+								{ value: "4", text: "4" },
+								{ value: "5", text: "5" },
+								{ value: "6", text: "6" },
+							],
+						},
+					},
+					oldGrado: {
+						nombre: "",
+					},
 				},
+				asigns: {
+					newAsign: {
+						nombre: "",
+						grado: "",
+						curso: "",
+					},
+					oldAsign: {
+						nombre: "",
+					},
+				},
+				exams: {
+					newExam: {
+						nombre: "",
+						asign: "",
+						fecha: "",
+						hora: "",
+						convocatoria: "",
+					},
+					oldExam: {
+						nombre: "",
+						fecha: "",
+					},
+				},
+				foro: {
+					msg: null,
+				},
+			};
+		},
+		methods: {
+			comprobarCredenciales() {
+				const admin = true;
+				if (admin) {
+					this.is_admin = true;
+				} else {
+					this.is_admin = false;
+					alert("Credenciales de admin erroneos");
+					router.push("/");
+				}
 			},
-			asigns: {
-				newAsign: {
-					nombre: "",
-					grado: "",
-					curso: "",
-				},
-				oldAsign: {
-					nombre: "",
-				},
+			// MANEJO DEL FORM DE LOS USUARIOS
+			...mapActions("admin", [
+				"addUser",
+				"delUser",
+				"addGrados",
+				"addAsigns",
+				"addExams",
+				"delGrados",
+				"delAsigns",
+				"delExams",
+			]),
+			addUser(evt) {
+				evt.preventDefault();
+				console.log(
+					"añadir " +
+						this.users.newUser.name +
+						" mail " +
+						this.users.newUser.mail +
+						" pass " +
+						this.users.newUser.password +
+						" grado " +
+						this.users.newUser.grado,
+				);
 			},
-			exams: {
-				newExam: {
-					nombre: "",
-					asign: "",
-					fecha: "",
-					hora: "",
-					convocatoria: "",
-				},
-				oldExam: {
-					nombre: "",
-					fecha: "",
-				},
+			delUser(evt) {
+				evt.preventDefault();
+				console.log("eliminar a " + this.users.oldUser.mail);
 			},
-			foro: {
-				msg: null,
-			},
-		};
-	},
-	methods: {
-		comprobarCredenciales() {
-			const admin = true;
-			if (admin) {
-				this.is_admin = true;
-			} else {
-				this.is_admin = false;
-				alert("Credenciales de admin erroneos");
-				router.push("/");
-			}
-		},
-		// MANEJO DEL FORM DE LOS USUARIOS
-		...mapActions("admin", ["addGrados"]),
-		addUser(evt) {
-			evt.preventDefault();
-			console.log(
-				"añadir " +
-					this.users.newUser.name +
-					" mail " +
-					this.users.newUser.mail +
-					" pass " +
-					this.users.newUser.password +
-					" grado " +
-					this.users.newUser.grado
-			);
-		},
-		delUser(evt) {
-			evt.preventDefault();
-			console.log("eliminar a " + this.users.oldUser.mail);
-		},
-		addGrado(evt) {
-			evt.preventDefault();
-			console.log(this.grados.newGrado);
-			this.addGrados(this.grados.newGrado);
-		},
-		delGrado(evt) {
-			evt.preventDefault();
-			console.log("eliminar a " + this.grados.oldGrado.nombre);
-		},
-		addAsign(evt) {
-			evt.preventDefault();
-			console.log(
-				"añadir " +
-					this.asigns.newAsign.nombre +
-					" grado " +
-					this.asigns.newAsign.grado +
-					" curso " +
-					this.asigns.newAsign.curso
-			);
-		},
-		delAsign(evt) {
-			evt.preventDefault();
-			console.log("eliminar a " + this.asigns.oldAsign.nombre);
-		},
-		addExam(evt) {
-			evt.preventDefault();
-			console.log(
-				"añadir " +
-					this.exams.newExam.nombre +
-					" asign " +
-					this.exams.newExam.asign +
-					" fecha " +
-					this.exams.newExam.fecha +
-					" hora " +
-					this.exams.newExam.hora +
-					" convocatoria " +
-					this.exams.newExam.convocatoria
-			);
-		},
-		delExam(evt) {
-			evt.preventDefault();
-			console.log(
-				"eliminar a " + this.exams.oldExam.nombre + " de " + this.exams.oldExam.fecha
-			);
-		},
-		delMsg(evt) {
-			evt.preventDefault();
-			console.log("eliminar el mensaje " + this.foro.msg);
-		},
-		onReset(num_form) {
-			switch (num_form) {
-				case 1:
-					this.users.newUser.name = "";
-					this.users.newUser.password = "";
-					this.users.newUser.mail = "";
-					this.users.newUser.grado = "";
-					break;
-				case 2:
-					this.users.oldUser.mail = "";
-					break;
-				case 3:
-					this.grados.newGrado.grado = "";
-					this.grados.newGrado.nombre = "";
-					this.grados.newGrado.curso.selected = null;
-					break;
-				case 4:
-					this.grados.oldGrado.nombre = "";
-					break;
-				case 5:
-					this.asigns.newAsign.grado = "";
-					this.asigns.newAsign.nombre = "";
-					this.asigns.newAsign.curso = "";
-					break;
-				case 6:
-					this.asigns.oldAsign.nombre = "";
-					break;
-				case 7:
-					this.exams.newExam.nombre = "";
-					this.exams.newExam.asign = "";
-					this.exams.newExam.fecha = "";
-					this.exams.newExam.hora = "";
-					this.exams.newExam.convocatoria = "";
-					break;
-				case 8:
-					this.exams.oldExam.nombre = "";
-					this.exams.oldExam.fecha = "";
-					break;
-				case 9:
-					this.foro.msg = null;
-					break;
+			addGrado(evt) {
+				evt.preventDefault();
+				console.log(this.grados.newGrado);
 
-				default:
-					break;
-			}
+				this.addGrados(this.grados.newGrado);
+			},
+			delGrado(evt) {
+				evt.preventDefault();
+				console.log("eliminar a " + this.grados.oldGrado.nombre);
+
+				this.delGrados(this.grados.oldGrado);
+			},
+			addAsign(evt) {
+				evt.preventDefault();
+				console.log(
+					"añadir " +
+						this.asigns.newAsign.nombre +
+						" grado " +
+						this.asigns.newAsign.grado +
+						" curso " +
+						this.asigns.newAsign.curso,
+				);
+
+				this.addAsigns(this.asigns.newAsign);
+			},
+			delAsign(evt) {
+				evt.preventDefault();
+				console.log("eliminar a " + this.asigns.oldAsign.nombre);
+
+				this.delAsigns(this.asigns.oldAsign);
+			},
+			addExam(evt) {
+				evt.preventDefault();
+				console.log(
+					"añadir " +
+						this.exams.newExam.nombre +
+						" asign " +
+						this.exams.newExam.asign +
+						" fecha " +
+						this.exams.newExam.fecha +
+						" hora " +
+						this.exams.newExam.hora +
+						" convocatoria " +
+						this.exams.newExam.convocatoria,
+				);
+
+				this.addExams(this.exams.newExam);
+			},
+			delExam(evt) {
+				evt.preventDefault();
+				console.log(
+					"eliminar a " + this.exams.oldExam.nombre + " de " + this.exams.oldExam.fecha,
+				);
+
+				this.delExams(this.exams.oldExam);
+			},
+			delMsg(evt) {
+				evt.preventDefault();
+				console.log("eliminar el mensaje " + this.foro.msg);
+			},
+			onReset(num_form) {
+				switch (num_form) {
+					case 1:
+						this.users.newUser.name = "";
+						this.users.newUser.password = "";
+						this.users.newUser.mail = "";
+						this.users.newUser.grado = "";
+						break;
+					case 2:
+						this.users.oldUser.mail = "";
+						break;
+					case 3:
+						this.grados.newGrado.grado = "";
+						this.grados.newGrado.nombre = "";
+						this.grados.newGrado.curso.selected = null;
+						break;
+					case 4:
+						this.grados.oldGrado.nombre = "";
+						break;
+					case 5:
+						this.asigns.newAsign.grado = "";
+						this.asigns.newAsign.nombre = "";
+						this.asigns.newAsign.curso = "";
+						break;
+					case 6:
+						this.asigns.oldAsign.nombre = "";
+						break;
+					case 7:
+						this.exams.newExam.nombre = "";
+						this.exams.newExam.asign = "";
+						this.exams.newExam.fecha = "";
+						this.exams.newExam.hora = "";
+						this.exams.newExam.convocatoria = "";
+						break;
+					case 8:
+						this.exams.oldExam.nombre = "";
+						this.exams.oldExam.fecha = "";
+						break;
+					case 9:
+						this.foro.msg = null;
+						break;
+
+					default:
+						break;
+				}
+			},
 		},
-	},
-	beforeMount() {
-		this.comprobarCredenciales();
-	},
-};
+		beforeMount() {
+			this.comprobarCredenciales();
+		},
+	};
 </script>
 
 <style scoped>
-.borde {
-	border: 3px solid #5c068b;
-	border-radius: 8px 8px 8px 8px;
-	-moz-border-radius: 8px 8px 8px 8px;
-	-webkit-border-radius: 8px 8px 8px 8px;
+	.borde {
+		border: 3px solid #5c068b;
+		border-radius: 8px 8px 8px 8px;
+		-moz-border-radius: 8px 8px 8px 8px;
+		-webkit-border-radius: 8px 8px 8px 8px;
 
-	background-color: rgba(92, 6, 139, 0.1);
+		background-color: rgba(92, 6, 139, 0.1);
 
-	padding-bottom: 15px;
-	padding-top: 15px;
+		padding-bottom: 15px;
+		padding-top: 15px;
 
-	width: 70%;
-}
+		width: 70%;
+	}
 
-.fondo {
-	background-color: rgba(0, 0, 0, 0);
-	border: none;
-}
+	.fondo {
+		background-color: rgba(0, 0, 0, 0);
+		border: none;
+	}
 
-.boton2 {
-	background-color: rgb(92, 6, 139, 0.5);
-	margin-top: 10px;
-	z-index: 1;
-	filter: alpha(opacity=85);
-	-moz-opacity: 100;
-	opacity: 100;
-}
+	.boton2 {
+		background-color: rgb(92, 6, 139, 0.5);
+		margin-top: 10px;
+		z-index: 1;
+		filter: alpha(opacity=85);
+		-moz-opacity: 100;
+		opacity: 100;
+	}
 
-.boton2:hover {
-	opacity: 0.85;
-}
+	.boton2:hover {
+		opacity: 0.85;
+	}
 </style>

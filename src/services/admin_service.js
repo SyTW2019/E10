@@ -1,7 +1,14 @@
-import {authHeader} from "../helpers";
+import { authHeader } from "../helpers";
 
-export const calendarService = {
+export const adminService = {
+	addUser,
+	delUser,
 	addGrados,
+	addAsigns,
+	addExams,
+	delGrados,
+	delAsigns,
+	delExams,
 };
 
 async function addGrados(JSONdata) {
@@ -14,6 +21,54 @@ async function addGrados(JSONdata) {
 		.then(() => {
 			handleResponse();
 			console.log("Grado metido");
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+}
+
+async function delGrados(JSONdata) {
+	const requestOptions = {
+		method: "POST",
+		headers: authHeader(),
+		body: JSON.stringify(JSONdata),
+	};
+	return fetch(`http://localhost:3000/grados/delGrados`, requestOptions)
+		.then(() => {
+			handleResponse();
+			console.log("Grado eliminado");
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+}
+
+async function addAsigns(JSONdata) {
+	const requestOptions = {
+		method: "POST",
+		headers: authHeader(),
+		body: JSON.stringify(JSONdata),
+	};
+	return fetch(`http://localhost:3000/grados/addAsigns`, requestOptions)
+		.then(() => {
+			handleResponse();
+			console.log("Asignatura metida");
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+}
+
+async function addExams(JSONdata) {
+	const requestOptions = {
+		method: "POST",
+		headers: authHeader(),
+		body: JSON.stringify(JSONdata),
+	};
+	return fetch(`http://localhost:3000/grados/addExams`, requestOptions)
+		.then(() => {
+			handleResponse();
+			console.log("Examen metido");
 		})
 		.catch((err) => {
 			console.error(err);
