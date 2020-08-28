@@ -93,6 +93,22 @@
 								</a>
 							</h6>
 						</mdb-col>
+						<mdb-col md="2" class="b-3">
+							<div class="share">
+								<a href="#" target="_blank">
+									<img src="/assets/icons/twitter.png" alt="twitter" />
+								</a>
+								<a href="#" target="_blank">
+									<img src="/assets/icons/linkedin.png" alt="linkedin" />
+								</a>
+								<a href="#" target="_blank">
+									<img src="assets/icons/github.png" alt="github" />
+								</a>
+								<a href="#" target="_blank">
+									<img src="assets/icons/mail.png" alt="mail" />
+								</a>
+							</div>
+						</mdb-col>
 					</mdb-row>
 					<hr class="rgba-white-light" style="margin: 1%;" />
 					<mdb-row class="text-center justify-content-center mb-md-0 mb-4">
@@ -121,70 +137,74 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from "vuex";
-	import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
+import {mapState, mapActions} from "vuex";
+import {mdbFooter, mdbContainer, mdbRow, mdbCol} from "mdbvue";
 
-	export default {
-		name: "App",
-		computed: {
-			...mapState({
-				alert: (state) => state.alert,
-				users: (state) => state.users.all,
-				account: (state) => state.account,
-			}),
-		},
-		methods: {
-			...mapActions({
-				clearAlert: "alert/clear",
-			}),
+export default {
+	name: "App",
+	computed: {
+		...mapState({
+			alert: (state) => state.alert,
+			users: (state) => state.users.all,
+			account: (state) => state.account,
+		}),
+	},
+	methods: {
+		...mapActions({
+			clearAlert: "alert/clear",
+		}),
 
-			...mapActions("account", ["logout"]),
-			fuera() {
-				this.logout();
-			},
-			isAdmin() {
-				const is = true;
-				if (is) {
-					return true;
-				} else {
-					return false;
-				}
-			},
+		...mapActions("account", ["logout"]),
+		fuera() {
+			this.logout();
 		},
-		watch: {
-			$route(to, from) {
-				// clear alert on location change
-				this.clearAlert();
-			},
+		isAdmin() {
+			const is = true;
+			if (is) {
+				return true;
+			} else {
+				return false;
+			}
 		},
-		components: {
-			mdbFooter,
-			mdbContainer,
-			mdbRow,
-			mdbCol,
+	},
+	watch: {
+		$route(to, from) {
+			// clear alert on location change
+			this.clearAlert();
 		},
-	};
+	},
+	components: {
+		mdbFooter,
+		mdbContainer,
+		mdbRow,
+		mdbCol,
+	},
+};
 </script>
 
 <style scoped>
-	#app {
-		font-family: "Montserrat";
-		font-weight: 500;
-		text-align: center;
-		background-color: rgb(92, 6, 139, 0.08);
-	}
-	#logo {
-		border: 3px solid #5c068b;
-		border-radius: 8px 8px 8px 8px;
-		-moz-border-radius: 8px 8px 8px 8px;
-		-webkit-border-radius: 8px 8px 8px 8px;
-		background-color: white;
-	}
-	#barra_nav {
-		background-color: rgb(92, 6, 139);
-	}
-	#futer {
-		background-color: rgb(92, 6, 139, 0.2);
-		border: 3px solid #5c068b;
-	}
+#app {
+	font-family: "Montserrat";
+	font-weight: 500;
+	text-align: center;
+	background-color: rgb(92, 6, 139, 0.08);
+}
+#logo {
+	border: 3px solid #5c068b;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	background-color: white;
+}
+#barra_nav {
+	background-color: rgb(92, 6, 139);
+}
+#futer {
+	background-color: rgb(92, 6, 139, 0.2);
+	border: 3px solid #5c068b;
+}
+.share {
+	display: flex;
+	flex-direction: row;
+}
 </style>

@@ -3,7 +3,7 @@ const Grade = db.Grade;
 
 module.exports = {
 	getAllGrados,
-	create
+	create,
 };
 
 async function getAllGrados() {

@@ -44,10 +44,10 @@
 							</b-form-checkbox-group>
 						</b-form-group>
 
-						<b-button type="submit" constiant="primary">
+						<b-button type="submit" variant="primary">
 							Enviar
 						</b-button>
-						<b-button type="reset" constiant="danger">
+						<b-button type="reset" variant="danger">
 							Limpiar
 						</b-button>
 						<router-link to="/" class="btn btn-link">

@@ -19,7 +19,7 @@
 			<b-col>
 				<b-card no-body class="mb-1 textos">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-button block v-b-toggle.accordion-1 constiant="info" class="boton2">
+						<b-button block v-b-toggle.accordion-1 variant="info" class="boton2">
 							Misión
 						</b-button>
 					</b-card-header>
@@ -43,7 +43,7 @@
 			<b-col>
 				<b-card no-body class="mb-1 textos">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-button block v-b-toggle.accordion-2 constiant="info" class="boton2">
+						<b-button block v-b-toggle.accordion-2 variant="info" class="boton2">
 							Historia
 						</b-button>
 					</b-card-header>
@@ -72,7 +72,7 @@
 			<b-col>
 				<b-card no-body class="mb-1 textos">
 					<b-card-header header-tag="header" class="p-1" role="tab">
-						<b-button block v-b-toggle.accordion-3 constiant="info" class="boton2">
+						<b-button block v-b-toggle.accordion-3 variant="info" class="boton2">
 							Otros Proyectos
 						</b-button>
 					</b-card-header>
@@ -126,7 +126,7 @@
 		<b-row class="borde justify-content-around" cols="1">
 			<h4>Desarrolladores</h4>
 			<b-col md="11" class="caja" v-for="items in devs">
-				<b-avatar :text="items.iniciales" size="6rem" constiant="success"></b-avatar>
+				<b-avatar :text="items.iniciales" size="6rem" variant="success"></b-avatar>
 				<p class="name">{{ items.nombre }}</p>
 				<p class="title">{{ items.title }}</p>
 				<hr class="line" />
@@ -260,7 +260,6 @@ export default {
 .list-item {
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
-	font-size: 170%;
 	-webkit-box-shadow: 8px 11px 12px 7px rgba(92, 6, 139, 0.64);
 	box-shadow: 8px 11px 15px 7px rgba(92, 6, 139, 0.4);
 	border: 1px solid #5c068b;

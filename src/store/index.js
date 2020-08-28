@@ -17,6 +17,6 @@ export const store = new Vuex.Store({
 		account,
 		calendar,
 		users,
-		admin
+		admin,
 	},
 });

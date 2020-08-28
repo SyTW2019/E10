@@ -1,4 +1,4 @@
-import { authHeader } from "../helpers";
+import {authHeader} from "../helpers";
 
 export const adminService = {
 	addGrados,
@@ -11,7 +11,7 @@ export const adminService = {
 
 // REVISAR ESTA FUNCION
 async function addGrados(JSONdata) {
-	const jason = { grado: "GII", nombre: "Sergio Ingeniero Informativo"};
+	const jason = {grado: "GII", nombre: "Sergio Ingeniero Informativo"};
 	console.log(jason);
 	const requestOptions = {
 		method: "POST",
