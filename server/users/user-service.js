@@ -57,7 +57,6 @@ async function authenticate({username, password}) {
 }
 
 async function getAll() {
-	console.log("HOLA");
 	return await User.find().select("-hash");
 }
 
@@ -67,7 +66,6 @@ async function getById(id) {
 
 //AQUI ESTA EL ERROR
 async function create(userParam) {
-
 	//Validación -> username, email, password
 	if (await User.findOne({name: userParam.name})) {
 		console.log('El nombre de usuario "' + userParam.name + '" está cogido');

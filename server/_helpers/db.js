@@ -10,5 +10,5 @@ mongoose
 
 module.exports = {
 	User: require("../users/user-model"),
-	Grade: require("../grades/grades-model")
+	Grade: require("../grades/grades-model"),
 };

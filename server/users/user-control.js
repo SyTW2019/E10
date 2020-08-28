@@ -4,14 +4,12 @@ const userService = require("./user-service");
 
 router.post("/iniciosesion", authenticate);
 router.post("/registro", register);
-router.post("/contacto", contact);    
+router.post("/contacto", contact);
 router.get("/", getAll);
 router.get("/current", getCurrent);
 router.get("/getUserById/:id", getById);
 router.put("/putUserById/:id", update);
-router.delete("/deleteUserById/:id"); 
-
-module.exports = router;
+router.delete("/deleteUserById/:id");
 
 function contact(req, res, next) {
 	userService
@@ -74,3 +72,5 @@ function _delete(req, res, next) {
 		.then(() => res.json({}))
 		.catch((err) => next(err));
 }
+
+module.exports = router;

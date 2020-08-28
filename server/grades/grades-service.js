@@ -2,9 +2,9 @@ const db = require("../_helpers/db");
 const Grade = db.Grade;
 
 module.exports = {
-    getAllGrados
-}
+	getAllGrados,
+};
 
 async function getAllGrados() {
-    return await Grade.find();
+	return await Grade.find();
 }

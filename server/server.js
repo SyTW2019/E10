@@ -31,9 +31,10 @@ app.use(errorHandler);
 // Router
 app.use("/registro", userController);
 app.use("/", userController);
-app.use("/inciosesion", userController);
+app.use("/iniciosesion", userController);
 app.use("/contacto", userController);
-app.use("/grado", gradeController);
+
+app.use("/grados", gradeController);
 
 // Inicio del servidor
 app.listen(process.env.PORT, function () {

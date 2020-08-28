@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Grade = require("../grades/grades-model")
+const Grade = require("../grades/grades-model");
 
 const gradeSchema = new Schema({
 	name: String,

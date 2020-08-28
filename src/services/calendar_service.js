@@ -9,9 +9,9 @@ export const calendarService = {
 async function getGradosCursos() {
 	const requestOptions = {
 		method: "GET",
-		headers: authHeader,
+		headers: authHeader(),
 	};
-	return await fetch(`http://localhost:3000/grado`, requestOptions)
+	return await fetch(`http://localhost:3000/grados/getGrados`, requestOptions)
 		.then(() => {
 			handleResponse;
 			console.log("Grado y cursos cogidos");
