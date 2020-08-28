@@ -8,7 +8,7 @@ const actions = {
 	},
 };
 
-export const calendar = {
+export const admin = {
 	namespaced: true,
 	actions,
 };

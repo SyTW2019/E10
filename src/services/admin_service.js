@@ -1,6 +1,6 @@
 import {authHeader} from "../helpers";
 
-export const calendarService = {
+export const adminService = {
 	addGrados,
 };
 
@@ -10,7 +10,10 @@ async function addGrados(JSONdata) {
 		headers: authHeader(),
 		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/grados/addGrados`, requestOptions)
+
+	console.log(requestOptions.body);
+
+	return fetch(`http://localhost:3000/addGrados`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Grado metido");

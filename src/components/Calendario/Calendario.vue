@@ -291,53 +291,29 @@ export default {
 		funcGradosCursos() {
 			this.getGradosCursos();
 
-<<<<<<< HEAD
-			// if (condition) {
-			// 	this.show1 = true;
-			// } else {
-			// 	this.show1 = false;
-			// }
-=======
 			/* if (condition) {
 				this.show1 = true;
 			} else {
 				this.show1 = false;
 			} */
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 		},
 		funcAsignaturas() {
 			this.getAsignaturas();
 
-<<<<<<< HEAD
-			// if (condition) {
-			// 	this.show2 = true;
-			// } else {
-			// 	this.show2 = false;
-			// }
-=======
 			/* if (condition) {
 				this.show2 = true;
 			} else {
 				this.show2 = false;
 			} */
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 		},
 		funcExamenes() {
 			this.getExamenes();
 
-<<<<<<< HEAD
-			// if (condition) {
-			// 	this.show3 = true;
-			// } else {
-			// 	this.show3 = false;
-			// }
-=======
 			/* if (condition) {
 				this.show3 = true;
 			} else {
 				this.show3 = false;
 			} */
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 		},
 	},
 };

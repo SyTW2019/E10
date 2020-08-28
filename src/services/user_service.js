@@ -32,7 +32,7 @@ async function login(username, password) {
 	return fetch(`http://localhost:3000/iniciosesion`, requestOptions)
 		.then(handleResponse)
 		.then((user) => {
-			console.log;
+			console.log(user);
 			// login successful if there's a jwt token in the response
 			if (user.token) {
 				// store user details and jwt token in local storage to keep
@@ -71,11 +71,6 @@ async function register(user) {
 		body: JSON.stringify(user),
 	};
 
-<<<<<<< HEAD
-	console.log(user);
-
-	return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
-=======
 	return fetch(`http://localhost:3000/registro`, requestOptions).then((res) => {
 		if (res.status(200)) {
 			handleResponse;
@@ -83,7 +78,6 @@ async function register(user) {
 			alert("Error desde back: " + res.message());
 		}
 	});
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 }
 
 async function getAll() {

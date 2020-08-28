@@ -45,9 +45,9 @@
 							</template>
 							<b-dropdown-item to="/calendario">Calendario</b-dropdown-item>
 							<b-dropdown-item to="/perfil">Perfil de usuario</b-dropdown-item>
-							<b-dropdown-item to="/admin" v-show="isAdmin()">
+							<!-- <b-dropdown-item to="/admin" v-show="isAdmin()">
 								Panel de administrador
-							</b-dropdown-item>
+							</b-dropdown-item> -->
 							<b-dropdown-item :click="fuera()" to="/iniciosesion">
 								Logout
 							</b-dropdown-item>
@@ -144,8 +144,6 @@ export default {
 		...mapActions("account", ["logout"]),
 		fuera() {
 			this.logout();
-<<<<<<< HEAD
-=======
 		},
 		isAdmin() {
 			const is = true;
@@ -154,7 +152,6 @@ export default {
 			} else {
 				return false;
 			}
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 		},
 	},
 	watch: {

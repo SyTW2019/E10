@@ -296,17 +296,11 @@
 
 <script>
 import {router} from "../../helpers/router";
-<<<<<<< HEAD
-=======
 import {mapState, mapActions} from "vuex";
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 export default {
 	name: "Administrador",
 	data() {
 		return {
-<<<<<<< HEAD
-			is_admin: false,
-=======
 			nombreAdmin: "PeterLanguila",
 			is_admin: false,
 			users: {
@@ -366,7 +360,6 @@ export default {
 			foro: {
 				msg: null,
 			},
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 		};
 	},
 	methods: {
@@ -380,8 +373,6 @@ export default {
 				router.push("/");
 			}
 		},
-<<<<<<< HEAD
-=======
 		// MANEJO DEL FORM DE LOS USUARIOS
 		...mapActions("admin", ["addGrados"]),
 		addUser(evt) {
@@ -496,7 +487,6 @@ export default {
 					break;
 			}
 		},
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d
 	},
 	beforeMount() {
 		this.comprobarCredenciales();
