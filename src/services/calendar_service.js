@@ -1,4 +1,4 @@
-import { authHeader } from "../helpers";
+import {authHeader} from "../helpers";
 
 export const calendarService = {
 	getGradosCursos,
@@ -6,7 +6,7 @@ export const calendarService = {
 	getExamenes,
 };
 
-function getGradosCursos(params) {
+async function getGradosCursos(params) {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
@@ -21,7 +21,7 @@ function getGradosCursos(params) {
 		});
 }
 
-function getAsignaturas(params) {
+async function getAsignaturas(params) {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
@@ -35,7 +35,7 @@ function getAsignaturas(params) {
 			console.error(err);
 		});
 }
-function getExamenes(params) {
+async function getExamenes(params) {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),

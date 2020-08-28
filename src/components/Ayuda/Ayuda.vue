@@ -165,91 +165,91 @@
 </template>
 
 <script>
-	export default {
-		name: "Ayuda",
-		data() {
-			return {
-				imagenes: {
-					ayuda1: "@/assets/img_ayuda/ayuda1.png",
-					ayuda2: "@/assets/img_ayuda/ayuda2.png",
-					ayuda3: "@/assets/img_ayuda/ayuda3.png",
-					ayuda4: "@/assets/img_ayuda/ayuda4.png",
-					ayuda5: "@/assets/img_ayuda/ayuda5.png",
-					ayuda6: "@/assets/img_ayuda/ayuda6.png",
-				},
-			};
-		},
-	};
+export default {
+	name: "Ayuda",
+	data() {
+		return {
+			imagenes: {
+				ayuda1: "@/assets/img_ayuda/ayuda1.png",
+				ayuda2: "@/assets/img_ayuda/ayuda2.png",
+				ayuda3: "@/assets/img_ayuda/ayuda3.png",
+				ayuda4: "@/assets/img_ayuda/ayuda4.png",
+				ayuda5: "@/assets/img_ayuda/ayuda5.png",
+				ayuda6: "@/assets/img_ayuda/ayuda6.png",
+			},
+		};
+	},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	h4 {
-		margin-left: 10px;
-		text-decoration: underline;
-	}
-	.borde {
-		border: 3px solid #5c068b;
-		border-radius: 8px 8px 8px 8px;
-		-moz-border-radius: 8px 8px 8px 8px;
-		-webkit-border-radius: 8px 8px 8px 8px;
+h4 {
+	margin-left: 10px;
+	text-decoration: underline;
+}
+.borde {
+	border: 3px solid #5c068b;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
 
-		background-color: rgba(92, 6, 139, 0.1);
+	background-color: rgba(92, 6, 139, 0.1);
 
-		padding-bottom: 15px;
-		padding-top: 15px;
-	}
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
 
-	.fondo {
-		background-color: rgba(0, 0, 0, 0);
-	}
+.fondo {
+	background-color: rgba(0, 0, 0, 0);
+}
 
-	.image {
-		margin: 2px;
-	}
+.image {
+	margin: 2px;
+}
 
-	.png {
-		border: 2px solid rgba(0, 0, 0, 0.9);
-	}
+.png {
+	border: 2px solid rgba(0, 0, 0, 0.9);
+}
 
-	.text {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+.text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
-	p {
-		border: 3px solid rgba(92, 6, 139, 0.4);
-		background-color: white;
-		margin: 2px;
-		padding: 5px;
-		text-align: justify;
-		text-indent: 7%;
-	}
+p {
+	border: 3px solid rgba(92, 6, 139, 0.4);
+	background-color: white;
+	margin: 2px;
+	padding: 5px;
+	text-align: justify;
+	text-indent: 7%;
+}
 
-	.boton {
-		background-color: rgb(92, 6, 139, 0.8);
-		margin-top: 10px;
-		z-index: 1;
-		filter: alpha(opacity=85);
-		-moz-opacity: 100;
-		opacity: 100;
-	}
+.boton {
+	background-color: rgb(92, 6, 139, 0.8);
+	margin-top: 10px;
+	z-index: 1;
+	filter: alpha(opacity=85);
+	-moz-opacity: 100;
+	opacity: 100;
+}
 
-	.boton:hover {
-		opacity: 0.85;
-	}
+.boton:hover {
+	opacity: 0.85;
+}
 
-	.boton2 {
-		background-color: rgb(92, 6, 139, 0.5);
-		margin-top: 10px;
-		z-index: 1;
-		filter: alpha(opacity=85);
-		-moz-opacity: 100;
-		opacity: 100;
-	}
+.boton2 {
+	background-color: rgb(92, 6, 139, 0.5);
+	margin-top: 10px;
+	z-index: 1;
+	filter: alpha(opacity=85);
+	-moz-opacity: 100;
+	opacity: 100;
+}
 
-	.boton2:hover {
-		opacity: 0.85;
-	}
+.boton2:hover {
+	opacity: 0.85;
+}
 </style>

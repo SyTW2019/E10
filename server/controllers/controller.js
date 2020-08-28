@@ -6,7 +6,7 @@ const gradeService = require("../services/grades-service");
 // Users
 router.post("/iniciosesion", authenticate);
 router.post("/registro", register);
-router.post("/contacto", contact);    
+router.post("/contacto", contact);
 router.get("/", getAll);
 router.get("/current", getCurrent);
 router.get("/:id", getById);
@@ -14,7 +14,7 @@ router.put("/:id", update);
 router.delete("/:id");
 
 //Grado
-// router.get("/grado", getGrado);  
+// router.get("/grado", getGrado);
 
 module.exports = router;
 
@@ -81,7 +81,5 @@ function _delete(req, res, next) {
 		.catch((err) => next(err));
 }
 
-
 // GRADO
-function getGrado(req, res, next) {
-}
+function getGrado(req, res, next) {}

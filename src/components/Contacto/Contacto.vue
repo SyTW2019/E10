@@ -77,75 +77,75 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from "vuex";
-	export default {
-		name: "Contacto",
-		data() {
-			return {
-				form: {
-					email: "",
-					nombre: "",
-					asunto: "",
-					mensaje: "",
-				},
-				submitted: false,
-				show: true,
-			};
-		},
-		methods: {
-			...mapActions("account", ["contact"]),
-			handleSubmit(evt) {
-				this.submitted = true;
-				if (this.submitted) {
-					const JSONmsg = {
-						mail: this.form.email,
-						name: this.form.nombre,
-						issue: this.form.asunto,
-						msg: this.form.mensaje,
-					};
-					this.contact(JSONmsg);
-				}
+import {mapState, mapActions} from "vuex";
+export default {
+	name: "Contacto",
+	data() {
+		return {
+			form: {
+				email: "",
+				nombre: "",
+				asunto: "",
+				mensaje: "",
 			},
-			onReset(evt) {
-				evt.preventDefault();
-				// Reset our form values
-				this.form.email = "";
-				this.form.nombre = "";
-				this.form.asunto = "";
-				this.form.mensaje = "";
-				// Trick to reset/clear native browser form validation state
-				this.show = false;
-				this.$nextTick(() => {
-					this.show = true;
-				});
-			},
+			submitted: false,
+			show: true,
+		};
+	},
+	methods: {
+		...mapActions("account", ["contact"]),
+		handleSubmit(evt) {
+			this.submitted = true;
+			if (this.submitted) {
+				const JSONmsg = {
+					mail: this.form.email,
+					name: this.form.nombre,
+					issue: this.form.asunto,
+					msg: this.form.mensaje,
+				};
+				this.contact(JSONmsg);
+			}
 		},
-	};
+		onReset(evt) {
+			evt.preventDefault();
+			// Reset our form values
+			this.form.email = "";
+			this.form.nombre = "";
+			this.form.asunto = "";
+			this.form.mensaje = "";
+			// Trick to reset/clear native browser form validation state
+			this.show = false;
+			this.$nextTick(() => {
+				this.show = true;
+			});
+		},
+	},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	.formulario {
-		border: 3px solid #5c068b;
-		border-radius: 8px 8px 8px 8px;
-		-moz-border-radius: 8px 8px 8px 8px;
-		-webkit-border-radius: 8px 8px 8px 8px;
+.formulario {
+	border: 3px solid #5c068b;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
 
-		background-color: rgb(92, 6, 139, 0.1);
+	background-color: rgb(92, 6, 139, 0.1);
 
-		padding-bottom: 15px;
-		padding-top: 15px;
-	}
-	.boton {
-		background-color: rgb(92, 6, 139, 0.8);
-		margin-top: 10px;
-		z-index: 1;
-		filter: alpha(opacity=85);
-		-moz-opacity: 100;
-		opacity: 100;
-	}
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+.boton {
+	background-color: rgb(92, 6, 139, 0.8);
+	margin-top: 10px;
+	z-index: 1;
+	filter: alpha(opacity=85);
+	-moz-opacity: 100;
+	opacity: 100;
+}
 
-	.boton:hover {
-		opacity: 0.85;
-	}
+.boton:hover {
+	opacity: 0.85;
+}
 </style>

@@ -59,7 +59,7 @@ export const router = new Router({
 			name: "admin",
 			component: () => import("@/components/Administrador/Administrador.vue"),
 		},
-		{ path: "*", redirect: "/" },
+		{path: "*", redirect: "/"},
 	],
 });
 

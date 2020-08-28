@@ -2,8 +2,7 @@ const db = require("../helpers/db");
 const Grado = db.Grado;
 
 module.exports = {
-    getAll
-}
+	getAll,
+};
 
-async function getAll() {
-}
+async function getAll() {}

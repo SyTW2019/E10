@@ -67,7 +67,6 @@ async function getById(id) {
 
 //AQUI ESTA EL ERROR
 async function create(userParam) {
-
 	//Validación
 	if (await User.findOne({name: userParam.name})) {
 		console.log('El nombre de usuario "' + userParam.name + '" está cogido');

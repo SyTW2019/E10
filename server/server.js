@@ -10,7 +10,7 @@ const jwt = require("./helpers/jwt");
 const errorHandler = require("./helpers/error-handler");
 
 // Controllers
-const controller = require("./controllers/controller")
+const controller = require("./controllers/controller");
 
 // .env
 const env = require("node-env-file");
@@ -32,7 +32,9 @@ app.use("/registro", controller);
 app.use("/", controller);
 app.use("/inciosesion", controller);
 app.use("/contacto", controller);
-app.use("/grado", function(){console.log("HOLA")});
+app.use("/grado", function () {
+	console.log("HOLA");
+});
 
 app.listen(process.env.PORT, function () {
 	console.log("Server listening on port " + process.env.PORT);
