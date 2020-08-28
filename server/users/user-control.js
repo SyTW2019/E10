@@ -1,30 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const userService = require("../services/user-service");
-const gradeService = require("../services/grades-service");
+const userService = require("./user-service");
 
-// Users
 router.post("/iniciosesion", authenticate);
 router.post("/registro", register);
 router.post("/contacto", contact);
 router.get("/", getAll);
 router.get("/current", getCurrent);
-<<<<<<< HEAD:server/users/user-control.js
 router.get("/getUserById/:id", getById);
 router.put("/putUserById/:id", update);
 router.delete("/deleteUserById/:id");
-=======
-router.get("/:id", getById);
-router.put("/:id", update);
-router.delete("/:id");
 
-//Grado
-// router.get("/grado", getGrado);
-
-module.exports = router;
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d:server/controllers/controller.js
-
-// USERS
 function contact(req, res, next) {
 	userService
 		.contact(req.body)
@@ -87,9 +73,4 @@ function _delete(req, res, next) {
 		.catch((err) => next(err));
 }
 
-<<<<<<< HEAD:server/users/user-control.js
 module.exports = router;
-=======
-// GRADO
-function getGrado(req, res, next) {}
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d:server/controllers/controller.js

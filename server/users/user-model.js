@@ -22,8 +22,4 @@ userSchema.set("toJson", {
 	},
 });
 
-<<<<<<< HEAD:server/users/user-model.js
 module.exports = mongoose.model("Usuarios", userSchema);
-=======
-module.exports = mongoose.model("userschema", userSchema);
->>>>>>> 2887275ce2a5bc92f7ce4ba224358849b503fe9d:server/models/user-model.js
