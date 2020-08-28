@@ -2,6 +2,7 @@
 // logging and out of the example application. The service methods are exported via the userService object at
 // the top of the file, and the implementation of each method is located in the functions below.
 
+// import config from '../config';
 import {authHeader} from "../helpers";
 
 export const userService = {
@@ -15,7 +16,7 @@ export const userService = {
 	delete: _delete,
 };
 
-async function login(username, password) {
+function login(username, password) {
 	const requestOptions = {
 		method: "POST",
 		headers: {
@@ -32,7 +33,7 @@ async function login(username, password) {
 	return fetch(`http://localhost:3000/iniciosesion`, requestOptions)
 		.then(handleResponse)
 		.then((user) => {
-			console.log(user);
+			console.log;
 			// login successful if there's a jwt token in the response
 			if (user.token) {
 				// store user details and jwt token in local storage to keep
@@ -62,7 +63,7 @@ function logout() {
 	localStorage.removeItem("user");
 }
 
-async function register(user) {
+function register(user) {
 	const requestOptions = {
 		method: "POST",
 		headers: {
@@ -71,16 +72,12 @@ async function register(user) {
 		body: JSON.stringify(user),
 	};
 
-	return fetch(`http://localhost:3000/registro`, requestOptions).then((res) => {
-		if (res.status(200)) {
-			handleResponse;
-		} else {
-			alert("Error desde back: " + res.message());
-		}
-	});
+	console.log(user);
+
+	return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
 }
 
-async function getAll() {
+function getAll() {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
@@ -89,7 +86,7 @@ async function getAll() {
 	return fetch(`http://localhost:3000/`, requestOptions).then(handleResponse);
 }
 
-async function getById(id) {
+function getById(id) {
 	const requestOptions = {
 		method: "GET",
 		headers: authHeader(),
@@ -98,7 +95,7 @@ async function getById(id) {
 	return fetch(`http://localhost:3000/${id}`, requestOptions).then(handleResponse);
 }
 
-async function update(user) {
+function update(user) {
 	const requestOptions = {
 		method: "PUT",
 		headers: {
@@ -112,7 +109,7 @@ async function update(user) {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-async function _delete(id) {
+function _delete(id) {
 	const requestOptions = {
 		method: "DELETE",
 		headers: authHeader(),

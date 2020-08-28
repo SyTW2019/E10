@@ -7,7 +7,6 @@ import {alert} from "./alert_module";
 import {account} from "./account_module";
 import {users} from "./users_module";
 import {calendar} from "./calendar_module";
-import {admin} from "./admin_module";
 
 Vue.use(Vuex);
 
@@ -16,7 +15,6 @@ export const store = new Vuex.Store({
 		alert,
 		account,
 		calendar,
-		admin,
 		users,
 	},
 });

@@ -74,14 +74,15 @@
 
 						<b-form-group label="Seleccione una titulación:">
 							<b-form-select
-								name="universidad"
-								v-model="user.universidad"
+								name="grado"
+								v-model="user.grado"
+								required
 								:options="options"
 								class="form-control"
 							></b-form-select>
-							<div class="mt-3" v-if="user.universidad">
+							<div class="mt-3" v-if="user.grado">
 								Seleccionado:
-								<strong>{{ user.universidad }}</strong>
+								<strong>{{ user.grado }}</strong>
 							</div>
 						</b-form-group>
 
@@ -134,7 +135,7 @@ export default {
 				name: "",
 				email: "",
 				password: "",
-				universidad: null,
+				grado: null,
 				password_repeat: "",
 				terms: null,
 			},
@@ -147,6 +148,10 @@ export default {
 				{
 					value: "ULL",
 					text: "Universidad de La Laguna",
+				},
+				{
+					value: "ULPGC",
+					text: "Universidad de Las Palmas de Gran Canaria",
 				},
 			],
 			show: true,
@@ -174,7 +179,7 @@ export default {
 			this.user.name = "";
 			this.user.email = "";
 			this.user.password = "";
-			this.user.universidad = null;
+			this.user.grado = null;
 			this.user.password_repeat = "";
 			this.user.terms = null;
 			// Trick to reset/clear native browser form validation state

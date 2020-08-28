@@ -18,7 +18,7 @@ const actions = {
 		userService.login(username, password).then(
 			(user) => {
 				commit("loginSuccess", user);
-				router.push("/perfil");
+				router.push("/calendario");
 			},
 			(error) => {
 				commit("loginFailure", error);

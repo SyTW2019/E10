@@ -260,6 +260,7 @@ export default {
 .list-item {
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
+	font-size: 170%;
 	-webkit-box-shadow: 8px 11px 12px 7px rgba(92, 6, 139, 0.64);
 	box-shadow: 8px 11px 15px 7px rgba(92, 6, 139, 0.4);
 	border: 1px solid #5c068b;
