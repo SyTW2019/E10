@@ -34,7 +34,8 @@ app.use("/", userController);
 app.use("/iniciosesion", userController);
 app.use("/contacto", userController);
 
-app.use("/grados", gradeController);
+//REVISAR ESTO
+app.use("/addGrados", gradeController);
 
 // Inicio del servidor
 app.listen(process.env.PORT, function () {

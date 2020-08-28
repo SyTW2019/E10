@@ -5,7 +5,7 @@ const Grade = require("../grades/grades-model");
 const gradeSchema = new Schema({
 	name: String,
 	idGrade: Number,
-	numCurso: Number,
+	// numCurso: Number,
 	// courses: [Course],
 });
 

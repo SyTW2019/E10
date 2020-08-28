@@ -5,18 +5,23 @@ export const adminService = {
 	addAsigns,
 	addExams,
 	delGrados,
-	delAsigns,
-	delExams,
+	// delAsigns,
+	// delExams,
 };
 
+// REVISAR ESTA FUNCION
 async function addGrados(JSONdata) {
+	const jason = { grado: "GII", nombre: "Sergio Ingeniero Informativo"};
+	console.log(jason);
 	const requestOptions = {
 		method: "POST",
-		headers: authHeader(),
-		body: JSON.stringify(JSONdata),
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(jason),
 	};
 
-	console.log(requestOptions.body);
+	console.log(requestOptions);
 
 	return fetch(`http://localhost:3000/addGrados`, requestOptions)
 		.then(() => {
