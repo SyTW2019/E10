@@ -8,7 +8,7 @@
 		"build": "vue-cli-service build",
 		"clean": "rm -Rf dist",
 		"formatter": "prettier --use-tabs true --no-bracket-spacing --jsx-bracket-same-line --tab-width 4 --print-width 100 --write .",
-		"server": "clear && nodemon --no-deprecation server/app.js"
+		"server": "clear && nodemon --no-deprecation server/server.js"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",

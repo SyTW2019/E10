@@ -9,7 +9,7 @@ export const calendarService = {
 async function getGradosCursos() {
 	const requestOptions = {
 		method: "GET",
-		headers: authHeader(),
+		headers: authHeader,
 	};
 	return await fetch(`http://localhost:3000/grado`, requestOptions)
 		.then(() => {

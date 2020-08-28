@@ -30,7 +30,7 @@ function login(username, password) {
 
 	console.log(requestOptions);
 
-	return fetch(`http://localhost:3000/api/iniciosesion`, requestOptions)
+	return fetch(`http://localhost:3000/iniciosesion`, requestOptions)
 		.then(handleResponse)
 		.then((user) => {
 			console.log;
@@ -53,7 +53,7 @@ function contact(JSONmsg) {
 		},
 		body: JSON.stringify(JSONmsg),
 	};
-	return fetch(`http://localhost:3000/api/contacto`, requestOptions)
+	return fetch(`http://localhost:3000/contacto`, requestOptions)
 		.then(handleResponse)
 		.then(alert("El mensaje ha sido enviado con exito"));
 }
@@ -74,7 +74,7 @@ function register(user) {
 
 	console.log(user);
 
-	return fetch(`http://localhost:3000/api/registro`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
 }
 
 function getAll() {

@@ -100,13 +100,13 @@
 						<b-form-group>
 							<b-button
 								type="submit"
-								variant="primary"
+								constiant="primary"
 								class="btn btn-primary"
 								:disabled="status.registering"
 							>
 								Enviar
 							</b-button>
-							<b-button type="reset" variant="danger">
+							<b-button type="reset" constiant="danger">
 								Limpiar
 							</b-button>
 							<router-link to="/" class="btn btn-link">
