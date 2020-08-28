@@ -53,6 +53,7 @@
 							<!-- Using 'button-content' slot -->
 							<template v-slot:button-content>Cuenta</template>
 							<b-dropdown-item to="/iniciosesion">Iniciar sesión</b-dropdown-item>
+							<b-dropdown-item to="/registro">Registro</b-dropdown-item>
 						</b-nav-item-dropdown>
 					</b-navbar-nav>
 				</b-collapse>
