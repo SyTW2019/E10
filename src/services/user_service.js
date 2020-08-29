@@ -30,7 +30,7 @@ function login(username, password) {
 
 	console.log(requestOptions);
 
-	return fetch(`http://localhost:3000/iniciosesion`, requestOptions)
+	return fetch(`http://localhost:3000/api/iniciosesion`, requestOptions)
 		.then(handleResponse)
 		.then((user) => {
 			console.log;
@@ -53,7 +53,7 @@ function contact(JSONmsg) {
 		},
 		body: JSON.stringify(JSONmsg),
 	};
-	return fetch(`http://localhost:3000/contacto`, requestOptions)
+	return fetch(`http://localhost:3000/api/contacto`, requestOptions)
 		.then(handleResponse)
 		.then(alert("El mensaje ha sido enviado con exito"));
 }
@@ -74,7 +74,7 @@ function register(user) {
 
 	console.log(user);
 
-	return fetch(`http://localhost:3000/registro`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/api/registro`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
@@ -83,7 +83,7 @@ function getAll() {
 		headers: authHeader(),
 	};
 
-	return fetch(`http://localhost:3000/getAllById`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/api/getAllById`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -92,7 +92,7 @@ function getById(id) {
 		headers: authHeader(),
 	};
 
-	return fetch(`http://localhost:3000/${id}`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/api/${id}`, requestOptions).then(handleResponse);
 }
 
 function update(user) {
@@ -105,7 +105,7 @@ function update(user) {
 		body: JSON.stringify(user),
 	};
 
-	return fetch(`http://localhost:3000/${user.id}`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/api/${user.id}`, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -115,7 +115,7 @@ function _delete(id) {
 		headers: authHeader(),
 	};
 
-	return fetch(`http://localhost:3000/users/${id}`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/api/users/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

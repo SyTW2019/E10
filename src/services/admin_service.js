@@ -24,7 +24,7 @@ async function addGrados(JSONdata) {
 
 	console.log(requestOptions);
 
-	return await fetch(`http://localhost:3000/addGrados`, requestOptions)
+	return await fetch(`http://localhost:3000/api/addGrados`, requestOptions)
 		.then(() => {
 			handleResponse;
 		})
@@ -39,7 +39,7 @@ async function delGrados(JSONdata) {
 		headers: authHeader(),
 		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/delGrados`, requestOptions)
+	return fetch(`http://localhost:3000/api/delGrados`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Grado eliminado");
@@ -50,12 +50,16 @@ async function delGrados(JSONdata) {
 }
 
 async function addAsigns(JSONdata) {
+	console.log("ADMIN_SERVICE: ", JSONdata);
 	const requestOptions = {
 		method: "POST",
-		headers: authHeader(),
+		headers: {
+			"Content-Type": "application/json",
+			...authHeader(),
+		},
 		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/addAsigns`, requestOptions)
+	return fetch(`http://localhost:3000/api/addAsigns`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Asignatura metida");
@@ -71,7 +75,7 @@ async function addExams(JSONdata) {
 		headers: authHeader(),
 		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/addExams`, requestOptions)
+	return fetch(`http://localhost:3000/api/addExams`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Examen metido");
@@ -90,11 +94,6 @@ function handleResponse(response) {
 				logout();
 				location.reload(true);
 			}
-
-			if (response.status === 500) {
-				console.log("LO QUE HAY SARAY");
-			}
-
 			const error = (data && data.message) || response.statusText;
 			return Promise.reject(error);
 		}

@@ -2,10 +2,8 @@
 	<b-container>
 		<b-row class="justify-content-around">
 			<h2>Calendario</h2>
-		</b-row>
-		<div>
 			{{ getCalendar }}
-		</div>
+		</b-row>
 		<!-- Formulario de obtencion de grado + curso -->
 		<b-row class="justify-content-around" v-if="show1">
 			<b-col md="10" class="calendario">

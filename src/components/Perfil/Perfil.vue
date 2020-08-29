@@ -5,12 +5,8 @@
 			<b-row class="perfil mb-2" cols="2">
 				<b-col md="3" class="fotoperfil">
 					<p>Avatar</p>
-					<b-avatar
-						variant="info"
-						src="https://placekitten.com/500/500"
-						size="12rem"
-						class="border border-dark"
-					></b-avatar>
+					<!-- src="https://placekitten.com/500/500" -->
+					<b-avatar variant="info" size="12rem" class="border border-dark"></b-avatar>
 				</b-col>
 				<b-col md="7" class="datosperfil">
 					<div class="casilla">

@@ -10,13 +10,11 @@ async function getAllGrados() {
 	return await Grade.find();
 }
 
-async function create(params) {
-	if (await Grade.findOne({name: params.name})) {
-		console.log("Sergio OLA");
+async function create(param) {
+	if (await Grade.findOne({name: param.name})) {
+		console.log("GRADE NAME REPETIDO");
 	}
 
-	console.log("ADRI ERES TONTO", params);
-
-	const grade = new Grade(params);
+	const grade = new Grade(param);
 	await grade.save();
 }

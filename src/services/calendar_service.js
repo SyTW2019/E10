@@ -10,18 +10,11 @@ async function getGradosCursos() {
 		headers: authHeader(),
 	};
 
-	var grades = new Array();
-	await fetch(`http://localhost:3000/getGrados`, requestOptions)
+	return await fetch(`http://localhost:3000/api/getGrados`, requestOptions)
 		.then(handleResponse)
-		.then((grados) => {
-			grades = grados;
-		})
 		.catch((err) => {
 			console.error(err);
 		});
-
-	console.log("LOS GRADOS DEL SERVICIO", grades);
-	return grades;
 }
 
 function handleResponse(response) {

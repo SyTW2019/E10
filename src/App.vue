@@ -19,6 +19,7 @@
 						<b-nav-item to="/foro">Foro</b-nav-item>
 						<b-nav-item to="/calendario">Calendario</b-nav-item>
 						<b-nav-item to="/perfil">Perfil</b-nav-item>
+						<b-nav-item to="/admin">Admin</b-nav-item>
 					</b-navbar-nav>
 					<b-navbar-nav v-else>
 						<b-nav-item disabled to="/foro">Foro</b-nav-item>
