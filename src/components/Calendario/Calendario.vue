@@ -168,14 +168,6 @@ export default {
 						value: null,
 						text: "Escoja un grado",
 					},
-					{
-						value: "GII",
-						text: "Grado en Ingeniería Informática",
-					},
-					{
-						value: "GM",
-						text: "Grado en Magisterio",
-					},
 				],
 			},
 			curso: {
@@ -184,7 +176,6 @@ export default {
 					{value: "1", text: "1"},
 					{value: "2", text: "2"},
 					{value: "3", text: "3"},
-					{value: "4", text: "4"},
 				],
 			},
 			asignaturas: {
@@ -287,15 +278,19 @@ export default {
 			});
 		},
 		// Aqui es la parte donde se van a realizar las consultas a backend
+		...mapState("calendar", ["grades", "gradeSelected", "numCursos"]),
 		...mapActions("calendar", ["getGradosCursos", "getAsignaturas", "getExamenes"]),
 		funcGradosCursos() {
 			this.getGradosCursos();
-
-			// if (condition) {
-			// 	this.show1 = true;
-			// } else {
-			// 	this.show1 = false;
-			// }
+			//const gradito = this.grades();
+			//console.log(gradito);
+			for (let i = 0; i < this.grades.length; i++) {
+				let aux = {
+					key: this.grades[i].idGrade,
+					value: this.grades[i].name
+				};
+				this.grado.options_grado.push(aux);
+			}
 		},
 		funcAsignaturas() {
 			this.getAsignaturas();

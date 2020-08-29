@@ -7,10 +7,14 @@ router.get("/getGrados", getGrados);
 router.post("/addGrados", addGrados);
 
 function getGrados(req, res, next) {
-	console.log("HOLA");
+	console.log("GETGRADOS");
 	gradeService
 		.getAllGrados()
-		.then(() => res.json())
+		.then((grades) => res.json(grades))
+		// .then((grades) => {console.log("RESPUESTA", grades); console.log(res.json(grades))})
+		// .then((grades) => console.log(res.json(grades)))
+		// .then(() =>	console.log(res.send()))
+		// .then((res) => {console.log(res.); res;})
 		.catch((err) => next(err));
 }
 

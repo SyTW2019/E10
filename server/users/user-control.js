@@ -5,7 +5,7 @@ const userService = require("./user-service");
 router.post("/iniciosesion", authenticate);
 router.post("/registro", register);
 router.post("/contacto", contact);
-router.get("/", getAll);
+router.get("/getAllById", getAll);
 router.get("/current", getCurrent);
 router.get("/getUserById/:id", getById);
 router.put("/putUserById/:id", update);

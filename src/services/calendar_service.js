@@ -11,14 +11,19 @@ async function getGradosCursos() {
 		method: "GET",
 		headers: authHeader(),
 	};
-	return await fetch(`http://localhost:3000/grados/getGrados`, requestOptions)
-		.then(() => {
-			handleResponse;
+	
+	var grades = [];
+	await fetch(`http://localhost:3000/getGrados`, requestOptions)
+		.then(handleResponse)
+		.then((grados) => {
 			console.log("Grado y cursos cogidos");
+			grades = grados;
 		})
 		.catch((err) => {
 			console.error(err);
 		});
+
+	return grades;
 }
 
 async function getAsignaturas() {

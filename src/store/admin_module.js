@@ -4,7 +4,8 @@ import { router } from "../helpers/router";
 const actions = {
 	// Parte para realizar las consultas del calendario
 	addGrados({ dispatch, commit }, param) {
-		return adminService.addGrados();
+		console.log("hola", param);
+		return adminService.addGrados(param);
 	},
 	addAsigns({ dispatch, commit }, param) {
 		return adminService.addAsigns();

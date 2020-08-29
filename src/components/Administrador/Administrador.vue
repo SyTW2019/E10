@@ -84,14 +84,14 @@
 								<b-form @submit.prevent="addGrado" @reset.prevent="onReset(3)">
 									<b-form-group label="Añadir grado:">
 										<b-form-input
-											name="grado"
-											v-model="grados.newGrado.grado"
+											name="idGrade"
+											v-model="grados.newGrado.idGrade"
 											placeholder="ID de Grado"
 											class="form-control"
 										></b-form-input>
 										<b-form-input
-											name="nombre"
-											v-model="grados.newGrado.nombre"
+											name="name"
+											v-model="grados.newGrado.name"
 											placeholder="Nombre"
 											class="form-control"
 										></b-form-input>
@@ -316,8 +316,8 @@
 				},
 				grados: {
 					newGrado: {
-						nombre: "",
-						grado: "",
+						name: "",
+						idGrade: "",
 						// curso: {
 						// 	selected: null,
 						// 	options: [
@@ -404,10 +404,9 @@
 			},
 			addGrado(evt) {
 				evt.preventDefault();
-				const param = this.grados.newGrado;
-				console.log(param);
 
-				this.addGrados(this.grados.newGrado);
+				const grades = this.addGrados(this.grados.newGrado);
+				console.log(grades);
 			},
 			delGrado(evt) {
 				evt.preventDefault();
