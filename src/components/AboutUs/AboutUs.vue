@@ -79,9 +79,7 @@
 					<b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
 						<b-card-body>
 							<b-card-text>
-								<p>
-									Puede que te suenen otros de nuestro proyectos como:
-								</p>
+								<p>Puede que te suenen otros de nuestro proyectos como:</p>
 								<div class="iconos">
 									<a href="https://slack.com/intl/es-es/" target="_blank">
 										<img

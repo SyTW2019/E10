@@ -60,15 +60,9 @@
 						></b-form-textarea>
 					</b-form-group>
 
-					<b-button type="submit" variant="primary">
-						Enviar
-					</b-button>
-					<b-button type="reset" variant="danger">
-						Limpiar
-					</b-button>
-					<router-link to="/" class="btn btn-link">
-						Cancelar
-					</router-link>
+					<b-button type="submit" variant="primary"> Enviar </b-button>
+					<b-button type="reset" variant="danger"> Limpiar </b-button>
+					<router-link to="/" class="btn btn-link"> Cancelar </router-link>
 				</b-form>
 			</b-col>
 		</b-row>

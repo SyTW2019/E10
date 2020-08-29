@@ -15,9 +15,7 @@
 								<h4>
 									<strong
 										>Cómo usar el
-										<router-link to="/calendario">
-											calendario
-										</router-link>
+										<router-link to="/calendario"> calendario </router-link>
 									</strong>
 								</h4>
 								<b-row cols="2" class="justify-content-center">
@@ -93,9 +91,7 @@
 								<h4>
 									<strong
 										>Cómo usar el
-										<router-link to="/calendario">
-											foro
-										</router-link></strong
+										<router-link to="/calendario"> foro </router-link></strong
 									>
 								</h4>
 								<b-row cols="2" class="justify-content-center">
