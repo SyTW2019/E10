@@ -15,8 +15,8 @@ async function create(params) {
 		console.log("Sergio OLA");
 	}
 
-	delete params.curso;
+	console.log("ADRI ERES TONTO", params);
 
-	const grade = new Grade(param);
+	const grade = new Grade(params);
 	await grade.save();
 }

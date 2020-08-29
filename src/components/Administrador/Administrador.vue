@@ -84,14 +84,14 @@
 								<b-form @submit.prevent="addGrado" @reset.prevent="onReset(3)">
 									<b-form-group label="Añadir grado:">
 										<b-form-input
-											name="grado"
-											v-model="grados.newGrado.grado"
+											name="idGrade"
+											v-model="grados.newGrado.idGrade"
 											placeholder="ID de Grado"
 											class="form-control"
 										></b-form-input>
 										<b-form-input
-											name="nombre"
-											v-model="grados.newGrado.nombre"
+											name="name"
+											v-model="grados.newGrado.name"
 											placeholder="Nombre"
 											class="form-control"
 										></b-form-input>
@@ -310,8 +310,26 @@ export default {
 					password: "",
 					grado: "",
 				},
-				oldUser: {
-					mail: "",
+				grados: {
+					newGrado: {
+						name: "",
+						idGrade: "",
+						// curso: {
+						// 	selected: null,
+						// 	options: [
+						// 		{ value: null, text: "Numero de Cursos" },
+						// 		{ value: "1", text: "1" },
+						// 		{ value: "2", text: "2" },
+						// 		{ value: "3", text: "3" },
+						// 		{ value: "4", text: "4" },
+						// 		{ value: "5", text: "5" },
+						// 		{ value: "6", text: "6" },
+							// ],
+						// },
+					},
+					oldGrado: {
+						nombre: "",
+					},
 				},
 			},
 			grados: {
@@ -361,51 +379,15 @@ export default {
 			foro: {
 				msg: null,
 			},
-		};
-	},
-	methods: {
-		comprobarCredenciales() {
-			const admin = true;
-			if (admin) {
-				this.is_admin = true;
-			} else {
-				this.is_admin = false;
-				alert("Credenciales de admin erroneos");
-				router.push("/");
-			}
-		},
-		// MANEJO DEL FORM DE LOS USUARIOS
-		...mapActions("admin", [
-			"addUser",
-			"delUser",
-			"addGrados",
-			"addAsigns",
-			"addExams",
-			"delGrados",
-			"delAsigns",
-			"delExams",
-		]),
-		addUser(evt) {
-			evt.preventDefault();
-			console.log(
-				"añadir " +
-					this.users.newUser.name +
-					" mail " +
-					this.users.newUser.mail +
-					" pass " +
-					this.users.newUser.password +
-					" grado " +
-					this.users.newUser.grado
-			);
-		},
-		delUser(evt) {
-			evt.preventDefault();
-			console.log("eliminar a " + this.users.oldUser.mail);
-		},
-		addGrado(evt) {
-			evt.preventDefault();
-			const param = this.grados.newGrado;
-			console.log(param);
+			addGrado(evt) {
+				evt.preventDefault();
+
+				const grades = this.addGrados(this.grados.newGrado);
+				console.log(grades);
+			},
+			delGrado(evt) {
+				evt.preventDefault();
+				console.log("eliminar a " + this.grados.oldGrado.nombre);
 
 			this.addGrados(this.grados.newGrado);
 		},

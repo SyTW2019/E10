@@ -83,7 +83,7 @@ function getAll() {
 		headers: authHeader(),
 	};
 
-	return fetch(`http://localhost:3000/`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/getAllById`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {

@@ -29,13 +29,15 @@ app.use(jwt());
 app.use(errorHandler);
 
 // Router
-app.use("/registro", userController);
-app.use("/", userController);
-app.use("/iniciosesion", userController);
-app.use("/contacto", userController);
+// app.use("/registro", userController);
+app.use("/", userController, gradeController);
+// app.use("/)
+// app.use("/iniciosesion", userController);
+// app.use("/contacto", userController);
 
 //REVISAR ESTO
-app.use("/addGrados", gradeController);
+// app.use("/grados", gradeController);
+// app.use("/centigrados", gradeController);
 
 // Inicio del servidor
 app.listen(process.env.PORT, function () {

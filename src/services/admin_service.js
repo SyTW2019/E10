@@ -11,22 +11,23 @@ export const adminService = {
 
 // REVISAR ESTA FUNCION
 async function addGrados(JSONdata) {
-	const jason = {grado: "GII", nombre: "Sergio Ingeniero Informativo"};
-	console.log(jason);
+
+	console.log("SERVICES", JSONdata);
+	
 	const requestOptions = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
+			...authHeader(),
 		},
-		body: JSON.stringify(jason),
+		body: JSON.stringify(JSONdata),
 	};
 
 	console.log(requestOptions);
 
-	return fetch(`http://localhost:3000/addGrados`, requestOptions)
+	return await fetch(`http://localhost:3000/addGrados`, requestOptions)
 		.then(() => {
-			handleResponse();
-			console.log("Grado metido");
+			handleResponse;
 		})
 		.catch((err) => {
 			console.error(err);
@@ -39,7 +40,7 @@ async function delGrados(JSONdata) {
 		headers: authHeader(),
 		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/grados/delGrados`, requestOptions)
+	return fetch(`http://localhost:3000/delGrados`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Grado eliminado");
@@ -55,7 +56,7 @@ async function addAsigns(JSONdata) {
 		headers: authHeader(),
 		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/grados/addAsigns`, requestOptions)
+	return fetch(`http://localhost:3000/addAsigns`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Asignatura metida");
@@ -71,7 +72,7 @@ async function addExams(JSONdata) {
 		headers: authHeader(),
 		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/grados/addExams`, requestOptions)
+	return fetch(`http://localhost:3000/addExams`, requestOptions)
 		.then(() => {
 			handleResponse();
 			console.log("Examen metido");
@@ -89,6 +90,10 @@ function handleResponse(response) {
 				// auto logout if 401 response returned from api
 				logout();
 				location.reload(true);
+			}
+
+			if (response.status === 500) {
+				console.log("LO QUE HAY SARAY");
 			}
 
 			const error = (data && data.message) || response.statusText;
