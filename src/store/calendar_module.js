@@ -1,15 +1,15 @@
 import { calendarService } from "../services/calendar_service";
 import { router } from "../helpers/router";
 
-/* const gradeSelected = null;
+const gradeSelected = null;
 const grades = [];
-const numCursos = new Number(null); */
-
-/* const state = gradeSelected
-	? { grades, gradeSelected, numCursos }
-	: { grades: [], gradeSelected, numCursos: null }; */
+const numCursos = null;
 
 const state = gradeSelected
+	? { grades, gradeSelected, numCursos }
+	: { grades: [], gradeSelected, numCursos: null };
+
+/* const state = gradeSelected
 	? {
 			gradesX: {
 				grades,
@@ -23,7 +23,7 @@ const state = gradeSelected
 				gradeSelected: null,
 				numCursos: null,
 			},
-	  };
+	  }; */
 
 // state {
 // 	grades: [
@@ -68,5 +68,6 @@ export const calendar = {
 	actions,
 	state,
 	mutations,
+	getters,
 	// state
 };
