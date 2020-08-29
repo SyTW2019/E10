@@ -11,7 +11,7 @@ async function getGradosCursos() {
 		method: "GET",
 		headers: authHeader(),
 	};
-	
+
 	var grades = [];
 	await fetch(`http://localhost:3000/getGrados`, requestOptions)
 		.then(handleResponse)

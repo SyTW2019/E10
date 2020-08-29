@@ -3,7 +3,7 @@ import {router} from "../helpers/router";
 
 const actions = {
 	// Parte para realizar las consultas del calendario
-	addGrados({ dispatch, commit }, param) {
+	addGrados({dispatch, commit}, param) {
 		console.log("hola", param);
 		return adminService.addGrados(param);
 	},

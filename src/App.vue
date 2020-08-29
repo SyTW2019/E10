@@ -143,6 +143,16 @@
 <script>
 	import { mapState, mapActions } from "vuex";
 	import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
+	import AboutUs from "./components/AboutUs/AboutUs.vue";
+	import Administrador from "./components/Administrador/Administrador.vue";
+	import Ayuda from "./components/Ayuda/Ayuda.vue";
+	import Calendario from "./components/Calendario/Calendario.vue";
+	import Contacto from "./components/Contacto/Contacto.vue";
+	import Foro from "./components/Foro/Foro.vue";
+	import Home from "./components/Home/Home.vue";
+	import InicioSesion from "./components/InicioSesion/InicioSesion.vue";
+	import Perfil from "./components/Perfil/Perfil.vue";
+	import Registro from "./components/Registro/Registro.vue";
 
 	export default {
 		name: "App",
@@ -182,6 +192,16 @@
 			mdbContainer,
 			mdbRow,
 			mdbCol,
+			AboutUs,
+			Administrador,
+			Ayuda,
+			Calendario,
+			Contacto,
+			Foro,
+			Home,
+			InicioSesion,
+			Perfil,
+			Registro,
 		},
 	};
 </script>

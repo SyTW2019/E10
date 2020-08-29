@@ -11,9 +11,8 @@ export const adminService = {
 
 // REVISAR ESTA FUNCION
 async function addGrados(JSONdata) {
-
 	console.log("SERVICES", JSONdata);
-	
+
 	const requestOptions = {
 		method: "POST",
 		headers: {
