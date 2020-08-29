@@ -1,29 +1,14 @@
 import { calendarService } from "../services/calendar_service";
 import { router } from "../helpers/router";
 
-/* const gradeSelected = null;
-const grades = [];
-const numCursos = new Number(null); */
-
-/* const state = gradeSelected
-	? { grades, gradeSelected, numCursos }
-	: { grades: [], gradeSelected, numCursos: null }; */
+const gradeSelected = new String(null);
+const grades = new Array();
+const numCursos = new Number(null); 
 
 const state = gradeSelected
-	? {
-			gradesX: {
-				grades,
-				gradeSelected,
-				numCursos,
-			},
-	  }
-	: {
-			gradesX: {
-				grades: [],
-				gradeSelected: null,
-				numCursos: null,
-			},
-	  };
+	? { grades, gradeSelected, numCursos }
+	: { grades: [], gradeSelected, numCursos: null };
+
 
 // state {
 // 	grades: [
@@ -33,15 +18,11 @@ const state = gradeSelected
 // 	numCursos: numCursos,
 // }
 
-const getters = {
-	state: (state) => state,
-};
-
 const actions = {
 	// Parte para realizar las consultas del calendario
-	getGradosCursos({ dispatch, commit }, param) {
+	async getGrados({ dispatch, commit }, param) {
 		calendarService.getGradosCursos().then((params) => {
-			console.log("ESTAMOS EN LA LLAMADA", params);
+			// console.log("ESTAMOS EN LA LLAMADA", params);
 			commit("getGradesSuccess", params);
 		});
 	},
@@ -55,11 +36,14 @@ const actions = {
 
 const mutations = {
 	getGradesSuccess(state, grados) {
-		console.log("ESTO ES PARAMS", grados);
-		state.grades = grados;
+		// console.log("ESTO ES PARAMS", grados);
+		grados.map((item) => {
+			state.grades.push(item);
+		});
 		state.gradeSelected = true;
 		state.numCursos = 5;
-		console.log(state);
+		console.log("CAMBIANDO ESTADO: ", state);
+		// console.log(state);
 	},
 };
 
@@ -68,5 +52,4 @@ export const calendar = {
 	actions,
 	state,
 	mutations,
-	// state
 };

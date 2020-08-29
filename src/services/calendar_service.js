@@ -12,17 +12,17 @@ async function getGradosCursos() {
 		headers: authHeader(),
 	};
 
-	var grades = [];
+	var grades = new Array();
 	await fetch(`http://localhost:3000/getGrados`, requestOptions)
 		.then(handleResponse)
 		.then((grados) => {
-			console.log("Grado y cursos cogidos");
 			grades = grados;
 		})
 		.catch((err) => {
 			console.error(err);
 		});
-
+	
+	console.log("LOS GRADOS DEL SERVICIO", grades);
 	return grades;
 }
 

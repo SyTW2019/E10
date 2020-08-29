@@ -3,8 +3,11 @@
 		<b-row class="justify-content-around">
 			<h2>Calendario</h2>
 		</b-row>
+		<div> 
+			{{ getCalendar }}
+		</div> 
 		<!-- Formulario de obtencion de grado + curso -->
-		<b-row class="justify-content-around" :methods="funcGradosCursos()" v-if="show1">
+		<b-row class="justify-content-around" v-if="show1">
 			<b-col md="10" class="calendario">
 				<h3>Selección de grado y curso</h3>
 				<b-form @submit.prevent="handleSubmit1" @reset.prevent="onReset1">
@@ -162,6 +165,7 @@
 		data() {
 			return {
 				grado: {
+					array_grado: [],
 					selected_grado: null,
 					options_grado: [
 						{
@@ -232,9 +236,26 @@
 			};
 		},
 		computed: {
-			...mapGetters,
+			...mapState(["calendar"]),
+			
+			getCalendar() {
+				// console.log("THIS", this);
+				this.calendar.grades.map((item) => {
+					this.grado.array_grado.push(item);
+				});
+				console.log("HOLA?", this.grado.array_grado);
+				this.grado.array_grado.map((item => {
+					const jsonAux = {
+						value: item.idGrade,
+						text: item.name
+					}
+					this.grado.options_grado.push(jsonAux);
+				}))
+
+			},
 		},
 		methods: {
+			...mapActions("calendar", ["getGrados", "getAsignaturas", "getExamenes"]),
 			handleSubmit1(evt) {
 				this.submitted_form_grado = true;
 				this.funcAsignaturas();
@@ -281,15 +302,13 @@
 				});
 			},
 			// Aqui es la parte donde se van a realizar las consultas a backend
-			//...mapState("calendar", ["grades", "gradeSelected", "numCursos"]),
-			...mapGetters("calendar", ["state"]),
-			...mapActions("calendar", ["getGradosCursos", "getAsignaturas", "getExamenes"]),
 			funcGradosCursos() {
-				this.getGradosCursos();
+				// this.getGradosCursos();
 
-				console.log(this);
-				//console.log(this.state.gradesX);
-				//console.log(this.state.gradesX.grades);
+				// // console.log(this);
+				// console.log("THIS STATE", this);
+				// console.log("STATE CALENDAR", this.$store.state.calendar.grades);
+				//console.log(this.state);
 
 				/* for (let i = 0; i < this.grades.length; i++) {
 					let aux = {
@@ -317,6 +336,9 @@
 				// 	this.show3 = false;
 				// }
 			},
+		},
+		beforeMount() {
+			this.getGrados();
 		},
 	};
 </script>
