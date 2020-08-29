@@ -282,8 +282,6 @@ export default {
 		...mapActions("calendar", ["getGradosCursos", "getAsignaturas", "getExamenes"]),
 		funcGradosCursos() {
 			this.getGradosCursos();
-			//const gradito = this.grades();
-			//console.log(gradito);
 			for (let i = 0; i < this.grades.length; i++) {
 				let aux = {
 					key: this.grades[i].idGrade,
