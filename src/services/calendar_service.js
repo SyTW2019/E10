@@ -2,8 +2,6 @@ import {authHeader} from "../helpers";
 
 export const calendarService = {
 	getGradosCursos,
-	getAsignaturas,
-	getExamenes,
 };
 
 async function getGradosCursos() {
@@ -12,48 +10,18 @@ async function getGradosCursos() {
 		headers: authHeader(),
 	};
 
-	var grades = [];
+	var grades = new Array();
 	await fetch(`http://localhost:3000/getGrados`, requestOptions)
 		.then(handleResponse)
 		.then((grados) => {
-			console.log("Grado y cursos cogidos");
 			grades = grados;
 		})
 		.catch((err) => {
 			console.error(err);
 		});
 
+	console.log("LOS GRADOS DEL SERVICIO", grades);
 	return grades;
-}
-
-async function getAsignaturas() {
-	const requestOptions = {
-		method: "GET",
-		headers: authHeader(),
-	};
-	return await fetch(`http://localhost:3000/asignaturas`, requestOptions)
-		.then(() => {
-			handleResponse();
-			console.log("Asignaturas cogidas");
-		})
-		.catch((err) => {
-			console.error(err);
-		});
-}
-
-async function getExamenes() {
-	const requestOptions = {
-		method: "GET",
-		headers: authHeader(),
-	};
-	return await fetch(`http://localhost:3000/examenes`, requestOptions)
-		.then(() => {
-			handleResponse();
-			console.log("Examenes cogidos");
-		})
-		.catch((err) => {
-			console.error(err);
-		});
 }
 
 function handleResponse(response) {

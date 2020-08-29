@@ -15,18 +15,10 @@
 				<b-col md="7" class="datosperfil">
 					<div class="casilla">
 						<div class="campo">
-							<p>
-								Nombre de usuario:
-							</p>
-							<p>
-								Correo electrónico:
-							</p>
-							<p>
-								Grado:
-							</p>
-							<p>
-								Universidad:
-							</p>
+							<p>Nombre de usuario:</p>
+							<p>Correo electrónico:</p>
+							<p>Grado:</p>
+							<p>Universidad:</p>
 						</div>
 						<div class="datos">
 							<p>

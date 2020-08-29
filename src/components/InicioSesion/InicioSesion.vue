@@ -44,15 +44,9 @@
 							</b-form-checkbox-group>
 						</b-form-group>
 
-						<b-button type="submit" variant="primary">
-							Enviar
-						</b-button>
-						<b-button type="reset" variant="danger">
-							Limpiar
-						</b-button>
-						<router-link to="/" class="btn btn-link">
-							Cancelar
-						</router-link>
+						<b-button type="submit" variant="primary"> Enviar </b-button>
+						<b-button type="reset" variant="danger"> Limpiar </b-button>
+						<router-link to="/" class="btn btn-link"> Cancelar </router-link>
 					</b-form>
 					<b-card class="mt-3" header="Resultado formulario de inicio de sesión">
 						<pre class="m-0">{{ user }}</pre>

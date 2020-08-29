@@ -19,4 +19,5 @@ export const store = new Vuex.Store({
 		users,
 		admin,
 	},
+	strict: true,
 });

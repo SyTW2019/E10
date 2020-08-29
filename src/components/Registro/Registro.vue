@@ -106,12 +106,8 @@
 							>
 								Enviar
 							</b-button>
-							<b-button type="reset" variant="danger">
-								Limpiar
-							</b-button>
-							<router-link to="/" class="btn btn-link">
-								Cancelar
-							</router-link>
+							<b-button type="reset" variant="danger"> Limpiar </b-button>
+							<router-link to="/" class="btn btn-link"> Cancelar </router-link>
 						</b-form-group>
 					</b-form>
 					<b-card class="mt-3" header="Resultado formulario de registro">
