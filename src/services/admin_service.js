@@ -10,8 +10,6 @@ export const adminService = {
 };
 
 async function addGrados(JSONdata) {
-	console.log("SERVICES", JSONdata);
-
 	const requestOptions = {
 		method: "POST",
 		headers: {
@@ -20,8 +18,6 @@ async function addGrados(JSONdata) {
 		},
 		body: JSON.stringify(JSONdata),
 	};
-
-	console.log(requestOptions);
 
 	return await fetch(`http://localhost:3000/api/addGrados`, requestOptions)
 		.then(() => {
@@ -84,8 +80,6 @@ async function addUsers(JSONdata) {
 		body: JSON.stringify(JSONdata),
 	};
 
-	console.log(requestOptions);
-
 	return await fetch(`http://localhost:3000/api/registro`, requestOptions)
 		.then(() => {
 			handleResponse;
@@ -108,23 +102,6 @@ async function addAsigns(JSONdata) {
 	return fetch(`http://localhost:3000/api/updateGrade`, requestOptions)
 		.then(() => {
 			handleResponse;
-			console.log("Asignatura metida");
-		})
-		.catch((err) => {
-			console.error(err);
-		});
-}
-
-async function addExams(JSONdata) {
-	const requestOptions = {
-		method: "POST",
-		headers: authHeader(),
-		body: JSON.stringify(JSONdata),
-	};
-	return fetch(`http://localhost:3000/api/addExams`, requestOptions)
-		.then(() => {
-			handleResponse();
-			console.log("Examen metido");
 		})
 		.catch((err) => {
 			console.error(err);

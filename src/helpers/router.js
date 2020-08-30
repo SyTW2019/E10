@@ -67,15 +67,11 @@ export const router = new Router({
 router.beforeEach((to, from, next) => {
 	// redirect to login page if not logged in and trying to access a restricted page
 	const publicPages = [
-		"/perfil",
-		"/calendario",
 		"/iniciosesion",
 		"/registro",
 		"/aboutus",
 		"/contacto",
 		"/ayuda",
-		"/foro",
-		"/admin",
 		"/",
 	];
 	const authRequired = !publicPages.includes(to.path);

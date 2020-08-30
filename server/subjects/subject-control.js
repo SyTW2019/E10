@@ -8,7 +8,6 @@ router.put("/addAsigns", addAsigns);
 module.exports = router;
 
 function addAsigns(req, res, next) {
-	console.log("SUBJECT_CONTROL: ", req.body);
 	subjectService
 		.create(req.body)
 		.then(() => res.json())

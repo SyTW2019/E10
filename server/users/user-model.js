@@ -7,9 +7,11 @@ const userSchema = new Schema({
 		unique: true,
 		required: true,
 	},
+	isAdmin: {type: Boolean, required: true},
 	password: {type: String, required: true},
 	name: {type: String, required: true},
 	hash: {type: String, required: true},
+	universidad: {type: String, required: true},
 	calendar: [
 		{
 			name: String,

@@ -28,16 +28,10 @@ function login(username, password) {
 		}),
 	};
 
-	console.log(requestOptions);
-
 	return fetch(`http://localhost:3000/api/iniciosesion`, requestOptions)
 		.then(handleResponse)
 		.then((user) => {
-			console.log;
-			// login successful if there's a jwt token in the response
 			if (user.token) {
-				// store user details and jwt token in local storage to keep
-				// user logged in between page refreshes
 				localStorage.setItem("user", JSON.stringify(user));
 			}
 
@@ -64,6 +58,8 @@ function logout() {
 }
 
 function register(user) {
+	console.log(user);
+
 	const requestOptions = {
 		method: "POST",
 		headers: {
@@ -71,8 +67,6 @@ function register(user) {
 		},
 		body: JSON.stringify(user),
 	};
-
-	console.log(user);
 
 	return fetch(`http://localhost:3000/api/registro`, requestOptions).then(handleResponse);
 }
@@ -115,7 +109,8 @@ function _delete(id) {
 		headers: authHeader(),
 	};
 
-	return fetch(`http://localhost:3000/api/users/${id}`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/api/users/${id}`, requestOptions)
+		.then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -130,6 +125,8 @@ function handleResponse(response) {
 
 			const error = (data && data.message) || response.statusText;
 			return Promise.reject(error);
+		} else {
+			alert("Petición realizada con éxito");
 		}
 
 		return data;

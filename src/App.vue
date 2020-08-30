@@ -13,13 +13,12 @@
 						></b-img>
 					</router-link>
 				</b-navbar-brand>
-
 				<b-collapse id="nav-collapse" is-nav>
 					<b-navbar-nav v-if="account.status.loggedIn">
 						<b-nav-item to="/foro">Foro</b-nav-item>
 						<b-nav-item to="/calendario">Calendario</b-nav-item>
 						<b-nav-item to="/perfil">Perfil</b-nav-item>
-						<b-nav-item to="/admin">Admin</b-nav-item>
+						<b-nav-item to="/admin" v-if="account.user.userWithoutHash.isAdmin">Admin</b-nav-item>
 					</b-navbar-nav>
 					<b-navbar-nav v-else>
 						<b-nav-item disabled to="/foro">Foro</b-nav-item>
@@ -192,9 +191,10 @@ export default {
 			clearAlert: "alert/clear",
 		}),
 
-		...mapActions("account", ["logout"]),
-		fuera() {
-			this.logout();
+			...mapActions("account", ["logout"]),
+			fuera() {
+				this.logout();
+			},
 		},
 		isAdmin() {
 			const is = true;
