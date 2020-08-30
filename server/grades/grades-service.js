@@ -6,6 +6,8 @@ module.exports = {
 	getAllGrados,
 	create,
 	update,
+	delete: _delete,
+	deleteAsign
 };
 
 async function getAllGrados() {
@@ -26,6 +28,14 @@ async function update(param) {
 	await Grade.update(
 		{"idGrade": param.idGrade},
 		{
-			$push: {courses: {"idCurso": param.courseSelected, "subject": {"year": param.year, "name": param.name, "date": param.date}}}
+			$push: {courses: {"idCurso": param.courseSelected, "subject": {"idSubject": param.idSubject, "year": param.year, "name": param.name, "date": param.date}}}
 		});
+}
+
+async function _delete(id) {
+	await Grade.deleteOne({"idGrade": id});
+}
+
+async function deleteAsign(id) {
+	await Grade.deleteOne({"courses.subject.idSubject": id});
 }

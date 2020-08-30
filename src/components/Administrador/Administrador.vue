@@ -55,7 +55,6 @@
 										class="form-control"
 									></b-form-input>
 								</b-form-group>
-
 								<b-button type="submit" variant="primary"> Eliminar </b-button>
 								<b-button type="reset" variant="danger"> Limpiar </b-button>
 							</b-form>
@@ -65,7 +64,6 @@
 			</b-card>
 			<b-card no-body class="fondo">
 				<b-card-header header-tag="header" class="fondo">
-					{{ createOptionsGrades }}
 					<b-button block v-b-toggle.accordion-2 class="boton2">
 						AÑADIR O ELIMINAR GRADO/ASIGNATURA/EXAMEN
 					</b-button>
@@ -105,9 +103,9 @@
 								<b-form @submit.prevent="delGrado" @reset.prevent="onReset(4)">
 									<b-form-group label="Eliminar grado:">
 										<b-form-input
-											name="nombre"
-											v-model="grados.oldGrado.nombre"
-											placeholder="Nombre"
+											name="gradoDelete"
+											v-model="grados.oldGrado.idGrade"
+											placeholder="Id del grado"
 											class="form-control"
 										></b-form-input>
 									</b-form-group>
@@ -171,9 +169,9 @@
 								<b-form @submit.prevent="delAsign" @reset.prevent="onReset(6)">
 									<b-form-group label="Eliminar asignatura:">
 										<b-form-input
-											name="nombre"
-											v-model="asigns.oldAsign.nombre"
-											placeholder="Nombre"
+											name="subject"
+											v-model="asigns.oldAsign.idSubject"
+											placeholder="Id Subject"
 											class="form-control"
 										></b-form-input>
 									</b-form-group>
@@ -182,68 +180,7 @@
 									<b-button type="reset" variant="danger"> Limpiar </b-button>
 								</b-form>
 							</b-container>
-							<br />
-							<b-container class="borde">
-								<b-form @submit.prevent="addExam" @reset.prevent="onReset(7)">
-									<b-form-group label="Añadir examen:">
-										<b-form-input
-											name="nombre"
-											v-model="exams.newExam.nombre"
-											placeholder="Nombre"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="asignatura"
-											v-model="exams.newExam.asign"
-											placeholder="Asignatura"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="fecha"
-											v-model="exams.newExam.fecha"
-											placeholder="Fecha"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="hora"
-											v-model="exams.newExam.hora"
-											placeholder="Hora"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="convocatoria"
-											v-model="exams.newExam.convocatoria"
-											placeholder="Convocatoria"
-											class="form-control"
-										></b-form-input>
-									</b-form-group>
-
-									<b-button type="submit" variant="primary"> Añadir </b-button>
-									<b-button type="reset" variant="danger"> Limpiar </b-button>
-								</b-form>
-							</b-container>
-							<br />
-							<b-container class="borde">
-								<b-form @submit.prevent="delExam" @reset.prevent="onReset(8)">
-									<b-form-group label="Eliminar examen:">
-										<b-form-input
-											name="nombre"
-											v-model="exams.oldExam.nombre"
-											placeholder="Nombre"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="fecha"
-											v-model="exams.oldExam.fecha"
-											placeholder="Fecha"
-											class="form-control"
-										></b-form-input>
-									</b-form-group>
-
-									<b-button type="submit" variant="primary"> Eliminar </b-button>
-									<b-button type="reset" variant="danger"> Limpiar </b-button>
-								</b-form>
-							</b-container>
+							
 						</b-container>
 					</b-card-body>
 				</b-collapse>
@@ -304,7 +241,7 @@ export default {
 					numCurso: "",
 				},
 				oldGrado: {
-					nombre: "",
+					idGrade: "",
 				},
 			},
 			asigns: {
@@ -326,20 +263,7 @@ export default {
 					dateaux: "",
 				},
 				oldAsign: {
-					nombre: "", // Id subject
-				},
-			},
-			exams: {
-				newExam: {
-					nombre: "",
-					asign: "",
-					fecha: "",
-					hora: "",
-					convocatoria: "",
-				},
-				oldExam: {
-					nombre: "",
-					fecha: "",
+					idSubject: "",
 				},
 			},
 			foro: {
@@ -351,17 +275,19 @@ export default {
 	computed: {
 		...mapState(["calendar"]),
 		createOptionsGrades() {
+			this.asigns.newAsign.options_grades = [{text: "Escoja un grado", value: null}];
 			this.calendar.grades.map((item) => {
 				const jsonAux = {
 					value: item.idGrade,
 					text: item.name,
 				};
+
 				this.asigns.newAsign.options_grades.push(jsonAux);
 			});
 		}
 	},
 	methods: {
-		...mapActions("admin", ["addGrados", "addAsigns", "addExams"]),
+		...mapActions("admin", ["addGrados", "addAsigns", "addExams", "delGrados", "delAsigns", "delUsers"]),
 		...mapActions("calendar", ["getGrados"]),
 		createOptionsCourses() {
 			this.showCourses = true;
@@ -375,22 +301,20 @@ export default {
 				this.asigns.newAsign.options_course.push(jsonAux);
 			}
 		},
+		delUser(evt) {
+			evt.preventDefault();
+			
+			this.delUsers(this.users.oldUser.mail);
+		},
 		addGrado(evt) {
 			evt.preventDefault();
-
-			const grades = this.addGrados(this.grados.newGrado);
-		},
-		delGrado(evt) {
-			evt.preventDefault();
-			console.log("eliminar a " + this.grados.oldGrado.nombre);
 
 			this.addGrados(this.grados.newGrado);
 		},
 		delGrado(evt) {
 			evt.preventDefault();
-			console.log("eliminar a " + this.grados.oldGrado.nombre);
 
-			this.delGrados(this.grados.oldGrado);
+			this.delGrados(this.grados.oldGrado.idGrade);
 		},
 		addAsign(evt) {
 			evt.preventDefault();
@@ -405,34 +329,8 @@ export default {
 		},
 		delAsign(evt) {
 			evt.preventDefault();
-			console.log("eliminar a " + this.asigns.oldAsign.nombre);
 
-			this.delAsigns(this.asigns.oldAsign);
-		},
-		addExam(evt) {
-			evt.preventDefault();
-			console.log(
-				"añadir " +
-					this.exams.newExam.nombre +
-					" asign " +
-					this.exams.newExam.asign +
-					" fecha " +
-					this.exams.newExam.fecha +
-					" hora " +
-					this.exams.newExam.hora +
-					" convocatoria " +
-					this.exams.newExam.convocatoria
-			);
-
-			this.addExams(this.exams.newExam);
-		},
-		delExam(evt) {
-			evt.preventDefault();
-			console.log(
-				"eliminar a " + this.exams.oldExam.nombre + " de " + this.exams.oldExam.fecha
-			);
-
-			this.delExams(this.exams.oldExam);
+			this.delAsigns(this.asigns.oldAsign.idSubject);
 		},
 		delMsg(evt) {
 			evt.preventDefault();

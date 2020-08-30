@@ -5,11 +5,10 @@ export const adminService = {
 	addAsigns,
 	addExams,
 	delGrados,
-	// delAsigns,
-	// delExams,
+	delAsigns,
+	delUsers,
 };
 
-// REVISAR ESTA FUNCION
 async function addGrados(JSONdata) {
 	console.log("SERVICES", JSONdata);
 
@@ -35,14 +34,40 @@ async function addGrados(JSONdata) {
 
 async function delGrados(JSONdata) {
 	const requestOptions = {
-		method: "POST",
+		method: "DELETE",
 		headers: authHeader(),
-		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/api/delGrados`, requestOptions)
+	return fetch(`http://localhost:3000/api/delGrados/${JSONdata}`, requestOptions)
 		.then(() => {
-			handleResponse();
-			console.log("Grado eliminado");
+			handleResponse;
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+}
+
+async function delAsigns(JSONdata) {
+	const requestOptions = {
+		method: "DELETE",
+		headers: authHeader(),
+	};
+	return fetch(`http://localhost:3000/api/delAsigns/${JSONdata}`, requestOptions)
+		.then(() => {
+			handleResponse;
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+}
+
+async function delUsers(JSONdata) {
+	const requestOptions = {
+		method: "DELETE",
+		headers: authHeader(),
+	};
+	return fetch(`http://localhost:3000/api/deleteUserById/${JSONdata}`, requestOptions)
+		.then(() => {
+			handleResponse;
 		})
 		.catch((err) => {
 			console.error(err);
@@ -50,7 +75,6 @@ async function delGrados(JSONdata) {
 }
 
 async function addAsigns(JSONdata) {
-	console.log("ADMIN_SERVICE: ", JSONdata);
 	const requestOptions = {
 		method: "PUT",
 		headers: {

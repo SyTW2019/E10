@@ -9,7 +9,7 @@ router.get("/getAllById", getAll);
 router.get("/current", getCurrent);
 router.get("/getUserById/:id", getById);
 router.put("/putUserById/:id", update);
-router.delete("/deleteUserById/:id");
+router.delete("/deleteUserById/:id", _delete);
 
 function contact(req, res, next) {
 	userService

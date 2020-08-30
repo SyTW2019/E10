@@ -21,7 +21,6 @@ const mutations = {
 			state.grades.push(item);
 		});
 		state.idGrade = null;
-		// console.log("CAMBIANDO ESTADO: ", state);
 	},
 };
 

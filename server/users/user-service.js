@@ -104,5 +104,5 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-	await User.findByIdAndRemove(id);
+	await User.deleteOne({"email": id});
 }
