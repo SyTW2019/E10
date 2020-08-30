@@ -122,21 +122,25 @@
 										<b-form-input
 											name="idsubject"
 											v-model="asigns.newAsign.idSubject"
-											placeholder="Nombre"
+											placeholder="id"
 											class="form-control"
 										></b-form-input>
 										<b-form-input
 											name="namesubject"
 											v-model="asigns.newAsign.name"
-											placeholder="Grado"
+											placeholder="nombre"
 											class="form-control"
 										></b-form-input>
 										<b-form-input
 											name="fechasubject"
-											v-model="asigns.newAsign.date"
-											placeholder="Curso"
+											v-model="asigns.newAsign.date_aux"
+											placeholde
+											r="fecha"
 											class="form-control"
 										></b-form-input>
+										<b-button :click="pushDate()" variant="primary">
+											Añadir
+										</b-button>
 									</b-form-group>
 
 									<b-button type="submit" variant="primary"> Añadir </b-button>
@@ -270,26 +274,8 @@
 						password: "",
 						grado: "",
 					},
-					grados: {
-						newGrado: {
-							name: "",
-							idGrade: "",
-							// curso: {
-							// 	selected: null,
-							// 	options: [
-							// 		{ value: null, text: "Numero de Cursos" },
-							// 		{ value: "1", text: "1" },
-							// 		{ value: "2", text: "2" },
-							// 		{ value: "3", text: "3" },
-							// 		{ value: "4", text: "4" },
-							// 		{ value: "5", text: "5" },
-							// 		{ value: "6", text: "6" },
-							// ],
-							// },
-						},
-						oldGrado: {
-							nombre: "",
-						},
+					oldUser: {
+						mail: "",
 					},
 				},
 				grados: {
@@ -317,7 +303,8 @@
 					newAsign: {
 						idSubject: "",
 						name: "",
-						date: "",
+						date_aux: "",
+						date: [],
 					},
 					oldAsign: {
 						idsubject: "",
@@ -454,9 +441,13 @@
 						break;
 				}
 			},
+			pushDate() {
+				this.asigns.newAsign.date.push(this.asigns.newAsign.date_aux);
+				this.asigns.newAsign.date_aux = "";
+			},
 		},
 		beforeMount() {
-			this.comprobarCredenciales();
+			//this.comprobarCredenciales();
 		},
 	};
 </script>
