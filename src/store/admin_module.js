@@ -1,5 +1,5 @@
-import { adminService } from "../services/admin_service";
-import { router } from "../helpers/router";
+import {adminService} from "../services/admin_service";
+import {router} from "../helpers/router";
 
 const refresh = false;
 

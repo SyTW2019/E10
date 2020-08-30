@@ -22,7 +22,7 @@ module.exports = {
 	delete: _delete,
 };
 
-async function contact({ mail, name, issue, msg }) {
+async function contact({mail, name, issue, msg}) {
 	const mailOptions = {
 		from: "empep.business@gmail.com",
 		to: "empep.business@gmail.com",
@@ -41,14 +41,14 @@ async function contact({ mail, name, issue, msg }) {
 	});
 }
 
-async function authenticate({ username, password }) {
+async function authenticate({username, password}) {
 	const user = await User.findOne({
 		name: `${username}`,
 	});
 	if (user && bcrypt.compareSync(password, user.hash)) {
 		const userWithoutHash = user.toObject();
 		delete userWithoutHash.hash;
-		const token = jwt.sign({ sub: user._id }, process.env.SECRET);
+		const token = jwt.sign({sub: user._id}, process.env.SECRET);
 		return {
 			userWithoutHash,
 			token,
@@ -67,7 +67,7 @@ async function getById(id) {
 //AQUI ESTA EL ERROR
 async function create(userParam) {
 	//Validación -> username, email, password
-	if (await User.findOne({ name: userParam.name })) {
+	if (await User.findOne({name: userParam.name})) {
 		console.log('El nombre de usuario "' + userParam.name + '" está cogido');
 		throw "Usuario no disponible";
 	}
@@ -121,5 +121,5 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-	await User.deleteOne({ email: id });
+	await User.deleteOne({email: id});
 }

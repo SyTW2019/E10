@@ -157,145 +157,145 @@
 </template>
 
 <script>
-	import { mapState, mapActions, mapGetters } from "vuex";
-	export default {
-		name: "Calendario",
-		data() {
-			return {
-				datos_calendar: [],
-				grado: {
-					selected_grado: null,
-					options_grado: [
-						{
-							value: null,
-							text: "Escoja un grado",
+import {mapState, mapActions, mapGetters} from "vuex";
+export default {
+	name: "Calendario",
+	data() {
+		return {
+			datos_calendar: [],
+			grado: {
+				selected_grado: null,
+				options_grado: [
+					{
+						value: null,
+						text: "Escoja un grado",
+					},
+				],
+			},
+			curso: {
+				selected_curso: [],
+				options_curso: [],
+			},
+			asignaturas: {
+				selected_asignaturas: [], // Array reference
+				options_asignaturas: [
+					{value: "A", text: "A"},
+					{value: "B", text: "B"},
+					{value: "C", text: "C"},
+					{value: "D", text: "D"},
+					{value: "E", text: "E"},
+					{value: "G", text: "G"},
+					{value: "F", text: "F"},
+				],
+			},
+			examenes: {
+				selected_examenes: [], // Array reference
+				options_examenes: [
+					{
+						value: {
+							nombre: "calculo",
+							fecha: "23/01/2020",
+							hora: "9:30",
+							aula: "1.5",
 						},
-					],
-				},
-				curso: {
-					selected_curso: [],
-					options_curso: [],
-				},
-				asignaturas: {
-					selected_asignaturas: [], // Array reference
-					options_asignaturas: [
-						{ value: "A", text: "A" },
-						{ value: "B", text: "B" },
-						{ value: "C", text: "C" },
-						{ value: "D", text: "D" },
-						{ value: "E", text: "E" },
-						{ value: "G", text: "G" },
-						{ value: "F", text: "F" },
-					],
-				},
-				examenes: {
-					selected_examenes: [], // Array reference
-					options_examenes: [
-						{
-							value: {
-								nombre: "calculo",
-								fecha: "23/01/2020",
-								hora: "9:30",
-								aula: "1.5",
-							},
-							text: "CÁLCULO; Conv. Enero, Llam. 1, 23/01/2020 9:30, Aula 1.5",
+						text: "CÁLCULO; Conv. Enero, Llam. 1, 23/01/2020 9:30, Aula 1.5",
+					},
+					{
+						value: {
+							nombre: "algebra",
+							fecha: "25/01/2020",
+							hora: "9:30",
+							aula: "1.5",
 						},
-						{
-							value: {
-								nombre: "algebra",
-								fecha: "25/01/2020",
-								hora: "9:30",
-								aula: "1.5",
-							},
-							text: "ÁLGEBRA; Conv. Enero, Llam. 1, 25/01/2020 9:30, Aula 1.5",
+						text: "ÁLGEBRA; Conv. Enero, Llam. 1, 25/01/2020 9:30, Aula 1.5",
+					},
+					{
+						value: {
+							nombre: "fisica",
+							fecha: "27/01/2020",
+							hora: "9:30",
+							aula: "1.5",
 						},
-						{
-							value: {
-								nombre: "fisica",
-								fecha: "27/01/2020",
-								hora: "9:30",
-								aula: "1.5",
-							},
-							text: "FÍSICA; Conv. Enero, Llam. 1, 27/01/2020 9:30, Aula 1.5",
-						},
-					],
-				},
-				show1: false,
-				show2: false,
-				show3: false,
-				show4: false,
-				submitted_form_grado: false,
-				submitted_form_asignaturas: false,
-				submitted_form_examenes: false,
-			};
-		},
-		computed: {
-			...mapState(["calendar"]),
+						text: "FÍSICA; Conv. Enero, Llam. 1, 27/01/2020 9:30, Aula 1.5",
+					},
+				],
+			},
+			show1: false,
+			show2: false,
+			show3: false,
+			show4: false,
+			submitted_form_grado: false,
+			submitted_form_asignaturas: false,
+			submitted_form_examenes: false,
+		};
+	},
+	computed: {
+		...mapState(["calendar"]),
 
-			getCalendar() {
-				this.calendar.grades.map((item) => {
-					this.datos_calendar.push(item);
-				});
-			},
+		getCalendar() {
+			this.calendar.grades.map((item) => {
+				this.datos_calendar.push(item);
+			});
 		},
-		methods: {
-			...mapActions("calendar", ["getGrados"]),
-			handleSubmit1(evt) {
-				this.submitted_form_grado = true;
-				this.handleAsigns();
-			},
-			onReset1(evt) {
-				// Reset our form values
-				this.submitted_form_grado = false;
-				this.submitted_form_asignaturas = false;
-				this.submitted_form_examenes = false;
-				this.grado.selected_grado = null;
-				this.curso.selected_curso = [];
-				// Trick to reset/clear native browser form validation state
-				this.show = false;
-				this.$nextTick(() => {
-					this.show = true;
-				});
-			},
-			handleSubmit2(evt) {
-				this.submitted_form_asignaturas = true;
-				this.handleExams();
-			},
-			onReset2(evt) {
-				// Reset our form values
-				this.submitted_form_asignaturas = false;
-				this.submitted_form_examenes = false;
-				this.asignaturas.selected_asignaturas = [];
-				// Trick to reset/clear native browser form validation state
-				this.show = false;
-				this.$nextTick(() => {
-					this.show = true;
-				});
-			},
-			handleSubmit3(evt) {
-				this.submitted_form_examenes = true;
-			},
-			onReset3(evt) {
-				// Reset our form values
-				this.submitted_form_examenes = false;
-				this.examenes.selected_examenes = [];
-				// Trick to reset/clear native browser form validation state
-				this.show = false;
-				this.$nextTick(() => {
-					this.show = true;
-				});
-			},
-			//Parte para mapear los datos a los locales del componente
-			handleGrados() {
-				this.datos_calendar.map((item) => {
-					const temp = {
-						value: item.idGrade,
-						text: item.name,
-					};
-					this.grado.options_grado.push(temp);
-				});
+	},
+	methods: {
+		...mapActions("calendar", ["getGrados"]),
+		handleSubmit1(evt) {
+			this.submitted_form_grado = true;
+			this.handleAsigns();
+		},
+		onReset1(evt) {
+			// Reset our form values
+			this.submitted_form_grado = false;
+			this.submitted_form_asignaturas = false;
+			this.submitted_form_examenes = false;
+			this.grado.selected_grado = null;
+			this.curso.selected_curso = [];
+			// Trick to reset/clear native browser form validation state
+			this.show = false;
+			this.$nextTick(() => {
+				this.show = true;
+			});
+		},
+		handleSubmit2(evt) {
+			this.submitted_form_asignaturas = true;
+			this.handleExams();
+		},
+		onReset2(evt) {
+			// Reset our form values
+			this.submitted_form_asignaturas = false;
+			this.submitted_form_examenes = false;
+			this.asignaturas.selected_asignaturas = [];
+			// Trick to reset/clear native browser form validation state
+			this.show = false;
+			this.$nextTick(() => {
+				this.show = true;
+			});
+		},
+		handleSubmit3(evt) {
+			this.submitted_form_examenes = true;
+		},
+		onReset3(evt) {
+			// Reset our form values
+			this.submitted_form_examenes = false;
+			this.examenes.selected_examenes = [];
+			// Trick to reset/clear native browser form validation state
+			this.show = false;
+			this.$nextTick(() => {
+				this.show = true;
+			});
+		},
+		//Parte para mapear los datos a los locales del componente
+		handleGrados() {
+			this.datos_calendar.map((item) => {
+				const temp = {
+					value: item.idGrade,
+					text: item.name,
+				};
+				this.grado.options_grado.push(temp);
+			});
 
-				/* this.datos_calendar.courses.map((item) => {
+			/* this.datos_calendar.courses.map((item) => {
 					const temp = {
 						value: item.idCourse,
 						text: item.idCourse,
@@ -303,51 +303,51 @@
 					this.curso.options_curso.push(temp);
 				}); */
 
-				if (this.grado.options_grado.length > 1 && this.curso.options_curso > 0) {
-					this.show1 = true;
-				} else {
-					this.show1 = false;
-					alert("algo ha salido mal");
-				}
-			},
-			handleAsigns() {},
-			handleExams() {},
+			if (this.grado.options_grado.length > 1 && this.curso.options_curso > 0) {
+				this.show1 = true;
+			} else {
+				this.show1 = false;
+				alert("algo ha salido mal");
+			}
 		},
-		beforeMount() {
-			this.getGrados();
-		},
-	};
+		handleAsigns() {},
+		handleExams() {},
+	},
+	beforeMount() {
+		this.getGrados();
+	},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	.calendario {
-		border: 3px solid #5c068b;
-		border-radius: 8px 8px 8px 8px;
-		-moz-border-radius: 8px 8px 8px 8px;
-		-webkit-border-radius: 8px 8px 8px 8px;
+.calendario {
+	border: 3px solid #5c068b;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
 
-		background-color: rgb(92, 6, 139, 0.1);
+	background-color: rgb(92, 6, 139, 0.1);
 
-		padding-bottom: 15px;
-		padding-top: 15px;
-	}
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
 
-	.vista_curso {
-		display: inline-block;
-	}
+.vista_curso {
+	display: inline-block;
+}
 
-	.vista_exam {
-		max-width: 500px;
-		display: block;
-		margin: auto;
-	}
+.vista_exam {
+	max-width: 500px;
+	display: block;
+	margin: auto;
+}
 
-	.zero {
-		padding: 0px;
-	}
+.zero {
+	padding: 0px;
+}
 
-	#password-help-block {
-		color: black;
-	}
+#password-help-block {
+	color: black;
+}
 </style>
