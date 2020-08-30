@@ -107,7 +107,8 @@ function _delete(id) {
 		headers: authHeader(),
 	};
 
-	return fetch(`http://localhost:3000/api/users/${id}`, requestOptions).then(handleResponse);
+	return fetch(`http://localhost:3000/api/users/${id}`, requestOptions)
+		.then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -122,6 +123,8 @@ function handleResponse(response) {
 
 			const error = (data && data.message) || response.statusText;
 			return Promise.reject(error);
+		} else {
+			alert("Petición realizada con éxito");
 		}
 
 		return data;

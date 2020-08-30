@@ -1,6 +1,5 @@
 const db = require("../_helpers/db");
 const Grade = db.Grade;
-const subjService = require("../subjects/subject-services");
 
 module.exports = {
 	getAllGrados,
@@ -15,8 +14,8 @@ async function getAllGrados() {
 }
 
 async function create(param) {
-	if (await Grade.findOne({name: param.name})) {
-		throw "Nombre de usuario repetido";
+	if (await Grade.findOne({idGrade: param.idGrade})) {
+		throw "Id de grado repetido";
 	}
 
 	const grade = new Grade(param);
@@ -24,6 +23,10 @@ async function create(param) {
 }
 
 async function update(param) {
+	if (await Grade.findOne({idSubject: param.idSubject})) {
+		throw "Id de asignatura repetido";
+	}
+
 	await Grade.update(
 		{idGrade: param.idGrade},
 		{

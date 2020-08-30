@@ -70,6 +70,9 @@ async function create(userParam) {
 		console.log('El nombre de usuario "' + userParam.name + '" está cogido');
 		throw "Usuario no disponible";
 	}
+	if(await User.findOne({email: userParam.email })) {
+		throw "Email ya registrado";
+	}
 
 	if (userParam.password) {
 		userParam.hash = bcrypt.hashSync(userParam.password, 10);
