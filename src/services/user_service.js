@@ -58,6 +58,8 @@ function logout() {
 }
 
 function register(user) {
+	console.log(user);
+
 	const requestOptions = {
 		method: "POST",
 		headers: {

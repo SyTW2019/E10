@@ -32,12 +32,18 @@
 										placeholder="Contraseña"
 										class="form-control"
 									></b-form-input>
-									<!-- <b-form-input
-										name="grade"
-										v-model="users.newUser.grado"
-										placeholder="Grado"
+									<b-form-input
+										name="universidad"
+										v-model="users.newUser.universidad"
+										placeholder="Universidad"
 										class="form-control"
-									></b-form-input> -->
+									></b-form-input>
+									<b-form-select
+										name="isAdmin"
+										v-model="users.newUser.isAdmin"
+										:options="users.newUser.adminOpt"
+										class="form-control"
+									></b-form-select>
 								</b-form-group>
 
 								<b-button type="submit" variant="primary"> Añadir </b-button>
@@ -227,7 +233,22 @@
 						name: "",
 						email: "",
 						password: "",
-						grado: "",
+						universidad: "",
+						isAdmin: null,
+						adminOpt: [
+							{
+								value: null,
+								text: "Eliga si es administrador"
+							},
+							{
+								value: false,
+								text: "NO es administrador"
+							},
+							{
+								value: true,
+								text: "Es administrador"
+							},
+						]
 					},
 					oldUser: {
 						mail: "",
@@ -315,7 +336,7 @@
 			},
 			addUser(evt) {
 				evt.preventDefault();
-
+				
 				this.addUsers(this.users.newUser);
 			},
 			delUser(evt) {
