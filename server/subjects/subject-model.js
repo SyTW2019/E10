@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const subjectSchema = new Schema({
 	idSubject: {type: String, required: true, unique: true},
-	idGrade: { type: String, required: true },
-	year: { type: Number, required: true},
+	idGrade: {type: String, required: true},
+	year: {type: Number, required: true},
 	name: {type: String, required: true},
 	date: [
 		{

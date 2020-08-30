@@ -27,5 +27,5 @@ async function getAll() {
 	return await Subject.find();
 }
 async function getByIdGrade(param) {
-	return await Subject.find({"idGrade": param});
+	return await Subject.find({idGrade: param});
 }

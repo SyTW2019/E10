@@ -3,7 +3,7 @@ import {authHeader} from "../helpers";
 export const adminService = {
 	addGrados,
 	addAsigns,
-	addExams,
+	addUsers,
 	delGrados,
 	delAsigns,
 	delUsers,
@@ -66,6 +66,27 @@ async function delUsers(JSONdata) {
 		headers: authHeader(),
 	};
 	return fetch(`http://localhost:3000/api/deleteUserById/${JSONdata}`, requestOptions)
+		.then(() => {
+			handleResponse;
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+}
+
+async function addUsers(JSONdata) {
+	const requestOptions = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			...authHeader(),
+		},
+		body: JSON.stringify(JSONdata),
+	};
+
+	console.log(requestOptions);
+
+	return await fetch(`http://localhost:3000/api/registro`, requestOptions)
 		.then(() => {
 			handleResponse;
 		})

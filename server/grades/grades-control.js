@@ -5,7 +5,7 @@ const gradeService = require("./grades-service");
 router.get("/getGrados", getGrados);
 router.post("/addGrados", addGrados);
 router.put("/updateGrade", updateGrados);
-router.delete("/delGrados/:id", _delete)
+router.delete("/delGrados/:id", _delete);
 router.delete("/delAsigns/:id", deleteAsign);
 
 function getGrados(req, res, next) {

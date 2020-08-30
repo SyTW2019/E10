@@ -22,7 +22,7 @@
 									></b-form-input>
 									<b-form-input
 										name="mail"
-										v-model="users.newUser.mail"
+										v-model="users.newUser.email"
 										placeholder="Mail"
 										class="form-control"
 									></b-form-input>
@@ -32,12 +32,12 @@
 										placeholder="Contraseña"
 										class="form-control"
 									></b-form-input>
-									<b-form-input
+									<!-- <b-form-input
 										name="grade"
 										v-model="users.newUser.grado"
 										placeholder="Grado"
 										class="form-control"
-									></b-form-input>
+									></b-form-input> -->
 								</b-form-group>
 
 								<b-button type="submit" variant="primary"> Añadir </b-button>
@@ -180,7 +180,6 @@
 									<b-button type="reset" variant="danger"> Limpiar </b-button>
 								</b-form>
 							</b-container>
-							
 						</b-container>
 					</b-card-body>
 				</b-collapse>
@@ -226,7 +225,7 @@ export default {
 			users: {
 				newUser: {
 					name: "",
-					mail: "",
+					email: "",
 					password: "",
 					grado: "",
 				},
@@ -247,15 +246,19 @@ export default {
 			asigns: {
 				newAsign: {
 					year: null,
-					options_grades: [{
-						value: null,
-						text: "Escoja un grado",
-					}],
+					options_grades: [
+						{
+							value: null,
+							text: "Escoja un grado",
+						},
+					],
 					idGrade: null,
-					options_course: [{
-						value: null,
-						text: "Escoja un curso"
-					}],
+					options_course: [
+						{
+							value: null,
+							text: "Escoja un curso",
+						},
+					],
 					courseSelected: null,
 					idSubject: "",
 					name: "",
@@ -284,16 +287,25 @@ export default {
 
 				this.asigns.newAsign.options_grades.push(jsonAux);
 			});
-		}
+		},
 	},
 	methods: {
-		...mapActions("admin", ["addGrados", "addAsigns", "addExams", "delGrados", "delAsigns", "delUsers"]),
+		...mapActions("admin", [
+			"addGrados",
+			"addAsigns",
+			"delGrados",
+			"addUsers",
+			"delAsigns",
+			"delUsers",
+		]),
 		...mapActions("calendar", ["getGrados"]),
 		createOptionsCourses() {
 			this.showCourses = true;
 			this.asigns.newAsign.options_course = [{text: "Escoja un grado", value: null}];
-			this.asigns.newAsign.numCurso = this.calendar.grades.find((item) => item.idGrade === this.asigns.newAsign.idGrade).numCurso;
-			for(var i = 1; i <= this.asigns.newAsign.numCurso; i++ ) {
+			this.asigns.newAsign.numCurso = this.calendar.grades.find(
+				(item) => item.idGrade === this.asigns.newAsign.idGrade
+			).numCurso;
+			for (var i = 1; i <= this.asigns.newAsign.numCurso; i++) {
 				const jsonAux = {
 					value: i,
 					text: i,
@@ -301,9 +313,14 @@ export default {
 				this.asigns.newAsign.options_course.push(jsonAux);
 			}
 		},
+		addUser(evt) {
+			evt.preventDefault();
+
+			this.addUsers(this.users.newUser);
+		},
 		delUser(evt) {
 			evt.preventDefault();
-			
+
 			this.delUsers(this.users.oldUser.mail);
 		},
 		addGrado(evt) {
