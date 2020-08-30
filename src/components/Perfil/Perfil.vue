@@ -2,7 +2,7 @@
 	<b-container>
 		<h2>Perfil de Usuario</h2>
 		<b-row class="justify-content-center">
-			<b-row class="perfil mb-2" cols="2">
+			<b-row class="perfil mb-2 justify-content-center" cols="2">
 				<b-col md="3" class="fotoperfil">
 					<p>Avatar</p>
 					<!-- src="https://placekitten.com/500/500" -->
@@ -50,68 +50,70 @@
 </template>
 
 <script>
-export default {
-	name: "Perfil",
-	data() {
-		return {
-			perfil: {
-				username: "G",
-				mail: "A",
-				grado: "T",
-				universidad: "O",
-			},
-			calendario: {},
-			aportaciones: {},
-		};
-	},
-};
+	export default {
+		name: "Perfil",
+		data() {
+			return {
+				perfil: {
+					username: "G",
+					mail: "A",
+					grado: "T",
+					universidad: "O",
+				},
+				calendario: {},
+				aportaciones: {},
+			};
+		},
+	};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h2 {
-	font-weight: normal;
-}
+	h2 {
+		font-weight: normal;
+	}
 
-.borde {
-	border: 3px solid #5c068b;
-}
-.perfil {
-	border: 3px solid #5c068b;
-	border-radius: 8px 8px 8px 8px;
-	-moz-border-radius: 8px 8px 8px 8px;
-	-webkit-border-radius: 8px 8px 8px 8px;
+	.borde {
+		border: 3px solid #5c068b;
+	}
+	.perfil {
+		border: 3px solid #5c068b;
+		border-radius: 8px 8px 8px 8px;
+		-moz-border-radius: 8px 8px 8px 8px;
+		-webkit-border-radius: 8px 8px 8px 8px;
 
-	width: 90%;
+		width: 90%;
 
-	background-color: rgb(92, 6, 139, 0.1);
+		background-color: rgb(92, 6, 139, 0.1);
 
-	padding-bottom: 15px;
-	padding-top: 15px;
-}
+		padding-bottom: 15px;
+		padding-top: 15px;
+	}
 
-.fotoperfil {
-	padding: 7px;
-	font-size: 20px;
-}
+	.fotoperfil {
+		padding: 7px;
+		font-size: 20px;
+	}
 
-.datosperfil {
-	padding: 7px;
-}
+	.datosperfil {
+		padding: 7px;
+		display: flex;
+		align-items: center;
+	}
 
-.campo {
-	width: 35%;
-	flex-direction: column;
-	display: inline-flex;
-	align-items: start;
-}
-.datos {
-	width: 65%;
-	flex-direction: column;
-	display: inline-flex;
-	align-items: start;
-}
-.casilla {
-	width: 100%;
-}
+	.campo {
+		width: 35%;
+		flex-direction: column;
+		display: inline-flex;
+		align-items: start;
+	}
+	.datos {
+		width: 65%;
+		flex-direction: column;
+		display: inline-flex;
+		align-items: start;
+	}
+	.casilla {
+		width: 100%;
+	}
 </style>

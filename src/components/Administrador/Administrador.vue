@@ -214,210 +214,201 @@
 </template>
 
 <script>
-import {router} from "../../helpers/router";
-import {mapState, mapActions} from "vuex";
-export default {
-	name: "Administrador",
-	data() {
-		return {
-			nombreAdmin: "PeterLanguila",
-			is_admin: true,
-			users: {
-				newUser: {
-					name: "",
-					email: "",
-					password: "",
-					grado: "",
+	import { router } from "../../helpers/router";
+	import { mapState, mapActions } from "vuex";
+	export default {
+		name: "Administrador",
+		data() {
+			return {
+				nombreAdmin: "",
+				is_admin: true,
+				users: {
+					newUser: {
+						name: "",
+						email: "",
+						password: "",
+						grado: "",
+					},
+					oldUser: {
+						mail: "",
+					},
 				},
-				oldUser: {
-					mail: "",
+				grados: {
+					newGrado: {
+						name: "",
+						idGrade: "",
+						numCurso: "",
+					},
+					oldGrado: {
+						idGrade: "",
+					},
 				},
-			},
-			grados: {
-				newGrado: {
-					name: "",
-					idGrade: "",
-					numCurso: "",
+				asigns: {
+					newAsign: {
+						year: null,
+						options_grades: [
+							{
+								value: null,
+								text: "Escoja un grado",
+							},
+						],
+						idGrade: null,
+						options_course: [
+							{
+								value: null,
+								text: "Escoja un curso",
+							},
+						],
+						courseSelected: null,
+						idSubject: "",
+						name: "",
+						date: [],
+						dateaux: "",
+					},
+					oldAsign: {
+						idSubject: "",
+					},
 				},
-				oldGrado: {
-					idGrade: "",
+				foro: {
+					msg: null,
 				},
-			},
-			asigns: {
-				newAsign: {
-					year: null,
-					options_grades: [
-						{
-							value: null,
-							text: "Escoja un grado",
-						},
-					],
-					idGrade: null,
-					options_course: [
-						{
-							value: null,
-							text: "Escoja un curso",
-						},
-					],
-					courseSelected: null,
-					idSubject: "",
-					name: "",
-					date: [],
-					dateaux: "",
-				},
-				oldAsign: {
-					idSubject: "",
-				},
+				showCourses: false,
 			};
 		},
+		computed: {
+			...mapState(["calendar"]),
+			createOptionsGrades() {
+				this.asigns.newAsign.options_grades = [{ text: "Escoja un grado", value: null }];
+				this.calendar.grades.map((item) => {
+					const jsonAux = {
+						value: item.idGrade,
+						text: item.name,
+					};
+
+					this.asigns.newAsign.options_grades.push(jsonAux);
+				});
+			},
+		},
 		methods: {
+			...mapActions("admin", [
+				"addGrados",
+				"addAsigns",
+				"delGrados",
+				"addUsers",
+				"delAsigns",
+				"delUsers",
+			]),
+			...mapActions("calendar", ["getGrados"]),
+			createOptionsCourses() {
+				this.showCourses = true;
+				this.asigns.newAsign.options_course = [{ text: "Escoja un grado", value: null }];
+				this.asigns.newAsign.numCurso = this.calendar.grades.find(
+					(item) => item.idGrade === this.asigns.newAsign.idGrade,
+				).numCurso;
+				for (var i = 1; i <= this.asigns.newAsign.numCurso; i++) {
+					const jsonAux = {
+						value: i,
+						text: i,
+					};
+					this.asigns.newAsign.options_course.push(jsonAux);
+				}
+			},
+			addUser(evt) {
+				evt.preventDefault();
+
+				this.addUsers(this.users.newUser);
+			},
+			delUser(evt) {
+				evt.preventDefault();
+
+				this.delUsers(this.users.oldUser.mail);
+			},
 			addGrado(evt) {
 				evt.preventDefault();
 
-				const grades = this.addGrados(this.grados.newGrado);
-				console.log(grades);
+				this.addGrados(this.grados.newGrado);
 			},
-			foro: {
-				msg: null,
+			delGrado(evt) {
+				evt.preventDefault();
+
+				this.delGrados(this.grados.oldGrado.idGrade);
 			},
-			showCourses: false,
-		};
-	},
-	computed: {
-		...mapState(["calendar"]),
-		createOptionsGrades() {
-			this.asigns.newAsign.options_grades = [{text: "Escoja un grado", value: null}];
-			this.calendar.grades.map((item) => {
-				const jsonAux = {
-					value: item.idGrade,
-					text: item.name,
-				};
+			addAsign(evt) {
+				evt.preventDefault();
 
-				this.asigns.newAsign.options_grades.push(jsonAux);
-			});
-		},
-	},
-	methods: {
-		...mapActions("admin", [
-			"addGrados",
-			"addAsigns",
-			"delGrados",
-			"addUsers",
-			"delAsigns",
-			"delUsers",
-		]),
-		...mapActions("calendar", ["getGrados"]),
-		createOptionsCourses() {
-			this.showCourses = true;
-			this.asigns.newAsign.options_course = [{text: "Escoja un grado", value: null}];
-			this.asigns.newAsign.numCurso = this.calendar.grades.find(
-				(item) => item.idGrade === this.asigns.newAsign.idGrade
-			).numCurso;
-			for (var i = 1; i <= this.asigns.newAsign.numCurso; i++) {
-				const jsonAux = {
-					value: i,
-					text: i,
-				};
-				this.asigns.newAsign.options_course.push(jsonAux);
-			}
-		},
-		addUser(evt) {
-			evt.preventDefault();
+				console.log("ADMINISTRADOR.VUE: ", this.asigns.newAsign);
+				this.addAsigns(this.asigns.newAsign);
+			},
+			clearAsign() {
+				this.asigns.newAsign.idSubject = "";
+				this.asigns.newAsign.name = "";
+				this.asigns.newAsign.date = [];
+			},
+			delAsign(evt) {
+				evt.preventDefault();
 
-			this.addUsers(this.users.newUser);
-		},
-		delUser(evt) {
-			evt.preventDefault();
+				this.delAsigns(this.asigns.oldAsign.idSubject);
+			},
+			delMsg(evt) {
+				evt.preventDefault();
+				console.log("eliminar el mensaje " + this.foro.msg);
+			},
+			onReset(num_form) {
+				switch (num_form) {
+					case 1:
+						this.users.newUser.name = "";
+						this.users.newUser.password = "";
+						this.users.newUser.mail = "";
+						this.users.newUser.grado = "";
+						break;
+					case 2:
+						this.users.oldUser.mail = "";
+						break;
+					case 3:
+						this.grados.newGrado.grado = "";
+						this.grados.newGrado.nombre = "";
+						this.grados.newGrado.curso.selected = null;
+						break;
+					case 4:
+						this.grados.oldGrado.nombre = "";
+						break;
+					case 5:
+						this.asigns.newAsign.idSubject = "";
+						this.asigns.newAsign.name = "";
+						this.asigns.newAsign.date = [];
+						break;
+					case 6:
+						this.asigns.oldAsign.nombre = "";
+						break;
+					case 7:
+						this.exams.newExam.nombre = "";
+						this.exams.newExam.asign = "";
+						this.exams.newExam.fecha = "";
+						this.exams.newExam.hora = "";
+						this.exams.newExam.convocatoria = "";
+						break;
+					case 8:
+						this.exams.oldExam.nombre = "";
+						this.exams.oldExam.fecha = "";
+						break;
+					case 9:
+						this.foro.msg = null;
+						break;
 
-			this.delUsers(this.users.oldUser.mail);
-		},
-		addGrado(evt) {
-			evt.preventDefault();
+					default:
+						break;
+				}
+			},
 
-			this.addGrados(this.grados.newGrado);
+			pushDate() {
+				this.asigns.newAsign.date.push(this.asigns.newAsign.dateaux);
+				this.asigns.newAsign.dateaux = "";
+			},
 		},
-		delGrado(evt) {
-			evt.preventDefault();
-
-			this.delGrados(this.grados.oldGrado.idGrade);
+		beforeMount() {
+			this.getGrados();
 		},
-		addAsign(evt) {
-			evt.preventDefault();
-
-			console.log("ADMINISTRADOR.VUE: ", this.asigns.newAsign);
-			this.addAsigns(this.asigns.newAsign);
-		},
-		clearAsign() {
-			this.asigns.newAsign.idSubject = "";
-			this.asigns.newAsign.name = "";
-			this.asigns.newAsign.date = [];
-		},
-		delAsign(evt) {
-			evt.preventDefault();
-
-			this.delAsigns(this.asigns.oldAsign.idSubject);
-		},
-		delMsg(evt) {
-			evt.preventDefault();
-			console.log("eliminar el mensaje " + this.foro.msg);
-		},
-		onReset(num_form) {
-			switch (num_form) {
-				case 1:
-					this.users.newUser.name = "";
-					this.users.newUser.password = "";
-					this.users.newUser.mail = "";
-					this.users.newUser.grado = "";
-					break;
-				case 2:
-					this.users.oldUser.mail = "";
-					break;
-				case 3:
-					this.grados.newGrado.grado = "";
-					this.grados.newGrado.nombre = "";
-					this.grados.newGrado.curso.selected = null;
-					break;
-				case 4:
-					this.grados.oldGrado.nombre = "";
-					break;
-				case 5:
-					this.asigns.newAsign.idSubject = "";
-					this.asigns.newAsign.name = "";
-					this.asigns.newAsign.date = [];
-					break;
-				case 6:
-					this.asigns.oldAsign.nombre = "";
-					break;
-				case 7:
-					this.exams.newExam.nombre = "";
-					this.exams.newExam.asign = "";
-					this.exams.newExam.fecha = "";
-					this.exams.newExam.hora = "";
-					this.exams.newExam.convocatoria = "";
-					break;
-				case 8:
-					this.exams.oldExam.nombre = "";
-					this.exams.oldExam.fecha = "";
-					break;
-				case 9:
-					this.foro.msg = null;
-					break;
-
-				default:
-					break;
-			}
-		},
-
-		pushDate() {
-			this.asigns.newAsign.date.push(this.asigns.newAsign.dateaux);
-			this.asigns.newAsign.dateaux = "";
-		},
-	},
-	beforeMount() {
-		this.getGrados();
-		// this.comprobarCredenciales();
-	},
-};
+	};
 </script>
 
 <style scoped>
