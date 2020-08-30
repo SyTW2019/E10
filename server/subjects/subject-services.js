@@ -10,17 +10,13 @@ module.exports = {
 
 async function create(param) {
 	if (await Subject.findOne({idSubject: param.idSubject})) {
-		console.log("IDSUBJECT REPETIDO");
+		throw "Id de asignatura repetido";
 	}
 
 	delete param.dateaux;
 
-	console.log("SUBJECT_SERVICE: ", param);
-
 	const subj = new Subject(param);
 	await subj.save();
-
-	console.log("MOSTRAMOS COLLECTION: ", await Subject.find());
 }
 
 async function getAll() {

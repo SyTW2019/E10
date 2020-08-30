@@ -336,7 +336,6 @@
 			addAsign(evt) {
 				evt.preventDefault();
 
-				console.log("ADMINISTRADOR.VUE: ", this.asigns.newAsign);
 				this.addAsigns(this.asigns.newAsign);
 			},
 			clearAsign() {
@@ -351,7 +350,6 @@
 			},
 			delMsg(evt) {
 				evt.preventDefault();
-				console.log("eliminar el mensaje " + this.foro.msg);
 			},
 			onReset(num_form) {
 				switch (num_form) {

@@ -16,7 +16,7 @@ async function getAllGrados() {
 
 async function create(param) {
 	if (await Grade.findOne({name: param.name})) {
-		console.log("GRADE NAME REPETIDO");
+		throw "Nombre de usuario repetido";
 	}
 
 	const grade = new Grade(param);
@@ -24,7 +24,6 @@ async function create(param) {
 }
 
 async function update(param) {
-	console.log(param);
 	await Grade.update(
 		{idGrade: param.idGrade},
 		{

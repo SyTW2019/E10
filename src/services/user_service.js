@@ -28,16 +28,10 @@ function login(username, password) {
 		}),
 	};
 
-	console.log(requestOptions);
-
 	return fetch(`http://localhost:3000/api/iniciosesion`, requestOptions)
 		.then(handleResponse)
 		.then((user) => {
-			console.log;
-			// login successful if there's a jwt token in the response
 			if (user.token) {
-				// store user details and jwt token in local storage to keep
-				// user logged in between page refreshes
 				localStorage.setItem("user", JSON.stringify(user));
 			}
 
@@ -71,8 +65,6 @@ function register(user) {
 		},
 		body: JSON.stringify(user),
 	};
-
-	console.log(user);
 
 	return fetch(`http://localhost:3000/api/registro`, requestOptions).then(handleResponse);
 }
