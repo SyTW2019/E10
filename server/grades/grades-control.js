@@ -4,6 +4,7 @@ const gradeService = require("./grades-service");
 
 router.get("/getGrados", getGrados);
 router.post("/addGrados", addGrados);
+router.put("/updateGrade", updateGrados);
 
 function getGrados(req, res, next) {
 	gradeService
@@ -15,6 +16,13 @@ function getGrados(req, res, next) {
 function addGrados(req, res, next) {
 	gradeService
 		.create(req.body)
+		.then(() => res.json())
+		.catch((err) => next(err));
+}
+
+function updateGrados(req, res, next) {
+	gradeService
+		.update(req.body)
 		.then(() => res.json())
 		.catch((err) => next(err));
 }

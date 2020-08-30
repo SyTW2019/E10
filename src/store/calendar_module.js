@@ -1,10 +1,10 @@
 import {calendarService} from "../services/calendar_service";
 import {router} from "../helpers/router";
 
-const gradeSelected = new String();
+const idGrade = new String();
 const grades = new Array();
 
-const state = gradeSelected ? {grades, gradeSelected} : {grades: [], gradeSelected: ""};
+const state = idGrade ? {grades, idGrade} : {grades: [], idGrade: ""};
 
 const actions = {
 	// Parte para realizar las consultas del calendario
@@ -20,7 +20,7 @@ const mutations = {
 		grados.map((item) => {
 			state.grades.push(item);
 		});
-		state.gradeSelected = true;
+		state.idGrade = null;
 		// console.log("CAMBIANDO ESTADO: ", state);
 	},
 };

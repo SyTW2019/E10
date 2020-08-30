@@ -1,13 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const db = require("../_helpers/db");
 
 const gradeSchema = new Schema({
 	name: { type: String, required: true, unique: true },
 	idGrade: { type: String, required: true, unique: true },
 	numCurso: { type: Number, required: true },
-	// courses: {
-	// 	idCurso: Number },
-	// 	subject: [subjects]
+	courses: [{
+		idCurso: { type: Number, required: true },
+		subject: [{
+		   year: { type: Number, required: true},
+		   name: {type: String, required: true},
+		   date: [
+			   {
+				   type: String,
+			   },
+		   ],
+	   }]
+   	}],
+	// courses: [{
+	//  	idCurso: { type: Number, required: true },
+	//  	subject: [{type: Schema.ObjectId, ref: "Subject"}]
 	// }],
 });
 

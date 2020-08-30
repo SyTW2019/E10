@@ -52,16 +52,17 @@ async function delGrados(JSONdata) {
 async function addAsigns(JSONdata) {
 	console.log("ADMIN_SERVICE: ", JSONdata);
 	const requestOptions = {
-		method: "POST",
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 			...authHeader(),
 		},
 		body: JSON.stringify(JSONdata),
 	};
-	return fetch(`http://localhost:3000/api/addAsigns`, requestOptions)
+
+	return fetch(`http://localhost:3000/api/updateGrade`, requestOptions)
 		.then(() => {
-			handleResponse();
+			handleResponse;
 			console.log("Asignatura metida");
 		})
 		.catch((err) => {

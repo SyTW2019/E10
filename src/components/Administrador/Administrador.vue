@@ -65,7 +65,7 @@
 			</b-card>
 			<b-card no-body class="fondo">
 				<b-card-header header-tag="header" class="fondo">
-					{{ createOptions }}
+					{{ createOptionsGrades }}
 					<b-button block v-b-toggle.accordion-2 class="boton2">
 						AÑADIR O ELIMINAR GRADO/ASIGNATURA/EXAMEN
 					</b-button>
@@ -121,13 +121,14 @@
 								<b-form @submit.prevent="addAsign" @reset.prevent="onReset(5)">
 									<b-form-group label="Añadir asignatura:">
 										<b-form-select
-											v-model="asigns.newAsign.gradeSelected"
+											v-model="asigns.newAsign.idGrade"
 											:options="asigns.newAsign.options_grades"
+											@change="createOptionsCourses()"
 										></b-form-select>
 										<b-form-select
 											v-model="asigns.newAsign.courseSelected"
 											:options="asigns.newAsign.options_course"
-											aria-describedby="select-help-block"
+											v-show="showCourses"
 										></b-form-select>
 										<b-form-input
 											name="idSubject"
@@ -136,9 +137,15 @@
 											class="form-control"
 										></b-form-input>
 										<b-form-input
+											name="year"
+											v-model="asigns.newAsign.year"
+											placeholder="Año de comienzo de curso"
+											class="form-control"
+										></b-form-input>
+										<b-form-input
 											name="name"
 											v-model="asigns.newAsign.name"
-											placeholder="Grado"
+											placeholder="Nombre de la asignatura"
 											class="form-control"
 										></b-form-input>
 										<b-form @submit.prevent="pushDate()">
@@ -302,10 +309,17 @@ export default {
 			},
 			asigns: {
 				newAsign: {
-					options_grades: [],
-					gradeSelected: "",
-					options_course: [],
-					courseSelected: "",
+					year: null,
+					options_grades: [{
+						value: null,
+						text: "Escoja un grado",
+					}],
+					idGrade: null,
+					options_course: [{
+						value: null,
+						text: "Escoja un curso"
+					}],
+					courseSelected: null,
 					idSubject: "",
 					name: "",
 					date: [],
@@ -331,12 +345,12 @@ export default {
 			foro: {
 				msg: null,
 			},
+			showCourses: false,
 		};
 	},
 	computed: {
 		...mapState(["calendar"]),
-		createOptions() {
-			console.log("CALENDARIO: ", this.calendar);
+		createOptionsGrades() {
 			this.calendar.grades.map((item) => {
 				const jsonAux = {
 					value: item.idGrade,
@@ -349,6 +363,18 @@ export default {
 	methods: {
 		...mapActions("admin", ["addGrados", "addAsigns", "addExams"]),
 		...mapActions("calendar", ["getGrados"]),
+		createOptionsCourses() {
+			this.showCourses = true;
+			this.asigns.newAsign.options_course = [{text: "Escoja un grado", value: null}];
+			this.asigns.newAsign.numCurso = this.calendar.grades.find((item) => item.idGrade === this.asigns.newAsign.idGrade).numCurso;
+			for(var i = 1; i <= this.asigns.newAsign.numCurso; i++ ) {
+				const jsonAux = {
+					value: i,
+					text: i,
+				};
+				this.asigns.newAsign.options_course.push(jsonAux);
+			}
+		},
 		addGrado(evt) {
 			evt.preventDefault();
 
@@ -367,12 +393,10 @@ export default {
 			this.delGrados(this.grados.oldGrado);
 		},
 		addAsign(evt) {
-			console.log("ESTO ES EL THIS", this);
 			evt.preventDefault();
 
 			console.log("ADMINISTRADOR.VUE: ", this.asigns.newAsign);
 			this.addAsigns(this.asigns.newAsign);
-			// .then(() => this.clearAsign());
 		},
 		clearAsign() {
 			this.asigns.newAsign.idSubject = "";

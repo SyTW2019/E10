@@ -4,6 +4,8 @@ const Subject = db.Subject;
 
 module.exports = {
 	create,
+	getAll,
+	getByIdGrade,
 };
 
 async function create(param) {
@@ -19,4 +21,11 @@ async function create(param) {
 	await subj.save();
 
 	console.log("MOSTRAMOS COLLECTION: ", await Subject.find());
+}
+
+async function getAll() {
+	return await Subject.find();
+}
+async function getByIdGrade(param) {
+	return await Subject.find({"idGrade": param});
 }
