@@ -4,6 +4,14 @@ const nodemailer = require("nodemailer");
 const db = require("../_helpers/db");
 const User = db.User;
 
+const transporter = nodemailer.createTransport({
+	service: "gmail",
+	auth: {
+		user: "empep.business@gmail.com",
+		pass: "proyectazo",
+	},
+});
+
 module.exports = {
 	authenticate,
 	contact,
@@ -14,15 +22,7 @@ module.exports = {
 	delete: _delete,
 };
 
-async function contact({mail, name, issue, msg}) {
-	const transporter = nodemailer.createTransport({
-		service: "gmail",
-		auth: {
-			user: "empep.business@gmail.com",
-			pass: "proyectazo",
-		},
-	});
-
+async function contact({ mail, name, issue, msg }) {
 	const mailOptions = {
 		from: "empep.business@gmail.com",
 		to: "empep.business@gmail.com",
@@ -41,14 +41,14 @@ async function contact({mail, name, issue, msg}) {
 	});
 }
 
-async function authenticate({username, password}) {
+async function authenticate({ username, password }) {
 	const user = await User.findOne({
 		name: `${username}`,
 	});
 	if (user && bcrypt.compareSync(password, user.hash)) {
 		const userWithoutHash = user.toObject();
 		delete userWithoutHash.hash;
-		const token = jwt.sign({sub: user._id}, process.env.SECRET);
+		const token = jwt.sign({ sub: user._id }, process.env.SECRET);
 		return {
 			userWithoutHash,
 			token,
@@ -67,9 +67,9 @@ async function getById(id) {
 //AQUI ESTA EL ERROR
 async function create(userParam) {
 	//Validación -> username, email, password
-	if (await User.findOne({name: userParam.name})) {
+	if (await User.findOne({ name: userParam.name })) {
 		console.log('El nombre de usuario "' + userParam.name + '" está cogido');
-		throw "ADrian hola";
+		throw "Usuario no disponible";
 	}
 
 	if (userParam.password) {
@@ -77,7 +77,24 @@ async function create(userParam) {
 	}
 
 	const user = new User(userParam);
-	await user.save();
+	await user.save().then(() => {
+		const mailOptions = {
+			from: "empep.business@gmail.com",
+			to: userParam.mail,
+			subject: "Confirmación de registro",
+			text: "Perfecto, tu usuario se ha registrado con éxito!",
+		};
+
+		transporter.sendMail(mailOptions, function (error, info) {
+			if (error) {
+				console.log(error);
+			} else {
+				console.log("Email enviado: " + info.response);
+				const resp = true;
+				return resp;
+			}
+		});
+	});
 }
 
 async function update(id, userParam) {
@@ -104,5 +121,5 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-	await User.deleteOne({email: id});
+	await User.deleteOne({ email: id });
 }
