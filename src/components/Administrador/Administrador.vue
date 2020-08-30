@@ -22,7 +22,7 @@
 									></b-form-input>
 									<b-form-input
 										name="mail"
-										v-model="users.newUser.mail"
+										v-model="users.newUser.email"
 										placeholder="Mail"
 										class="form-control"
 									></b-form-input>
@@ -32,12 +32,12 @@
 										placeholder="Contraseña"
 										class="form-control"
 									></b-form-input>
-									<b-form-input
+									<!-- <b-form-input
 										name="grade"
 										v-model="users.newUser.grado"
 										placeholder="Grado"
 										class="form-control"
-									></b-form-input>
+									></b-form-input> -->
 								</b-form-group>
 
 								<b-button type="submit" variant="primary"> Añadir </b-button>
@@ -55,7 +55,6 @@
 										class="form-control"
 									></b-form-input>
 								</b-form-group>
-
 								<b-button type="submit" variant="primary"> Eliminar </b-button>
 								<b-button type="reset" variant="danger"> Limpiar </b-button>
 							</b-form>
@@ -65,7 +64,6 @@
 			</b-card>
 			<b-card no-body class="fondo">
 				<b-card-header header-tag="header" class="fondo">
-					{{ createOptionsGrades }}
 					<b-button block v-b-toggle.accordion-2 class="boton2">
 						AÑADIR O ELIMINAR GRADO/ASIGNATURA/EXAMEN
 					</b-button>
@@ -105,9 +103,9 @@
 								<b-form @submit.prevent="delGrado" @reset.prevent="onReset(4)">
 									<b-form-group label="Eliminar grado:">
 										<b-form-input
-											name="nombre"
-											v-model="grados.oldGrado.nombre"
-											placeholder="Nombre"
+											name="gradoDelete"
+											v-model="grados.oldGrado.idGrade"
+											placeholder="Id del grado"
 											class="form-control"
 										></b-form-input>
 									</b-form-group>
@@ -171,71 +169,9 @@
 								<b-form @submit.prevent="delAsign" @reset.prevent="onReset(6)">
 									<b-form-group label="Eliminar asignatura:">
 										<b-form-input
-											name="nombre"
-											v-model="asigns.oldAsign.nombre"
-											placeholder="Nombre"
-											class="form-control"
-										></b-form-input>
-									</b-form-group>
-
-									<b-button type="submit" variant="primary"> Eliminar </b-button>
-									<b-button type="reset" variant="danger"> Limpiar </b-button>
-								</b-form>
-							</b-container>
-							<br />
-							<b-container class="borde">
-								<b-form @submit.prevent="addExam" @reset.prevent="onReset(7)">
-									<b-form-group label="Añadir examen:">
-										<b-form-input
-											name="nombre"
-											v-model="exams.newExam.nombre"
-											placeholder="Nombre"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="asignatura"
-											v-model="exams.newExam.asign"
-											placeholder="Asignatura"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="fecha"
-											v-model="exams.newExam.fecha"
-											placeholder="Fecha"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="hora"
-											v-model="exams.newExam.hora"
-											placeholder="Hora"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="convocatoria"
-											v-model="exams.newExam.convocatoria"
-											placeholder="Convocatoria"
-											class="form-control"
-										></b-form-input>
-									</b-form-group>
-
-									<b-button type="submit" variant="primary"> Añadir </b-button>
-									<b-button type="reset" variant="danger"> Limpiar </b-button>
-								</b-form>
-							</b-container>
-							<br />
-							<b-container class="borde">
-								<b-form @submit.prevent="delExam" @reset.prevent="onReset(8)">
-									<b-form-group label="Eliminar examen:">
-										<b-form-input
-											name="nombre"
-											v-model="exams.oldExam.nombre"
-											placeholder="Nombre"
-											class="form-control"
-										></b-form-input>
-										<b-form-input
-											name="fecha"
-											v-model="exams.oldExam.fecha"
-											placeholder="Fecha"
+											name="subject"
+											v-model="asigns.oldAsign.idSubject"
+											placeholder="Id Subject"
 											class="form-control"
 										></b-form-input>
 									</b-form-group>
@@ -289,7 +225,7 @@ export default {
 			users: {
 				newUser: {
 					name: "",
-					mail: "",
+					email: "",
 					password: "",
 					grado: "",
 				},
@@ -304,21 +240,25 @@ export default {
 					numCurso: "",
 				},
 				oldGrado: {
-					nombre: "",
+					idGrade: "",
 				},
 			},
 			asigns: {
 				newAsign: {
 					year: null,
-					options_grades: [{
-						value: null,
-						text: "Escoja un grado",
-					}],
+					options_grades: [
+						{
+							value: null,
+							text: "Escoja un grado",
+						},
+					],
 					idGrade: null,
-					options_course: [{
-						value: null,
-						text: "Escoja un curso"
-					}],
+					options_course: [
+						{
+							value: null,
+							text: "Escoja un curso",
+						},
+					],
 					courseSelected: null,
 					idSubject: "",
 					name: "",
@@ -326,23 +266,7 @@ export default {
 					dateaux: "",
 				},
 				oldAsign: {
-					nombre: "", // Id subject
-				},
-				exams: {
-					newExam: {
-						nombre: "",
-						asign: "",
-						fecha: "",
-						hora: "",
-						convocatoria: "",
-					},
-					oldExam: {
-						nombre: "",
-						fecha: "",
-					},
-				},
-				foro: {
-					msg: null,
+					idSubject: "",
 				},
 			};
 		},
@@ -362,23 +286,34 @@ export default {
 	computed: {
 		...mapState(["calendar"]),
 		createOptionsGrades() {
+			this.asigns.newAsign.options_grades = [{text: "Escoja un grado", value: null}];
 			this.calendar.grades.map((item) => {
 				const jsonAux = {
 					value: item.idGrade,
 					text: item.name,
 				};
+
 				this.asigns.newAsign.options_grades.push(jsonAux);
 			});
-		}
+		},
 	},
 	methods: {
-		...mapActions("admin", ["addGrados", "addAsigns", "addExams"]),
+		...mapActions("admin", [
+			"addGrados",
+			"addAsigns",
+			"delGrados",
+			"addUsers",
+			"delAsigns",
+			"delUsers",
+		]),
 		...mapActions("calendar", ["getGrados"]),
 		createOptionsCourses() {
 			this.showCourses = true;
 			this.asigns.newAsign.options_course = [{text: "Escoja un grado", value: null}];
-			this.asigns.newAsign.numCurso = this.calendar.grades.find((item) => item.idGrade === this.asigns.newAsign.idGrade).numCurso;
-			for(var i = 1; i <= this.asigns.newAsign.numCurso; i++ ) {
+			this.asigns.newAsign.numCurso = this.calendar.grades.find(
+				(item) => item.idGrade === this.asigns.newAsign.idGrade
+			).numCurso;
+			for (var i = 1; i <= this.asigns.newAsign.numCurso; i++) {
 				const jsonAux = {
 					value: i,
 					text: i,
@@ -386,29 +321,25 @@ export default {
 				this.asigns.newAsign.options_course.push(jsonAux);
 			}
 		},
+		addUser(evt) {
+			evt.preventDefault();
+
+			this.addUsers(this.users.newUser);
+		},
+		delUser(evt) {
+			evt.preventDefault();
+
+			this.delUsers(this.users.oldUser.mail);
+		},
 		addGrado(evt) {
 			evt.preventDefault();
 
-			const grades = this.addGrados(this.grados.newGrado);
+			this.addGrados(this.grados.newGrado);
 		},
 		delGrado(evt) {
 			evt.preventDefault();
-			console.log("eliminar a " + this.grados.oldGrado.nombre);
 
-				this.delGrados(this.grados.oldGrado);
-			},
-			addAsign(evt) {
-				evt.preventDefault();
-				console.log(
-					"añadir " +
-						this.asigns.newAsign.nombre +
-						" grado " +
-						this.asigns.newAsign.grado +
-						" curso " +
-						this.asigns.newAsign.curso,
-				);
-
-			this.delGrados(this.grados.oldGrado);
+			this.delGrados(this.grados.oldGrado.idGrade);
 		},
 		addAsign(evt) {
 			evt.preventDefault();
@@ -423,72 +354,12 @@ export default {
 		},
 		delAsign(evt) {
 			evt.preventDefault();
-			console.log("eliminar a " + this.asigns.oldAsign.nombre);
 
-				this.addExams(this.exams.newExam);
-			},
-			delExam(evt) {
-				evt.preventDefault();
-				console.log(
-					"eliminar a " + this.exams.oldExam.nombre + " de " + this.exams.oldExam.fecha,
-				);
-
-				this.delExams(this.exams.oldExam);
-			},
-			delMsg(evt) {
-				evt.preventDefault();
-				console.log("eliminar el mensaje " + this.foro.msg);
-			},
-			onReset(num_form) {
-				switch (num_form) {
-					case 1:
-						this.users.newUser.name = "";
-						this.users.newUser.password = "";
-						this.users.newUser.mail = "";
-						this.users.newUser.grado = "";
-						break;
-					case 2:
-						this.users.oldUser.mail = "";
-						break;
-					case 3:
-						this.grados.newGrado.grado = "";
-						this.grados.newGrado.nombre = "";
-						this.grados.newGrado.curso.selected = null;
-						break;
-					case 4:
-						this.grados.oldGrado.nombre = "";
-						break;
-					case 5:
-						this.asigns.newAsign.grado = "";
-						this.asigns.newAsign.nombre = "";
-						this.asigns.newAsign.curso = "";
-						break;
-					case 6:
-						this.asigns.oldAsign.nombre = "";
-						break;
-					case 7:
-						this.exams.newExam.nombre = "";
-						this.exams.newExam.asign = "";
-						this.exams.newExam.fecha = "";
-						this.exams.newExam.hora = "";
-						this.exams.newExam.convocatoria = "";
-						break;
-					case 8:
-						this.exams.oldExam.nombre = "";
-						this.exams.oldExam.fecha = "";
-						break;
-					case 9:
-						this.foro.msg = null;
-						break;
-
-					default:
-						break;
-				}
-			},
-			pushDate() {
-				this.asigns.newAsign.date.push(this.asigns.newAsign.date_aux);
-				this.asigns.newAsign.date_aux = "";
-			},
+			this.delAsigns(this.asigns.oldAsign.idSubject);
+		},
+		delMsg(evt) {
+			evt.preventDefault();
+			console.log("eliminar el mensaje " + this.foro.msg);
 		},
 		onReset(num_form) {
 			switch (num_form) {
