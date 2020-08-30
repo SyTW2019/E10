@@ -3,3 +3,4 @@
 
 export * from "./user_service";
 export * from "./calendar_service";
+export * from "./admin_service";

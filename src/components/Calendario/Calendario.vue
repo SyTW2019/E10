@@ -2,6 +2,7 @@
 	<b-container>
 		<b-row class="justify-content-around">
 			<h2>Calendario</h2>
+			{{ getCalendar }}
 		</b-row>
 		<!-- Formulario de obtencion de grado + curso -->
 		<b-row class="justify-content-around" :method="handleGrados()" v-if="show1">

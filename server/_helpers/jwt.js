@@ -14,11 +14,9 @@ function jwt() {
 	}).unless({
 		path: [
 			//Rutas publicas a las que se puede acceder sin necesidad de un jwt
-			"/registro",
-			"/",
-			"/iniciosesion",
-			"/contacto",
-			"/grado",
+			"/api/registro",
+			"/api/iniciosesion",
+			"/api/contacto",
 		],
 	});
 }

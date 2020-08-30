@@ -12,6 +12,7 @@ const errorHandler = require("./_helpers/error-handler");
 // Controllers
 const userController = require("./users/user-control");
 const gradeController = require("./grades/grades-control");
+const subjectController = require("./subjects/subject-control");
 
 // .env
 const env = require("node-env-file");
@@ -29,15 +30,7 @@ app.use(jwt());
 app.use(errorHandler);
 
 // Router
-// app.use("/registro", userController);
-app.use("/", userController, gradeController);
-// app.use("/)
-// app.use("/iniciosesion", userController);
-// app.use("/contacto", userController);
-
-//REVISAR ESTO
-// app.use("/grados", gradeController);
-// app.use("/centigrados", gradeController);
+app.use("/api", userController, gradeController, subjectController);
 
 // Inicio del servidor
 app.listen(process.env.PORT, function () {

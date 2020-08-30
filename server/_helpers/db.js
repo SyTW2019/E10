@@ -11,4 +11,5 @@ mongoose
 module.exports = {
 	User: require("../users/user-model"),
 	Grade: require("../grades/grades-model"),
+	Subject: require("../subjects/subject-model"),
 };
