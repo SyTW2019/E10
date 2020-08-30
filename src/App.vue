@@ -68,44 +68,74 @@
 			<mdb-footer color="indigo" class="font-small pt-0" id="futer">
 				<mdb-container>
 					<mdb-row class="pt-5 mb-3 text-center d-flex justify-content-center">
-						<mdb-col md="2" class="b-3">
+						<mdb-col md="2" class="b-3 centrar">
 							<h6 class="title font-weight-bold">
 								<a>
 									<router-link to="/aboutus"> Sobre nosotros </router-link>
 								</a>
 							</h6>
 						</mdb-col>
-						<mdb-col md="2" class="b-3">
+						<mdb-col md="2" class="b-3 centrar">
 							<h6 class="title font-weight-bold">
 								<a>
 									<router-link to="/ayuda"> Ayuda </router-link>
 								</a>
 							</h6>
 						</mdb-col>
-						<mdb-col md="2" class="b-3">
+						<mdb-col md="2" class="b-3 centrar">
 							<h6 class="title font-weight-bold">
 								<a>
 									<router-link to="/contacto"> Contacto </router-link>
 								</a>
 							</h6>
 						</mdb-col>
-						<mdb-col md="2" class="b-3">
+						<mdb-col md="3" class="b-3 centrar">
 							<div class="share">
-								<a href="#" target="_blank">
-									<img src="/assets/icons/twitter.png" alt="twitter" />
-								</a>
-								<a href="#" target="_blank">
+								<a href="https://twitter.com/?lang=es" target="_blank" class="link">
 									<img
-										src="src/assets/icons/linkedin.png"
-										alt="linkedin"
-										width="25px"
+										src="./assets/icons/twitter.png"
+										alt="twitter"
+										class="responsive"
 									/>
 								</a>
-								<a href="#" target="_blank">
-									<img src="assets/icons/github.png" alt="github" />
+								<a href="https://es.linkedin.com/" target="_blank" class="link">
+									<img
+										src="./assets/icons/linkedin.png"
+										alt="linkedin"
+										class="responsive"
+									/>
 								</a>
-								<a href="#" target="_blank">
-									<img src="assets/icons/mail.png" alt="mail" />
+								<a href="https://mail.google.com/" target="_blank" class="link">
+									<img
+										src="./assets/icons/mail.png"
+										alt="mail"
+										class="responsive"
+									/>
+								</a>
+								<a
+									href="https://www.whatsapp.com/?lang=es"
+									target="_blank"
+									class="link"
+								>
+									<img
+										src="./assets/icons/whatsapp.png"
+										alt="mail"
+										class="responsive"
+									/>
+								</a>
+								<a href="https://es-es.facebook.com/" target="_blank" class="link">
+									<img
+										src="./assets/icons/facebook.png"
+										alt="mail"
+										class="responsive"
+									/>
+								</a>
+								<a href="https://web.telegram.org/#/" target="_blank" class="link">
+									<img
+										src="./assets/icons/telegram.png"
+										alt="mail"
+										class="responsive"
+									/>
 								</a>
 							</div>
 						</mdb-col>
@@ -223,6 +253,23 @@
 	}
 	.share {
 		display: flex;
-		flex-direction: row;
+		align-content: space-around;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.borde {
+		border: 2px solid black;
+	}
+	.link {
+		margin: 5%;
+	}
+	.centrar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.responsive {
+		width: 200%;
+		height: auto;
 	}
 </style>
