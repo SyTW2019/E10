@@ -13,6 +13,7 @@ export const userService = {
 	getAll,
 	getById,
 	update,
+	addCalendar,
 	delete: _delete,
 };
 
@@ -58,8 +59,6 @@ function logout() {
 }
 
 function register(user) {
-	console.log(user);
-
 	const requestOptions = {
 		method: "POST",
 		headers: {
@@ -100,6 +99,21 @@ function update(user) {
 	};
 
 	return fetch(`http://localhost:3000/api/${user.id}`, requestOptions).then(handleResponse);
+}
+
+function addCalendar(param) {
+	console.log(param);
+	const requestOptions = {
+		method: "PUT",
+		headers: {
+			...authHeader(),
+			"Content-type": "application/json"
+		},
+		body: JSON.stringify(param)
+	};
+
+	return fetch(`http://localhost:3000/api/addCalendar/${param.userWithoutHash._id}`, requestOptions)
+		.then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript

@@ -8,18 +8,16 @@ const gradeSchema = new Schema({
 	courses: [
 		{
 			idCurso: {type: Number, required: true},
-			subject: [
-				{
-					idSubject: {type: String, unique: true, required: true},
-					year: {type: Number, required: true},
-					name: {type: String, required: true},
-					date: [
-						{
-							type: String,
-						},
-					],
-				},
-			],
+			subject: {
+				idSubject: {type: String, unique: true, required: true},
+				year: {type: Number, required: true},
+				name: {type: String, required: true},
+				date: [
+					{
+						type: String,
+					},
+				],
+			},
 		},
 	],
 	// courses: [{

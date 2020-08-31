@@ -11,6 +11,7 @@ module.exports = {
 	getById,
 	create,
 	update,
+	addCalendar,
 	delete: _delete,
 };
 
@@ -119,6 +120,19 @@ async function update(id, userParam) {
 
 	Object.assign(user, userParam);
 
+	await user.save();
+}
+
+async function addCalendar(param) {
+	const userNew = param.userWithoutHash;
+	const user = await User.findById(param.userWithoutHash._id);
+
+	if(!user) {
+		throw "Usuario no encontrado"
+	}
+
+	console.log(userNew, user);
+	Object.assign(user.calendar, userNew.calendar);
 	await user.save();
 }
 

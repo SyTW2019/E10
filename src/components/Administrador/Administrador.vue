@@ -220,8 +220,8 @@
 </template>
 
 <script>
-import {router} from "../../helpers/router";
-import {mapState, mapActions} from "vuex";
+import { router } from "../../helpers/router";
+import { mapState, mapActions } from "vuex";
 export default {
 	name: "Administrador",
 	data() {
@@ -299,7 +299,7 @@ export default {
 	computed: {
 		...mapState(["calendar"]),
 		createOptionsGrades() {
-			this.asigns.newAsign.options_grades = [{text: "Escoja un grado", value: null}];
+			this.asigns.newAsign.options_grades = [{ text: "Escoja un grado", value: null }];
 			this.calendar.grades.map((item) => {
 				const jsonAux = {
 					value: item.idGrade,
@@ -321,7 +321,7 @@ export default {
 		...mapActions("calendar", ["getGrados"]),
 		createOptionsCourses() {
 			this.showCourses = true;
-			this.asigns.newAsign.options_course = [{text: "Escoja un grado", value: null}];
+			this.asigns.newAsign.options_course = [{ text: "Escoja un grado", value: null }];
 			this.asigns.newAsign.numCurso = this.calendar.grades.find(
 				(item) => item.idGrade === this.asigns.newAsign.idGrade
 			).numCurso;

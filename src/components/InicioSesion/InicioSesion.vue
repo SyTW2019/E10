@@ -48,9 +48,6 @@
 						<b-button type="reset" variant="danger"> Limpiar </b-button>
 						<router-link to="/" class="btn btn-link"> Cancelar </router-link>
 					</b-form>
-					<b-card class="mt-3" header="Resultado formulario de inicio de sesión">
-						<pre class="m-0">{{ user }}</pre>
-					</b-card>
 				</b-col>
 			</b-row>
 			<b-button to="/registro" size="lg" class="boton">Registro</b-button>

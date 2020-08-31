@@ -9,6 +9,7 @@ router.get("/getAllById", getAll);
 router.get("/current", getCurrent);
 router.get("/getUserById/:id", getById);
 router.put("/putUserById/:id", update);
+router.put("/addCalendar/:id", addCalendar)
 router.delete("/deleteUserById/:id", _delete);
 
 function contact(req, res, next) {
@@ -18,6 +19,12 @@ function contact(req, res, next) {
 		.catch((err) => next(err));
 }
 
+function addCalendar(req, res, next) {
+	userService
+		.addCalendar(req.body)
+		.then(() => res.json())
+		.catch((err) => next(err));
+}
 function authenticate(req, res, next) {
 	userService
 		.authenticate(req.body)

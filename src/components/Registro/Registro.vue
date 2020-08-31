@@ -110,9 +110,6 @@
 							<router-link to="/" class="btn btn-link"> Cancelar </router-link>
 						</b-form-group>
 					</b-form>
-					<b-card class="mt-3" header="Resultado formulario de registro">
-						<pre class="m-0">{{ user }}</pre>
-					</b-card>
 				</b-col>
 			</b-row>
 			<b-button to="/iniciosesion" size="lg" class="boton">Inicio sesión</b-button>
