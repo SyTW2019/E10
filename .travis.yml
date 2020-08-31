@@ -4,8 +4,7 @@ node_js:
 - stable
 
 notifications:
-  slack:
-    if: branch = master
+  slack: sytw:xbLYeJ93mpOR1m6IsQ5VxKVW
 
 cache:
   directories:
