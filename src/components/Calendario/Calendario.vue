@@ -197,22 +197,6 @@
 					this.grado.options_grado.push(jsonAux);
 				});
 			},
-			show1: false,
-			show2: false,
-			show3: false,
-			show4: false,
-			submitted_form_grado: false,
-			submitted_form_asignaturas: false,
-			submitted_form_examenes: false,
-		};
-	},
-	computed: {
-		...mapState(["calendar"]),
-
-		getCalendar() {
-			this.calendar.grades.map((item) => {
-				this.datos_calendar.push(item);
-			});
 		},
 		methods: {
 			...mapActions("calendar", ["getGrados"]),
@@ -233,7 +217,7 @@
 				}
 			},
 			createdOptionsAsignaturas() {
-				this.gradit = this.calendar.grades.find((item) =>
+				this.gradit = this.calendar.grades.find((item) => 
 					item.idGrade === this.grado.selected_grado);
 
 				this.gradit.courses.map((item1) => {
@@ -265,10 +249,10 @@
 								}
 								this.examenes.options_examenes.push(auxJson);
 							})
-						}
+						} 
 					})
 				});
-
+				
 				this.showExams = true;
 			},
 			createCalendario() {
@@ -285,7 +269,7 @@
 						name: item.name,
 						fechas: item.date,
 					}
-
+					
 					this.calendario.asignaturas.push(auxJson);
 				})
 				this.setCalendar(this.calendario);
@@ -335,50 +319,42 @@
 					this.show = true;
 				});
 			},
-			handleAsigns() {},
-			handleExams() {},
 		},
 		beforeMount() {
 			this.getGrados();
 		},
-		handleAsigns() {},
-		handleExams() {},
-	},
-	beforeMount() {
-		this.getGrados();
-	},
-};
+	};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.calendario {
-	border: 3px solid #5c068b;
-	border-radius: 8px 8px 8px 8px;
-	-moz-border-radius: 8px 8px 8px 8px;
-	-webkit-border-radius: 8px 8px 8px 8px;
+	.calendario {
+		border: 3px solid #5c068b;
+		border-radius: 8px 8px 8px 8px;
+		-moz-border-radius: 8px 8px 8px 8px;
+		-webkit-border-radius: 8px 8px 8px 8px;
 
-	background-color: rgb(92, 6, 139, 0.1);
+		background-color: rgb(92, 6, 139, 0.1);
 
-	padding-bottom: 15px;
-	padding-top: 15px;
-}
+		padding-bottom: 15px;
+		padding-top: 15px;
+	}
 
-.vista_curso {
-	display: inline-block;
-}
+	.vista_curso {
+		display: inline-block;
+	}
 
-.vista_exam {
-	max-width: 500px;
-	display: block;
-	margin: auto;
-}
+	.vista_exam {
+		max-width: 500px;
+		display: block;
+		margin: auto;
+	}
 
-.zero {
-	padding: 0px;
-}
+	.zero {
+		padding: 0px;
+	}
 
-#password-help-block {
-	color: black;
-}
+	#password-help-block {
+		color: black;
+	}
 </style>

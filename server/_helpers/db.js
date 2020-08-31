@@ -4,8 +4,8 @@ env("./.env");
 
 mongoose.Promise = global.Promise;
 mongoose
-	.connect(process.env.DB_CONNECTION, {useNewUrlParser: true})
-	.then(() => console.log("DB connected " + process.env.DB_CONNECTION))
+	.connect(process.env.DB_CONNECTION_DEV, {useNewUrlParser: true})
+	.then(() => console.log("DB connected " + process.env.DB_CONNECTION_DEV))
 	.catch((err) => console.error(err));
 
 module.exports = {

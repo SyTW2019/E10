@@ -8,23 +8,19 @@
 					<!-- src="https://placekitten.com/500/500" -->
 					<b-avatar variant="info" size="12rem" class="border border-dark"></b-avatar>
 				</b-col>
-				<b-col md="7" class="datosperfil">
+				<b-col md="7" class="datosperfil" :method="doPerfil()">
 					<div class="casilla">
 						<div class="campo">
 							<p>Nombre de usuario:</p>
 							<p>Correo electrónico:</p>
-							<p>Grado:</p>
 							<p>Universidad:</p>
 						</div>
 						<div class="datos">
 							<p>
-								<strong> {{ perfil.username }} </strong>
+								<strong> {{ perfil.name }} </strong>
 							</p>
 							<p>
 								<strong> {{ perfil.mail }} </strong>
-							</p>
-							<p>
-								<strong> {{ perfil.grado }} </strong>
 							</p>
 							<p>
 								<strong>{{ perfil.universidad }} </strong>
@@ -34,18 +30,21 @@
 				</b-col>
 			</b-row>
 			<br />
-			<!-- :method="doCalendar()" v-if="showCalendar" -->
-			<b-row class="perfil mb-2">
-				<b-container>
+			<b-row class="perfil mb-2" :method="doCalendar()">
+				<b-container v-if="showCalendar">
 					<h4>Calendario personal</h4>
 					<b-row cols="1" class="justify-content-around">
 						<b-col md="10">
 							<p>
-								Fechas de examenes de <strong>{{ calendario.nameGrado }}</strong>
+								Fechas de examenes
 							</p>
 						</b-col>
 						<b-col class="calendario" md="10">
 							<b-table striped hover :items="calendario.asignaturas"></b-table>
+						</b-col>
+						<b-col md="10" class="mt-2">
+							<b-button variant="primary" :click="limpiarCalendario()"> Limpiar el calendario
+							</b-button>
 						</b-col>
 					</b-row>
 				</b-container>
@@ -67,19 +66,14 @@ export default {
 	data() {
 		return {
 			perfil: {
-				username: "G",
-				mail: "A",
-				grado: "T",
-				universidad: "O",
+				username: "",
+				mail: "",
+				grado: "",
+				universidad: "",
 			},
 			calendario: {
-				nameGrado: "ey chavales",
-				asignaturas: [
-					{
-						nombre: "caca",
-						fecha: "caca/culo/pedo",
-					},
-				],
+				nameGrado: "",
+				asignaturas: [],
 			},
 			aportaciones: {},
 			showCalendar: false,
@@ -89,19 +83,30 @@ export default {
 		...mapState(["account"]),
 	},
 	methods: {
+		...mapActions("account", ["clearCalendar"]),
 		doCalendar() {
 			this.calendario.nameGrado = this.account.user.userWithoutHash.calendar.name;
 
-			this.account.user.userWithoutHash.calendar.subjects.map((item) => {
-				const aux = {
-					nombre: item.name,
-					fecha: item.date,
-				};
+			this.account.user.userWithoutHash.calendar.map((item) => {
+				if (!this.calendario.asignaturas.find((aux) => aux.nombre === item.name)) {
+					const aux = {
+						nombre: item.name,
+						fecha: item.date,
+					};
 
-				this.calendario.asignaturas.push(aux);
+					this.calendario.asignaturas.push(aux);
+				}
 			});
 
 			this.showCalendar = true;
+		},
+		doPerfil() {
+			this.perfil.name = this.account.user.userWithoutHash.name;
+			this.perfil.mail = this.account.user.userWithoutHash.email;
+			this.perfil.universidad = this.account.user.userWithoutHash.universidad;
+		},
+		limpiarCalendario() {
+			// this.clearCalendar();
 		},
 	},
 };

@@ -34,16 +34,6 @@
 								placeholder="Introduce tu contraseña"
 							></b-form-input>
 						</b-form-group>
-
-						<b-form-group id="input-group-login-3">
-							<b-form-checkbox-group
-								v-model="user.rememberme"
-								id="checkboxes-login-3"
-							>
-								<b-form-checkbox value="remind_me">Recordarme</b-form-checkbox>
-							</b-form-checkbox-group>
-						</b-form-group>
-
 						<b-button type="submit" variant="primary"> Enviar </b-button>
 						<b-button type="reset" variant="danger"> Limpiar </b-button>
 						<router-link to="/" class="btn btn-link"> Cancelar </router-link>

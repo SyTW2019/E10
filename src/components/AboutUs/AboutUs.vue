@@ -193,7 +193,7 @@ export default {
 				pablo: {
 					iniciales: "PG",
 					nombre: "Pablo González González",
-					bio: "blabla",
+					bio: "Estudiante y desarrollador del backend de este sitio web. Especialista en NodeJs, Express y MongoDB. No es broma.",
 					title: "Grado de Ingeniería Informática, Universidad de la Laguna",
 					links: {
 						twitter:
@@ -209,7 +209,8 @@ export default {
 				brito: {
 					iniciales: "EB",
 					nombre: "Eduardo Ernesto Brito Sánchez",
-					bio: "blabla",
+					bio: "Estudiante y devops de este sitio web. Espcialista en Jest, TravisCI, SonarQube.",
+					title: "Grado de Ingeniería Informática, Universidad de la Laguna",
 					links: {
 						twitter:
 							"https://www.actualidadmascotas.com/wp-content/uploads/2014/11/cat-sleeping-660x330.jpg",
