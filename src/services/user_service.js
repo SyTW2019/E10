@@ -14,17 +14,18 @@ export const userService = {
 	getById,
 	update,
 	addCalendar,
+	deleteCalendar,
 	delete: _delete,
 };
 
-function login(username, password) {
+function login(email, password) {
 	const requestOptions = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			username,
+			email,
 			password,
 		}),
 	};
@@ -102,7 +103,6 @@ function update(user) {
 }
 
 function addCalendar(param) {
-	console.log(param);
 	const requestOptions = {
 		method: "PUT",
 		headers: {
@@ -113,6 +113,20 @@ function addCalendar(param) {
 	};
 
 	return fetch(`http://localhost:3000/api/addCalendar/${param.userWithoutHash._id}`, requestOptions)
+		.then(handleResponse);
+}
+
+function deleteCalendar(param) {
+	const requestOptions = {
+		method: "PUT",
+		headers: {
+			...authHeader(),
+			"Content-type": "application/json"
+		},
+		body: JSON.stringify(param)
+	};
+
+	return fetch(`http://localhost:3000/api/deleteCalendar/${param.userWithoutHash._id}`, requestOptions)
 		.then(handleResponse);
 }
 

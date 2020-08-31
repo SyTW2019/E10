@@ -31,7 +31,7 @@
 			</b-row>
 			<br />
 			<b-row class="perfil mb-2" :method="doCalendar()">
-				<b-container v-if="showCalendar">
+				<b-container>
 					<h4>Calendario personal</h4>
 					<b-row cols="1" class="justify-content-around">
 						<b-col md="10">
@@ -39,11 +39,11 @@
 								Fechas de examenes
 							</p>
 						</b-col>
-						<b-col class="calendario" md="10">
+						<b-col class="calendario" md="10" v-show="showCalendar">
 							<b-table striped hover :items="calendario.asignaturas"></b-table>
 						</b-col>
 						<b-col md="10" class="mt-2">
-							<b-button variant="primary" :click="limpiarCalendario()"> Limpiar el calendario
+							<b-button variant="primary" @click="limpiarCalendario"> Limpiar el calendario
 							</b-button>
 						</b-col>
 					</b-row>
@@ -66,7 +66,7 @@ export default {
 	data() {
 		return {
 			perfil: {
-				username: "",
+				name: "",
 				mail: "",
 				grado: "",
 				universidad: "",
@@ -106,7 +106,10 @@ export default {
 			this.perfil.universidad = this.account.user.userWithoutHash.universidad;
 		},
 		limpiarCalendario() {
-			// this.clearCalendar();
+			this.clearCalendar();
+			this.calendario.asignaturas = [];
+			
+			this.showCalendar = false;
 		},
 	},
 };

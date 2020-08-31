@@ -12,6 +12,7 @@ module.exports = {
 	create,
 	update,
 	addCalendar,
+	deleteCalendar,
 	delete: _delete,
 };
 
@@ -42,9 +43,10 @@ async function contact({ mail, name, issue, msg }) {
 	});
 }
 
-async function authenticate({ username, password }) {
+async function authenticate({ email, password }) {
+	console.log(email);
 	const user = await User.findOne({
-		name: `${username}`,
+		email: `${email}`,
 	});
 	if (user && bcrypt.compareSync(password, user.hash)) {
 		const userWithoutHash = user.toObject();
@@ -106,12 +108,12 @@ async function update(id, userParam) {
 	// Validación
 	if (!user) throw "Usuario no encontrado";
 	if (
-		user.username !== userParam.username &&
+		user.name !== userParam.name &&
 		(await User.findOne({
-			username: userParam.username,
+			name: userParam.name,
 		}))
 	) {
-		throw 'El usuario "' + userParam.username + '" está cogido';
+		throw 'El usuario "' + userParam.name + '" está cogido';
 	}
 
 	if (userParam.password) {
@@ -131,8 +133,21 @@ async function addCalendar(param) {
 		throw "Usuario no encontrado"
 	}
 
-	console.log(userNew, user);
 	Object.assign(user.calendar, userNew.calendar);
+	await user.save();
+}
+
+async function deleteCalendar(param) {
+	const user = await User.findById(param.userWithoutHash._id);
+
+	if(!user) {
+		throw "Usuario no encontrado"
+	}
+
+	await User.update({_id: param.userWithoutHash._id}, { $unset: {calendar: 1}});
+	const calendar = [];
+
+	Object.assign(user, calendar);
 	await user.save();
 }
 

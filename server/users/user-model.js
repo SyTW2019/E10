@@ -10,7 +10,7 @@ const userSchema = new Schema({
 	isAdmin: {type: Boolean, required: true},
 	password: {type: String, required: true},
 	name: {type: String, required: true},
-	hash: {type: String, required: true},
+	hash: {type: String},
 	universidad: {type: String, required: true},
 	calendar: [
 		{

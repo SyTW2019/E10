@@ -12,9 +12,9 @@
 							label-for="input-nombre-log"
 						>
 							<b-form-input
-								name="name"
+								name="email"
 								id="input-nombre-log"
-								v-model="user.username"
+								v-model="user.email"
 								required
 								placeholder="Introduce tu email aquí"
 								class="form-control"
@@ -53,7 +53,7 @@ export default {
 	data() {
 		return {
 			user: {
-				username: "",
+				email: "",
 				password: "",
 				rememberme: null,
 			},
@@ -70,14 +70,14 @@ export default {
 	methods: {
 		...mapActions("account", ["login", "logout"]),
 		handleSubmit(e) {
-			const username = this.user.username;
+			const email = this.user.email;
 			const password = this.user.password;
-			this.login({username, password});
+			this.login({email, password});
 		},
 		onReset(evt) {
 			evt.preventDefault();
 			// Reset our form values
-			this.form.username = "";
+			this.form.name = "";
 			this.form.password = "";
 			this.form.checked = null;
 			// Trick to reset/clear native browser form validation state

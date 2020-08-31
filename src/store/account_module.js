@@ -12,10 +12,10 @@ const user = JSON.parse(localStorage.getItem("user"));
 const state = user ? {status: {loggedIn: true}, user} : {status: {}, user: null};
 
 const actions = {
-	login({dispatch, commit}, {username, password}) {
-		commit("loginRequest", {username});
+	login({dispatch, commit}, {email, password}) {
+		commit("loginRequest", {email});
 
-		userService.login(username, password).then(
+		userService.login(email, password).then(
 			(user) => {
 				commit("loginSuccess", user);
 				router.push("/perfil");
@@ -67,8 +67,12 @@ const actions = {
 
 		userService.addCalendar(user);
 		alert("Se ha creado un calendario.");
-		// router.push("/perfil");
-	}
+		router.push("/perfil");
+	},
+	clearCalendar({dispatch, commit}){
+		userService.deleteCalendar(user);
+		commit("clearCalendar", user); 
+	}	
 };
 
 const mutations = {
@@ -99,6 +103,9 @@ const mutations = {
 	},
 	addFecha(state, param) {
 		state.user.userWithoutHash.calendar.push(param);
+	},
+	clearCalendar(state, user){
+		state.user.userWithoutHash.calendar = [];
 	}
 };
 
