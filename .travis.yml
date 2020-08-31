@@ -3,6 +3,10 @@ language: node_js
 node_js:
 - stable
 
+notifications:
+  slack:
+    if: branch = master
+
 cache:
   directories:
     - "node_modules"
