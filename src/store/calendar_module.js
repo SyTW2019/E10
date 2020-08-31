@@ -19,14 +19,10 @@ const mutations = {
 	getGradesSuccess(state, grados) {
 		grados.map((item) => {
 			if (!state.grades.find((aux) => aux.idGrade === item.idGrade)) {
-				console.log("hola");
 				state.grades.push(item);
 			}
 		});
-
-		state.grades.map((aux) => {
-			console.log(aux);
-		});
+		
 		state.idGrade = null;
 	},
 };

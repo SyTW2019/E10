@@ -16,7 +16,7 @@ export const store = new Vuex.Store({
 		alert,
 		account,
 		calendar,
-		users,
+		// users,
 		admin,
 	},
 	strict: true,
