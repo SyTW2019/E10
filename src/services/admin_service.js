@@ -61,7 +61,7 @@ async function delUsers(JSONdata) {
 		method: "DELETE",
 		headers: authHeader(),
 	};
-	return fetch(`http://localhost:3000/api/deleteUserById/${JSONdata}`, requestOptions)
+	return fetch(`http://localhost:3000api/deleteUserById/${JSONdata}`, requestOptions)
 		.then(() => {
 			handleResponse;
 		})

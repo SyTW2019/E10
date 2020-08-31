@@ -99,6 +99,7 @@ export default {
 				};
 				this.contact(JSONmsg);
 			}
+			console.log(this);
 		},
 		onReset(evt) {
 			evt.preventDefault();
