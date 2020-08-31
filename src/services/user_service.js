@@ -107,13 +107,15 @@ function addCalendar(param) {
 		method: "PUT",
 		headers: {
 			...authHeader(),
-			"Content-type": "application/json"
+			"Content-type": "application/json",
 		},
-		body: JSON.stringify(param)
+		body: JSON.stringify(param),
 	};
 
-	return fetch(`http://localhost:3000/api/addCalendar/${param.userWithoutHash._id}`, requestOptions)
-		.then(handleResponse);
+	return fetch(
+		`http://localhost:3000/api/addCalendar/${param.userWithoutHash._id}`,
+		requestOptions
+	).then(handleResponse);
 }
 
 function deleteCalendar(param) {
@@ -121,13 +123,15 @@ function deleteCalendar(param) {
 		method: "PUT",
 		headers: {
 			...authHeader(),
-			"Content-type": "application/json"
+			"Content-type": "application/json",
 		},
-		body: JSON.stringify(param)
+		body: JSON.stringify(param),
 	};
 
-	return fetch(`http://localhost:3000/api/deleteCalendar/${param.userWithoutHash._id}`, requestOptions)
-		.then(handleResponse);
+	return fetch(
+		`http://localhost:3000/api/deleteCalendar/${param.userWithoutHash._id}`,
+		requestOptions
+	).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -137,8 +141,7 @@ function _delete(id) {
 		headers: authHeader(),
 	};
 
-	return fetch(`http://localhost:3000/api/users/${id}`, requestOptions)
-		.then(handleResponse);
+	return fetch(`http://localhost:3000/api/users/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

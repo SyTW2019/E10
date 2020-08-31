@@ -60,19 +60,19 @@ const actions = {
 		param.asignaturas.map((item) => {
 			const auxJson = {
 				name: item.name,
-				date: item.fechas
-			}
+				date: item.fechas,
+			};
 			commit("addFecha", auxJson);
-		})
+		});
 
 		userService.addCalendar(user);
 		alert("Se ha creado un calendario.");
 		router.push("/perfil");
 	},
-	clearCalendar({dispatch, commit}){
+	clearCalendar({dispatch, commit}) {
 		userService.deleteCalendar(user);
-		commit("clearCalendar", user); 
-	}	
+		commit("clearCalendar", user);
+	},
 };
 
 const mutations = {
@@ -104,9 +104,9 @@ const mutations = {
 	addFecha(state, param) {
 		state.user.userWithoutHash.calendar.push(param);
 	},
-	clearCalendar(state, user){
+	clearCalendar(state, user) {
 		state.user.userWithoutHash.calendar = [];
-	}
+	},
 };
 
 export const account = {

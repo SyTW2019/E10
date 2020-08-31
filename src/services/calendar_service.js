@@ -3,7 +3,7 @@ import {authHeader} from "../helpers";
 export const calendarService = {
 	getGradosCursos,
 };
- 
+
 async function getGradosCursos() {
 	const requestOptions = {
 		method: "GET",
