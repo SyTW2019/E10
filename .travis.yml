@@ -12,7 +12,7 @@ notifications:
 addons:
   sonarcloud:
       organization: "sytw2019"
-      secure: ${SONAR_TOKEN}
+      secure: "aqhKec+kL1dmql1uxQvEge9mvUXic3WGDwuutKZdAKSD+CQctfUeJxAc5cVaRFpT8RqcBcFzcp36/0sx0QDbhZWN/cszweY8/50XwImkn0rjroHyNUmT3I1gMeYP246rtaOE75MvgKD39eCyq7a8ne4gAwwLLloxrIcwp4x53tzt2uQ78vZSaJXrgMrotoI7hBmfloysDo8OsZ5YcMGlwppec4sGRqi8bDb/WMHKw9mTnP9KVhXTDLQp5iI0FFaSh5DAL8xqWaHOu/3xmIk3XFJ1gbJ/h00oOzrd+LrizhVbQv5q4ptn6LorE+gcSGXTHyZEUVIUaBPumqdQgx1Gi9XGG9s0XwunLcMnjCyntCGuc+NSLws9mRvGht4zyDuk9s0oCaMY5w/4wUubIzIfKF2AMRY8DX3qoK/wAFeKzu6dY4QmKD4VTH4usEQspfFKgzyfXMCQiig1fUjYL3keSTYCM6etY/cBiXHX0pHH/QVKlgrqLzcP4IkOURNa4xiiLPipafKypY6pEAJFk5jBTT7FQPJz1eX0rgbl7rcyAUn7Vnf/G07oyjGwgqtFIBGptFlwGiElfOKJUZU6c2iNjnHspVu78H4zKZza/gexcZxFxkLdLgjc5tnCwXTRGIGjzBlaDmERPSOiiK20NLV8eCBHKPS98EIi+DqyBY+DtZ8="
 
 cache:
   directories:
