@@ -73,7 +73,7 @@
 		<b-row class="justify-content-around" v-if="showExams">
 			<b-col md="10" class="calendario">
 				<h3>Selección de exámenes</h3>
-				<b-form @submit.prevent="handleSubmit3" @reset.prevent="onReset3">
+				<b-form @submit.prevent="createCalendario" @reset.prevent="onReset3">
 					<b-form-group label="Examenes">
 						<b-form-select
 							v-model="examenes.selected_examenes"
@@ -126,6 +126,7 @@
 			return {
 				datos_calendar: [],
 				grado: {
+					name: "",
 					selected_grado: null,
 					options_grado: [
 						{
@@ -152,13 +153,23 @@
 					],
 				},
 				examenes: {
-					selected_examenes: [], // Array reference
+					selected_examenes: [{
+						nameAsignatura: "",
+						fechas: []
+					}], // Array reference
 					options_examenes: [
 						{
-							value: null,
+							value: {
+								name: "",
+								fecha: ""
+							},
 							text: "Escoja una convocatoria",
 						},
 					],
+				},
+				calendario: {
+					nameGrado: "",
+					asignaturas: []
 				},
 				show1: true,
 				show2: false,
@@ -174,6 +185,7 @@
 		},
 		computed: {
 			...mapState(["calendar"]),
+			...mapState(["account"]),
 			createOptionsGrades() {
 				this.grado.options_grado = [{ text: "Escoja un grado", value: null }];
 				this.calendar.grades.map((item) => {
@@ -181,13 +193,14 @@
 						value: item.idGrade,
 						text: item.name,
 					};
-
+					// this.grado.name = item.name;
 					this.grado.options_grado.push(jsonAux);
 				});
 			},
 		},
 		methods: {
 			...mapActions("calendar", ["getGrados"]),
+			...mapActions("account", ["setCalendar"]),
 			createOptionsCourses() {
 				this.showCourses = true;
 				this.grado.options_curso = [{ text: "Escoja un grado", value: null }];
@@ -214,6 +227,7 @@
 								value: item1.subject.idSubject,
 								text: item1.subject.name,
 							}
+							this.calendario
 							this.asignaturas.options_asignaturas.push(auxJson);
 						}
 					})
@@ -227,16 +241,38 @@
 						if( item1.subject.idSubject === item2) {
 							item1.subject.date.map((item3) => {
 								const auxJson = {
-									value: item3,
-									text: item1.subject.name + ": " + item3
+									value: {
+										name: item1.subject.name,
+										date: item3
+									},
+									text: item1.subject.name + ": " + item3,
 								}
 								this.examenes.options_examenes.push(auxJson);
 							})
 						} 
 					})
 				});
-
+				
 				this.showExams = true;
+			},
+			createCalendario() {
+				// this.calendario.nameGrado, this.calendario.asignatura, this.examenes.selected_examenes
+				for(var i = 0; i < this.calendar.grades.length; i++) {
+					if(this.calendar.grades[i].idGrade === this.grado.selected_grado) {
+						this.calendario.nameGrado = this.calendar.grades[i].name;
+						break;
+					}
+				}
+
+				this.examenes.selected_examenes.map((item) => {
+					const auxJson = {
+						name: item.name,
+						fechas: item.date,
+					}
+					
+					this.calendario.asignaturas.push(auxJson);
+				})
+				this.setCalendar(this.calendario);
 			},
 			handleSubmit1(evt) {
 				this.submitted_form_grado = true;

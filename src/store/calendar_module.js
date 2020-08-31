@@ -8,7 +8,7 @@ const state = idGrade ? {grades, idGrade} : {grades: [], idGrade: ""};
 
 const actions = {
 	// Parte para realizar las consultas del calendario
-	async getGrados({dispatch, commit}, param) {
+	getGrados({dispatch, commit}, param) {
 		calendarService.getGradosCursos().then((params) => {
 			commit("getGradesSuccess", params);
 		});

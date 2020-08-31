@@ -52,10 +52,23 @@ const actions = {
 			}
 		);
 	},
-	contact({dispatch, commit}, JSONmsg) {
-		userService.contact(JSONmsg);
+	contact({dispatch, commit}, param) {
+		userService.contact(param);
 		router.push("/");
 	},
+	setCalendar({dispatch, commit}, param) {
+		param.asignaturas.map((item) => {
+			const auxJson = {
+				name: item.name,
+				date: item.fechas
+			}
+			commit("addFecha", auxJson);
+		})
+
+		userService.addCalendar(user);
+		alert("Se ha creado un calendario.");
+		// router.push("/perfil");
+	}
 };
 
 const mutations = {
@@ -84,6 +97,9 @@ const mutations = {
 	registerFailure(state, error) {
 		state.status = {};
 	},
+	addFecha(state, param) {
+		state.user.userWithoutHash.calendar.push(param);
+	}
 };
 
 export const account = {

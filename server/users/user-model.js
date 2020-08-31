@@ -15,7 +15,7 @@ const userSchema = new Schema({
 	calendar: [
 		{
 			name: { type: String },
-			date: { type: String},
+			date: { type: String },
 		},
 	],
 });
