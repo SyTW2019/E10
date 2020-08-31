@@ -6,6 +6,7 @@
 	"scripts": {
 		"front": "vue-cli-service serve --port 8080",
 		"deploy": "vue-cli-service build && serve -s dist -l 8080",
+		"build": "vue-cli-service build",
 		"clean": "rm -Rf dist",
 		"formatter": "prettier --use-tabs true --no-bracket-spacing --jsx-bracket-same-line --tab-width 4 --print-width 100 --write .",
 		"server": "clear && nodemon --no-deprecation server/server.js"
