@@ -15,6 +15,14 @@
 							:options="grado.options_grado"
 							@change="createOptionsCourses()"
 						></b-form-select>
+						<div class="mt-3" v-if="grado.selected_grado">
+						<strong>Seleccionado:</strong>
+							<b-list-group class="justify-content-center" horizontal>
+							<b-list-group-item class="vista_curso">
+							{{ grado.selected_grado }}
+							</b-list-group-item>
+							</b-list-group>
+						</div>
 					</b-form-group>
 					<b-form-group label="Curso" class="justify-content-around" v-if="showCourses">
 						<b-form-select
@@ -28,6 +36,16 @@
 							Para seleccionar múltiples opciones presione "Ctrl + Click" en la opción
 							a elegir.
 						</b-form-text>
+						<div class="mt-3" v-if="curso.selected_curso.length > 0">
+							<strong>Seleccionado:</strong>
+							<b-list-group class="justify-content-center" horizontal>
+								<b-list-group-item
+								class="vista_curso"
+								v-for="(item, i) in curso.selected_curso">
+								{{ item }}
+							</b-list-group-item>
+							</b-list-group>
+						</div>
 					</b-form-group>
 					<b-form-group>
 						<b-button type="submit" variant="primary" class="btn btn-primary">
@@ -57,6 +75,16 @@
 							Para seleccionar múltiples opciones presione "Ctrl + Click" en la opción
 							a elegir.
 						</b-form-text>
+						<div class="mt-3" v-if="asignaturas.selected_asignaturas.length > 0">
+						<strong>Seleccionado:</strong>
+							<b-list-group class="vista_exam">
+								<b-list-group-item
+								class="zero"
+								v-for="item in asignaturas.selected_asignaturas">
+								{{ item }}
+								</b-list-group-item>
+							</b-list-group>
+						</div>
 					</b-form-group>
 					<b-form-group>
 						<b-button type="submit" variant="primary" class="btn btn-primary"
@@ -90,7 +118,7 @@
 							Examenes:
 							<b-list-group class="vista_exam">
 								<b-list-group-item v-for="item in examenes.selected_examenes">
-									{{ item.nombre + ", " + item.fecha + ", " + item.hora }}
+									Asignatura: {{  item.name}} - Fecha: {{ item.date  }}
 								</b-list-group-item>
 							</b-list-group>
 						</div>
@@ -103,18 +131,9 @@
 						<router-link to="/" class="btn btn-link">Cancelar</router-link>
 					</b-form-group>
 				</b-form>
-				<!-- //ESTO HABRA QUE QUITARLO -->
-				<b-card class="mt-3" header="Resultado de examenes">
-					<pre class="m-0">{{ examenes.selected_examenes }}</pre>
-				</b-card>
 			</b-col>
 		</b-row>
 		<br />
-		<b-row class="justify-content-around" v-if="submitted_form_examenes && show4">
-			<b-col md="10" class="calendario">
-				<h3>Resultado</h3>
-			</b-col>
-		</b-row>
 	</b-container>
 </template>
 
@@ -128,44 +147,21 @@ export default {
 			grado: {
 				name: "",
 				selected_grado: null,
-				options_grado: [
-					{
-						value: null,
-						text: "Escoja un grado",
-					},
-				],
+				options_grado: [],
 				numCurso: null,
 				gradit: null,
 			},
 			curso: {
 				selected_curso: [],
-				options_curso: [
-					{
-						value: null,
-						text: "Escoja un curso",
-					},
-				],
+				options_curso: [],
 			},
 			asignaturas: {
-				selected_asignaturas: [], // Array reference
-				options_asignaturas: [{value: null, text: "Escoja una asignatura"}],
+				selected_asignaturas: [],
+				options_asignaturas: [],
 			},
 			examenes: {
-				selected_examenes: [
-					{
-						nameAsignatura: "",
-						fechas: [],
-					},
-				], // Array reference
-				options_examenes: [
-					{
-						value: {
-							name: "",
-							fecha: "",
-						},
-						text: "Escoja una convocatoria",
-					},
-				],
+				selected_examenes: [],
+				options_examenes: [],
 			},
 			calendario: {
 				nameGrado: "",
@@ -193,7 +189,6 @@ export default {
 					value: item.idGrade,
 					text: item.name,
 				};
-				// this.grado.name = item.name;
 				this.grado.options_grado.push(jsonAux);
 			});
 		},
@@ -220,7 +215,7 @@ export default {
 			this.gradit = this.calendar.grades.find(
 				(item) => item.idGrade === this.grado.selected_grado
 			);
-
+			
 			this.gradit.courses.map((item1) => {
 				this.curso.selected_curso.map((item2) => {
 					if (item1.idCurso === item2) {
@@ -257,7 +252,6 @@ export default {
 			this.showExams = true;
 		},
 		createCalendario() {
-			// this.calendario.nameGrado, this.calendario.asignatura, this.examenes.selected_examenes
 			for (var i = 0; i < this.calendar.grades.length; i++) {
 				if (this.calendar.grades[i].idGrade === this.grado.selected_grado) {
 					this.calendario.nameGrado = this.calendar.grades[i].name;
@@ -274,41 +268,6 @@ export default {
 				this.calendario.asignaturas.push(auxJson);
 			});
 			this.setCalendar(this.calendario);
-		},
-		handleSubmit1(evt) {
-			this.submitted_form_grado = true;
-			this.handleAsigns();
-		},
-		onReset1(evt) {
-			// Reset our form values
-			this.submitted_form_grado = false;
-			this.submitted_form_asignaturas = false;
-			this.submitted_form_examenes = false;
-			this.grado.selected_grado = null;
-			this.curso.selected_curso = [];
-			// Trick to reset/clear native browser form validation state
-			this.show = false;
-			this.$nextTick(() => {
-				this.show = true;
-			});
-		},
-		handleSubmit2(evt) {
-			this.submitted_form_asignaturas = true;
-			this.handleExams();
-		},
-		onReset2(evt) {
-			// Reset our form values
-			this.submitted_form_asignaturas = false;
-			this.submitted_form_examenes = false;
-			this.asignaturas.selected_asignaturas = [];
-			// Trick to reset/clear native browser form validation state
-			this.show = false;
-			this.$nextTick(() => {
-				this.show = true;
-			});
-		},
-		handleSubmit3(evt) {
-			this.submitted_form_examenes = true;
 		},
 		onReset3(evt) {
 			// Reset our form values

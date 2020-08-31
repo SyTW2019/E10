@@ -50,8 +50,7 @@ function contact(JSONmsg) {
 		body: JSON.stringify(JSONmsg),
 	};
 	return fetch(`http://localhost:3000/api/contacto`, requestOptions)
-		.then(handleResponse)
-		.then(alert("El mensaje ha sido enviado con exito"));
+		.then(handleResponse);
 }
 
 function logout() {
@@ -156,10 +155,7 @@ function handleResponse(response) {
 
 			const error = (data && data.message) || response.statusText;
 			return Promise.reject(error);
-		} else {
-			alert("Petición realizada con éxito");
 		}
-
 		return data;
 	});
 }

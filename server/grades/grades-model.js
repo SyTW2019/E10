@@ -9,7 +9,7 @@ const gradeSchema = new Schema({
 		{
 			idCurso: {type: Number, required: true},
 			subject: {
-				idSubject: {type: String, unique: true, required: true},
+				idSubject: {type: String, unique: true},
 				year: {type: Number, required: true},
 				name: {type: String, required: true},
 				date: [
@@ -20,10 +20,6 @@ const gradeSchema = new Schema({
 			},
 		},
 	],
-	// courses: [{
-	//  	idCurso: { type: Number, required: true },
-	//  	subject: [{type: Schema.ObjectId, ref: "Subject"}]
-	// }],
 });
 
 gradeSchema.set("toJson", {

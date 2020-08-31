@@ -18,16 +18,19 @@ const actions = {
 		userService.login(email, password).then(
 			(user) => {
 				commit("loginSuccess", user);
+				alert("Inicio de sesión correcto");
 				router.push("/perfil");
 			},
 			(error) => {
 				commit("loginFailure", error);
+				alert("Inicio de sesión fallido.");
 				dispatch("alert/error", error, {root: true});
 			}
 		);
 	},
 	logout({commit}) {
 		userService.logout();
+		alert("Sesión cerrada con éxito.");
 		commit("logout");
 	},
 	register({dispatch, commit}, user) {
@@ -36,6 +39,7 @@ const actions = {
 		userService.register(user).then(
 			(user) => {
 				commit("registerSuccess", user);
+				alert("Usuario registrado con éxito");
 				router.push("/iniciosesion");
 				setTimeout(() => {
 					// display success message after route change completes
@@ -46,6 +50,7 @@ const actions = {
 			},
 			(error) => {
 				commit("registerFailure", error);
+				alert("Error al crear el usuario.");
 				dispatch("alert/error", error, {
 					root: true,
 				});
@@ -54,6 +59,7 @@ const actions = {
 	},
 	contact({dispatch, commit}, param) {
 		userService.contact(param);
+		alert("El correo ha sido enviado con éxito");
 		router.push("/");
 	},
 	setCalendar({dispatch, commit}, param) {
@@ -71,6 +77,7 @@ const actions = {
 	},
 	clearCalendar({dispatch, commit}) {
 		userService.deleteCalendar(user);
+		alert("Calendario limpiado con éxito.")
 		commit("clearCalendar", user);
 	},
 };
