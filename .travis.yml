@@ -23,4 +23,4 @@ script:
 - npm run clean
 - npm run test:unit
 - npm run build
-- sonnar-scanner
+- sonar-scanner
