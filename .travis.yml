@@ -13,7 +13,7 @@ addons:
   sonarcloud:
       organization: "sytw2019"
       token:
-        secure: SONAR_TOKEN
+        secure: $SONAR_TOKEN
 
 cache:
   directories:
