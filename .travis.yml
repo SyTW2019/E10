@@ -26,3 +26,4 @@ script:
 - npm run clean
 - npm run test:unit
 - npm run build
+- sonar-scanner -Dproject.settings=./sonar-project.properties
