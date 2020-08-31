@@ -68,7 +68,6 @@ async function getById(id) {
 }
 
 async function create(userParam) {
-	console.log(userParam);
 	if (await User.findOne({name: userParam.name})) {
 		throw "Usuario no disponible";
 	}

@@ -35,7 +35,6 @@ function deleteCalendar(req, res, next) {
 }
 
 function authenticate(req, res, next) {
-	console.log(req.body);
 	userService
 		.authenticate(req.body)
 		.then((user) =>

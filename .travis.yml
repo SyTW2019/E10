@@ -12,5 +12,5 @@ install:
 
 script:
 - npm run clean
-# - npm test
+- npm run test:unit
 - npm run build

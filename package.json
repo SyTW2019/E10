@@ -8,6 +8,7 @@
 		"deploy": "vue-cli-service build && serve -s dist -l 8080",
 		"build": "vue-cli-service build",
 		"clean": "rm -Rf dist",
+		"test:unit": "vue-cli-service test:unit",
 		"formatter": "prettier --use-tabs true --no-bracket-spacing --jsx-bracket-same-line --tab-width 4 --print-width 100 --write .",
 		"server": "clear && nodemon --no-deprecation server/server.js"
 	},
@@ -32,7 +33,9 @@
 	},
 	"devDependencies": {
 		"@vue/cli-service": "~4.5.0",
+		"@vue/cli-plugin-unit-jest": "^4.5.4",
 		"nodemon": "^2.0.4",
+		"@vue/test-utils": "^1.0.4",
 		"vue-template-compiler": "^2.6.11"
 	},
 	"browserslist": [
