@@ -26,7 +26,7 @@ const mutations = {
 
 		state.grades.map((aux) => {
 			console.log(aux);
-		})
+		});
 		state.idGrade = null;
 	},
 };

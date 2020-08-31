@@ -35,15 +35,14 @@
 					<h4>Calendario personal</h4>
 					<b-row cols="1" class="justify-content-around">
 						<b-col md="10">
-							<p>
-								Fechas de examenes
-							</p>
+							<p>Fechas de examenes</p>
 						</b-col>
 						<b-col class="calendario" md="10" v-show="showCalendar">
 							<b-table striped hover :items="calendario.asignaturas"></b-table>
 						</b-col>
 						<b-col md="10" class="mt-2">
-							<b-button variant="primary" @click="limpiarCalendario"> Limpiar el calendario
+							<b-button variant="primary" @click="limpiarCalendario">
+								Limpiar el calendario
 							</b-button>
 						</b-col>
 					</b-row>
@@ -60,7 +59,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import {mapActions, mapState} from "vuex";
 export default {
 	name: "Perfil",
 	data() {
@@ -108,7 +107,7 @@ export default {
 		limpiarCalendario() {
 			this.clearCalendar();
 			this.calendario.asignaturas = [];
-			
+
 			this.showCalendar = false;
 		},
 	},
