@@ -34,9 +34,20 @@
 				</b-col>
 			</b-row>
 			<br />
+			<!-- :method="doCalendar()" v-if="showCalendar" -->
 			<b-row class="perfil mb-2">
 				<b-container>
-					<p>Calendario personal</p>
+					<h4>Calendario personal</h4>
+					<b-row cols="1" class="justify-content-around">
+						<b-col md="10">
+							<p>
+								Fechas de examenes de <strong>{{ calendario.nameGrado }}</strong>
+							</p>
+						</b-col>
+						<b-col class="calendario" md="10">
+							<b-table striped hover :items="calendario.asignaturas"></b-table>
+						</b-col>
+					</b-row>
 				</b-container>
 			</b-row>
 			<br />
@@ -50,6 +61,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
 	name: "Perfil",
 	data() {
@@ -60,9 +72,37 @@ export default {
 				grado: "T",
 				universidad: "O",
 			},
-			calendario: {},
+			calendario: {
+				nameGrado: "ey chavales",
+				asignaturas: [
+					{
+						nombre: "caca",
+						fecha: "caca/culo/pedo",
+					},
+				],
+			},
 			aportaciones: {},
+			showCalendar: false,
 		};
+	},
+	computed: {
+		...mapState(["account"]),
+	},
+	methods: {
+		doCalendar() {
+			this.calendario.nameGrado = this.account.user.userWithoutHash.calendar.name;
+
+			this.account.user.userWithoutHash.calendar.subjects.map((item) => {
+				const aux = {
+					nombre: item.name,
+					fecha: item.date,
+				};
+
+				this.calendario.asignaturas.push(aux);
+			});
+
+			this.showCalendar = true;
+		},
 	},
 };
 </script>
@@ -115,5 +155,10 @@ h2 {
 }
 .casilla {
 	width: 100%;
+}
+
+.calendario {
+	background: white;
+	border: 1px solid #5c068b;
 }
 </style>

@@ -22,7 +22,7 @@ const transporter = nodemailer.createTransport({
 	},
 });
 
-async function contact({ mail, name, issue, msg }) {
+async function contact({mail, name, issue, msg}) {
 	const mailOptions = {
 		from: "empep.business@gmail.com",
 		to: "empep.business@gmail.com",
@@ -66,10 +66,10 @@ async function getById(id) {
 
 async function create(userParam) {
 	console.log(userParam);
-	if (await User.findOne({ name: userParam.name })) {
+	if (await User.findOne({name: userParam.name})) {
 		throw "Usuario no disponible";
 	}
-	if(await User.findOne({email: userParam.email })) {
+	if (await User.findOne({email: userParam.email})) {
 		throw "Email ya registrado";
 	}
 
@@ -79,23 +79,23 @@ async function create(userParam) {
 
 	const user = new User(userParam);
 	await user.save();
-		// .then(() => {
-		// const mailOptions = {
-		// 	from: "empep.business@gmail.com",
-		// 	to: userParam.email,
-		// 	subject: "Confirmación de registro",
-		// 	text: "Perfecto, tu usuario se ha registrado con éxito!",
-		// };
+	// .then(() => {
+	// const mailOptions = {
+	// 	from: "empep.business@gmail.com",
+	// 	to: userParam.email,
+	// 	subject: "Confirmación de registro",
+	// 	text: "Perfecto, tu usuario se ha registrado con éxito!",
+	// };
 
-		// transporter.sendMail(mailOptions, function (error, info) {
-		// 	if (error) {
-		// 		console.log(error);
-		// 	} else {
-		// 		console.log("Email enviado: " + info.response);
-		// 		const resp = true;
-		// 		return resp;
-		// 	}
-		// });
+	// transporter.sendMail(mailOptions, function (error, info) {
+	// 	if (error) {
+	// 		console.log(error);
+	// 	} else {
+	// 		console.log("Email enviado: " + info.response);
+	// 		const resp = true;
+	// 		return resp;
+	// 	}
+	// });
 	// });
 }
 
@@ -123,5 +123,5 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-	await User.deleteOne({ "email": id });
+	await User.deleteOne({email: id});
 }

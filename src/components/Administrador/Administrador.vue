@@ -220,39 +220,35 @@
 </template>
 
 <script>
-	import { router } from "../../helpers/router";
-	import { mapState, mapActions } from "vuex";
-	export default {
-		name: "Administrador",
-		data() {
-			return {
-				nombreAdmin: "",
-				is_admin: true,
-				users: {
-					newUser: {
-						name: "",
-						email: "",
-						password: "",
-						universidad: "",
-						isAdmin: null,
-						adminOpt: [
-							{
-								value: null,
-								text: "Eliga si es administrador"
-							},
-							{
-								value: false,
-								text: "NO es administrador"
-							},
-							{
-								value: true,
-								text: "Es administrador"
-							},
-						]
-					},
-					oldUser: {
-						mail: "",
-					},
+import {router} from "../../helpers/router";
+import {mapState, mapActions} from "vuex";
+export default {
+	name: "Administrador",
+	data() {
+		return {
+			nombreAdmin: "",
+			is_admin: true,
+			users: {
+				newUser: {
+					name: "",
+					email: "",
+					password: "",
+					universidad: "",
+					isAdmin: null,
+					adminOpt: [
+						{
+							value: null,
+							text: "Eliga si es administrador",
+						},
+						{
+							value: false,
+							text: "NO es administrador",
+						},
+						{
+							value: true,
+							text: "Es administrador",
+						},
+					],
 				},
 				oldUser: {
 					mail: "",
@@ -294,10 +290,8 @@
 					idSubject: "",
 				},
 			},
-			addUser(evt) {
-				evt.preventDefault();
-				
-				this.addUsers(this.users.newUser);
+			foro: {
+				msg: null,
 			},
 			showCourses: false,
 		};
@@ -311,7 +305,6 @@
 					value: item.idGrade,
 					text: item.name,
 				};
-
 				this.asigns.newAsign.options_grades.push(jsonAux);
 			});
 		},
@@ -347,70 +340,18 @@
 		},
 		delUser(evt) {
 			evt.preventDefault();
-
 			this.delUsers(this.users.oldUser.mail);
 		},
 		addGrado(evt) {
 			evt.preventDefault();
-
-				this.addAsigns(this.asigns.newAsign);
-			},
-			clearAsign() {
-				this.asigns.newAsign.idSubject = "";
-				this.asigns.newAsign.name = "";
-				this.asigns.newAsign.date = [];
-			},
-			delAsign(evt) {
-				evt.preventDefault();
-
-				this.delAsigns(this.asigns.oldAsign.idSubject);
-			},
-			delMsg(evt) {
-				evt.preventDefault();
-			},
-			onReset(num_form) {
-				switch (num_form) {
-					case 1:
-						this.users.newUser.name = "";
-						this.users.newUser.password = "";
-						this.users.newUser.mail = "";
-						this.users.newUser.grado = "";
-						break;
-					case 2:
-						this.users.oldUser.mail = "";
-						break;
-					case 3:
-						this.grados.newGrado.grado = "";
-						this.grados.newGrado.nombre = "";
-						this.grados.newGrado.curso.selected = null;
-						break;
-					case 4:
-						this.grados.oldGrado.nombre = "";
-						break;
-					case 5:
-						this.asigns.newAsign.idSubject = "";
-						this.asigns.newAsign.name = "";
-						this.asigns.newAsign.date = [];
-						break;
-					case 6:
-						this.asigns.oldAsign.nombre = "";
-						break;
-					case 7:
-						this.exams.newExam.nombre = "";
-						this.exams.newExam.asign = "";
-						this.exams.newExam.fecha = "";
-						this.exams.newExam.hora = "";
-						this.exams.newExam.convocatoria = "";
-						break;
-					case 8:
-						this.exams.oldExam.nombre = "";
-						this.exams.oldExam.fecha = "";
-						break;
-					case 9:
-						this.foro.msg = null;
-						break;
-
-			console.log("ADMINISTRADOR.VUE: ", this.asigns.newAsign);
+			this.addGrados(this.grados.newGrado);
+		},
+		delGrado(evt) {
+			evt.preventDefault();
+			this.delGrados(this.grados.oldGrado.idGrade);
+		},
+		addAsign(evt) {
+			evt.preventDefault();
 			this.addAsigns(this.asigns.newAsign);
 		},
 		clearAsign() {
@@ -420,12 +361,10 @@
 		},
 		delAsign(evt) {
 			evt.preventDefault();
-
 			this.delAsigns(this.asigns.oldAsign.idSubject);
 		},
 		delMsg(evt) {
 			evt.preventDefault();
-			console.log("eliminar el mensaje " + this.foro.msg);
 		},
 		onReset(num_form) {
 			switch (num_form) {
@@ -468,12 +407,10 @@
 				case 9:
 					this.foro.msg = null;
 					break;
-
 				default:
 					break;
 			}
 		},
-
 		pushDate() {
 			this.asigns.newAsign.date.push(this.asigns.newAsign.dateaux);
 			this.asigns.newAsign.dateaux = "";
@@ -491,20 +428,15 @@
 	border-radius: 8px 8px 8px 8px;
 	-moz-border-radius: 8px 8px 8px 8px;
 	-webkit-border-radius: 8px 8px 8px 8px;
-
 	background-color: rgba(92, 6, 139, 0.1);
-
 	padding-bottom: 15px;
 	padding-top: 15px;
-
 	width: 70%;
 }
-
 .fondo {
 	background-color: rgba(0, 0, 0, 0);
 	border: none;
 }
-
 .boton2 {
 	background-color: rgb(92, 6, 139, 0.5);
 	margin-top: 10px;
@@ -513,7 +445,6 @@
 	-moz-opacity: 100;
 	opacity: 100;
 }
-
 .boton2:hover {
 	opacity: 0.85;
 }

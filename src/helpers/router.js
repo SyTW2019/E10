@@ -59,7 +59,7 @@ export const router = new Router({
 			name: "admin",
 			component: () => import("@/components/Administrador/Administrador.vue"),
 		},
-		{path: "*", redirect: "/"},
+		{ path: "*", redirect: "/" },
 	],
 });
 
@@ -73,6 +73,7 @@ router.beforeEach((to, from, next) => {
 		"/contacto",
 		"/ayuda",
 		"/",
+		"/calendario",
 	];
 	const authRequired = !publicPages.includes(to.path);
 	const loggedIn = localStorage.getItem("user");

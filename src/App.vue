@@ -18,7 +18,9 @@
 						<b-nav-item to="/foro">Foro</b-nav-item>
 						<b-nav-item to="/calendario">Calendario</b-nav-item>
 						<b-nav-item to="/perfil">Perfil</b-nav-item>
-						<b-nav-item to="/admin" v-if="account.user.userWithoutHash.isAdmin">Admin</b-nav-item>
+						<b-nav-item to="/admin" v-if="account.user.userWithoutHash.isAdmin"
+							>Admin</b-nav-item
+						>
 					</b-navbar-nav>
 					<b-navbar-nav v-else>
 						<b-nav-item disabled to="/foro">Foro</b-nav-item>
@@ -139,10 +141,10 @@
 							</div>
 						</mdb-col>
 					</mdb-row>
-					<hr class="rgba-white-light" style="margin: 1%;" />
+					<hr class="rgba-white-light" style="margin: 1%" />
 					<mdb-row class="text-center justify-content-center mb-md-0 mb-4">
 						<mdb-col md="8" class="mt-5">
-							<p style="lineheight: '1.7rem';">
+							<p style="lineheight: '1.7rem'">
 								Proyecto de la asignatura Sistemas y Tecnologías Web. Cursos
 								2019/2020. <br />
 								<strong>Grado de Ingeniería Informática</strong>.
@@ -164,8 +166,8 @@
 </template>
 
 <script>
-import {mapState, mapActions} from "vuex";
-import {mdbFooter, mdbContainer, mdbRow, mdbCol} from "mdbvue";
+import { mapState, mapActions } from "vuex";
+import { mdbFooter, mdbContainer, mdbRow, mdbCol } from "mdbvue";
 import AboutUs from "./components/AboutUs/AboutUs.vue";
 import Administrador from "./components/Administrador/Administrador.vue";
 import Ayuda from "./components/Ayuda/Ayuda.vue";
@@ -176,7 +178,6 @@ import Home from "./components/Home/Home.vue";
 import InicioSesion from "./components/InicioSesion/InicioSesion.vue";
 import Perfil from "./components/Perfil/Perfil.vue";
 import Registro from "./components/Registro/Registro.vue";
-
 export default {
 	name: "App",
 	computed: {
@@ -190,19 +191,9 @@ export default {
 		...mapActions({
 			clearAlert: "alert/clear",
 		}),
-
-			...mapActions("account", ["logout"]),
-			fuera() {
-				this.logout();
-			},
-		},
-		isAdmin() {
-			const is = true;
-			if (is) {
-				return true;
-			} else {
-				return false;
-			}
+		...mapActions("account", ["logout"]),
+		fuera() {
+			this.logout();
 		},
 	},
 	watch: {
