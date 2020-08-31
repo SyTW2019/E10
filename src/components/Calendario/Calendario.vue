@@ -2,28 +2,21 @@
 	<b-container>
 		<b-row class="justify-content-around">
 			<h2>Calendario</h2>
-			{{ getCalendar }}
 		</b-row>
+		{{ createOptionsGrades }}
 		<!-- Formulario de obtencion de grado + curso -->
-		<b-row class="justify-content-around" :method="handleGrados()" v-if="show1">
+		<b-row class="justify-content-around">
 			<b-col md="10" class="calendario">
 				<h3>Selección de grado y curso</h3>
-				<b-form @submit.prevent="handleSubmit1" @reset.prevent="onReset1">
+				<b-form @submit.prevent="createdOptionsAsignaturas" @reset.prevent="onReset1">
 					<b-form-group label="Grado">
 						<b-form-select
 							v-model="grado.selected_grado"
 							:options="grado.options_grado"
+							@change="createOptionsCourses()"
 						></b-form-select>
-						<div class="mt-3" v-if="grado.selected_grado">
-							<strong>Seleccionado:</strong>
-							<b-list-group class="justify-content-center" horizontal>
-								<b-list-group-item class="vista_curso">
-									{{ grado.selected_grado }}
-								</b-list-group-item>
-							</b-list-group>
-						</div>
 					</b-form-group>
-					<b-form-group label="Curso" class="justify-content-around">
+					<b-form-group label="Curso" class="justify-content-around" v-if="showCourses">
 						<b-form-select
 							v-model="curso.selected_curso"
 							:options="curso.options_curso"
@@ -35,17 +28,6 @@
 							Para seleccionar múltiples opciones presione "Ctrl + Click" en la opción
 							a elegir.
 						</b-form-text>
-						<div class="mt-3" v-if="curso.selected_curso.length > 0">
-							<strong>Seleccionado:</strong>
-							<b-list-group class="justify-content-center" horizontal>
-								<b-list-group-item
-									class="vista_curso"
-									v-for="(item, i) in curso.selected_curso"
-								>
-									{{ item }}
-								</b-list-group-item>
-							</b-list-group>
-						</div>
 					</b-form-group>
 					<b-form-group>
 						<b-button type="submit" variant="primary" class="btn btn-primary">
@@ -55,19 +37,14 @@
 						<router-link to="/" class="btn btn-link">Cancelar</router-link>
 					</b-form-group>
 				</b-form>
-				<!-- //ESTO HABRA QUE QUITARLO -->
-				<b-card class="mt-3" header="Resultado grado">
-					<pre class="m-0">{{ grado.selected_grado }}</pre>
-					<pre class="m-0">{{ curso.selected_curso }}</pre>
-				</b-card>
 			</b-col>
 		</b-row>
 		<br />
 		<!-- Formulario de obtencion de las asignaturas -->
-		<b-row class="justify-content-around" v-if="submitted_form_grado && show2">
+		<b-row class="justify-content-around" v-if="showAsigns">
 			<b-col md="10" class="calendario">
 				<h3>Selección de asignaturas</h3>
-				<b-form @submit.prevent="handleSubmit2" @reset.prevent="onReset2">
+				<b-form @submit.prevent="createOptionsExamenes" @reset.prevent="onReset2">
 					<b-form-group label="Asignaturas" class="justify-content-around">
 						<b-form-select
 							v-model="asignaturas.selected_asignaturas"
@@ -80,17 +57,6 @@
 							Para seleccionar múltiples opciones presione "Ctrl + Click" en la opción
 							a elegir.
 						</b-form-text>
-						<div class="mt-3" v-if="asignaturas.selected_asignaturas.length > 0">
-							<strong>Seleccionado:</strong>
-							<b-list-group class="vista_exam">
-								<b-list-group-item
-									class="zero"
-									v-for="item in asignaturas.selected_asignaturas"
-								>
-									{{ item }}
-								</b-list-group-item>
-							</b-list-group>
-						</div>
 					</b-form-group>
 					<b-form-group>
 						<b-button type="submit" variant="primary" class="btn btn-primary"
@@ -100,15 +66,11 @@
 						<router-link to="/" class="btn btn-link">Cancelar</router-link>
 					</b-form-group>
 				</b-form>
-				<!-- //ESTO HABRA QUE QUITARLO -->
-				<b-card class="mt-3" header="Resultado asignaturas">
-					<pre class="m-0">{{ asignaturas.selected_asignaturas }}</pre>
-				</b-card>
 			</b-col>
 		</b-row>
 		<br />
 		<!-- Formulario de obtencion de los exámenes -->
-		<b-row class="justify-content-around" v-if="submitted_form_asignaturas && show3">
+		<b-row class="justify-content-around" v-if="showExams">
 			<b-col md="10" class="calendario">
 				<h3>Selección de exámenes</h3>
 				<b-form @submit.prevent="handleSubmit3" @reset.prevent="onReset3">
@@ -117,7 +79,7 @@
 							v-model="examenes.selected_examenes"
 							:options="examenes.options_examenes"
 							multiple
-							:select-size="10"
+							:select-size="8"
 							aria-describedby="select-help-block"
 						></b-form-select>
 						<b-form-text id="select-help-block">
@@ -171,75 +133,111 @@
 							text: "Escoja un grado",
 						},
 					],
+					numCurso: null,
+					gradit: null
 				},
 				curso: {
 					selected_curso: [],
-					options_curso: [],
+					options_curso: [
+						{
+							value: null,
+							text: "Escoja un curso",
+						}
+					],
 				},
 				asignaturas: {
 					selected_asignaturas: [], // Array reference
 					options_asignaturas: [
-						{ value: "A", text: "A" },
-						{ value: "B", text: "B" },
-						{ value: "C", text: "C" },
-						{ value: "D", text: "D" },
-						{ value: "E", text: "E" },
-						{ value: "G", text: "G" },
-						{ value: "F", text: "F" },
+						{ value: null, text: "Escoja una asignatura" },
 					],
 				},
 				examenes: {
 					selected_examenes: [], // Array reference
 					options_examenes: [
 						{
-							value: {
-								nombre: "calculo",
-								fecha: "23/01/2020",
-								hora: "9:30",
-								aula: "1.5",
-							},
-							text: "CÁLCULO; Conv. Enero, Llam. 1, 23/01/2020 9:30, Aula 1.5",
-						},
-						{
-							value: {
-								nombre: "algebra",
-								fecha: "25/01/2020",
-								hora: "9:30",
-								aula: "1.5",
-							},
-							text: "ÁLGEBRA; Conv. Enero, Llam. 1, 25/01/2020 9:30, Aula 1.5",
-						},
-						{
-							value: {
-								nombre: "fisica",
-								fecha: "27/01/2020",
-								hora: "9:30",
-								aula: "1.5",
-							},
-							text: "FÍSICA; Conv. Enero, Llam. 1, 27/01/2020 9:30, Aula 1.5",
+							value: null,
+							text: "Escoja una convocatoria",
 						},
 					],
 				},
-				show1: false,
+				show1: true,
 				show2: false,
 				show3: false,
 				show4: false,
 				submitted_form_grado: false,
 				submitted_form_asignaturas: false,
 				submitted_form_examenes: false,
+				showCourses: false,
+				showAsigns: false,
+				showExams: false
 			};
 		},
 		computed: {
 			...mapState(["calendar"]),
-
-			getCalendar() {
+			createOptionsGrades() {
+				this.grado.options_grado = [{ text: "Escoja un grado", value: null }];
 				this.calendar.grades.map((item) => {
-					this.datos_calendar.push(item);
+					const jsonAux = {
+						value: item.idGrade,
+						text: item.name,
+					};
+
+					this.grado.options_grado.push(jsonAux);
 				});
 			},
 		},
 		methods: {
 			...mapActions("calendar", ["getGrados"]),
+			createOptionsCourses() {
+				this.showCourses = true;
+				this.grado.options_curso = [{ text: "Escoja un grado", value: null }];
+				this.grado.numCurso = this.calendar.grades.find(
+					(item) => item.idGrade === this.grado.selected_grado,
+				).numCurso;
+
+				for (var i = 1; i <= this.grado.numCurso; i++) {
+					const jsonAux = {
+						value: i,
+						text: i,
+					};
+					this.curso.options_curso.push(jsonAux);
+				}
+			},
+			createdOptionsAsignaturas() {
+				this.gradit = this.calendar.grades.find((item) => 
+					item.idGrade === this.grado.selected_grado);
+
+				this.gradit.courses.map((item1) => {
+					this.curso.selected_curso.map((item2) => {
+						if (item1.idCurso === item2) {
+							const auxJson = {
+								value: item1.subject.idSubject,
+								text: item1.subject.name,
+							}
+							this.asignaturas.options_asignaturas.push(auxJson);
+						}
+					})
+				})
+
+				this.showAsigns = true;
+			},
+			createOptionsExamenes() {
+				this.examen = this.gradit.courses.find((item1) => {
+					this.asignaturas.selected_asignaturas.map((item2) => {
+						if( item1.subject.idSubject === item2) {
+							item1.subject.date.map((item3) => {
+								const auxJson = {
+									value: item3,
+									text: item1.subject.name + ": " + item3
+								}
+								this.examenes.options_examenes.push(auxJson);
+							})
+						} 
+					})
+				});
+
+				this.showExams = true;
+			},
 			handleSubmit1(evt) {
 				this.submitted_form_grado = true;
 				this.handleAsigns();
@@ -284,32 +282,7 @@
 				this.$nextTick(() => {
 					this.show = true;
 				});
-			},
-			//Parte para mapear los datos a los locales del componente
-			handleGrados() {
-				this.datos_calendar.map((item) => {
-					const temp = {
-						value: item.idGrade,
-						text: item.name,
-					};
-					this.grado.options_grado.push(temp);
-				});
-
-				/* this.datos_calendar.courses.map((item) => {
-					const temp = {
-						value: item.idCourse,
-						text: item.idCourse,
-					};
-					this.curso.options_curso.push(temp);
-				}); */
-
-				if (this.grado.options_grado.length > 1 && this.curso.options_curso > 0) {
-					this.show1 = true;
-				} else {
-					this.show1 = false;
-					alert("algo ha salido mal");
-				}
-			},
+			},			
 			handleAsigns() {},
 			handleExams() {},
 		},

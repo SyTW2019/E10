@@ -14,8 +14,8 @@ const userSchema = new Schema({
 	universidad: {type: String, required: true},
 	calendar: [
 		{
-			name: String,
-			date: Date,
+			name: { type: String },
+			date: { type: String},
 		},
 	],
 });

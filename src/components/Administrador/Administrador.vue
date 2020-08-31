@@ -322,7 +322,7 @@
 			...mapActions("calendar", ["getGrados"]),
 			createOptionsCourses() {
 				this.showCourses = true;
-				this.asigns.newAsign.options_course = [{ text: "Escoja un grado", value: null }];
+				this.asigns.newAsign.options_course = [{ text: "Escoja un curso", value: null }];
 				this.asigns.newAsign.numCurso = this.calendar.grades.find(
 					(item) => item.idGrade === this.asigns.newAsign.idGrade,
 				).numCurso;
