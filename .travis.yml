@@ -6,6 +6,12 @@ node_js:
 notifications:
   slack: sytw:xbLYeJ93mpOR1m6IsQ5VxKVW
 
+addons:
+  sonarcloud:
+      organization: "sytw2019"
+      token:
+        secure: SONAR_TOKEN
+
 cache:
   directories:
     - "node_modules"
@@ -17,3 +23,4 @@ script:
 - npm run clean
 - npm run test:unit
 - npm run build
+- sonnar-scanner
