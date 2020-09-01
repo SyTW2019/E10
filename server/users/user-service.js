@@ -81,24 +81,24 @@ async function create(userParam) {
 
 	const user = new User(userParam);
 	await user.save();
-	// .then(() => {
-	// const mailOptions = {
-	// 	from: "empep.business@gmail.com",
-	// 	to: userParam.email,
-	// 	subject: "Confirmación de registro",
-	// 	text: "Perfecto, tu usuario se ha registrado con éxito!",
-	// };
+		.then(() => {
+			const mailOptions = {
+				from: "empep.business@gmail.com",
+				to: userParam.email,
+				subject: "Confirmación de registro",
+				text: "Perfecto, tu usuario se ha registrado con éxito!",
+			};
 
-	// transporter.sendMail(mailOptions, function (error, info) {
-	// 	if (error) {
-	// 		console.log(error);
-	// 	} else {
-	// 		console.log("Email enviado: " + info.response);
-	// 		const resp = true;
-	// 		return resp;
-	// 	}
-	// });
-	// });
+			transporter.sendMail(mailOptions, function (error, info) {
+				if (error) {
+					console.log(error);
+				} else {
+					console.log("Email enviado: " + info.response);
+					const resp = true;
+					return resp;
+				}
+			});
+		});
 }
 
 async function update(id, userParam) {
