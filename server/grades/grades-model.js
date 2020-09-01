@@ -9,7 +9,7 @@ const gradeSchema = new Schema({
 		{
 			idCurso: {type: Number, required: true},
 			subject: {
-				idSubject: {type: String, unique: true},
+				idSubject: {type: String, required: true},
 				year: {type: Number, required: true},
 				name: {type: String, required: true},
 				date: [

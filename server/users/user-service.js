@@ -80,7 +80,7 @@ async function create(userParam) {
 	}
 
 	const user = new User(userParam);
-	await user.save();
+	await user.save()
 		.then(() => {
 			const mailOptions = {
 				from: "empep.business@gmail.com",

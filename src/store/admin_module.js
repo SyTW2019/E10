@@ -8,22 +8,29 @@ const state = false ? {refresh} : {refresh: false};
 const actions = {
 	// Parte para realizar las consultas del calendario
 	addGrados({dispatch, commit}, param) {
-		adminService.addGrados(param).then(alert("Grado añadido."));
+		adminService.addGrados(param).then(
+			alert("Peticion enviada.")
+			// (grade) => {
+			// 	alert("Grado añadido.");
+			// },
+			// (error) => {
+			// 	alert("Error al añadir grado");
+			);
 	},
 	addAsigns({dispatch, commit}, param) {
-		adminService.addAsigns(param).then(alert("Asignatura añadido."));
+		adminService.addAsigns(param).then(alert("Peticion enviada."));
 	},
 	addUsers({dispatch, commit}, param) {
-		adminService.addUsers(param).then(alert("Usuario añadido."));
+		adminService.addUsers(param).then(alert("Peticion enviada."));
 	},
 	delGrados({dispatch, commit}, param) {
-		adminService.delGrados(param).then(alert("Grado eliminado."));
+		adminService.delGrados(param).then(alert("Peticion enviada."));
 	},
 	delAsigns({dispatch, commit}, param) {
-		adminService.delAsigns(param).then(alert("Asignatura elminada."));
+		adminService.delAsigns(param).then(alert("Peticion enviada."));
 	},
 	delUsers({dispatch, commit}, param) {
-		adminService.delUsers(param).then(alert("Usuario eliminado."));
+		adminService.delUsers(param).then(alert("Peticion enviada."));
 	},
 };
 
