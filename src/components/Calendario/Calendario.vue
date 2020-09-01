@@ -210,11 +210,14 @@ export default {
 				};
 				this.curso.options_curso.push(jsonAux);
 			}
+			
 		},
 		createdOptionsAsignaturas() {
 			this.gradit = this.calendar.grades.find(
 				(item) => item.idGrade === this.grado.selected_grado
 			);
+
+			console.log(this.gradit);
 			
 			this.gradit.courses.map((item1) => {
 				this.curso.selected_curso.map((item2) => {

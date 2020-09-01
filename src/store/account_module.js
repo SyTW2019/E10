@@ -30,7 +30,6 @@ const actions = {
 	},
 	logout({commit}) {
 		userService.logout();
-		alert("Sesión cerrada con éxito.");
 		commit("logout");
 	},
 	register({dispatch, commit}, user) {

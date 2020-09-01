@@ -2,6 +2,7 @@
 	<b-container v-show="is_admin" >
 		<h3>Panel de administrador</h3>
 		<p>Nombre del admin: {{ nombreAdmin }}</p>
+		{{ createOptionsGrades }}
 		<div role="tablist">
 			<b-card no-body class="fondo">
 				<b-card-header header-tag="header" class="fondo" role="tab">
@@ -299,17 +300,6 @@ export default {
 	computed: {
 		...mapState(["calendar"]),
 		...mapState(["account"]),
-	},
-	methods: {
-		...mapActions("admin", [
-			"addGrados",
-			"addAsigns",
-			"delGrados",
-			"addUsers",
-			"delAsigns",
-			"delUsers",
-		]),
-		...mapActions("calendar", ["getGrados"]),
 		createOptionsGrades() {
 			this.nombreAdmin = this.account.user.userWithoutHash.name;
 
@@ -323,6 +313,17 @@ export default {
 				this.asigns.newAsign.options_grades.push(jsonAux);
 			});
 		},
+	},
+	methods: {
+		...mapActions("admin", [
+			"addGrados",
+			"addAsigns",
+			"delGrados",
+			"addUsers",
+			"delAsigns",
+			"delUsers",
+		]),
+		...mapActions("calendar", ["getGrados"]),
 		createOptionsCourses() {
 			this.showCourses = true;
 			this.asigns.newAsign.options_course = [{text: "Escoja un curso", value: null}];

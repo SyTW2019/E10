@@ -15,9 +15,15 @@ npm install
 
 ### Crear primer usuario
 
-Para crear el primer usuario admin, debe ejecutar este comando con la aplicación desplegada:  
+Para crear el primer usuario admin por defecto, debe ejecutar este comando con la aplicación desplegada:  
   
 `curl -i -X POST -H "Content-Type: application/json" -d '{"name": "Admin", "isAdmin": "true", "email": "admin@admin.com", "password": "admin", "universidad": "Universidad de La Laguna"}' localhost:3000/api/registro`
+
+
+### Lanzar mongod
+Para iniciar mongo por defecto, escribir en consola:  
+  
+`mongod --config /usr/local/etc/mongod.conf --fork`
 
 ### Comandos disponibles
 
@@ -43,3 +49,8 @@ npm run server
 
 
 npm run deploy
+
+
+### Consideraciones 
+- Es posible que los botones de "Limpiar formulario" no funcione
+- Si existe algún error en los menús de opciones, prueba a refrescar la página
