@@ -16,28 +16,34 @@ npm install
 
 ### Comandos disponibles
 
-
+```
 "front": "vue-cli-service serve --port 8080",
 "deploy": "vue-cli-service build && serve -s dist -l 8080",
 "clean": "rm -Rf dist",
 "formatter": "prettier --use-tabs true --no-bracket-spacing --jsx-bracket-same-line --tab-width 4 --print-width 100 --write .",
 "server": "clear && nodemon --no-deprecation server/server.js"
-
+```
 
 ### Lanzar la app
 
 
 ### Para desplegar el frontend
+
+```
 npm run front
+```
 
 ### Para desplegar el backend
-npm run server
 
+```
+npm run server
+```
 
 ### Para desplegar el build
 
-
+```
 npm run deploy
+```
 
 ### Crear primer usuario
 
