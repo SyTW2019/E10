@@ -13,7 +13,7 @@ addons:
   sonarcloud:
       organization: sytw2019
       token:
-        secure: $SONAR_TOKEN
+        secure: "Kb9CVRKIt1a3nSR78x/8kIyHxUVo+GuzmOO5PT2/FlBaRCTmZFeljglvAISaUtT/7yeOoD5qfeW2mtrQvgS9c6r8UjAfKOuH3o1YdLrwJNIMqpSoKwtUjHR+cXyU7JRgPmSNv8QIeT6rrnV9s769eVi5uol2G+PtoW9YFDTLtzv6TiHUiDjg9r4a7HUUMUTSjTqIRWrGPSelg4Ue3vF7POnlC2uRVpj1ukEZvLn4kQgmlbk9dFam5pr+/UILcIH38mHPgaK4mOyIyWTTujiHpz3RUQ04XMz8NmqP0YfpNQuXCGGQCe4G/M8uPgnz06rX57eRfIFxagP2eW7OqCegx75ptSVzJdHJhXjDv/7ZKEIRNMMphnaOJwVIEOoDRRr5j708rbdsdQ0zUwNmurbObMGjcvpzu0SjvEoJTxkwnfJJKD4FUVcnTPb5u3XmSPbMXReY+D3JPHcNOmh09XcLfU40jpsIPmpyzKwxVdMXchNKOjQ/KGqcOpvbk6QJYbmqSF+OqiefrAL6xQWmyTMyhEUjB4/ZC8X2uX3yoyRPebDkD+En3PTzF75EefKyOtZP5vplA8DEDiiTAexb77KaItpdgGhY4Ok49HLydyWJeoCY4DZTlutbkfX7pDlcitoNi9zbHMmMmeF7xBHE3X3M4349qiz8gUfGKzoiAo8lFr0="
 cache:
   directories:
     - "node_modules"
@@ -25,4 +25,4 @@ script:
 - npm run clean
 - npm run test:unit
 - npm run build
-- sonar-scanner -Dproject.settings=./sonar-project.properties -X --stacktrace --debug
+- sonar-scanner -Dproject.settings=./sonar-project.properties --debug
