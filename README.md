@@ -13,11 +13,6 @@ Para instalar y desplegar la aplicación es necesario descargar o clonar el repo
 
 npm install
 
-### Crear primer usuario
-
-Para crear el primer usuario admin, debe ejecutar este comando con la aplicación desplegada:  
-  
-`curl -i -X POST -H "Content-Type: application/json" -d '{"name": "Admin", "isAdmin": "true", "email": "admin@admin.com", "password": "admin", "universidad": "Universidad de La Laguna"}' localhost:3000/api/registro`
 
 ### Comandos disponibles
 
@@ -32,10 +27,10 @@ Para crear el primer usuario admin, debe ejecutar este comando con la aplicació
 ### Lanzar la app
 
 
-# Para desplegar el frontend
+### Para desplegar el frontend
 npm run front
 
-# Para desplegar el backend
+### Para desplegar el backend
 npm run server
 
 
@@ -43,3 +38,9 @@ npm run server
 
 
 npm run deploy
+
+### Crear primer usuario
+
+Para crear el primer usuario admin, debe ejecutar este comando con la aplicación desplegada:  
+  
+`curl -i -X POST -H "Content-Type: application/json" -d '{"name": "Admin", "isAdmin": "true", "email": "admin@admin.com", "password": "admin", "universidad": "Universidad de La Laguna"}' localhost:3000/api/registro`
